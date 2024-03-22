@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--style do container que abriga o login-->
+    <style name="ContainerComponents">
+
+        <item name="android:layout"
+
+    </style>
+
+</resources>
