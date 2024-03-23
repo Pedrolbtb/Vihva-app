@@ -7,4 +7,20 @@
     android:background="@color/off_white"
     tools:context=".login">
 
+    <!--container de login-->
+    <View
+        android:id="@+id/containerComponents"
+        style="@style/ContainerComponents"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+       />
+    <!--campo de login ainda nao finalizado
+    <EditText
+        style="@style/Campos_login"
+        app:layout_constraintStart_toStartOf="@+id/containerComponents"
+        app:layout_constraintEnd_toEndOf="@+id/containerComponents"
+        app:layout_constraintTop_toTopOf="@+id/containerComponents"
+    -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

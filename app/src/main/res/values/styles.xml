@@ -4,7 +4,34 @@
     <!--style do container que abriga o login-->
     <style name="ContainerComponents">
 
-        <item name="android:layout"
+        <!--o match parente faz a width pegar toda a extensao do layout-->
+        <item name="android:layout_width">match_parent</item>
+
+        <!--valor da altura do container-->
+        <item name="android:layout_height">250dp</item>
+
+        <!--puxando os components do background direto do drawable-->
+        <item name="android:background">@drawable/container_components</item>
+
+        <!--margem do container-->
+        <item name="android:layout_margin">20dp</item>
+
+
+    </style>
+    
+    <style name="Campos_login">
+
+        <!--width do campo vai pegar toda a extensao da view, dps arrumamos-->
+        <item name="android:layout_width">match_parent</item>
+
+        <!--a width pega apenas o quanto estiver usando-->
+        <item name="android:layout_height">wrap_content</item>
+
+        <!--puxando as coisas do style do -->
+        <item name="android:background">@drawable/campo_login</item>
+
+        <!--padding do campo-->
+        <item name="android:padding">20dp</item>
 
     </style>
 
