@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--codigo do que vai dentro do container-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--cor de fundo-->
+    <solid android:color="@color/white"/>
+
+    <!--borda do fundo-->
+    <stroke android:color="@color/marrom" android:width="2dp"/>
+</shape>
