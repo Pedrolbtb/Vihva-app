@@ -13,14 +13,47 @@
         style="@style/ContainerComponents"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_login"
        />
 
-    <EditText
-        style="@style/Campos_login"
+    <!--texto de medico ou paciente-->
+    <TextView
+        android:id="@+id/mxp"
+        android:text="@string/mxp"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@+id/containerComponents"
         app:layout_constraintEnd_toEndOf="@+id/containerComponents"
         app:layout_constraintTop_toTopOf="@+id/containerComponents"
+        />
+
+    <!--titulo do login "vihva"-->
+    <TextView
+        android:id="@+id/titulo_login"
+        android:layout_marginTop="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titulo_login"
+        android:textSize="50sp"
+        android:textColor="@color/marrom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <!--botao de médico-->
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/btn_login"
+        android:text="Médico"
+        android:textColor="@color/off_white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mxp"
         />
 
 

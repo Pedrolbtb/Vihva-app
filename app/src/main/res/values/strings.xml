@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">vihva</string>
+    <string name="titulo_login">Vihva</string>
+    <string name="mxp">Você é médico ou paciente?</string>
 </resources>
