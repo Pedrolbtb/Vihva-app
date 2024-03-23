@@ -20,8 +20,9 @@
     <TextView
         android:id="@+id/mxp"
         android:text="@string/mxp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:textSize="20sp"
+        android:fontFamily="@font/cloudsoft_bold_700"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@+id/containerComponents"
@@ -32,12 +33,13 @@
     <!--titulo do login "vihva"-->
     <TextView
         android:id="@+id/titulo_login"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="140dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/titulo_login"
-        android:textSize="50sp"
+        android:textSize="70sp"
         android:textColor="@color/marrom"
+        android:fontFamily="@font/peanut_butter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -45,15 +47,22 @@
 
     <!--botao de médico-->
     <androidx.appcompat.widget.AppCompatButton
-        style="@style/btn_login"
-        android:text="Médico"
-        android:textColor="@color/off_white"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:textAllCaps="false"
+        android:id="@+id/btn_med"
+        style="@style/btn_mxp"
+        android:background="@drawable/button_mxp"
+        android:text="@string/med_login"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mxp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/btn_mxp"
+        android:text="@string/pac_login"
+        android:background="@drawable/button_mxp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_med"
         />
 
 

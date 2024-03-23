@@ -1,5 +1,15 @@
 <resources>
     <string name="app_name">vihva</string>
+
+    <!--titulo na tela de login-->
     <string name="titulo_login">Vihva</string>
+
+    <!--pergunta de medico ou paciente na tela de login-->
     <string name="mxp">Você é médico ou paciente?</string>
+
+    <!--texto do botao de entrada com medico-->
+    <string name="med_login">Médico</string>
+
+    <!--texto do botao de entrada como paciente-->
+    <string name="pac_login">Paciente</string>
 </resources>
