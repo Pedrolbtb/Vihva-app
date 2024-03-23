@@ -12,4 +12,20 @@
 
     <!--texto do botao de entrada como paciente-->
     <string name="pac_login">Paciente</string>
+
+    <!--texto do EditText email-->
+    <string name="title_login">Email</string>
+
+    <!--texto do EditText senha-->
+    <string name="title_senha">Senha</string>
+
+    <!--texto do Button entrar-->
+    <string name="title_button_login">Entrar</string>
+
+    <!--texto do text para cadastro-->
+    <string name="text_cadastro">Não possui uma conta? clique aqui!</string>
+
+
+
 </resources>
+

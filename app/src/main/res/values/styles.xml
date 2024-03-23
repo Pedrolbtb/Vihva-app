@@ -82,10 +82,53 @@
 
         <item name="elevation">10dp</item>
 
-        
     </style>
 
+    <!--Style do botão de login-->
+    <style name="Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">60dp</item>
+        <item name="android:layout_marginRight">60dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/marrom</item>
 
+    </style>
+
+    <!--style do container que abriga o login-->
+    <style name="ContainerComponents">
+
+        <item name="android:layout_width">match_parent </item>
+        <item name="android:layout_height">250dp</item>
+        <item name="android:background">@drawable/container_components</item>
+        <item name="android:layout_margin">20dp</item>
+    </style>
+
+    <!--Style do editText alguma coisa-->
+    <style name="Edit_Text">
+
+        <!--limita a quantidade de caracteres-->
+        <item name="android:maxLength">25</item>
+
+        <item name="android:layout_width">match_parent</item>
+
+        <item name="android:layout_height">wrap_content</item>
+
+        <!--puxando o style drawlable/edittext-->
+        <item name="android:background">@drawable/edit_text</item>
+
+        <!--padding do campo-->
+        <item name="android:padding">20dp</item>
+
+        <item name="android:layout_marginLeft">40dp</item>
+
+        <item name="android:layout_marginRight">40dp</item>
+
+        <item name="android:layout_marginTop">10dp</item>
+
+    </style>
 
 
 </resources>

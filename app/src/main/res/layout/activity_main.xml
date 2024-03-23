@@ -4,15 +4,104 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/off_white"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <!--View que abriga o container components-->
+    <View
+        android:id="@+id/containerComponents"
+        style="@style/ContainerComponents"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="461dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_ToEndOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_ToStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/edit_email"
+        style="@style/Edit_Text"
+        android:inputType="textEmailAddress"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="264dp"
+        android:layout_marginEnd="40dp"
+        android:drawableRight="@drawable/ic_email"
+        android:text="@string/title_login"
+        android:textColor="@color/marrom"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edit_senha"
+        style="@style/Edit_Text"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="340dp"
+        android:layout_marginEnd="40dp"
+        android:drawableRight="@drawable/ic_eye"
+        android:text="@string/title_senha"
+        android:textColor="@color/marrom"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_entar"
+        style="@style/Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_senha"
+        android:text="@string/title_button_login"
+        android:textColor="@color/marrom"
+        android:textStyle="bold"
+        android:textSize="20dp" />
+
+    <ProgressBar
+        android:id="@+id/progressbar_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="180dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/containerComponents"
+
+        />
+
+    <TextView
+        android:id="@+id/text_tela_cadastro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/text_cadastro"
+        android:textColor="@color/marrom"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/progressbar_login"
+        app:layout_goneMarginTop="20dp"
+        tools:layout_editor_absoluteX="63dp" />
+
+    <TextView
+        android:id="@+id/titulo_login"
+        android:layout_marginTop="140dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titulo_login"
+        android:textSize="70sp"
+        android:textColor="@color/marrom"
+        android:fontFamily="@font/peanut_butter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
