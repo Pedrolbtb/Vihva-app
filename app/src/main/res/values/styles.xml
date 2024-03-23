@@ -80,7 +80,6 @@
         <!--margem para cima do campo-->
         <item name="android:textStyle">bold</item>
 
-        <item name="elevation">10dp</item>
 
     </style>
 
