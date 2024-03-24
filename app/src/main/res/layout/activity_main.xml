@@ -56,7 +56,9 @@
         android:text="@string/title_button_login"
         android:textColor="@color/marrom"
         android:textStyle="bold"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        
+        />
 
     <ProgressBar
         android:id="@+id/progressbar_login"

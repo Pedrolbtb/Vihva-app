@@ -5,5 +5,6 @@
     <color name="off_white">#FFFAF5</color>
     <color name="azul">#ADD8E6</color>
     <color name="marrom">#5C3202</color>
+    <color name="sombra">#757575</color>
 
 </resources>
