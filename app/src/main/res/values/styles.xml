@@ -19,32 +19,6 @@
 
     </style>
     
-    <style name="Campos_login">
-
-        <!--width do campo vai pegar toda a extensao da view, dps arrumamos-->
-        <item name="android:layout_width">match_parent</item>
-
-        <!--a width pega apenas o quanto estiver usando-->
-        <item name="android:layout_height">wrap_content</item>
-
-        <!--puxando as coisas do style do -->
-        <item name="android:background">@drawable/campo_login</item>
-
-        <!--padding do campo-->
-        <item name="android:padding">20dp</item>
-
-        <!--margem a esquerda do campo-->
-        <item name="android:layout_marginLeft">40dp</item>
-
-        <item name="fontFamily">@font/cloudsoft_bold_700</item>
-
-        <!--margem a direita do campo-->
-        <item name="android:layout_marginRight">40dp</item>
-
-        <!--margem para cima do campo-->
-        <item name="android:layout_marginTop">10dp</item>
-
-    </style>
 
     <!--botao de escolha medico ou paciente-->
     <style name="btn_mxp">
@@ -96,7 +70,7 @@
 
     </style>
 
-    <!--style do container que abriga o login-->
+    <!--style do container que abriga o login
     <style name="ContainerComponents">
 
         <item name="android:layout_width">match_parent </item>
@@ -104,6 +78,8 @@
         <item name="android:background">@drawable/container_components</item>
         <item name="android:layout_margin">20dp</item>
     </style>
+    -->
+
 
     <!--Style do editText alguma coisa-->
     <style name="Edit_Text">

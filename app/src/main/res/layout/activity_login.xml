@@ -58,13 +58,13 @@
         />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_pac"
         style="@style/btn_mxp"
-        android:text="@string/pac_login"
         android:background="@drawable/button_mxp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/pac_login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_med"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_med" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
