@@ -8,7 +8,7 @@
         <item name="android:layout_width">match_parent</item>
 
         <!--valor da altura do container-->
-        <item name="android:layout_height">250dp</item>
+        <item name="android:layout_height">270dp</item>
 
         <!--puxando os components do background direto do drawable-->
         <item name="android:background">@drawable/container_components</item>
@@ -44,7 +44,7 @@
         <item name="android:padding">15dp</item>
 
         <!--cor od texto dentro do botao-->
-        <item name="android:textColor">@color/marrom</item>
+        <item name="android:textColor">@color/Letras</item>
 
         <!--instruçao para a escrita dentro do botao nao ser so maiuscula-->
         <item name="android:textAllCaps">false</item>
@@ -66,7 +66,7 @@
         <item name="android:layout_marginTop">15dp</item>
         <item name="android:background">@drawable/button</item>
         <item name="android:textSize">20dp</item>
-        <item name="android:textColor">@color/marrom</item>
+        <item name="android:textColor">@color/Letras</item>
 
     </style>
 
@@ -84,25 +84,27 @@
     <!--Style do editText alguma coisa-->
     <style name="Edit_Text">
 
+
+
+    </style>
+
+    <style name="Edit_Text_Login">
+
         <!--limita a quantidade de caracteres-->
         <item name="android:maxLength">25</item>
-
         <item name="android:layout_width">match_parent</item>
-
         <item name="android:layout_height">wrap_content</item>
-
         <!--puxando o style drawlable/edittext-->
         <item name="android:background">@drawable/edit_text</item>
-
         <!--padding do campo-->
         <item name="android:padding">20dp</item>
-
         <item name="android:layout_marginLeft">40dp</item>
-
         <item name="android:layout_marginRight">40dp</item>
-
-        <item name="android:layout_marginTop">10dp</item>
-
+        <item name="android:inputType">textEmailAddress</item>
+        <item name="android:layout_marginStart">40dp</item>
+        <item name="android:layout_marginEnd">40dp</item>
+        <item name="android:textColor">@color/Letras</item>
+        <item name="android:textSize">20dp</item>
     </style>
 
 

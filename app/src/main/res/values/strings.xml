@@ -23,7 +23,22 @@
     <string name="title_button_login">Entrar</string>
 
     <!--texto do text para cadastro-->
-    <string name="text_cadastro">Não possui uma conta? clique aqui!</string>
+    <string name="text_ncadastro">Não possui uma conta? clique aqui!</string>
+
+    <!--texto do text para colocar seu email no cadastro-->
+    <string name="text_cadastro">Escreva o seu email</string>
+
+    <!--texto do text para colocar sua senha no cadastro-->
+    <string name="text_csenha">Escreva a sua senha</string>
+
+    <!--texto do text para confirmar sua senha no cadastro-->
+    <string name="text_confsenha">Confirma senha</string>
+
+    <!--texto do text para confirmar sua senha no cadastro-->
+    <string name="text_confcadastro">Cadastrar</string>
+
+    <!--texto do text para confirmar sua senha no cadastro-->
+    <string name="text_jasenha">Possuo conta</string>
 
 
 

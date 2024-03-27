@@ -19,6 +19,7 @@
     <!--texto de medico ou paciente-->
     <TextView
         android:id="@+id/mxp"
+        android:textColor="@color/Letras"
         android:text="@string/mxp"
         android:layout_marginTop="20dp"
         android:textSize="20sp"
@@ -38,7 +39,7 @@
         android:layout_height="wrap_content"
         android:text="@string/titulo_login"
         android:textSize="70sp"
-        android:textColor="@color/marrom"
+        android:textColor="@color/Letras"
         android:fontFamily="@font/peanut_butter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

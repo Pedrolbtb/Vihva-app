@@ -20,7 +20,7 @@ class login : AppCompatActivity() {
 
     private fun irParaTelaLoginP() {
 
-        val telaL = Intent(this, MainActivity::class.java)
+        val telaL = Intent(this, CadastroPac::class.java)
         startActivity(telaL)
     }
 }

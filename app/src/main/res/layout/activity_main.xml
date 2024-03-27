@@ -18,15 +18,11 @@
 
     <EditText
         android:id="@+id/edit_email"
-        style="@style/Edit_Text"
+        style="@style/Edit_Text_Login"
         android:inputType="textEmailAddress"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="264dp"
-        android:layout_marginEnd="40dp"
-        android:drawableRight="@drawable/ic_email"
         android:hint="@string/title_login"
-        android:textColor="@color/marrom"
-        android:textSize="20dp"
+        android:layout_marginTop="264dp"
+        android:drawableRight="@drawable/ic_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,13 +30,13 @@
 
     <EditText
         android:id="@+id/edit_senha"
-        style="@style/Edit_Text"
+        style="@style/Edit_Text_Login"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="340dp"
+        android:layout_marginTop="350dp"
         android:layout_marginEnd="40dp"
         android:drawableRight="@drawable/ic_eye"
         android:hint="@string/title_senha"
-        android:textColor="@color/marrom"
+        android:textColor="@color/Letras"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -54,10 +50,10 @@
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_senha"
         android:text="@string/title_button_login"
-        android:textColor="@color/marrom"
+        android:textColor="@color/Letras"
         android:textStyle="bold"
         android:textSize="20dp"
-        
+
         />
 
     <ProgressBar
@@ -79,8 +75,8 @@
         android:layout_marginStart="63dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="64dp"
-        android:text="@string/text_cadastro"
-        android:textColor="@color/marrom"
+        android:text="@string/text_jasenha"
+        android:textColor="@color/Letras"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +91,7 @@
         android:layout_height="wrap_content"
         android:text="@string/titulo_login"
         android:textSize="70sp"
-        android:textColor="@color/marrom"
+        android:textColor="@color/Letras"
         android:fontFamily="@font/peanut_butter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
