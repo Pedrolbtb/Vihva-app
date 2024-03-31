@@ -52,6 +52,11 @@
 
     <string name="text_cpeso">Peso</string>
 
+    <string name="text_cmasc">Masculino</string>
+
+    <string name="text_cfem">Feminino</string>
+
+    <string name="text_cnao">Prefiro não dizer</string>
 
 </resources>
 

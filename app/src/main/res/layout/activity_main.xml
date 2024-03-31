@@ -61,13 +61,13 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_entar"
         style="@style/Button"
+        android:text="@string/title_button_login"
+        android:textColor="@color/off_white"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_senha"
-        android:text="@string/title_button_login"
-        android:textColor="@color/Letras"
-        android:textStyle="bold"
-        android:textSize="20dp"
 
         />
 
@@ -90,10 +90,12 @@
         android:layout_marginStart="63dp"
         android:layout_marginTop="90dp"
         android:layout_marginEnd="64dp"
+        android:layout_marginBottom="32dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="@string/text_ncadastro"
         android:textColor="@color/Letras"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/progressbar_login"
