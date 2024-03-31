@@ -52,9 +52,9 @@
             android:layout_marginEnd="40dp"
             android:hint="@string/title_senha"
             android:inputType="textPassword"
+            android:maxLength="6"
             android:textColor="@color/Letras"
-            android:textSize="20dp"
-            />
+            android:textSize="20dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
