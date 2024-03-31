@@ -18,6 +18,7 @@ class login : AppCompatActivity() {
 
     }
 
+    //função do botao paciente ir pra tela de login
     private fun irParaTelaLoginP() {
 
         val telaL = Intent(this, CadastroPac::class.java)

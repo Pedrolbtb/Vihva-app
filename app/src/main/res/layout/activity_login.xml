@@ -52,11 +52,11 @@
         style="@style/btn_mxp"
         android:background="@drawable/button_mxp"
         android:text="@string/med_login"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mxp"
+        app:layout_constraintStart_toStartOf="parent"
 
-        />
+        app:layout_constraintTop_toBottomOf="@+id/mxp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_pac"

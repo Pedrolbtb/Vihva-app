@@ -32,7 +32,7 @@
     <string name="text_csenha">Escreva a sua senha</string>
 
     <!--texto do text para confirmar sua senha no cadastro-->
-    <string name="text_confsenha">Confirma senha</string>
+    <string name="text_confsenha">Confirmar senha</string>
 
     <!--texto do text para confirmar sua senha no cadastro-->
     <string name="text_confcadastro">Cadastrar</string>
@@ -40,6 +40,17 @@
     <!--texto do text para confirmar sua senha no cadastro-->
     <string name="text_jasenha">Já possuo conta</string>
 
+    <string name="text_cnome">Nome</string>
+
+    <string name="text_csobrenome">Sobrenome</string>
+
+    <string name="text_dataani">Data de aniversário</string>
+
+    <string name="text_prox">Próximo</string>
+
+    <string name="text_caltura">Altura</string>
+
+    <string name="text_cpeso">Peso</string>
 
 
 </resources>

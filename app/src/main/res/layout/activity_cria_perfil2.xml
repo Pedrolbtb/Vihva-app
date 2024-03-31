@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/off_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CriaPerfil2">
+
+    <TextView
+        android:id="@+id/titulo_login"
+        style="@style/Titulo"
+        android:text="@string/titulo_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+    <!-- fundo dos campos de cadastro -->
+    <View
+        android:id="@+id/containerComponents"
+        style="@style/ContainerComponents"
+        android:layout_height="380dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
+
+
+    <!-- campos de altura-->
+    <EditText
+        android:id="@+id/altura"
+        style="@style/Edit_Text_Login"
+        android:layout_marginTop="20dp"
+        android:elevation="3dp"
+        android:hint="@string/text_caltura"
+        android:inputType="numberDecimal"
+        android:maxLength="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/containerComponents" />
+
+
+    <!-- campos de peso -->
+    <EditText
+        android:id="@+id/edit_peso"
+        style="@style/Edit_Text_Login"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:elevation="3dp"
+        android:hint="@string/text_cpeso"
+        android:inputType="numberDecimal"
+        android:maxLength="3"
+        android:textColor="@color/Letras"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/altura" />
+
+    <TextView
+        android:id="@+id/txt_genero"
+        style="@style/text"
+        android:layout_marginTop="10dp"
+        android:text="Gênero"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_peso"
+        />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_genero">
+
+        <!-- radio de feminino -->
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/radio_fem"
+            style="@style/Radio_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Feminino"
+            android:textColor="@color/Letras"
+            android:textSize="14sp" />
+
+        <!-- radio de masculino -->
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/radio_masc"
+            style="@style/Radio_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Masculino"
+            android:textColor="@color/Letras"
+            android:textSize="14sp" />
+
+        <!-- radio de sem genero -->
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/radio_gen"
+            style="@style/Radio_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Prefiro não falar"
+            android:textColor="@color/Letras"
+            android:textSize="14sp" />
+
+    </RadioGroup>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_próximo"
+        style="@style/Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        android:text="@string/text_prox"
+        android:textColor="@color/Letras"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        />
+
+
+
+    <ProgressBar
+        android:id="@+id/progressbar_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="180dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/containerComponents"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

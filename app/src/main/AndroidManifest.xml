@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
         <activity
+            android:name=".CriaPerfil2"
+            android:exported="false" />
+        <activity
+            android:name=".CriaPerfil"
+            android:exported="false" />
+        <activity
             android:name=".CadastroPac"
             android:exported="false" />
         <activity

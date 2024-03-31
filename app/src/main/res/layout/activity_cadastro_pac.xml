@@ -9,20 +9,19 @@
 
     <TextView
         android:id="@+id/titulo_login"
-        android:layout_marginTop="70dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/titulo_login"
-        android:textSize="70sp"
-        android:textColor="@color/Letras"
+        android:layout_marginTop="100dp"
         android:fontFamily="@font/peanut_butter"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/titulo_login"
+        android:textColor="@color/Letras"
+        android:textSize="70sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-    <!-- campos de cadastro -->
+    <!-- fundo dos campos de cadastro -->
     <View
         android:id="@+id/containerComponents"
         style="@style/ContainerComponents"
@@ -31,54 +30,90 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
 
+    <!-- edit text do email -->
     <EditText
         android:id="@+id/edit_email"
         style="@style/Edit_Text_Login"
+        android:layout_marginTop="20dp"
         android:drawableRight="@drawable/ic_email"
+        android:elevation="3dp"
         android:hint="@string/text_cadastro"
         android:inputType="textEmailAddress"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/containerComponents" />
 
-    <EditText
-        android:id="@+id/edit_senha"
-        style="@style/Edit_Text_Login"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
-        android:drawableRight="@drawable/ic_eye"
+
+    <!-- layout da edit text da senha -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_senha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/Letras"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_email"
         android:hint="@string/text_csenha"
-        android:textColor="@color/Letras"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_email" />
-
-    <EditText
-        android:id="@+id/edit_confirsenha"
-        style="@style/Edit_Text_Login"
-        android:layout_marginStart="40dp"
+        app:hintEnabled="false"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
-        android:drawableRight="@drawable/ic_eye"
-        android:hint="@string/text_confsenha"
-        android:textColor="@color/Letras"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_senha" />
+        android:elevation="3dp">
 
+        <!--edit text da senha -->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_senha"
+            style="@style/Edit_Text_Login"
+            android:layout_width="match_parent"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:hint="@string/text_csenha"
+            android:inputType="textPassword"
+            android:textColor="@color/Letras"
+            android:textSize="20dp"
+             />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!--layout da edit text de confirmar senha -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/Letras"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_senha"
+        android:hint="@string/text_csenha"
+        app:hintEnabled="false"
+        android:layout_marginTop="20dp"
+        android:elevation="3dp">
+
+        <!--edit text da senha -->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_confirmsenha"
+            style="@style/Edit_Text_Login"
+            android:layout_width="match_parent"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:hint="@string/text_confsenha"
+            android:inputType="textPassword"
+            android:textColor="@color/Letras"
+            android:textSize="20dp"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!-- button de cadastro -->
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_entar"
+        android:id="@+id/btn_cadastro"
         style="@style/Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_confirsenha"
+        app:layout_constraintTop_toBottomOf="@+id/layout_confirm"
         android:text="@string/text_confcadastro"
         android:textColor="@color/Letras"
         android:textStyle="bold"
@@ -97,13 +132,15 @@
         app:layout_constraintTop_toBottomOf="@id/containerComponents"
         />
 
+    <!-- text view de ja possui conta -->
     <TextView
         android:id="@+id/text_tela_cadastro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="63dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="64dp"
+        android:fontFamily="@font/cloudsoft_bold_700"
         android:text="@string/text_jasenha"
         android:textColor="@color/Letras"
         android:textSize="18sp"
@@ -111,9 +148,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/progressbar_login"
-        app:layout_goneMarginTop="20dp"/>
-
-
+        app:layout_goneMarginTop="20dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
