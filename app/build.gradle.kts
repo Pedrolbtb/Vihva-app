@@ -1,6 +1,9 @@
+import com.android.build.api.dsl.ViewBinding
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -33,6 +36,16 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+
+    // Habilita o recurso de View Binding no projeto Android.
+    // O View Binding gera classes de ligação para cada arquivo de layout XML,
+    // fornecendo acesso direto aos elementos de interface do usuário definidos nesses layouts.
+    // Ao definir 'enable' como 'true', estamos instruindo o Gradle a ativar o View Binding.
+    viewBinding{
+        enable = true
+    }
+
 }
 
 dependencies {
@@ -41,10 +54,16 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.google.firebase:firebase-common-ktx:20.4.3")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation ("com.android.support.constraint:constraint-layout:1.1.3")
     implementation ("androidx.appcompat:appcompat:1.3.0")
     implementation ("com.google.android.material:material:1.9.0")
+
+    //dependencias do Firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth-ktx")
 }
