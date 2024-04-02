@@ -37,6 +37,10 @@ class MainActivity : AppCompatActivity() {
                     }
             }
         }
+
+        binding.textTelaCadastro.setOnClickListener {
+            irParaTelaCadastro()
+        }
     }
 
     private fun irParaTelaCadastro() {
@@ -54,15 +58,15 @@ class MainActivity : AppCompatActivity() {
         snackbar.setBackgroundTint(Color.RED)
         snackbar.show()
     }
-    override fun onStart() {
+    /*override fun onStart() {
         super.onStart()
 
         val usuarioAtual = FirebaseAuth.getInstance().currentUser
 
         if (usuarioAtual != null){
             irParaTelaPrincipal()
-        }
+        }*/
     }
-}
+
 
 

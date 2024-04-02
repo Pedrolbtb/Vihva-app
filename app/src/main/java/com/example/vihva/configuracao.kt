@@ -17,7 +17,7 @@ class configuracao : AppCompatActivity() {
 
         binding.btnDeslogar.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            val voltarLogin = Intent(this,login::class.java)
+            val voltarLogin = Intent(this,MainActivity::class.java)
             startActivity(voltarLogin)
         }
     }

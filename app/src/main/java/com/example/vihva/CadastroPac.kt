@@ -54,8 +54,8 @@ class CadastroPac : AppCompatActivity() {
                         snackbar.show()
                         binding.editEmail.setText("")
                         binding.editSenha.setText("")
-
                             irParaTelaLoginP()
+
 
                     }
                 }.addOnFailureListener { exception ->
@@ -79,11 +79,9 @@ class CadastroPac : AppCompatActivity() {
             }
         }
 
-        //text view indo para tela de login
-        findViewById<TextView>(R.id.text_tela_cadastro).setOnClickListener {
 
-            irParaTelaLoginP()
-        }
+
+
 
         //botao de cadastro indo para tela de criação de perfil
        // findViewById<Button>(R.id.btn_cadastro).setOnClickListener {
@@ -98,6 +96,7 @@ class CadastroPac : AppCompatActivity() {
 
         val telaL = Intent(this, MainActivity::class.java)
         startActivity(telaL)
+        finish()
     }
 
     //função para ir para tela de criaçãode perfil
