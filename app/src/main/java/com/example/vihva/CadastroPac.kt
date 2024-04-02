@@ -54,6 +54,9 @@ class CadastroPac : AppCompatActivity() {
                         snackbar.show()
                         binding.editEmail.setText("")
                         binding.editSenha.setText("")
+
+                            irParaTelaLoginP()
+
                     }
                 }.addOnFailureListener { exception ->
 
