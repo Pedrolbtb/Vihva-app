@@ -72,6 +72,7 @@
             android:layout_marginEnd="40dp"
             android:hint="@string/text_csenha"
             android:inputType="textPassword"
+            android:maxLength="8"
             android:textColor="@color/Letras"
             android:textSize="20dp" />
 
@@ -102,6 +103,7 @@
             android:layout_marginEnd="40dp"
             android:hint="@string/text_confsenha"
             android:inputType="textPassword"
+            android:maxLength="8"
             android:textColor="@color/Letras"
             android:textSize="20dp" />
 

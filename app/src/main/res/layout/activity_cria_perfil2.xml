@@ -10,11 +10,11 @@
     <TextView
         android:id="@+id/titulo_login"
         style="@style/Titulo"
+        android:layout_marginTop="110dp"
         android:text="@string/titulo_login"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <!-- fundo dos campos de cadastro -->
@@ -29,7 +29,8 @@
 
     <!-- campos de altura-->
     <EditText
-        android:id="@+id/altura"
+        android:id="@+id/edit_altura"
+        xmlns:mask="http://schemas.android.com/apk/res-auto"
         style="@style/Edit_Text_Login"
         android:layout_marginTop="20dp"
         android:elevation="3dp"
@@ -54,13 +55,13 @@
         android:elevation="3dp"
         android:hint="@string/text_cpeso"
         android:inputType="numberDecimal"
-        android:maxLength="3"
+        android:maxLength="5"
         android:textColor="@color/Letras"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/altura" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_altura" />
 
     <TextView
         android:id="@+id/txt_genero"

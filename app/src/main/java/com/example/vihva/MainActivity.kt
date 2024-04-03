@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun irParaTelaPrincipal() {
-        val telaPrincipal = Intent(this, configuracao::class.java) // Altere para a tela principal desejada
+        val telaPrincipal = Intent(this, CriaPerfil::class.java) // Altere para a tela principal desejada
         startActivity(telaPrincipal)
     }
 

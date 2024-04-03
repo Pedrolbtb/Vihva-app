@@ -18,11 +18,9 @@ import com.google.firebase.auth.ktx.FirebaseAuthLegacyRegistrar
 
 class CadastroPac : AppCompatActivity() {
 
-   private lateinit var binding: ActivityCadastroPacBinding
+    private lateinit var binding: ActivityCadastroPacBinding
 
-   private val auth = FirebaseAuth.getInstance()
-
-
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,18 +29,20 @@ class CadastroPac : AppCompatActivity() {
         binding = ActivityCadastroPacBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.textTelaCadastro.setOnClickListener {
+            irParaTelaLoginP()
+        }
 
         binding.btnCadastro.setOnClickListener { view ->
-
             val edit_email = binding.editEmail.text.toString()
             val edit_senha = binding.editSenha.text.toString()
+            val edit_confirmsenha = binding.editConfirmsenha.text.toString()
 
-            if (edit_email.isEmpty() || edit_senha.isEmpty()){
-
+            if (edit_email.isEmpty() || edit_senha.isEmpty() || edit_confirmsenha.isEmpty()){
                 val snackbar = Snackbar.make(view, "Preencha todos os campos", Snackbar.LENGTH_SHORT)
                 snackbar.setBackgroundTint(Color.RED)
                 snackbar.show()
-            } else{
+            } else if (edit_senha == edit_confirmsenha) {
                 auth.createUserWithEmailAndPassword(edit_email,edit_senha).addOnCompleteListener { cadastro ->
                     if (cadastro.isSuccessful) {
                         val snackbar = Snackbar.make(
@@ -54,46 +54,33 @@ class CadastroPac : AppCompatActivity() {
                         snackbar.show()
                         binding.editEmail.setText("")
                         binding.editSenha.setText("")
-                            irParaTelaLoginP()
-
-
+                        irParaTelaLoginP()
                     }
                 }.addOnFailureListener { exception ->
-
-
-                            // Verifica o tipo de exceção e define a mensagem de erro correspondente
-                            val mensagemErro = when(exception){
-                                is FirebaseAuthWeakPasswordException -> "Digite uma senha com no mínimo 6 caracteres!"
-                                is FirebaseAuthInvalidCredentialsException -> "Digite um email válido"
-                                is FirebaseAuthUserCollisionException -> "Conta já cadastrada"
-                                is FirebaseNetworkException -> "Sem conexão com a internet"
-                                else -> "Erro ao cadastrar usuário"
-                            }
-                            // Exibe uma Snackbar com a mensagem de erro
-                            val snackbar = Snackbar.make(view,mensagemErro,Snackbar.LENGTH_SHORT)
-                            snackbar.setBackgroundTint(Color.RED) // Define a cor de fundo da Snackbar como vermelho
-                            snackbar.show()
-
-
+                    // Verifica o tipo de exceção e define a mensagem de erro correspondente
+                    val mensagemErro = when(exception){
+                        is FirebaseAuthWeakPasswordException -> "Digite uma senha com no mínimo 6 caracteres!"
+                        is FirebaseAuthInvalidCredentialsException -> "Digite um email válido"
+                        is FirebaseAuthUserCollisionException -> "Conta já cadastrada"
+                        is FirebaseNetworkException -> "Sem conexão com a internet"
+                        else -> "Erro ao cadastrar usuário"
+                    }
+                    // Exibe uma Snackbar com a mensagem de erro
+                    val snackbar = Snackbar.make(view,mensagemErro,Snackbar.LENGTH_SHORT)
+                    snackbar.setBackgroundTint(Color.RED) // Define a cor de fundo da Snackbar como vermelho
+                    snackbar.show()
                 }
+            } else {
+                // Tratar o caso em que as senhas não coincidem
+                val snackbar = Snackbar.make(view, "As senhas não coincidem", Snackbar.LENGTH_SHORT)
+                snackbar.setBackgroundTint(Color.RED)
+                snackbar.show()
             }
         }
-
-
-
-
-
-        //botao de cadastro indo para tela de criação de perfil
-       // findViewById<Button>(R.id.btn_cadastro).setOnClickListener {
-
-        //    irParaTelaCriaPerfil()
-        //}
-
     }
 
     //função para ir para tela de login
     private fun irParaTelaLoginP() {
-
         val telaL = Intent(this, MainActivity::class.java)
         startActivity(telaL)
         finish()
@@ -101,10 +88,7 @@ class CadastroPac : AppCompatActivity() {
 
     //função para ir para tela de criaçãode perfil
     private fun irParaTelaCriaPerfil() {
-
         val telaL = Intent(this, CriaPerfil::class.java)
         startActivity(telaL)
-
     }
-
 }
