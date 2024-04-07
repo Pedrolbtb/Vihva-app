@@ -4,11 +4,10 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import com.example.vihva.databinding.ActivityMainBinding
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -20,19 +19,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnEntar.setOnClickListener { view ->
+        binding.btnEntar.setOnClickListener {
             val email = binding.editEmail.text.toString()
             val senha = binding.editSenha.text.toString()
 
             if (email.isEmpty() || senha.isEmpty()) {
-                exibirSnackbar(view, "Preencha todos os campos!")
+                showToast("Preencha todos os campos!")
             } else {
                 auth.signInWithEmailAndPassword(email, senha)
                     .addOnCompleteListener { autenticacao ->
                         if (autenticacao.isSuccessful) {
                             irParaTelaPrincipal() // Mude para a tela principal após o login
                         } else {
-                            exibirSnackbar(view, "Erro ao realizar o login!")
+                            showToast("Erro ao realizar o login!")
                         }
                     }
             }
@@ -53,10 +52,8 @@ class MainActivity : AppCompatActivity() {
         startActivity(telaPrincipal)
     }
 
-    private fun exibirSnackbar(view: View, mensagem: String) {
-        val snackbar = Snackbar.make(view, mensagem, Snackbar.LENGTH_SHORT)
-        snackbar.setBackgroundTint(Color.RED)
-        snackbar.show()
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
     /*override fun onStart() {
         super.onStart()
@@ -66,7 +63,4 @@ class MainActivity : AppCompatActivity() {
         if (usuarioAtual != null){
             irParaTelaPrincipal()
         }*/
-    }
-
-
-
+}

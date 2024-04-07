@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.example.vihva.databinding.ActivityCadastroPacBinding
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
@@ -39,44 +39,35 @@ class CadastroPac : AppCompatActivity() {
             val edit_confirmsenha = binding.editConfirmsenha.text.toString()
 
             if (edit_email.isEmpty() || edit_senha.isEmpty() || edit_confirmsenha.isEmpty()){
-                val snackbar = Snackbar.make(view, "Preencha todos os campos", Snackbar.LENGTH_SHORT)
-                snackbar.setBackgroundTint(Color.RED)
-                snackbar.show()
+                showToast("Preencha todos os campos")
             } else if (edit_senha == edit_confirmsenha) {
-                auth.createUserWithEmailAndPassword(edit_email,edit_senha).addOnCompleteListener { cadastro ->
-                    if (cadastro.isSuccessful) {
-                        val snackbar = Snackbar.make(
-                            view,
-                            "Sucesso ao cadastrar o usuário",
-                            Snackbar.LENGTH_SHORT
-                        )
-                        snackbar.setBackgroundTint(Color.BLUE)
-                        snackbar.show()
+                auth.createUserWithEmailAndPassword(edit_email, edit_senha).addOnCompleteListener { cadastro ->
+                    if (!cadastro.isSuccessful) {
+                        // Verifica o tipo de exceção e define a mensagem de erro correspondente
+                        val mensagemErro = when(cadastro.exception){
+                            is FirebaseAuthWeakPasswordException -> "Digite uma senha com no mínimo 6 caracteres!"
+                            is FirebaseAuthInvalidCredentialsException -> "Digite um email válido"
+                            is FirebaseAuthUserCollisionException -> "Conta já cadastrada"
+                            is FirebaseNetworkException -> "Sem conexão com a internet"
+                            else -> "Erro ao cadastrar usuário"
+                        }
+                        showToast(mensagemErro)
+                    } else {
                         binding.editEmail.setText("")
                         binding.editSenha.setText("")
                         irParaTelaLoginP()
                     }
-                }.addOnFailureListener { exception ->
-                    // Verifica o tipo de exceção e define a mensagem de erro correspondente
-                    val mensagemErro = when(exception){
-                        is FirebaseAuthWeakPasswordException -> "Digite uma senha com no mínimo 6 caracteres!"
-                        is FirebaseAuthInvalidCredentialsException -> "Digite um email válido"
-                        is FirebaseAuthUserCollisionException -> "Conta já cadastrada"
-                        is FirebaseNetworkException -> "Sem conexão com a internet"
-                        else -> "Erro ao cadastrar usuário"
-                    }
-                    // Exibe uma Snackbar com a mensagem de erro
-                    val snackbar = Snackbar.make(view,mensagemErro,Snackbar.LENGTH_SHORT)
-                    snackbar.setBackgroundTint(Color.RED) // Define a cor de fundo da Snackbar como vermelho
-                    snackbar.show()
                 }
             } else {
                 // Tratar o caso em que as senhas não coincidem
-                val snackbar = Snackbar.make(view, "As senhas não coincidem", Snackbar.LENGTH_SHORT)
-                snackbar.setBackgroundTint(Color.RED)
-                snackbar.show()
+                showToast("As senhas não coincidem")
             }
         }
+    }
+
+    //função para exibir Toast
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     //função para ir para tela de login
@@ -86,7 +77,7 @@ class CadastroPac : AppCompatActivity() {
         finish()
     }
 
-    //função para ir para tela de criaçãode perfil
+    //função para ir para tela de criação de perfil
     private fun irParaTelaCriaPerfil() {
         val telaL = Intent(this, CriaPerfil::class.java)
         startActivity(telaL)

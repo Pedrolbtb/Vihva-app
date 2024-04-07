@@ -1,74 +1,49 @@
+
 package com.example.vihva
 
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
+// Importação das classes necessárias
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.DatePicker
 import android.widget.EditText
-import android.widget.TimePicker
-import java.util.Calendar
+import android.widget.Toast
 
-class CriaPerfil : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
+// Definição da classe de atividade CriaPerfil
+class CriaPerfil : AppCompatActivity() {
 
-    var dia = 0
-    var mes = 0
-    var ano = 0
-
-    var savedDia = 0
-    var savedMes = 0
-    var savedAno = 0
-
-    lateinit var datePickerDialog: DatePickerDialog // Declaração do DatePickerDialog
-
+    // Sobrescreve o método onCreate da classe pai. Este método é chamado quando a atividade é criada.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Define o layout XML activity_cria_perfil como o layout da atividade. Este layout contém a interface do usuário da atividade.
         setContentView(R.layout.activity_cria_perfil)
 
-        val edit_aniversario = findViewById<EditText>(R.id.edit_aniversario)
+        // Obtém uma referência para o EditText com o ID edit_idade.
+        val editidade = findViewById<EditText>(R.id.edit_idade)
+        // Obtém uma referência para o Button com o ID btn_proximo.
+        val btnProximo = findViewById<Button>(R.id.btn_proximo)
 
-        // Configurar o DatePickerDialog
-        val cal = Calendar.getInstance()
-        dia = cal.get(Calendar.DAY_OF_MONTH)
-        mes = cal.get(Calendar.MONTH)
-        ano = cal.get(Calendar.YEAR)
-        datePickerDialog = DatePickerDialog(this, this, ano, mes, dia)
+        // Define um ouvinte de clique para o botão btn_proximo.
+        btnProximo.setOnClickListener {
+            // Obtém o texto digitado no EditText edit_nascimento e tenta converter para Int.
+            val idade = editidade.text.toString().toIntOrNull()
 
-        // Configurar o OnClickListener para o edit_aniversario EditText
-        edit_aniversario.setOnClickListener {
-            pickDate()
+            // Verifica se o valor digitado está entre 1 e 100.
+            if (idade != null && idade in 1..100) {
+                // Chama a função irParaTelaCriaPerfil2() se o valor estiver entre 1 e 100.
+                irParaTelaCriaPerfil2()
+            } else { // Caso contrário...
+                // Exibe um Toast indicando que o usuário deve digitar um valor entre 1 e 100.
+                Toast.makeText(this, "Digite um valor entre 1 e 100", Toast.LENGTH_SHORT).show()
+            }
         }
-
-        findViewById<Button>(R.id.btn_proximo).setOnClickListener {
-            irParaTelaCriaPerfil2()
-        }
-
-        // Remova esta linha para evitar que o teclado seja aberto automaticamente
-        edit_aniversario.showSoftInputOnFocus = false
-
     }
 
-    // Função para exibir o DatePickerDialog
-    private fun pickDate() {
-        datePickerDialog.show()
-    }
-
-    // Função para passar para a próxima tela
+    // Define uma função privada chamada irParaTelaCriaPerfil2.
     private fun irParaTelaCriaPerfil2() {
+        // Cria uma nova Intent para iniciar a atividade CriaPerfil2.
         val telaL = Intent(this, CriaPerfil2::class.java)
+        // Inicia a atividade CriaPerfil2.
         startActivity(telaL)
-    }
-
-    // Função chamada quando a data é definida no DatePickerDialog
-    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        savedDia = dayOfMonth
-        savedMes = month
-        savedAno = year
-
-        // Atualizar o texto do EditText com a data selecionada
-        val edit_aniversario = findViewById<EditText>(R.id.edit_aniversario)
-        edit_aniversario.setText("$dayOfMonth/${month + 1}/$year")
     }
 }

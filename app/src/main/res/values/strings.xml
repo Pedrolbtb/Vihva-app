@@ -4,15 +4,6 @@
     <!--titulo na tela de login-->
     <string name="titulo_login">Vihva</string>
 
-    <!--pergunta de medico ou paciente na tela de login-->
-    <string name="mxp">Você é médico ou paciente?</string>
-
-    <!--texto do botao de entrada com medico-->
-    <string name="med_login">Médico</string>
-
-    <!--texto do botao de entrada como paciente-->
-    <string name="pac_login">Paciente</string>
-
     <!--texto do EditText email-->
     <string name="title_login">Email</string>
 
@@ -44,7 +35,7 @@
 
     <string name="text_csobrenome">Sobrenome</string>
 
-    <string name="text_dataani">Data de aniversário</string>
+    <string name="text_idade">Digite sua Idade</string>
 
     <string name="text_prox">Próximo</string>
 
