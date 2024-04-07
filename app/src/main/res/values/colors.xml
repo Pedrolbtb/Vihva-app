@@ -6,5 +6,6 @@
     <color name="azul">#ADD8E6</color>
     <color name="Letras">#6096a8</color>
     <color name="sombra">#757575</color>
+    <color name="hint">#8c8c8c</color>
 
 </resources>

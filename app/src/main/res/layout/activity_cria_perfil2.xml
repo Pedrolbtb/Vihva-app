@@ -30,13 +30,13 @@
     <!-- campos de altura-->
     <EditText
         android:id="@+id/edit_altura"
-        xmlns:mask="http://schemas.android.com/apk/res-auto"
         style="@style/Edit_Text_Login"
         android:layout_marginTop="20dp"
         android:elevation="3dp"
         android:hint="@string/text_caltura"
         android:inputType="numberDecimal"
-        android:maxLength="3"
+        android:maxLength="5"
+        android:textColorHint="@color/hint"
         android:textColorHighlight="#6095A7"
         android:textColorLink="#6095A7"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,17 +55,23 @@
         android:layout_marginEnd="40dp"
         android:elevation="3dp"
         android:hint="@string/text_cpeso"
+        android:textColorHint="@color/hint"
         android:inputType="numberDecimal"
-        android:maxLength="5"
         android:textColor="@color/Letras"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_altura"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/edit_altura" />
 
 
+
+    <NumberPicker
+        android:id="@+id/np_peso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/txt_genero"
@@ -119,7 +125,7 @@
     </RadioGroup>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_próximo"
+        android:id="@+id/btn_proximo"
         style="@style/Button"
         android:layout_marginTop="20dp"
         android:text="@string/text_prox"

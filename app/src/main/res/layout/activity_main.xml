@@ -24,6 +24,7 @@
         android:drawableTint="#6095A7"
         android:elevation="3dp"
         android:hint="@string/title_login"
+        android:textColorHint="@color/hint"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -52,6 +53,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
             android:hint="@string/title_senha"
+            android:textColorHint="@color/hint"
             android:inputType="textPassword"
             android:maxLength="8"
             android:textSize="20dp" />
