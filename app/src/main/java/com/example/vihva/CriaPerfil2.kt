@@ -17,6 +17,7 @@ import androidx.core.view.get
 
 class CriaPerfil2 : AppCompatActivity() {
 
+    //definição das variaveis
     private lateinit var edit_peso: EditText
     private lateinit var np_peso: NumberPicker
     private lateinit var numberPickerView: View
@@ -26,6 +27,7 @@ class CriaPerfil2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cria_perfil2)
 
+        //ligando variaveis com a id
         val edit_altura: EditText = findViewById(R.id.edit_altura)
         edit_peso = findViewById(R.id.edit_peso)
         np_peso = findViewById(R.id.np_peso)
@@ -33,6 +35,7 @@ class CriaPerfil2 : AppCompatActivity() {
         // Inflar number_picker_layout.xml apenas uma vez
         numberPickerView = layoutInflater.inflate(R.layout.number_picker_layout, null)
 
+        //criação do alert dialog que é o fundo da escolha de peso
         alertDialog = AlertDialog.Builder(this)
             .setView(numberPickerView)
             .setTitle("Selecione o peso")
@@ -43,6 +46,7 @@ class CriaPerfil2 : AppCompatActivity() {
             .setNegativeButton("Cancelar", null)
             .create()
 
+        //clique do campo de peso que abre o alert dialog
         edit_peso.setOnClickListener {
             val np_peso = numberPickerView.findViewById<NumberPicker>(R.id.np_peso)
             np_peso.minValue = 30
@@ -59,7 +63,7 @@ class CriaPerfil2 : AppCompatActivity() {
             edit_peso.setText(newVal.toString())
         }
 
-
+        //codigo para mask que coloca o cm dps do resultado
         edit_altura.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
 
@@ -77,7 +81,10 @@ class CriaPerfil2 : AppCompatActivity() {
             }
         })
 
+    //verificação dos campos se estão vazios ou com valor certo
     findViewById<Button>(R.id.btn_proximo).setOnClickListener {
+
+        //tirando o cm e o kg da variavel pra evitar problemas
         val altura = edit_altura.text.toString().removeSuffix("cm").toIntOrNull()
         val peso = edit_peso.text.toString().removeSuffix("kg").toIntOrNull()
 
@@ -98,6 +105,7 @@ class CriaPerfil2 : AppCompatActivity() {
         finish()
     }
 
+    //função que destroi o alertdialog evitando que fique aberto e cause problemas no funcionamento do app
     override fun onDestroy() {
         super.onDestroy()
         alertDialog.dismiss()
