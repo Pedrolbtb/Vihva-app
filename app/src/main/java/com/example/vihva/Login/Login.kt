@@ -1,16 +1,15 @@
-package com.example.vihva
+package com.example.vihva.Login
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
+import com.example.vihva.Cadastro.CadastroPac
+import com.example.vihva.CriarPerfil.CriaPerfil
 import com.example.vihva.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 
-class MainActivity : AppCompatActivity() {
+class Login : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val auth = FirebaseAuth.getInstance()
 

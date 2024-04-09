@@ -49,5 +49,7 @@
 
     <string name="text_cnao">Prefiro não dizer</string>
 
+    <string name="text_sos">Após tocar no botão acima, uma mensagem de texto seja enviada para um contato de confiança</string>
+
 </resources>
 

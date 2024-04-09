@@ -5,7 +5,7 @@
     android:background="@color/off_white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CriaPerfil2">
+    tools:context=".CriarPerfil.CriaPerfil2">
 
     <TextView
         android:id="@+id/titulo_login"

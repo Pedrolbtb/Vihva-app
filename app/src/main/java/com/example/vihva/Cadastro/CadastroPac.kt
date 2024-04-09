@@ -1,20 +1,18 @@
-package com.example.vihva
+package com.example.vihva.Cadastro
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
+import com.example.vihva.CriarPerfil.CriaPerfil
+import com.example.vihva.Login.Login
+import com.example.vihva.R
 import com.example.vihva.databinding.ActivityCadastroPacBinding
-import com.google.firebase.Firebase
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
-import com.google.firebase.auth.ktx.FirebaseAuthLegacyRegistrar
 
 class CadastroPac : AppCompatActivity() {
 
@@ -72,7 +70,7 @@ class CadastroPac : AppCompatActivity() {
 
     //função para ir para tela de login
     private fun irParaTelaLoginP() {
-        val telaL = Intent(this, MainActivity::class.java)
+        val telaL = Intent(this, Login::class.java)
         startActivity(telaL)
         finish()
     }

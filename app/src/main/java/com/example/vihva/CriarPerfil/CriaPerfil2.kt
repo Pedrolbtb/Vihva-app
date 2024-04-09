@@ -1,4 +1,4 @@
-package com.example.vihva
+package com.example.vihva.CriarPerfil
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,13 +6,13 @@ import android.os.Bundle
 import android.widget.Button
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.view.get
+import com.example.vihva.Inicio.Inicio
+import com.example.vihva.R
 
 
 class CriaPerfil2 : AppCompatActivity() {
@@ -32,13 +32,14 @@ class CriaPerfil2 : AppCompatActivity() {
         edit_peso = findViewById(R.id.edit_peso)
         np_peso = findViewById(R.id.np_peso)
 
+
         // Inflar number_picker_layout.xml apenas uma vez
         numberPickerView = layoutInflater.inflate(R.layout.number_picker_layout, null)
 
         //criação do alert dialog que é o fundo da escolha de peso
         alertDialog = AlertDialog.Builder(this)
             .setView(numberPickerView)
-            .setTitle("Selecione o peso")
+            .setTitle("Selecione o peso em kg")
             .setPositiveButton("OK") { dialog, which ->
                 val np_peso = numberPickerView.findViewById<NumberPicker>(R.id.np_peso)
                 edit_peso.setText("${np_peso.value}kg")

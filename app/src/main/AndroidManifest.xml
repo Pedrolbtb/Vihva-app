@@ -13,22 +13,22 @@
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
         <activity
-            android:name=".Inicio"
+            android:name=".Inicio.Inicio"
             android:exported="false" />
         <activity
-            android:name=".configuracao"
+            android:name=".Configurações.configuracao"
             android:exported="false" />
         <activity
-            android:name=".CriaPerfil2"
+            android:name=".CriarPerfil.CriaPerfil2"
             android:exported="false" />
         <activity
-            android:name=".CriaPerfil"
+            android:name=".CriarPerfil.CriaPerfil"
             android:exported="false" />
         <activity
-            android:name=".CadastroPac"
+            android:name=".Cadastro.CadastroPac"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Login.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

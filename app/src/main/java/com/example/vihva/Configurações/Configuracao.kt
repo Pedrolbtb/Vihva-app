@@ -1,8 +1,9 @@
-package com.example.vihva
+package com.example.vihva.Configurações
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.vihva.Login.Login
 import com.example.vihva.databinding.ActivityConfiguracaoBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -17,7 +18,7 @@ class configuracao : AppCompatActivity() {
 
         binding.btnDeslogar.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            val voltarLogin = Intent(this,MainActivity::class.java)
+            val voltarLogin = Intent(this, Login::class.java)
             startActivity(voltarLogin)
         }
     }
