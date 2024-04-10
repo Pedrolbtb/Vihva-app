@@ -3,10 +3,13 @@ package com.example.vihva.CriarPerfil
 
 // Importação das classes necessárias
 import android.content.Intent
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import com.example.vihva.R
 
@@ -21,8 +24,12 @@ class CriaPerfil : AppCompatActivity() {
 
         // Obtém uma referência para o EditText com o ID edit_idade.
         val editidade = findViewById<EditText>(R.id.edit_idade)
+
         // Obtém uma referência para o Button com o ID btn_proximo.
         val btnProximo = findViewById<Button>(R.id.btn_proximo)
+
+        criarBreadcump()
+
 
         // Define um ouvinte de clique para o botão btn_proximo.
         btnProximo.setOnClickListener {
@@ -47,4 +54,63 @@ class CriaPerfil : AppCompatActivity() {
         // Inicia a atividade CriaPerfil2.
         startActivity(telaL)
     }
-}
+
+
+
+    // Lista de itens do breadcrumb
+private fun criarBreadcump(){
+
+        val breadcrumbItems = arrayOf("Identidade", "Informações", "Opcionais")
+        val breadcrumbLayout: LinearLayout = findViewById(R.id.breadcrumbLayout)
+        val pagAtual = "Identidade"
+
+        // Adiciona os itens ao breadcrumb
+        breadcrumbItems.forEachIndexed { index, item ->
+        val textView = TextView(this)
+        textView.text = item
+        textView.setPadding(8, 8, 8, 8)
+
+            if (item == pagAtual) {
+                textView.setTypeface(null, Typeface.BOLD)
+            }
+
+        breadcrumbLayout.addView(textView)
+
+        // Adiciona uma seta entre os itens (exceto o último)
+        if (index != breadcrumbItems.size - 1) {
+            val arrowView = TextView(this)
+            arrowView.text = " > "
+            arrowView.setPadding(8, 8, 8, 8)
+            breadcrumbLayout.addView(arrowView)
+
+
+            }
+        }
+    }
+    }
+    fun updateBreadcrumb(breadcrumbLayout: LinearLayout, currentScreen: String, previousScreens: List<String>) {
+        breadcrumbLayout.removeAllViews()
+
+        // Adiciona telas anteriores à breadcrumb
+        previousScreens.forEachIndexed { index, item ->
+            val textView = TextView(breadcrumbLayout.context)
+            textView.text = item
+            textView.setPadding(8, 8, 8, 8)
+            breadcrumbLayout.addView(textView)
+
+            // Adiciona uma seta entre os itens (exceto o último)
+            if (index != previousScreens.size - 1) {
+                val arrowView = TextView(breadcrumbLayout.context)
+                arrowView.text = " > "
+                arrowView.setPadding(8, 8, 8, 8)
+                breadcrumbLayout.addView(arrowView)
+
+            }
+        }
+
+        // Adiciona a tela atual à breadcrumb
+        val currentTextView = TextView(breadcrumbLayout.context)
+        currentTextView.text = currentScreen
+        currentTextView.setPadding(8, 8, 8, 8)
+    }
+

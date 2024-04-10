@@ -106,6 +106,7 @@ class CriaPerfil2 : AppCompatActivity() {
         finish()
     }
 
+
     //função que destroi o alertdialog evitando que fique aberto e cause problemas no funcionamento do app
     override fun onDestroy() {
         super.onDestroy()
