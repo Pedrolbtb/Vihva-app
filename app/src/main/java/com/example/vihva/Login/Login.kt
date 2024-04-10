@@ -3,9 +3,11 @@ package com.example.vihva.Login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import com.example.vihva.Cadastro.CadastroPac
 import com.example.vihva.CriarPerfil.CriaPerfil
+import com.example.vihva.R
 import com.example.vihva.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -52,7 +54,20 @@ class Login : AppCompatActivity() {
     }
 
     private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        // Inflar o layout do Toast personalizado
+        val inflater = layoutInflater
+        val layout = inflater.inflate(R.layout.toast, findViewById(R.id.toast))
+
+        // Configurar o texto do Toast
+        val text = layout.findViewById<TextView>(R.id.toast)
+        text.text = message
+
+        // Configurar e exibir o Toast
+        with(Toast(applicationContext)) {
+            duration = Toast.LENGTH_SHORT
+            view = layout
+            show()
+        }
     }
     /*override fun onStart() {
         super.onStart()
