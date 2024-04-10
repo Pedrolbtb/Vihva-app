@@ -21,11 +21,11 @@ class CriaPerfil : AppCompatActivity() {
         btnProximo.setOnClickListener {
             val idade = editidade.text.toString().toIntOrNull()
 
-            if (idade != null && idade in 1..100) {
+            if (idade != null && idade in 13..100) {
                 irParaTelaCriaPerfil2()
             } else {
                 // Chamando o toast personalizado
-                showToast("Digite um valor entre 1 e 100")
+                showToast("sua idade precisa ser entre 13 a 100 anos de idade")
             }
         }
     }
