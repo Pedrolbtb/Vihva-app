@@ -60,25 +60,29 @@
         app:layout_constraintStart_toEndOf="@+id/maiorDois"
         app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
 
+
+    <!-- campos de cadastro -->
+
     <TextView
         android:id="@+id/titulo_login"
         style="@style/Titulo"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="68dp"
         android:text="@string/titulo_login"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <!-- campos de cadastro -->
     <View
         android:id="@+id/containerComponents"
         style="@style/ContainerComponents"
         android:layout_height="380dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/breadinfo"
-        tools:layout_editor_absoluteY="231dp" />
+         />
 
     <EditText
         android:id="@+id/edit_nome"

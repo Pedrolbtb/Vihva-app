@@ -25,7 +25,7 @@ class CriaPerfil : AppCompatActivity() {
                 irParaTelaCriaPerfil2()
             } else {
                 // Chamando o toast personalizado
-                showToast("sua idade precisa ser entre 13 a 100 anos de idade")
+                showToast("insira uma idade válida")
             }
         }
     }

@@ -3,8 +3,10 @@ package com.example.vihva.Login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.vihva.Cadastro.CadastroPac
 import com.example.vihva.CriarPerfil.CriaPerfil
 import com.example.vihva.R
@@ -20,6 +22,7 @@ class Login : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Configurando clique no botão de login
         binding.btnEntar.setOnClickListener {
             val email = binding.editEmail.text.toString()
             val senha = binding.editSenha.text.toString()
@@ -27,10 +30,11 @@ class Login : AppCompatActivity() {
             if (email.isEmpty() || senha.isEmpty()) {
                 showToast("Preencha todos os campos!")
             } else {
+                // Autenticar usuário com e-mail e senha
                 auth.signInWithEmailAndPassword(email, senha)
                     .addOnCompleteListener { autenticacao ->
                         if (autenticacao.isSuccessful) {
-                            irParaTelaPrincipal() // Mude para a tela principal após o login
+                            irParaTelaPrincipal() // Ir para a tela principal após o login
                         } else {
                             showToast("Erro ao realizar o login!")
                         }
@@ -38,21 +42,30 @@ class Login : AppCompatActivity() {
             }
         }
 
+        // Configurando clique no texto "Cadastre-se"
         binding.textTelaCadastro.setOnClickListener {
             irParaTelaCadastro()
         }
+
+        // Configurando clique no texto "Esqueci minha senha"
+        binding.esqueciSenha.setOnClickListener {
+            mostrarDialogRedefinirSenha()
+        }
     }
 
+    // Função para abrir a tela de cadastro
     private fun irParaTelaCadastro() {
         val telaCadastro = Intent(this, CadastroPac::class.java)
         startActivity(telaCadastro)
     }
 
+    // Função para abrir a tela principal
     private fun irParaTelaPrincipal() {
         val telaPrincipal = Intent(this, CriaPerfil::class.java) // Altere para a tela principal desejada
         startActivity(telaPrincipal)
     }
 
+    // Função para exibir uma mensagem Toast
     private fun showToast(message: String) {
         // Inflar o layout do Toast personalizado
         val inflater = layoutInflater
@@ -69,12 +82,43 @@ class Login : AppCompatActivity() {
             show()
         }
     }
-    /*override fun onStart() {
-        super.onStart()
 
-        val usuarioAtual = FirebaseAuth.getInstance().currentUser
+    // Função para mostrar o dialog de redefinição de senha
+    private fun mostrarDialogRedefinirSenha() {
+        // Construir o dialog
+        val emailDialog = AlertDialog.Builder(this)
+        val emailInput = EditText(this)
+        emailDialog.setTitle("Esqueci minha senha")
+        emailDialog.setMessage("Insira seu e-mail para redefinir a senha:")
+        emailDialog.setView(emailInput)
 
-        if (usuarioAtual != null){
-            irParaTelaPrincipal()
-        }*/
+        // Configurar botões do dialog
+        emailDialog.setPositiveButton("Enviar") { dialog, _ ->
+            val email = emailInput.text.toString()
+            if (email.isNotEmpty()) {
+                enviarEmailRedefinicaoSenha(email)
+            } else {
+                showToast("Por favor, insira seu e-mail.")
+            }
+            dialog.dismiss()
+        }
+        emailDialog.setNegativeButton("Cancelar") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        // Mostrar o dialog
+        emailDialog.show()
+    }
+
+    // Função para enviar e-mail de redefinição de senha
+    private fun enviarEmailRedefinicaoSenha(email: String) {
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    showToast("E-mail de redefinição de senha enviado para $email.")
+                } else {
+                    showToast("Falha ao enviar e-mail de redefinição de senha. Verifique se o endereço de e-mail está correto.")
+                }
+            }
+    }
 }

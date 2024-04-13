@@ -22,6 +22,7 @@
 
 
     <!-- fundo dos campos de cadastro -->
+
     <View
         android:id="@+id/containerComponents"
         style="@style/ContainerComponents"
@@ -154,6 +155,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/progressbar_login"
         app:layout_goneMarginTop="20dp" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
