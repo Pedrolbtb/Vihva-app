@@ -51,5 +51,13 @@
 
     <string name="text_sos">Após tocar no botão acima, uma mensagem de texto seja enviada para um contato de confiança</string>
 
+    <string name="breadNome">Nome</string>
+
+    <string name="breadMaiorUm"> | </string>
+
+    <string name="breadInfo">Informações</string>
+
+    <string name="breadOpc">Opcional</string>
+
 </resources>
 

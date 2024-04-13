@@ -109,6 +109,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">70sp</item>
+        <item name="android:gravity">center</item>
         <item name="android:textColor">@color/Letras</item>
         <item name="fontFamily">@font/peanut_butter</item>
     </style>
@@ -131,6 +132,15 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">60sp</item>
         <item name="android:textStyle"></item>
+    </style>
+
+    <style name="breadcrumpL">
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/cloudsoft_bold_700</item>
+
     </style>
 
 
