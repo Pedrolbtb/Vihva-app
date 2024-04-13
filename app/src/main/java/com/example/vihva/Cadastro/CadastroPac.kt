@@ -1,10 +1,10 @@
 package com.example.vihva.Cadastro
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.vihva.CriarPerfil.CriaPerfil
 import com.example.vihva.Login.Login
 import com.example.vihva.R
@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
-import org.w3c.dom.Text
+import com.google.firebase.auth.FirebaseUser
 
 class CadastroPac : AppCompatActivity() {
 
@@ -43,7 +43,7 @@ class CadastroPac : AppCompatActivity() {
             val edit_confirmsenha = binding.editConfirmsenha.text.toString()
 
             // Verificar se todos os campos estão preenchidos
-            if (edit_email.isEmpty() || edit_senha.isEmpty() || edit_confirmsenha.isEmpty()){
+            if (edit_email.isEmpty() || edit_senha.isEmpty() || edit_confirmsenha.isEmpty()) {
                 showToast("Preencha todos os campos")
             } else if (edit_senha == edit_confirmsenha) {
                 // Tentar criar um novo usuário no Firebase Auth
@@ -59,10 +59,8 @@ class CadastroPac : AppCompatActivity() {
                         }
                         showToast(mensagemErro)
                     } else {
-                        // Limpar os campos e ir para a tela de login
-                        binding.editEmail.setText("")
-                        binding.editSenha.setText("")
-                        irParaTelaLoginP()
+                        //enviar email de verificação
+                        enviarEmailVerificacao()
                     }
                 }
             } else {
@@ -90,16 +88,36 @@ class CadastroPac : AppCompatActivity() {
         }
     }
 
-    // Função para ir para a tela de login
+    // Função para ir para a tela de login apenas se o e-mail estiver verificado
     private fun irParaTelaLoginP() {
-        val telaL = Intent(this, Login::class.java)
-        startActivity(telaL)
-        finish()
+        val user = auth.currentUser
+        if (user != null && user.isEmailVerified) {
+            val telaLoginIntent = Intent(this, Login::class.java)
+            startActivity(telaLoginIntent)
+            finish()
+        } else {
+            showToast("Por favor, verifique seu e-mail antes de fazer login.")
+        }
     }
 
     // Função para ir para a tela de criação de perfil
     private fun irParaTelaCriaPerfil() {
         val telaL = Intent(this, CriaPerfil::class.java)
         startActivity(telaL)
+    }
+
+    //Função para enviar um Email de verificação
+    private fun enviarEmailVerificacao() {
+        val user = auth.currentUser
+        user?.sendEmailVerification()
+            ?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    showToast("Um e-mail de verificação foi enviado para ${user.email}. Por favor, verifique seu e-mail.")
+                    // Redirecionar para a tela de login após o envio do e-mail de verificação
+                    irParaTelaLoginP()
+                } else {
+                    showToast("Falha ao enviar e-mail. Tente novamente mais tarde")
+                }
+            }
     }
 }
