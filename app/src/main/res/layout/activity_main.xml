@@ -12,39 +12,37 @@
         android:id="@+id/containerComponents"
         style="@style/ContainerComponents"
         android:layout_height="300dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_login"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edit_email"
         style="@style/Edit_Text_Login"
-        android:layout_marginTop="264dp"
         android:drawableRight="@drawable/ic_email"
         android:drawableTint="#6095A7"
-        android:elevation="3dp"
+        android:layout_marginTop="20dp"
         android:hint="@string/title_login"
         android:textColorHint="@color/hint"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/containerComponents" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_senha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/Letras"
+        android:layout_marginTop="20dp"
+        android:elevation="3dp"
+        android:hint="@string/text_csenha"
+        app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_email"
-        android:hint="@string/text_csenha"
-        app:hintEnabled="false"
-        android:layout_marginTop="20dp"
-        android:elevation="3dp">
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/Letras">
 
         <!--edit text da senha -->
         <com.google.android.material.textfield.TextInputEditText
@@ -56,7 +54,6 @@
             android:hint="@string/title_senha"
             android:textColorHint="@color/hint"
             android:inputType="textPassword"
-            android:maxLength="8"
             android:textSize="20sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -75,15 +72,13 @@
         />
 
 
-
     <TextView
         android:id="@+id/text_tela_cadastro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="63dp"
+        android:layout_marginStart="65dp"
         android:layout_marginTop="90dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="65dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="@string/text_ncadastro"
         android:textColor="@color/Letras"
@@ -101,29 +96,24 @@
         android:layout_marginStart="63dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="64dp"
+        android:fontFamily="@font/cloudsoft_bold_700"
         android:text="@string/Esqminhasenha"
         android:textColor="@color/Letras"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/btn_entar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:fontFamily="@font/cloudsoft_bold_700"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/btn_entar" />
 
     <TextView
         android:id="@+id/titulo_login"
-        android:layout_marginTop="140dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Titulo"
+        android:layout_marginTop="100dp"
         android:text="@string/titulo_login"
-        android:textSize="70sp"
-        android:textColor="@color/Letras"
-        android:fontFamily="@font/peanut_butter"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/containerComponents"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

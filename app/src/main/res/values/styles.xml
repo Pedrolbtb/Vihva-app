@@ -13,8 +13,9 @@
         <!--puxando os components do background direto do drawable-->
         <item name="android:background">@drawable/container_components</item>
 
-        <!--margem do container-->
-        <item name="android:layout_margin">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+
+        <item name="android:layout_marginLeft">20dp</item>
 
 
     </style>
@@ -98,7 +99,7 @@
         <item name="android:inputType">textEmailAddress</item>
         <item name="android:layout_marginStart">40dp</item>
         <item name="android:layout_marginEnd">40dp</item>
-        <item name="android:textColor">@color/Letras</item>
+        <item name="android:textColor">@color/hint</item>
         <item name="android:textSize">20dp</item>
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
     </style>
@@ -135,10 +136,10 @@
     </style>
 
     <style name="breadcrumpL">
-        <item name="android:layout_marginLeft">0dp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/hint</item>
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
 
     </style>

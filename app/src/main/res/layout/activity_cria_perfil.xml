@@ -3,156 +3,153 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/off_white"
     android:layout_height="match_parent"
+    android:background="@color/off_white"
     tools:context=".CriarPerfil.CriaPerfil">
 
-    <TextView
-        android:id="@+id/breadNome"
-        style="@style/breadcrumpL"
-        android:text="@string/breadNome"
-        android:textColor="@color/Letras"
-        app:layout_constraintBottom_toTopOf="@+id/containerComponents"
-        app:layout_constraintEnd_toStartOf="@+id/maiorum"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_login"
-        app:layout_constraintVertical_bias="0.511" />
 
-    <TextView
-        android:id="@+id/maiorum"
-        style="@style/breadcrumpL"
-        android:textColor="@color/hint"
-        android:text="@string/breadMaiorUm"
-        app:layout_constraintBottom_toTopOf="@+id/containerComponents"
-        app:layout_constraintStart_toEndOf="@+id/breadNome"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_login"
-        app:layout_constraintEnd_toStartOf="@+id/breadinfo"
-        />
+   <!--titulo-->
+   <TextView
+       android:id="@+id/titulo_login"
+       style="@style/Titulo"
+       android:layout_marginTop="0dp"
+       android:text="@string/titulo_login"
+       app:layout_constraintBottom_toTopOf="@+id/containerComponents"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/breadinfo"
-        style="@style/breadcrumpL"
-        android:layout_marginTop="20dp"
-        android:text="@string/breadInfo"
-        android:textColor="@color/hint"
-        app:layout_constraintEnd_toStartOf="@+id/maiorDois"
-        app:layout_constraintStart_toEndOf="@+id/maiorum"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
+   <!--breadcrumb-->
+   <TextView
+       android:id="@+id/breadOpc"
+       style="@style/breadcrumpL"
+       android:text="@string/breadOpc"
+       app:layout_constraintBottom_toTopOf="@+id/containerComponents"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toEndOf="@+id/breadBarraDois"
+       app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
 
-    <TextView
-        android:id="@+id/maiorDois"
-        style="@style/breadcrumpL"
-        android:textColor="@color/hint"
-        android:text="@string/breadMaiorUm"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_login"
-        app:layout_constraintBottom_toTopOf="@+id/containerComponents"
-        app:layout_constraintStart_toEndOf="@+id/breadinfo"
-        app:layout_constraintEnd_toStartOf="@+id/breadOpc"
-        />
+   <TextView
+       android:id="@+id/breadNome"
+       style="@style/breadcrumpL"
+       android:layout_marginBottom="1dp"
+       android:text="@string/breadNome"
+       android:textColor="@color/Letras"
+       android:textSize="30sp"
+       app:layout_constraintBottom_toTopOf="@+id/containerComponents"
+       app:layout_constraintEnd_toStartOf="@+id/breadBarraUm"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
 
-    <TextView
-        android:id="@+id/breadOpc"
-        style="@style/breadcrumpL"
-        android:text="@string/breadOpc"
-        android:textColor="@color/hint"
-        app:layout_constraintBottom_toTopOf="@+id/containerComponents"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/maiorDois"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
+   <TextView
+       android:id="@+id/breadBarraDois"
+       style="@style/breadcrumpL"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginEnd="110dp"
+       android:gravity="center_horizontal"
+       android:text="@string/breadMaiorUm"
+       app:layout_constraintBottom_toTopOf="@+id/containerComponents"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toEndOf="@+id/breadinfo"
+       app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
 
+   <TextView
+       android:id="@+id/breadBarraUm"
+       style="@style/breadcrumpL"
+       android:layout_marginStart="90dp"
+       android:text="@string/breadMaiorUm"
+       app:layout_constraintBottom_toTopOf="@+id/containerComponents"
+       app:layout_constraintEnd_toStartOf="@+id/breadinfo"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
 
-    <!-- campos de cadastro -->
+   <TextView
+       android:id="@+id/breadinfo"
+       style="@style/breadcrumpL"
+       android:text="@string/breadInfo"
+       app:layout_constraintBottom_toTopOf="@+id/containerComponents"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
 
-    <TextView
-        android:id="@+id/titulo_login"
-        style="@style/Titulo"
-        android:layout_marginTop="68dp"
-        android:text="@string/titulo_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+   <!--container-->
+   <View
+       android:id="@+id/containerComponents"
+       style="@style/ContainerComponents"
+       android:layout_height="380dp"
+       android:layout_marginTop="80dp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/containerComponents"
-        style="@style/ContainerComponents"
-        android:layout_height="380dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.625"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/breadinfo"
-         />
+   <!--campos de cadastro-->
+   <EditText
+       android:id="@+id/edit_nome"
+       style="@style/Edit_Text_Login"
+       android:layout_marginTop="20dp"
+       android:hint="@string/text_cnome"
+       android:inputType="text"
+       android:textColorHint="@color/hint"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.0"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="@+id/containerComponents" />
 
-    <EditText
-        android:id="@+id/edit_nome"
-        style="@style/Edit_Text_Login"
-        android:layout_marginTop="20dp"
-        android:hint="@string/text_cnome"
-        android:textColorHint="@color/hint"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/containerComponents" />
+   <EditText
+       android:id="@+id/edit_sobrenome"
+       style="@style/Edit_Text_Login"
+       android:layout_marginStart="40dp"
+       android:layout_marginTop="20dp"
+       android:layout_marginEnd="40dp"
+       android:hint="@string/text_csobrenome"
+       android:inputType="text"
+       android:textColor="@color/Letras"
+       android:textColorHint="@color/hint"
+       android:textSize="20sp"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.0"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/edit_nome" />
 
-    <EditText
-        android:id="@+id/edit_sobrenome"
-        style="@style/Edit_Text_Login"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
-        android:hint="@string/text_csobrenome"
-        android:inputType="text"
-        android:textColorHint="@color/hint"
-        android:textColor="@color/Letras"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_nome" />
+   <EditText
+       android:id="@+id/edit_idade"
+       style="@style/Edit_Text_Login"
+       android:layout_marginStart="40dp"
+       android:layout_marginTop="20dp"
+       android:layout_marginEnd="40dp"
+       android:elevation="3dp"
+       android:hint="@string/text_idade"
+       android:inputType="number"
+       android:textColor="@color/Letras"
+       android:textColorHint="@color/hint"
+       android:textSize="20sp"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.0"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/edit_sobrenome" />
 
-    <EditText
-        android:id="@+id/edit_idade"
-        style="@style/Edit_Text_Login"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="40dp"
-        android:elevation="3dp"
-        android:hint="@string/text_idade"
-        android:inputType="number"
-        android:textColor="@color/Letras"
-        android:textSize="20sp"
-        android:textColorHint="@color/hint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_sobrenome" />
+   <androidx.appcompat.widget.AppCompatButton
+       android:id="@+id/btn_proximo"
+       style="@style/Button"
+       android:layout_marginTop="30dp"
+       android:elevation="40dp"
+       android:text="@string/text_prox"
+       android:textColor="@color/off_white"
+       android:textSize="20sp"
+       android:textStyle="bold"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="1.0"
+       app:layout_constraintStart_toEndOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/edit_idade" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_proximo"
-        style="@style/Button"
-        android:layout_marginTop="30dp"
-        android:elevation="40dp"
-        android:text="@string/text_prox"
-        android:textColor="@color/off_white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_idade" />
-
-    <ProgressBar
-        android:id="@+id/progressbar_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="180dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/containerComponents"
-        />
+   <androidx.constraintlayout.widget.Guideline
+       android:id="@+id/guideline3"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       app:layout_constraintGuide_percent="0.26" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
