@@ -88,6 +88,8 @@
    <com.google.android.material.textfield.TextInputLayout
        android:id="@+id/layout_nome"
        style="@style/layout_campos"
+       app:endIconTint="@color/Letras"
+       app:endIconMode="clear_text"
        app:hintTextColor="@color/Letras"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
@@ -97,12 +99,20 @@
    <!--campos de cadastro-->
    <com.google.android.material.textfield.TextInputEditText
        android:id="@+id/edit_nome"
-       style="@style/Edit_Text_Perfil"
+       style="@style/Edit_Text_Login"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="20dp"
+       android:drawableTint="@color/Letras"
+       android:hint="@string/text_breadNome"
        android:textColor="@color/Letras"
-       android:hint="@string/text_cnome"
        android:inputType="text"
-       android:elevation="3dp"
+       android:nextFocusForward="@id/edit_senha"
        android:textColorHint="@color/hint"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="@+id/containerComponents"
+
   />
 
    </com.google.android.material.textfield.TextInputLayout>
@@ -111,6 +121,9 @@
    <com.google.android.material.textfield.TextInputLayout
        android:id="@+id/layout_sobrenome"
        style="@style/layout_campos"
+       app:endIconTint="@color/Letras"
+       app:endIconMode="clear_text"
+       app:hintTextColor="@color/Letras"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toBottomOf="@+id/layout_nome"
@@ -119,12 +132,19 @@
       <!--campos de cadastro-->
    <com.google.android.material.textfield.TextInputEditText
        android:id="@+id/edit_sobrenome"
-       style="@style/Edit_Text_Perfil"
+       style="@style/Edit_Text_Login"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="20dp"
+       android:drawableTint="@color/Letras"
        android:hint="@string/text_csobrenome"
-       android:inputType="text"
-       android:elevation="3dp"
        android:textColor="@color/Letras"
+       android:inputType="text"
+       android:nextFocusForward="@id/edit_senha"
        android:textColorHint="@color/hint"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="@+id/containerComponents"
         />
 
    </com.google.android.material.textfield.TextInputLayout>
@@ -134,6 +154,9 @@
    <com.google.android.material.textfield.TextInputLayout
        android:id="@+id/layout_idade"
        style="@style/layout_campos"
+       app:endIconTint="@color/Letras"
+       app:endIconMode="clear_text"
+       app:hintTextColor="@color/Letras"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toBottomOf="@+id/layout_sobrenome"
@@ -142,12 +165,19 @@
       <!--campos de cadastro-->
    <com.google.android.material.textfield.TextInputEditText
        android:id="@+id/edit_idade"
-       style="@style/Edit_Text_Perfil"
+       style="@style/Edit_Text_Login"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="20dp"
+       android:drawableTint="@color/Letras"
        android:hint="@string/text_idade"
-       android:inputType="number"
-       android:elevation="3dp"
        android:textColor="@color/Letras"
+       android:inputType="number"
+       android:nextFocusForward="@id/edit_senha"
        android:textColorHint="@color/hint"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="@+id/containerComponents"
         />
 
    </com.google.android.material.textfield.TextInputLayout>

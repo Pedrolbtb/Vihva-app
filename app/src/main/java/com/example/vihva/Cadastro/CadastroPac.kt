@@ -33,7 +33,7 @@ class CadastroPac : AppCompatActivity() {
 
         // Configurar o listener para o texto "Já tem uma conta? Faça login"
         binding.textTelaCadastro.setOnClickListener {
-            irParaTelaLoginP()
+            irParaTelaLoginT()
         }
 
         // Configurar o listener para o botão de cadastro
@@ -101,8 +101,8 @@ class CadastroPac : AppCompatActivity() {
     }
 
     // Função para ir para a tela de criação de perfil
-    private fun irParaTelaCriaPerfil() {
-        val telaL = Intent(this, CriaPerfil::class.java)
+    private fun irParaTelaLoginT() {
+        val telaL = Intent(this, Login::class.java)
         startActivity(telaL)
     }
 

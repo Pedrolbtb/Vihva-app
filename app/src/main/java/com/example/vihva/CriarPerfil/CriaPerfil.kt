@@ -32,17 +32,6 @@ class CriaPerfil : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        val intent = Intent(this, Login::class.java)
-        val options = ActivityOptionsCompat.makeCustomAnimation(
-            this,
-            R.anim.slide_direita, // a animação para a tela de onde você está voltando
-            R.anim.slide_esquerda // a animação para a tela para onde você está voltando
-        )
-        startActivity(intent, options.toBundle())
-        finish()
-    }
 
     private fun irParaTelaCriaPerfil2() {
         val telaL = Intent(this, CriaPerfil2::class.java)

@@ -21,6 +21,7 @@ class CriaPerfil2 : AppCompatActivity() {
     private lateinit var np_peso: NumberPicker
     private lateinit var numberPickerView: View
     private lateinit var alertDialog: AlertDialog
+    var UltimoValor = 30 // Valor inicial do peso
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,10 +36,7 @@ class CriaPerfil2 : AppCompatActivity() {
         alertDialog = AlertDialog.Builder(this)
             .setView(numberPickerView)
             .setTitle("Selecione o peso em kg")
-            .setPositiveButton("OK") { dialog, which ->
-                val np_peso = numberPickerView.findViewById<NumberPicker>(R.id.np_peso)
-                edit_peso.setText("${np_peso.value}kg")
-            }
+            .setPositiveButton("OK", null)
             .setNegativeButton("Cancelar", null)
             .create()
 
@@ -46,14 +44,23 @@ class CriaPerfil2 : AppCompatActivity() {
             val np_peso = numberPickerView.findViewById<NumberPicker>(R.id.np_peso)
             np_peso.minValue = 30
             np_peso.maxValue = 400
-            np_peso.value = 30
+            np_peso.value = UltimoValor
             alertDialog.show()
         }
 
         edit_peso.showSoftInputOnFocus = false
 
-        np_peso.setOnValueChangedListener { picker, oldVal, newVal ->
-            edit_peso.setText(newVal.toString())
+        alertDialog.setOnShowListener {
+            val np_peso = numberPickerView.findViewById<NumberPicker>(R.id.np_peso)
+            np_peso.setOnValueChangedListener { picker, oldVal, newVal ->
+                UltimoValor = newVal
+            }
+
+            val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            positiveButton.setOnClickListener {
+                edit_peso.setText("${np_peso.value}kg")
+                alertDialog.dismiss()
+            }
         }
 
         edit_altura.addTextChangedListener(object : TextWatcher {

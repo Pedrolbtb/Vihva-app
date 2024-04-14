@@ -97,15 +97,19 @@
     <!-- campos de altura-->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_altura"
-        style="@style/Edit_Text_Perfil"
+        style="@style/Edit_Text_Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:elevation="3dp"
+        android:drawableTint="@color/Letras"
         android:hint="@string/text_caltura"
-        app:suffixText="cm"
         android:textColor="@color/Letras"
         android:inputType="number"
-        android:maxLength="5"
+        android:nextFocusForward="@id/edit_senha"
         android:textColorHint="@color/hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/containerComponents"
          />
 
     </com.google.android.material.textfield.TextInputLayout>

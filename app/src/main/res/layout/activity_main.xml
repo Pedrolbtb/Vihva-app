@@ -44,7 +44,6 @@
             android:inputType="textEmailAddress"
             android:nextFocusForward="@id/edit_senha"
             android:textColorHint="@color/hint"
-            android:textCursorDrawable="@drawable/cursor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/containerComponents" />
