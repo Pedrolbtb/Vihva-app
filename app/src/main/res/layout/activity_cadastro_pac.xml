@@ -34,23 +34,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:elevation="3dp"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/containerComponents"
+        app:endIconTint="@color/Letras"
+        app:endIconMode="custom"
+        android:textCursorDrawable="@drawable/cursor"
+        app:endIconDrawable="@drawable/ic_email"
+        >
+
     <!-- edit text do email -->
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_email"
         style="@style/Edit_Text_Login"
         android:layout_marginTop="20dp"
-        android:drawableRight="@drawable/ic_email"
-        android:drawableTint="#6095A7"
-        android:elevation="3dp"
-        android:hint="@string/text_cadastro"
+        android:drawableTint="@color/Letras"
+        android:hint="@string/title_login"
         android:inputType="textEmailAddress"
-        android:textColorHighlight="#6095A7"
+        android:nextFocusForward="@id/edit_senha"
         android:textColorHint="@color/hint"
-        android:textColorLink="#6095A7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/containerComponents" />
+        />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <!-- layout da edit text da senha -->
@@ -64,7 +76,7 @@
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_email"
+        app:layout_constraintTop_toBottomOf="@+id/layout_email"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="@color/Letras">
 
@@ -159,19 +171,6 @@
         app:layout_constraintTop_toBottomOf="@id/containerComponents"
         app:layout_goneMarginTop="20dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.50121653" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

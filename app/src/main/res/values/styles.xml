@@ -79,6 +79,7 @@
     <item name="android:layout_marginStart">10dp</item>
     <item name="android:textColor">@color/Letras</item>
     <item name="android:textSize">14sp</item>
+    <item name="fontFamily">@font/cloudsoft_bold_700</item>
     <item name="buttonTint">@color/Letras</item>
 
 </style>
@@ -141,7 +142,33 @@
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/hint</item>
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
+    </style>
 
+    <style name="Edit_Text_Perfil">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!--puxando o style drawlable/edittext-->
+        <item name="android:background">@drawable/edit_text</item>
+        <!--padding do campo-->
+        <item name="android:padding">20dp</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginRight">40dp</item>
+        <item name="android:inputType">text</item>
+        <item name="android:layout_marginStart">40dp</item>
+        <item name="android:layout_marginEnd">40dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/cloudsoft_bold_700</item>
+    </style>
+
+    <style name="layout_campos">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:textColor">@color/Letras</item>
+        <item name="hintEnabled">false</item>
+        <item name="endIconMode">clear_text</item>
+        <item name="endIconTint">@color/Letras</item>
+        <item name="singleLine">true</item>
     </style>
 
 

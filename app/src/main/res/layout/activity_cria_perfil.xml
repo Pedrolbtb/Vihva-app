@@ -23,7 +23,7 @@
    <TextView
        android:id="@+id/breadOpc"
        style="@style/breadcrumpL"
-       android:text="@string/breadOpc"
+       android:text="@string/text_breadOpc"
        app:layout_constraintBottom_toTopOf="@+id/containerComponents"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toEndOf="@+id/breadBarraDois"
@@ -33,7 +33,7 @@
        android:id="@+id/breadNome"
        style="@style/breadcrumpL"
        android:layout_marginBottom="1dp"
-       android:text="@string/breadNome"
+       android:text="@string/text_breadNome"
        android:textColor="@color/Letras"
        android:textSize="30sp"
        app:layout_constraintBottom_toTopOf="@+id/containerComponents"
@@ -48,7 +48,7 @@
        android:layout_height="wrap_content"
        android:layout_marginEnd="110dp"
        android:gravity="center_horizontal"
-       android:text="@string/breadMaiorUm"
+       android:text="@string/text_breadMaiorUm"
        app:layout_constraintBottom_toTopOf="@+id/containerComponents"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toEndOf="@+id/breadinfo"
@@ -58,7 +58,7 @@
        android:id="@+id/breadBarraUm"
        style="@style/breadcrumpL"
        android:layout_marginStart="90dp"
-       android:text="@string/breadMaiorUm"
+       android:text="@string/text_breadMaiorUm"
        app:layout_constraintBottom_toTopOf="@+id/containerComponents"
        app:layout_constraintEnd_toStartOf="@+id/breadinfo"
        app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
    <TextView
        android:id="@+id/breadinfo"
        style="@style/breadcrumpL"
-       android:text="@string/breadInfo"
+       android:text="@string/text_breadInfo"
        app:layout_constraintBottom_toTopOf="@+id/containerComponents"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
@@ -84,52 +84,75 @@
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toTopOf="parent" />
 
+
+   <com.google.android.material.textfield.TextInputLayout
+       android:id="@+id/layout_nome"
+       style="@style/layout_campos"
+       app:hintTextColor="@color/Letras"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="@+id/containerComponents"
+       >
+
    <!--campos de cadastro-->
-   <EditText
+   <com.google.android.material.textfield.TextInputEditText
        android:id="@+id/edit_nome"
-       style="@style/Edit_Text_Login"
-       android:layout_marginTop="20dp"
+       style="@style/Edit_Text_Perfil"
+       android:textColor="@color/Letras"
        android:hint="@string/text_cnome"
        android:inputType="text"
+       android:elevation="3dp"
        android:textColorHint="@color/hint"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintHorizontal_bias="0.0"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toTopOf="@+id/containerComponents" />
+  />
 
-   <EditText
+   </com.google.android.material.textfield.TextInputLayout>
+
+   <!--layout sobrenome-->
+   <com.google.android.material.textfield.TextInputLayout
+       android:id="@+id/layout_sobrenome"
+       style="@style/layout_campos"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/layout_nome"
+       >
+
+      <!--campos de cadastro-->
+   <com.google.android.material.textfield.TextInputEditText
        android:id="@+id/edit_sobrenome"
-       style="@style/Edit_Text_Login"
-       android:layout_marginStart="40dp"
-       android:layout_marginTop="20dp"
-       android:layout_marginEnd="40dp"
+       style="@style/Edit_Text_Perfil"
        android:hint="@string/text_csobrenome"
        android:inputType="text"
+       android:elevation="3dp"
        android:textColor="@color/Letras"
        android:textColorHint="@color/hint"
-       android:textSize="20sp"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintHorizontal_bias="0.0"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/edit_nome" />
+        />
 
-   <EditText
+   </com.google.android.material.textfield.TextInputLayout>
+
+
+   <!--layout idade-->
+   <com.google.android.material.textfield.TextInputLayout
+       android:id="@+id/layout_idade"
+       style="@style/layout_campos"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/layout_sobrenome"
+       >
+
+      <!--campos de cadastro-->
+   <com.google.android.material.textfield.TextInputEditText
        android:id="@+id/edit_idade"
-       style="@style/Edit_Text_Login"
-       android:layout_marginStart="40dp"
-       android:layout_marginTop="20dp"
-       android:layout_marginEnd="40dp"
-       android:elevation="3dp"
+       style="@style/Edit_Text_Perfil"
        android:hint="@string/text_idade"
        android:inputType="number"
+       android:elevation="3dp"
        android:textColor="@color/Letras"
        android:textColorHint="@color/hint"
-       android:textSize="20sp"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintHorizontal_bias="0.0"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/edit_sobrenome" />
+        />
 
+   </com.google.android.material.textfield.TextInputLayout>
+
+   <!--botao-->
    <androidx.appcompat.widget.AppCompatButton
        android:id="@+id/btn_proximo"
        style="@style/Button"
@@ -142,14 +165,6 @@
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintHorizontal_bias="1.0"
        app:layout_constraintStart_toEndOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/edit_idade" />
-
-   <androidx.constraintlayout.widget.Guideline
-       android:id="@+id/guideline3"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:orientation="horizontal"
-       app:layout_constraintGuide_percent="0.26" />
-
+       app:layout_constraintTop_toBottomOf="@+id/layout_idade" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,7 @@
     <string name="title_button_login">Entrar</string>
 
     <!--texto do text para cadastro-->
-    <string name="text_ncadastro">Não possui uma conta? clique aqui!</string>
+    <string name="text_ncadastro">Não possui uma conta? <u>clique aqui!</u></string>
 
     <!--texto do text para colocar seu email no cadastro-->
     <string name="text_cadastro">Escreva o seu email</string>
@@ -29,7 +29,7 @@
     <string name="text_confcadastro">Cadastrar</string>
 
     <!--texto do text para confirmar sua senha no cadastro-->
-    <string name="text_jasenha">Já possuo conta</string>
+    <string name="text_jasenha"><u>Já possuo conta</u></string>
 
     <string name="text_cnome">Nome</string>
 
@@ -51,15 +51,17 @@
 
     <string name="text_sos">Após tocar no botão acima, uma mensagem de texto seja enviada para um contato de confiança</string>
 
-    <string name="breadNome">Nome</string>
+    <string name="text_breadNome">Nome</string>
 
-    <string name="breadMaiorUm"> | </string>
+    <string name="text_breadMaiorUm"> | </string>
 
-    <string name="breadInfo">Dados</string>
+    <string name="text_breadInfo">Dados</string>
 
-    <string name="breadOpc">Opcional</string>
+    <string name="text_breadOpc">Opcional</string>
 
-    <string name="Esqminhasenha">Esqueci minha senha</string>
+    <string name="text_Esqminhasenha"><u>Esqueci minha senha</u> </string>
+
+    <string name="text_genero">Gênero</string>
 
 </resources>
 

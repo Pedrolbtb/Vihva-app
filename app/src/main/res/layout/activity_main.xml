@@ -17,19 +17,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edit_email"
-        style="@style/Edit_Text_Login"
-        android:drawableRight="@drawable/ic_email"
-        android:drawableTint="#6095A7"
+    <!--layout de email-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="@string/title_login"
-        android:textColorHint="@color/hint"
-        android:inputType="textEmailAddress"
+        android:elevation="3dp"
+        app:hintEnabled="false"
+        app:endIconTint="@color/Letras"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/ic_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/containerComponents" />
+        app:layout_constraintTop_toTopOf="@+id/containerComponents">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_email"
+            style="@style/Edit_Text_Login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableTint="@color/Letras"
+            android:hint="@string/title_login"
+            android:textColor="@color/Letras"
+            android:inputType="textEmailAddress"
+            android:nextFocusForward="@id/edit_senha"
+            android:textColorHint="@color/hint"
+            android:textCursorDrawable="@drawable/cursor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/containerComponents" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--layout de senha-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_senha"
         android:layout_width="match_parent"
@@ -40,7 +62,7 @@
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_email"
+        app:layout_constraintTop_toBottomOf="@+id/layout_email"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="@color/Letras">
 
@@ -52,6 +74,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
             android:hint="@string/title_senha"
+            android:textColor="@color/Letras"
             android:textColorHint="@color/hint"
             android:inputType="textPassword"
             android:textSize="20sp" />
@@ -64,7 +87,6 @@
         android:text="@string/title_button_login"
         android:textColor="@color/off_white"
         android:textSize="20sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_senha"
@@ -97,7 +119,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="64dp"
         android:fontFamily="@font/cloudsoft_bold_700"
-        android:text="@string/Esqminhasenha"
+        android:text="@string/text_Esqminhasenha"
         android:textColor="@color/Letras"
         android:textSize="18sp"
         android:textStyle="bold"

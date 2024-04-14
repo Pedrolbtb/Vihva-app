@@ -21,7 +21,7 @@
     <TextView
         android:id="@+id/breadOpc"
         style="@style/breadcrumpL"
-        android:text="@string/breadOpc"
+        android:text="@string/text_breadOpc"
         app:layout_constraintBottom_toTopOf="@+id/containerComponents"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/breadBarraDois"
@@ -30,7 +30,8 @@
     <TextView
         android:id="@+id/breadNome"
         style="@style/breadcrumpL"
-        android:text="@string/breadNome"
+        android:text="@string/text_breadNome"
+        android:textColor="#648691"
         app:layout_constraintBottom_toTopOf="@+id/containerComponents"
         app:layout_constraintEnd_toStartOf="@+id/breadBarraUm"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="110dp"
         android:gravity="center_horizontal"
-        android:text="@string/breadMaiorUm"
+        android:text="@string/text_breadMaiorUm"
         app:layout_constraintBottom_toTopOf="@+id/containerComponents"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/breadinfo"
@@ -53,7 +54,7 @@
         android:id="@+id/breadBarraUm"
         style="@style/breadcrumpL"
         android:layout_marginStart="90dp"
-        android:text="@string/breadMaiorUm"
+        android:text="@string/text_breadMaiorUm"
         app:layout_constraintBottom_toTopOf="@+id/containerComponents"
         app:layout_constraintEnd_toStartOf="@+id/breadinfo"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +63,7 @@
     <TextView
         android:id="@+id/breadinfo"
         style="@style/breadcrumpL"
-        android:text="@string/breadInfo"
+        android:text="@string/text_breadInfo"
         android:textColor="@color/Letras"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/containerComponents"
@@ -83,26 +84,34 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_altura"
+        style="@style/layout_campos"
+        android:textColor="@color/Letras"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:suffixTextColor="@color/hint"
+        app:layout_constraintTop_toTopOf="@+id/containerComponents"
+        >
+
     <!-- campos de altura-->
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_altura"
-        style="@style/Edit_Text_Login"
+        style="@style/Edit_Text_Perfil"
         android:layout_marginTop="20dp"
         android:elevation="3dp"
         android:hint="@string/text_caltura"
-        android:inputType="numberDecimal"
+        app:suffixText="cm"
+        android:textColor="@color/Letras"
+        android:inputType="number"
         android:maxLength="5"
-        android:textColorHighlight="#6095A7"
         android:textColorHint="@color/hint"
-        android:textColorLink="#6095A7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/containerComponents" />
+         />
 
+    </com.google.android.material.textfield.TextInputLayout>
 
     <!-- campos de peso -->
-
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_peso"
         style="@style/Edit_Text_Login"
         android:layout_marginStart="40dp"
@@ -118,7 +127,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_altura" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_altura" />
 
 
     <NumberPicker
@@ -132,7 +141,7 @@
         android:id="@+id/txt_genero"
         style="@style/text"
         android:layout_marginTop="10dp"
-        android:text="Gênero"
+        android:text="@string/text_genero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_peso" />
@@ -205,18 +214,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/containerComponents" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.26" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityOptionsCompat
+import com.example.vihva.Login.Login
 import com.example.vihva.R
 
 class CriaPerfil : AppCompatActivity() {
@@ -28,6 +30,18 @@ class CriaPerfil : AppCompatActivity() {
                 showToast("insira uma idade válida")
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, Login::class.java)
+        val options = ActivityOptionsCompat.makeCustomAnimation(
+            this,
+            R.anim.slide_direita, // a animação para a tela de onde você está voltando
+            R.anim.slide_esquerda // a animação para a tela para onde você está voltando
+        )
+        startActivity(intent, options.toBundle())
+        finish()
     }
 
     private fun irParaTelaCriaPerfil2() {
