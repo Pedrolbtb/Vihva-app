@@ -7,4 +7,20 @@
     android:background="@color/off_white"
     tools:context=".CriarPerfil.FotoBio">
 
+
+    <ImageView
+
+        android:id="@+id/img_save"
+        android:layout_margin="40dp"
+        android:layout_width="160dp"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars"
+        android:background="@color/azul"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+   

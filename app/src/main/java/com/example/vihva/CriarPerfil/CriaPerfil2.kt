@@ -86,7 +86,7 @@ class CriaPerfil2 : AppCompatActivity() {
     }
 
     private fun irParaTelaInicial() {
-        val telaL = Intent(this, Inicio::class.java)
+        val telaL = Intent(this, FotoBio::class.java)
         startActivity(telaL)
         finish()
     }
