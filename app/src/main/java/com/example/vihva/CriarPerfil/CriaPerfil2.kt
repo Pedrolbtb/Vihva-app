@@ -36,7 +36,11 @@ class CriaPerfil2 : AppCompatActivity() {
         alertDialog = AlertDialog.Builder(this)
             .setView(numberPickerView)
             .setTitle("Selecione o peso em kg")
-            .setPositiveButton("OK", null)
+            .setPositiveButton("OK") { dialog, which ->
+                val np_peso = numberPickerView.findViewById<NumberPicker>(R.id.np_peso)
+                UltimoValor = np_peso.value
+                edit_peso.setText("${np_peso.value}kg")
+            }
             .setNegativeButton("Cancelar", null)
             .create()
 
@@ -50,17 +54,9 @@ class CriaPerfil2 : AppCompatActivity() {
 
         edit_peso.showSoftInputOnFocus = false
 
-        alertDialog.setOnShowListener {
-            val np_peso = numberPickerView.findViewById<NumberPicker>(R.id.np_peso)
-            np_peso.setOnValueChangedListener { picker, oldVal, newVal ->
-                UltimoValor = newVal
-            }
-
-            val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-            positiveButton.setOnClickListener {
-                edit_peso.setText("${np_peso.value}kg")
-                alertDialog.dismiss()
-            }
+        np_peso.setOnValueChangedListener { picker, oldVal, newVal ->
+            UltimoValor = newVal
+            edit_peso.setText(newVal.toString())
         }
 
         edit_altura.addTextChangedListener(object : TextWatcher {
