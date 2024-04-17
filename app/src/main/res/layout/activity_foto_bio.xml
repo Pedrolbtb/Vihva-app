@@ -9,16 +9,116 @@
 
 
     <ImageView
-
         android:id="@+id/img_save"
-        android:layout_margin="40dp"
-        android:layout_width="160dp"
-        android:layout_height="200dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/foto"
+        android:layout_width="163dp"
+        android:layout_height="156dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:scaleType="fitStart"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_nome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/img_save"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars"
-        android:background="@color/azul"/>
+        android:text="aaaa"
+        />
+
+    <TextView
+        android:id="@+id/text_sobrenome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_nome"
+        android:text="aaaa"
+        />
+
+    <TextView
+        android:id="@+id/text_genero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="40dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/img_save"
+        app:layout_constraintTop_toBottomOf="@+id/text_nome"
+        android:text="aaaa"
+        />
+
+    <TextView
+        android:id="@+id/text_idade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@+id/text_sobrenome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_genero"
+        android:text="aaaa"
+        />
+
+    <TextView
+        android:id="@+id/text_genero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="aaaa"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/img_save"
+        tools:layout_editor_absoluteY="168dp" />
+
+    <TextView
+        android:id="@+id/text_peso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="aaaa"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/text_genero"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_idade" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_proximo"
+        style="@style/Button_salvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="180dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="60dp"
+        android:text="salvar"
+        android:textColor="@color/off_white"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_retornar"
+        style="@style/Button_retornar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="180dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="20dp"
+        android:text="Editar"
+        android:textColor="@color/off_white"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@id/btn_proximo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+ />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

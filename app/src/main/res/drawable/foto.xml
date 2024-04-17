@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<item>
+    <shape android:shape="oval" android:padding="10dp">
+        <size android:width="100dp" android:height="100dp"/>
+        <stroke android:width="68dp" android:color="@color/Letras"/>
+    </shape>
+</item>
+<item android:drawable="@drawable/adicionarfoto" />
+</layer-list>
