@@ -16,10 +16,10 @@ class CriaPerfil : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cria_perfil)
 
-        // Referenciando o EditText e o botão
+        // Referenciando os EditTexts e o botão
         val editNome = findViewById<EditText>(R.id.edit_nome)
         val editSobrenome = findViewById<EditText>(R.id.edit_sobrenome)
-        val editidade = findViewById<EditText>(R.id.edit_idade)
+        val editIdade = findViewById<EditText>(R.id.edit_idade)
         val btnProximo = findViewById<Button>(R.id.btn_proximo)
 
         // Definindo o evento de clique para o botão
@@ -28,30 +28,34 @@ class CriaPerfil : AppCompatActivity() {
             // Obtendo os textos digitados pelo usuário
             val nome = editNome.text.toString()
             val sobrenome = editSobrenome.text.toString()
-            val idade = editidade.text.toString().toIntOrNull()
+            val idadeText = editIdade.text.toString()
 
-            //Criando a Intent e passando os dados como extras
-            val intent = Intent(this, FotoBio::class.java)
-            intent.putExtra("nome",nome)
-            intent.putExtra("sobrenome",sobrenome)
-            intent.putExtra("idade",idade)
-            startActivity(intent)
+            // Verificando se todos os campos estão preenchidos
+            if (nome.isNotEmpty() && sobrenome.isNotEmpty() && idadeText.isNotEmpty()) {
+                val idade = idadeText.toIntOrNull()
 
-            // Verificando se a idade é válida (entre 13 e 100 anos)
-            if (idade != null && idade in 13..100) {
-                // Se a idade for válida, navegar para a próxima tela
-                irParaTelaCriaPerfil2()
+                // Verificando se a idade é válida (entre 13 e 100 anos)
+                if (idade != null && idade in 13..100) {
+                    // Se todos os campos estiverem preenchidos e a idade for válida, navegar para a próxima tela
+                    irParaTelaCriaPerfil2(nome, sobrenome, idade)
+                } else {
+                    // Se a idade não for válida, exibir um Toast informando o usuário
+                    showToast("Insira uma idade válida (entre 13 e 100 anos)")
+                }
             } else {
-                // Se a idade não for válida, exibir um Toast informando o usuário
-                showToast("Insira uma idade válida")
+                // Se algum campo estiver vazio, exibir um Toast informando o usuário
+                showToast("Preencha todos os campos")
             }
         }
     }
 
     // Função para navegar para a tela CriaPerfil2
-    private fun irParaTelaCriaPerfil2() {
-        val telaL = Intent(this, CriaPerfil2::class.java)
-        startActivity(telaL)
+    private fun irParaTelaCriaPerfil2(nome: String, sobrenome: String, idade: Int) {
+        val intent = Intent(this, CriaPerfil2::class.java)
+        intent.putExtra("nome", nome)
+        intent.putExtra("sobrenome", sobrenome)
+        intent.putExtra("idade", idade)
+        startActivity(intent)
     }
 
     // Função para exibir um Toast personalizado

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.vihva.CriarPerfil.CriaPerfil
 import com.example.vihva.Login.Login
 import com.example.vihva.R
 import com.example.vihva.databinding.ActivityCadastroPacBinding
@@ -25,6 +24,7 @@ class CadastroPac : AppCompatActivity() {
     // Instância do Firebase Auth
     private val auth = FirebaseAuth.getInstance()
     private val bd = FirebaseFirestore.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -63,6 +63,8 @@ class CadastroPac : AppCompatActivity() {
                     } else {
                         //enviar email de verificação
                         enviarEmailVerificacao()
+                        // Ir para a tela de login após o envio do e-mail de verificação
+                        irParaTelaLoginP()
                     }
                 }
             } else {
@@ -90,16 +92,11 @@ class CadastroPac : AppCompatActivity() {
         }
     }
 
-    // Função para ir para a tela de login apenas se o e-mail estiver verificado
+    // Função para ir para a tela de login
     private fun irParaTelaLoginP() {
-        val user = auth.currentUser
-        if (user != null && user.isEmailVerified) {
-            val telaLoginIntent = Intent(this, Login::class.java)
-            startActivity(telaLoginIntent)
-            finish()
-        } else {
-            showToast("Por favor, verifique seu e-mail antes de fazer login.")
-        }
+        val telaLoginIntent = Intent(this, Login::class.java)
+        startActivity(telaLoginIntent)
+        finish()
     }
 
     // Função para ir para a tela de criação de perfil
@@ -111,15 +108,12 @@ class CadastroPac : AppCompatActivity() {
     //Função para enviar um Email de verificação
     private fun enviarEmailVerificacao() {
         val user = auth.currentUser
-        user?.sendEmailVerification()
-            ?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    showToast("Um e-mail de verificação foi enviado para ${user.email}. Por favor, verifique seu e-mail.")
-                    // Redirecionar para a tela de login após o envio do e-mail de verificação
-                    irParaTelaLoginP()
-                } else {
-                    showToast("Falha ao enviar e-mail. Tente novamente mais tarde")
-                }
+        user?.sendEmailVerification()?.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                showToast("Um e-mail de verificação foi enviado para ${user.email}. Por favor, verifique seu e-mail.")
+            } else {
+                showToast("Falha ao enviar e-mail. Tente novamente mais tarde")
             }
+        }
     }
 }

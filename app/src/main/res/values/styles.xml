@@ -19,45 +19,7 @@
 
 
     </style>
-    
 
-    <!--botao de escolha medico ou paciente-->
-    <style name="btn_mxp">
-
-        <!--largura do botao-->
-        <item name="android:layout_width">match_parent</item>
-
-        <!--altura do botao-->
-        <item name="android:layout_height">wrap_content</item>
-
-        <item name="fontFamily">@font/cloudsoft_bold_700</item>
-
-        <!--margem para esquerda do botao-->
-        <item name="android:layout_marginLeft">40dp</item>
-
-        <!--margem para cima do botao-->
-        <item name="android:layout_marginTop">20dp</item>
-
-        <!--margem para direita do botao-->
-        <item name="android:layout_marginRight">40dp</item>
-
-        <!--padding do botao-->
-        <item name="android:padding">15dp</item>
-
-        <!--cor od texto dentro do botao-->
-        <item name="android:textColor">@color/Letras</item>
-
-        <!--instruçao para a escrita dentro do botao nao ser so maiuscula-->
-        <item name="android:textAllCaps">false</item>
-
-        <item name="android:textSize">20dp</item>
-
-        <!--margem para cima do campo-->
-        <item name="android:textStyle">bold</item>
-
-
-
-    </style>
 
     <!--Style do botão de login-->
     <style name="Button">

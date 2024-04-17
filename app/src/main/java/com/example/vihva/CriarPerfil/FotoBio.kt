@@ -58,6 +58,13 @@ class FotoBio : AppCompatActivity() {
         imageView.setOnClickListener {
             pickImageGallery() // Chama o método para selecionar uma imagem da galeria
         }
+
+        // Configura o OnClickListener para o botão retornar
+        findViewById<Button>(R.id.btn_retornar).setOnClickListener {
+            startActivity(Intent(this, CriaPerfil2::class.java))
+            finish() // Finaliza a atividade atual
+        }
+
     }
 
     // Método para abrir a galeria de mídia e selecionar uma imagem
