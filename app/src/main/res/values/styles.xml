@@ -19,10 +19,45 @@
 
 
     </style>
+    
+
+    <!--botao de escolha medico ou paciente-->
+    <style name="btn_mxp">
+
+        <!--largura do botao-->
+        <item name="android:layout_width">match_parent</item>
+
+        <!--altura do botao-->
+        <item name="android:layout_height">wrap_content</item>
+
+        <item name="fontFamily">@font/cloudsoft_bold_700</item>
+
+        <!--margem para esquerda do botao-->
+        <item name="android:layout_marginLeft">40dp</item>
+
+        <!--margem para cima do botao-->
+        <item name="android:layout_marginTop">20dp</item>
+
+        <!--margem para direita do botao-->
+        <item name="android:layout_marginRight">40dp</item>
+
+        <!--padding do botao-->
+        <item name="android:padding">15dp</item>
+
+        <!--cor od texto dentro do botao-->
+        <item name="android:textColor">@color/Letras</item>
+
+        <!--instruçao para a escrita dentro do botao nao ser so maiuscula-->
+        <item name="android:textAllCaps">false</item>
+
+        <item name="android:textSize">20dp</item>
+
+        <!--margem para cima do campo-->
+        <item name="android:textStyle">bold</item>
 
 
 
-
+    </style>
 
     <!--Style do botão de login-->
     <style name="Button">
@@ -69,7 +104,7 @@
         <item name="android:textSize">20dp</item>
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
     </style>
-
+    
     <!--titulo da tela de cadastro/login-->
     <style name="Titulo">
         <item name="android:layout_marginTop">70dp</item>
@@ -80,16 +115,16 @@
         <item name="android:textColor">@color/Letras</item>
         <item name="fontFamily">@font/peanut_butter</item>
     </style>
-
+    
     <!--texto de apoio, como explicação que é para marcar genero-->
     <style name="text">
-
+        
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">30sp</item>
         <item name="android:textColor">@color/Letras</item>
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
-
+        
     </style>
 
     <style name="sos">
@@ -106,6 +141,20 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/hint</item>
+        <item name="fontFamily">@font/cloudsoft_bold_700</item>
+    </style>
+
+    <style name="Button_salvar">
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/Letras</item>
+        <item name="fontFamily">@font/cloudsoft_bold_700</item>
+    </style>
+
+    <style name="Button_retornar">
+        <item name="android:background">@drawable/button_voltar</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/Letras</item>
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
     </style>
 
@@ -133,25 +182,12 @@
         <item name="hintEnabled">false</item>
         <item name="endIconMode">clear_text</item>
         <item name="endIconTint">@color/Letras</item>
-
     </style>
 
-    <style name="Edit_Text_bio">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <!--puxando o style drawlable/edittext-->
-        <item name="android:background">@drawable/edit_text</item>
-        <!--padding do campo-->
-        <item name="android:padding">30dp</item>
-        <item name="android:layout_marginLeft">50dp</item>
-        <item name="android:layout_marginRight">50dp</item>
-        <item name="android:inputType">text</item>
-        <item name="android:layout_marginStart">50dp</item>
-        <item name="android:layout_marginEnd">50dp</item>
-        <item name="android:textSize">30sp</item>
-        <item name="fontFamily">@font/cloudsoft_bold_700</item>
+    <style name="foto">
+        <item name="android:background">@drawable/foto</item>
     </style>
-
+   
 
 
 </resources>
