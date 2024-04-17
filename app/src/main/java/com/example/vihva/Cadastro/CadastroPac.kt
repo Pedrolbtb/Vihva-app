@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 
 class CadastroPac : AppCompatActivity() {
 
@@ -23,7 +24,7 @@ class CadastroPac : AppCompatActivity() {
 
     // Instância do Firebase Auth
     private val auth = FirebaseAuth.getInstance()
-
+    private val bd = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,6 +39,7 @@ class CadastroPac : AppCompatActivity() {
 
         // Configurar o listener para o botão de cadastro
         binding.btnCadastro.setOnClickListener { view ->
+
             val edit_email = binding.editEmail.text.toString()
             val edit_senha = binding.editSenha.text.toString()
             val edit_confirmsenha = binding.editConfirmsenha.text.toString()
