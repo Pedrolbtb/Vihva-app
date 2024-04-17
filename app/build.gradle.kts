@@ -67,5 +67,5 @@ dependencies {
 
     //dependencia da biblioteca de mascaras
     implementation ("com.github.santalu:maskara:1.0.0")
-
+    implementation("com.google.firebase:firebase-firestore")
 }
