@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import com.example.vihva.R
 
 class FotoBio : AppCompatActivity() {
@@ -24,6 +25,34 @@ class FotoBio : AppCompatActivity() {
 
         // Inicializa a imageView com base em seu ID no layout
         imageView = findViewById(R.id.img_save)
+
+        //Recuperando os extras da intent
+        val nome = intent.getStringExtra("nome")
+        val sobrenome = intent.getStringExtra("sobrenome")
+        val idade = intent.getIntExtra("idade",0)
+        val altura = intent.getIntExtra("altura",0)
+        val peso = intent.getIntExtra("peso",0)
+        val genero = intent.getStringExtra("genero")
+
+        //Exibindo os dados nas TextViews
+        val textNome = findViewById<TextView>(R.id.text_nome)
+        textNome.text = "nome: $nome"
+
+        val textSobrenome = findViewById<TextView>(R.id.text_sobrenome)
+        textSobrenome.text = "sobrenome: $sobrenome"
+
+       val textIdade = findViewById<TextView>(R.id.text_idade)
+        textIdade.text = "Idade: $idade"
+
+        val textAltura = findViewById<TextView>(R.id.text_altura)
+        textAltura.text = "Altura: $altura cm"
+
+        val textPeso = findViewById<TextView>(R.id.text_peso)
+        textPeso.text = "Peso: $peso kg"
+
+        val textGenero = findViewById<TextView>(R.id.text_genero)
+        textGenero.text = "Gênero: $genero"
+
 
         // Define um ouvinte de clique para a imageView
         imageView.setOnClickListener {

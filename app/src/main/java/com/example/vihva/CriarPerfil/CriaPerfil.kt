@@ -35,7 +35,7 @@ class CriaPerfil : AppCompatActivity() {
             intent.putExtra("nome",nome)
             intent.putExtra("sobrenome",sobrenome)
             intent.putExtra("idade",idade)
-
+            startActivity(intent)
 
             // Verificando se a idade é válida (entre 13 e 100 anos)
             if (idade != null && idade in 13..100) {

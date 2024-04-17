@@ -28,7 +28,7 @@
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/img_save"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="aaaa"
+        android:text=""
         />
 
     <TextView
@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text_nome"
-        android:text="aaaa"
+        android:text=""
         />
 
     <TextView
@@ -52,7 +52,7 @@
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/img_save"
         app:layout_constraintTop_toBottomOf="@+id/text_nome"
-        android:text="aaaa"
+        android:text=""
         />
 
     <TextView
@@ -64,15 +64,15 @@
         app:layout_constraintTop_toBottomOf="@+id/text_sobrenome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text_genero"
-        android:text="aaaa"
+        android:text=""
         />
 
     <TextView
-        android:id="@+id/text_genero"
+        android:id="@+id/text_altura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:text="aaaa"
+        android:text=""
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/img_save"
         tools:layout_editor_absoluteY="168dp" />
@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="aaaa"
+        android:text=""
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/text_genero"
         app:layout_constraintEnd_toEndOf="parent"
