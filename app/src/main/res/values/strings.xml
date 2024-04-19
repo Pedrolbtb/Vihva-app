@@ -57,11 +57,13 @@
 
     <string name="text_breadInfo">Dados</string>
 
+
     <string name="text_breadOpc">Opcional</string>
 
     <string name="text_Esqminhasenha"><u>Esqueci minha senha</u> </string>
 
     <string name="text_genero">Gênero</string>
+
 
 </resources>
 

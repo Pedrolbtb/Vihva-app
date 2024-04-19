@@ -80,13 +80,20 @@
     
     <!--texto de apoio, como explicação que é para marcar genero-->
     <style name="text">
-        
+
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">30sp</item>
         <item name="android:textColor">@color/Letras</item>
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
-        
+    </style>
+
+    <style name="inforPerfil">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/Letras</item>
+        <item name="fontFamily">@font/cloudsoft_bold_700</item>
     </style>
 
     <style name="sos">
