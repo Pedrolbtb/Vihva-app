@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">vihva</string>
 
     <!--titulo na tela de login-->
@@ -64,6 +64,7 @@
 
     <string name="text_genero">Gênero</string>
 
+    <string name="text_biografia">Escreva sobre você</string>
 
 </resources>
 
