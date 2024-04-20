@@ -16,11 +16,35 @@ class CriaPerfil : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cria_perfil)
 
+        //recepçao das intents caso volte para essa tela as informações fiquem salvas
+        val nome = intent.getStringExtra("nome")
+        val sobrenome = intent.getStringExtra("sobrenome")
+        val idade = intent.getIntExtra("idade",0)
+        val altura = intent.getIntExtra("altura",0)
+        val peso = intent.getIntExtra("peso",0)
+        val genero = intent.getStringExtra("genero")
+
         // Referenciando os EditTexts e o botão
         val editNome = findViewById<EditText>(R.id.edit_nome)
         val editSobrenome = findViewById<EditText>(R.id.edit_sobrenome)
         val editIdade = findViewById<EditText>(R.id.edit_idade)
         val btnProximo = findViewById<Button>(R.id.btn_proximo)
+
+        //caso as intent que eu recebi da segunda tela não sejam nulas elas estarão nas edit text
+        if (intent.getStringExtra("nome") != null) {
+
+            editNome.setText("$nome")
+            editSobrenome.setText("$sobrenome")
+            editIdade.setText("$idade")
+
+            val breadDados = findViewById<TextView>(R.id.breadDados)
+            breadDados.setTextColor(resources.getColor(R.color.telaPassada))
+
+            breadDados.setOnClickListener {
+                val intent = Intent(this, CriaPerfil2::class.java)
+                startActivity(intent)
+            }
+        }
 
         // Definindo o evento de clique para o botão
         btnProximo.setOnClickListener {
@@ -47,6 +71,7 @@ class CriaPerfil : AppCompatActivity() {
                 showToast("Preencha todos os campos")
             }
         }
+
     }
 
     // Função para navegar para a tela CriaPerfil2

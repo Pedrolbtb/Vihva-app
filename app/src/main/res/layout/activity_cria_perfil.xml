@@ -25,6 +25,7 @@
        android:text="@string/text_breadNome"
        android:textColor="@color/Letras"
        android:textSize="30sp"
+       android:layout_marginBottom="5dp"
        app:layout_constraintBottom_toTopOf="@+id/containerComponents"
        app:layout_constraintEnd_toStartOf="@+id/breadBarraUm"
        app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +41,7 @@
        app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
 
    <TextView
-       android:id="@+id/breadinfo"
+       android:id="@+id/breadDados"
        style="@style/breadcrumpL"
        android:text="@string/text_breadInfo"
        android:textColor="@color/hint"
@@ -163,7 +164,7 @@
        style="@style/Button"
        android:layout_marginTop="30dp"
        android:elevation="40dp"
-       android:text="@string/text_prox"
+       android:text="@string/text_salvar"
        android:textColor="@color/off_white"
        android:textSize="20sp"
        android:textStyle="bold"

@@ -9,6 +9,7 @@
     <color name="Letras">#6096a8</color> //azul das letras
     <color name="sombra">#757575</color> //cor do elevate
     <color name="hint">#8c8c8c</color> //cor da hint mais escura
-    <color name="vermelho_alerta">#ff6961</color>//cor do vermelho usado para alertas
+    <color name="vermelho_alerta">#ff6961</color> //cor do vermelho usado para alertas
+    <color name="telaPassada">#648691</color> //cor de uma tela que já foi usada como na breadcrumb
 
 </resources>

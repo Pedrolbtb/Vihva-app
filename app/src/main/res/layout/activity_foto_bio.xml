@@ -11,14 +11,15 @@
     <ImageView
         android:id="@+id/img_save"
         style="@style/foto"
-        android:layout_width="163dp"
-        android:layout_height="156dp"
-        android:layout_marginEnd="170dp"
+        android:layout_width="130dp"
+        android:layout_height="125dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/editText"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.476" />
 
     <TextView
         android:id="@+id/text_nome"
@@ -95,6 +96,7 @@
         android:layout_height="350dp"
         android:hint="@string/text_biografia"
         android:gravity="top"
+        android:textColor="@color/Letras"
         android:textColorHint="@color/hint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -108,9 +110,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
-        android:layout_marginStart="190dp"
+        android:layout_marginStart="194dp"
         android:width="180dp"
-        android:text="salvar"
+        android:text="@string/text_salvar"
         android:textColor="@color/off_white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -127,7 +129,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="60dp"
         android:width="180dp"
-        android:text="Voltar"
+        android:text="@string/text_voltar"
         android:textColor="@color/off_white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

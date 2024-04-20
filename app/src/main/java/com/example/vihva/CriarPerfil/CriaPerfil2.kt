@@ -1,76 +1,50 @@
 package com.example.vihva.CriarPerfil
 
+import android.R.attr.name
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.NumberPicker
-import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import com.example.vihva.Inicio.Inicio
+import androidx.appcompat.app.AppCompatActivity
 import com.example.vihva.R
 
-class CriaPerfil2 : AppCompatActivity() {
 
-    // Declarando as variáveis para os elementos da UI
-    private lateinit var edit_peso: EditText
-    private lateinit var np_peso: NumberPicker
-    private lateinit var numberPickerView: View
-    private lateinit var alertDialog: AlertDialog
-    var UltimoValor = 30 // Valor inicial do peso
+class CriaPerfil2 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cria_perfil2)
 
+        val altura = intent.getIntExtra("altura",0)
+        val peso = intent.getIntExtra("peso",0)
+        val genero = intent.getStringExtra("genero")
+
+
         // Inicializando as variáveis com referências aos elementos da UI
         val edit_altura: EditText = findViewById(R.id.edit_altura)
-        edit_peso = findViewById(R.id.edit_peso)
-        np_peso = findViewById(R.id.np_peso)
+        val edit_peso = findViewById<EditText>(R.id.edit_peso)
+        val radio_group = findViewById<RadioGroup>(R.id.radioGroup)
 
-        // Inflando a view do NumberPicker
-        numberPickerView = layoutInflater.inflate(R.layout.number_picker_layout, null)
+        if (altura > 0) {
 
-        // Criando o AlertDialog para o NumberPicker
-        alertDialog = AlertDialog.Builder(this)
-            .setView(numberPickerView)
-            .setTitle("Selecione o peso em kg")
-            .setPositiveButton("OK") { dialog, which ->
-                val np_peso = numberPickerView.findViewById<NumberPicker>(R.id.np_peso)
-                UltimoValor = np_peso.value
-                edit_peso.setText("${np_peso.value}kg")
+            edit_altura.setText("$altura")
+            edit_peso.setText("$peso")
+            when (genero) {
+                "Feminino" -> radio_group.check(R.id.radio_fem)
+                "Masculino" -> radio_group.check(R.id.radio_masc)
+                "Prefiro não dizer" -> radio_group.check(R.id.radio_gen)
             }
-            .setNegativeButton("Cancelar", null)
-            .create()
-
-        // Configurando o clique no EditText de peso para exibir o NumberPicker
-        edit_peso.setOnClickListener {
-            val np_peso = numberPickerView.findViewById<NumberPicker>(R.id.np_peso)
-            np_peso.minValue = 30
-            np_peso.maxValue = 400
-            np_peso.value = UltimoValor
-            alertDialog.show()
-        }
-
-        // Desabilitando o teclado virtual ao clicar no EditText de peso
-        edit_peso.showSoftInputOnFocus = false
-
-        // Configurando o listener para o NumberPicker
-        np_peso.setOnValueChangedListener { picker, oldVal, newVal ->
-            UltimoValor = newVal
-            edit_peso.setText(newVal.toString())
         }
 
         findViewById<TextView>(R.id.breadNome).setOnClickListener {
             irParaCriaPerfil1()
         }
+
 
         // Configurando o clique no botão de "Próximo"
         findViewById<Button>(R.id.btn_proximo).setOnClickListener {
@@ -81,22 +55,22 @@ class CriaPerfil2 : AppCompatActivity() {
             val genero = when (findViewById<RadioGroup>(R.id.radioGroup).checkedRadioButtonId){
                 R.id.radio_fem -> "Feminino"
                 R.id.radio_masc -> "Masculino"
-                R.id.radio_gen -> "Sem genero"
+                R.id.radio_gen -> "Prefiro não dizer"
                 else -> null
             }
 
             // Validando os dados inseridos pelo usuário
-            if (altura != null && altura >= 100 && altura <= 300 && peso != null){
+            if (altura != null && altura >= 100 && altura <= 300 && peso != null && genero != null){
                 // Criando a Intent e iniciando a próxima atividade
                 val intent = Intent(this, FotoBio::class.java)
-                intent.putExtra("altura",altura)
-                intent.putExtra("peso",peso)
-                intent.putExtra("genero",genero)
+                intent.putExtra("altura", altura)
+                intent.putExtra("peso", peso)
+                intent.putExtra("genero", genero) // Adicionando o valor do gênero à Intent
                 startActivity(intent)
                 finish() // Finalizando a atividade atual
-            }else{
+            } else {
                 // Exibindo um Toast caso os dados não sejam válidos
-                showToast("Digite um valor de altura entre 100cm e 300cm ou insira um peso")
+                showToast("Digite um valor de altura entre 100cm e 300cm, insira um peso e selecione um gênero")
             }
         }
     }
@@ -104,6 +78,26 @@ class CriaPerfil2 : AppCompatActivity() {
     // Função para navegar para a tela anterior de criação de perfil
     private fun irParaCriaPerfil1() {
         val telaL = Intent(this, CriaPerfil::class.java)
+        val nome = intent.getStringExtra("nome")
+        val sobrenome = intent.getStringExtra("sobrenome")
+        val idade = intent.getIntExtra("idade",0)
+        val altura = intent.getIntExtra("altura", 0)
+        val peso = intent.getIntExtra("peso", 0)
+        telaL.putExtra("nome", nome)
+        telaL.putExtra("sobrenome", sobrenome)
+        telaL.putExtra("idade", idade)
+        val genero = when (findViewById<RadioGroup>(R.id.radioGroup).checkedRadioButtonId) {
+            R.id.radio_fem -> "Feminino"
+            R.id.radio_masc -> "Masculino"
+            R.id.radio_gen -> "Sem genero"
+            else -> null
+        }
+
+       if (altura > 0){
+            intent.putExtra("altura",altura)
+            intent.putExtra("peso",peso)
+            intent.putExtra("genero",genero)
+        }
         startActivity(telaL)
         finish()
     }

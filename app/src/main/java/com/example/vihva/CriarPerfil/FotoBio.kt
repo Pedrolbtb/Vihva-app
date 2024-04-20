@@ -36,13 +36,13 @@ class FotoBio : AppCompatActivity() {
 
         //Exibindo os dados nas TextViews
         val textNome = findViewById<TextView>(R.id.text_nome)
-        textNome.text = "$nome $sobrenome"
+        textNome.text = "$nome"
 
         val textSobrenome = findViewById<TextView>(R.id.text_sobrenome)
         textSobrenome.text = "$sobrenome"
 
        val textIdade = findViewById<TextView>(R.id.text_idade)
-        textIdade.text = "$idade"
+        textIdade.text = "$idade anos"
 
         val textAltura = findViewById<TextView>(R.id.text_altura)
         textAltura.text = "$altura cm"
@@ -61,11 +61,21 @@ class FotoBio : AppCompatActivity() {
 
         // Configura o OnClickListener para o botão retornar
         findViewById<Button>(R.id.btn_retornar).setOnClickListener {
-            startActivity(Intent(this, CriaPerfil2::class.java))
+
+            val criaPerfil2 = Intent(this,CriaPerfil2::class.java)
+            criaPerfil2.putExtra("altura",altura)
+            criaPerfil2.putExtra("peso",peso)
+            criaPerfil2.putExtra("genero",genero)
+            criaPerfil2.putExtra("nome", nome)
+            criaPerfil2.putExtra("sobrenome", sobrenome)
+            criaPerfil2.putExtra("idade", idade)
+            startActivity(criaPerfil2)
             finish() // Finaliza a atividade atual
+
         }
 
     }
+
 
     // Método para abrir a galeria de mídia e selecionar uma imagem
     private fun pickImageGallery(){

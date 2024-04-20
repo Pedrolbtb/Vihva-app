@@ -22,7 +22,7 @@
         android:id="@+id/breadNome"
         style="@style/breadcrumpL"
         android:text="@string/text_breadNome"
-        android:textColor="#648691"
+        android:textColor="@color/telaPassada"
         app:layout_constraintBottom_toTopOf="@+id/containerComponents"
         app:layout_constraintEnd_toStartOf="@+id/breadBarraUm"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +64,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_altura"
         style="@style/layout_campos"
+        app:suffixText="cm"
         android:textColor="@color/Letras"
+        app:expandedHintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/containerComponents"
@@ -77,31 +79,38 @@
             android:drawableTint="@color/Letras"
             android:hint="@string/text_caltura"
             android:inputType="number"
+            android:maxLength="3"
             android:nextFocusForward="@id/edit_senha"
             android:textColor="@color/Letras"
-            android:textColorHint="@color/hint"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/containerComponents" />
+            android:textColorHint="@color/hint" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- campos de peso -->
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/edit_peso"
-        style="@style/Edit_Text_Login"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
-        android:elevation="3dp"
-        android:focusableInTouchMode="false"
-        android:hint="@string/text_cpeso"
-        android:inputType="numberDecimal"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_peso"
+        style="@style/layout_campos"
+        app:suffixText="kg"
         android:textColor="@color/Letras"
-        android:textColorHint="@color/hint"
+        app:expandedHintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_altura" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_altura"
+        app:suffixTextColor="@color/hint">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_peso"
+            style="@style/Edit_Text_Login"
+            android:drawableTint="@color/Letras"
+            android:hint="@string/text_cpeso"
+            android:inputType="number"
+            android:maxLength="2"
+            android:nextFocusForward="@id/edit_senha"
+            android:textColor="@color/Letras"
+            android:textColorHint="@color/hint" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <NumberPicker
@@ -118,7 +127,7 @@
         android:text="@string/text_genero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_peso" />
+        app:layout_constraintTop_toBottomOf="@id/layout_peso" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -165,7 +174,7 @@
         android:id="@+id/btn_proximo"
         style="@style/Button"
         android:layout_marginTop="20dp"
-        android:text="@string/text_prox"
+        android:text="@string/text_salvar"
         android:textColor="@color/off_white"
         android:textSize="20dp"
         android:textStyle="bold"
