@@ -19,20 +19,9 @@
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toTopOf="parent" />
 
-   <!--breadcrumb-->
-   <TextView
-       android:id="@+id/breadOpc"
-       style="@style/breadcrumpL"
-       android:text="@string/text_breadOpc"
-       app:layout_constraintBottom_toTopOf="@+id/containerComponents"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toEndOf="@+id/breadBarraDois"
-       app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
-
    <TextView
        android:id="@+id/breadNome"
        style="@style/breadcrumpL"
-       android:layout_marginBottom="1dp"
        android:text="@string/text_breadNome"
        android:textColor="@color/Letras"
        android:textSize="30sp"
@@ -42,37 +31,23 @@
        app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
 
    <TextView
-       android:id="@+id/breadBarraDois"
-       style="@style/breadcrumpL"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginEnd="110dp"
-       android:gravity="center_horizontal"
-       android:text="@string/text_breadMaiorUm"
-       app:layout_constraintBottom_toTopOf="@+id/containerComponents"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toEndOf="@+id/breadinfo"
-       app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
-
-   <TextView
        android:id="@+id/breadBarraUm"
        style="@style/breadcrumpL"
-       android:layout_marginStart="90dp"
        android:text="@string/text_breadMaiorUm"
        app:layout_constraintBottom_toTopOf="@+id/containerComponents"
-       app:layout_constraintEnd_toStartOf="@+id/breadinfo"
        app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
 
    <TextView
        android:id="@+id/breadinfo"
        style="@style/breadcrumpL"
        android:text="@string/text_breadInfo"
+       android:textColor="@color/hint"
        app:layout_constraintBottom_toTopOf="@+id/containerComponents"
        app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintStart_toEndOf="@+id/breadBarraUm"
        app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
-
    <!--container-->
    <View
        android:id="@+id/containerComponents"

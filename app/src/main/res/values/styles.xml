@@ -80,20 +80,13 @@
     
     <!--texto de apoio, como explicação que é para marcar genero-->
     <style name="text">
-
+        
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">30sp</item>
         <item name="android:textColor">@color/Letras</item>
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
-    </style>
-
-    <style name="inforPerfil">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/Letras</item>
-        <item name="fontFamily">@font/cloudsoft_bold_700</item>
+        
     </style>
 
     <style name="sos">
@@ -102,7 +95,7 @@
         <item name="android:layout_height">248dp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">60sp</item>
-        <item name="fontFamily">@font/cloudsoft_bold_700</item>
+        <item name="android:textStyle"></item>
     </style>
 
     <style name="breadcrumpL">
@@ -110,20 +103,6 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/hint</item>
-        <item name="fontFamily">@font/cloudsoft_bold_700</item>
-    </style>
-
-    <style name="Button_salvar">
-        <item name="android:background">@drawable/button</item>
-        <item name="android:textSize">20dp</item>
-        <item name="android:textColor">@color/Letras</item>
-        <item name="fontFamily">@font/cloudsoft_bold_700</item>
-    </style>
-
-    <style name="Button_retornar">
-        <item name="android:background">@drawable/button_voltar</item>
-        <item name="android:textSize">20dp</item>
-        <item name="android:textColor">@color/Letras</item>
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
     </style>
 
@@ -141,6 +120,7 @@
         <item name="android:layout_marginEnd">40dp</item>
         <item name="android:textSize">20sp</item>
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
+
     </style>
 
     <style name="layout_campos">
@@ -156,7 +136,19 @@
     <style name="foto">
         <item name="android:background">@drawable/foto</item>
     </style>
-   
 
+    <style name="Button_salvar">
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/Letras</item>
+        <item name="fontFamily">@font/cloudsoft_bold_700</item>
+    </style>
+
+    <style name="Button_retornar">
+        <item name="android:background">@drawable/button_voltar</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/Letras</item>
+        <item name="fontFamily">@font/cloudsoft_bold_700</item>
+    </style>
 
 </resources>

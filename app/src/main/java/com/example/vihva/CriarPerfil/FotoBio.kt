@@ -36,22 +36,22 @@ class FotoBio : AppCompatActivity() {
 
         //Exibindo os dados nas TextViews
         val textNome = findViewById<TextView>(R.id.text_nome)
-        textNome.text = "nome: $nome"
+        textNome.text = "$nome $sobrenome"
 
         val textSobrenome = findViewById<TextView>(R.id.text_sobrenome)
-        textSobrenome.text = "sobrenome: $sobrenome"
+        textSobrenome.text = "$sobrenome"
 
        val textIdade = findViewById<TextView>(R.id.text_idade)
-        textIdade.text = "Idade: $idade"
+        textIdade.text = "$idade"
 
         val textAltura = findViewById<TextView>(R.id.text_altura)
-        textAltura.text = "Altura: $altura cm"
+        textAltura.text = "$altura cm"
 
         val textPeso = findViewById<TextView>(R.id.text_peso)
-        textPeso.text = "Peso: $peso kg"
+        textPeso.text = "$peso kg"
 
         val textGenero = findViewById<TextView>(R.id.text_genero)
-        textGenero.text = "Gênero: $genero"
+        textGenero.text = "$genero"
 
 
         // Define um ouvinte de clique para a imageView

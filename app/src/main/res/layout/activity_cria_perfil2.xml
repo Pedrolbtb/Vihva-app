@@ -17,15 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--breadcrumb-->
-    <TextView
-        android:id="@+id/breadOpc"
-        style="@style/breadcrumpL"
-        android:text="@string/text_breadOpc"
-        app:layout_constraintBottom_toTopOf="@+id/containerComponents"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/breadBarraDois"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
 
     <TextView
         android:id="@+id/breadNome"
@@ -38,25 +29,11 @@
         app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
 
     <TextView
-        android:id="@+id/breadBarraDois"
+        android:id="@+id/breadBarraUm"
         style="@style/breadcrumpL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="110dp"
-        android:gravity="center_horizontal"
         android:text="@string/text_breadMaiorUm"
         app:layout_constraintBottom_toTopOf="@+id/containerComponents"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/breadinfo"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
-
-    <TextView
-        android:id="@+id/breadBarraUm"
-        style="@style/breadcrumpL"
-        android:layout_marginStart="90dp"
-        android:text="@string/text_breadMaiorUm"
-        app:layout_constraintBottom_toTopOf="@+id/containerComponents"
-        app:layout_constraintEnd_toStartOf="@+id/breadinfo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
 
@@ -68,7 +45,7 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/containerComponents"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/breadBarraUm"
         app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
 
 
@@ -90,27 +67,22 @@
         android:textColor="@color/Letras"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:suffixTextColor="@color/hint"
         app:layout_constraintTop_toTopOf="@+id/containerComponents"
-        >
+        app:suffixTextColor="@color/hint">
 
-    <!-- campos de altura-->
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/edit_altura"
-        style="@style/Edit_Text_Login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:drawableTint="@color/Letras"
-        android:hint="@string/text_caltura"
-        android:textColor="@color/Letras"
-        android:inputType="number"
-        android:nextFocusForward="@id/edit_senha"
-        android:textColorHint="@color/hint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/containerComponents"
-         />
+        <!-- campos de altura-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_altura"
+            style="@style/Edit_Text_Login"
+            android:drawableTint="@color/Letras"
+            android:hint="@string/text_caltura"
+            android:inputType="number"
+            android:nextFocusForward="@id/edit_senha"
+            android:textColor="@color/Letras"
+            android:textColorHint="@color/hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/containerComponents" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -127,9 +99,7 @@
         android:inputType="numberDecimal"
         android:textColor="@color/Letras"
         android:textColorHint="@color/hint"
-        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_altura" />
 
@@ -217,6 +187,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/containerComponents" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -68,28 +68,16 @@ class CriaPerfil2 : AppCompatActivity() {
             edit_peso.setText(newVal.toString())
         }
 
-        // Configurando o TextWatcher para o EditText de altura
-        edit_altura.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val alturaText = s.toString()
-                if (alturaText.isNotEmpty() && !alturaText.endsWith("cm")) {
-                    edit_altura.removeTextChangedListener(this)
-                    edit_altura.setText("${alturaText}cm")
-                    edit_altura.setSelection(edit_altura.text.length - 2)
-                    edit_altura.addTextChangedListener(this)
-                }
-            }
-        })
+        findViewById<TextView>(R.id.breadNome).setOnClickListener {
+            irParaCriaPerfil1()
+        }
 
         // Configurando o clique no botão de "Próximo"
         findViewById<Button>(R.id.btn_proximo).setOnClickListener {
+
             // Obtendo os valores de altura, peso e gênero
-            val altura = edit_altura.text.toString().removeSuffix("cm").toIntOrNull()
-            val peso = edit_peso.text.toString().removeSuffix("kg").toIntOrNull()
+            val altura = edit_altura.text.toString().toIntOrNull()
+            val peso = edit_peso.text.toString().toIntOrNull()
             val genero = when (findViewById<RadioGroup>(R.id.radioGroup).checkedRadioButtonId){
                 R.id.radio_fem -> "Feminino"
                 R.id.radio_masc -> "Masculino"
@@ -113,18 +101,13 @@ class CriaPerfil2 : AppCompatActivity() {
         }
     }
 
-    // Função para navegar para a tela inicial
-    private fun irParaTelaInicial() {
-        val telaL = Intent(this, FotoBio::class.java)
+    // Função para navegar para a tela anterior de criação de perfil
+    private fun irParaCriaPerfil1() {
+        val telaL = Intent(this, CriaPerfil::class.java)
         startActivity(telaL)
         finish()
     }
 
-    // Liberando recursos quando a atividade é destruída
-    override fun onDestroy() {
-        super.onDestroy()
-        alertDialog.dismiss()
-    }
 
     // Função para exibir um Toast personalizado
     private fun showToast(message: String) {
