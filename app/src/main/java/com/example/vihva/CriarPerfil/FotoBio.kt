@@ -4,7 +4,10 @@ import android.content.Intent
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.vihva.R
@@ -13,6 +16,8 @@ class FotoBio : AppCompatActivity() {
 
     // Declaração da propriedade lateinit para a imageView
     private lateinit var imageView: ImageView
+    private lateinit var editTextBiografia: EditText
+    private lateinit var contadorCaracteres: TextView
 
     // Companion object para declarar uma constante para o código de solicitação de imagem
     companion object{
@@ -25,6 +30,23 @@ class FotoBio : AppCompatActivity() {
 
         // Inicializa a imageView com base em seu ID no layout
         imageView = findViewById(R.id.img_save)
+        editTextBiografia = findViewById(R.id.Edit_biografia)
+        contadorCaracteres = findViewById(R.id.contador_caracteres)
+
+        //COnfigura um TextWatcher para a EditTExt de biografia
+        editTextBiografia.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int){}
+
+            override fun afterTextChanged(s: Editable?){
+                // Atualiza o contador de caracteres
+                s?.let{
+                    val caracteresDigitados = s.length
+                    contadorCaracteres.text = "$caracteresDigitados/250"
+                }
+            }
+        })
 
         //Recuperando os extras da intent
         val nome = intent.getStringExtra("nome")
@@ -38,7 +60,7 @@ class FotoBio : AppCompatActivity() {
         val textNome = findViewById<TextView>(R.id.text_nome)
         textNome.text = "$nome $sobrenome"
 
-       val textIdade = findViewById<TextView>(R.id.text_idade)
+        val textIdade = findViewById<TextView>(R.id.text_idade)
         textIdade.text = "$idade anos"
 
         val textAltura = findViewById<TextView>(R.id.text_altura)
@@ -64,7 +86,7 @@ class FotoBio : AppCompatActivity() {
             val genero = intent.getStringExtra("genero")
             val nome = intent.getStringExtra("nome")
             val sobrenome = intent.getStringExtra("sobrenome")
-            val idade = intent.getIntExtra("idade", 0)
+            val idade = intent.getIntExtra("idade",0 )
 
             val criaPerfil2 = Intent(this, CriaPerfil2::class.java)
             criaPerfil2.putExtra("altura", altura)

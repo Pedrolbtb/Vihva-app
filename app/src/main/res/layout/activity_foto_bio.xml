@@ -15,7 +15,7 @@
         android:layout_height="125dp"
         android:scaleType="centerCrop"
         android:layout_marginEnd="202dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/Edit_biografia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +41,7 @@
         android:layout_marginEnd="110dp"
         android:layout_marginBottom="70dp"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/Edit_biografia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_save"
         app:layout_constraintTop_toBottomOf="@+id/text_nome" />
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="69dp"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/Edit_biografia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text_genero"
         app:layout_constraintTop_toBottomOf="@+id/text_nome" />
@@ -64,7 +64,7 @@
         android:layout_marginEnd="110dp"
         android:layout_marginBottom="30dp"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/Edit_biografia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_save"
         app:layout_constraintTop_toBottomOf="@+id/text_genero" />
@@ -74,13 +74,13 @@
         style="@style/text"
         android:layout_marginBottom="30dp"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/Edit_biografia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text_genero"
         app:layout_constraintTop_toBottomOf="@+id/text_idade" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/Edit_biografia"
         style="@style/Edit_Text_Perfil"
         android:layout_width="match_parent"
         android:layout_height="350dp"
@@ -88,11 +88,24 @@
         android:gravity="top"
         android:textColor="@color/Letras"
         android:textColorHint="@color/hint"
+        android:inputType="textMultiLine"
+        android:maxLength="300"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/contador_caracteres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="60dp"
+        android:text="@string/text_300"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Edit_biografia" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_proximo"
@@ -108,7 +121,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/Edit_biografia" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_retornar"
@@ -125,14 +138,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_proximo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/Edit_biografia" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="278dp" />
+        app:layout_constraintGuide_begin="213dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -143,5 +156,3 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-   
