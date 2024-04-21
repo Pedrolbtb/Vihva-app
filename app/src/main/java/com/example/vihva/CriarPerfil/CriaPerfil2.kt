@@ -26,9 +26,10 @@ class CriaPerfil2 : AppCompatActivity() {
 
 
         // Inicializando as variáveis com referências aos elementos da UI
-        val edit_altura: EditText = findViewById(R.id.edit_altura)
+        val edit_altura: EditText = findViewById<EditText>(R.id.edit_altura)
         val edit_peso = findViewById<EditText>(R.id.edit_peso)
         val radio_group = findViewById<RadioGroup>(R.id.radioGroup)
+
 
         if (altura > 0) {
 
@@ -77,15 +78,12 @@ class CriaPerfil2 : AppCompatActivity() {
 
     // Função para navegar para a tela anterior de criação de perfil
     private fun irParaCriaPerfil1() {
-        val telaL = Intent(this, CriaPerfil::class.java)
         val nome = intent.getStringExtra("nome")
         val sobrenome = intent.getStringExtra("sobrenome")
-        val idade = intent.getIntExtra("idade",0)
+        val idade = intent.getIntExtra("idade", 0)
         val altura = intent.getIntExtra("altura", 0)
         val peso = intent.getIntExtra("peso", 0)
-        telaL.putExtra("nome", nome)
-        telaL.putExtra("sobrenome", sobrenome)
-        telaL.putExtra("idade", idade)
+
         val genero = when (findViewById<RadioGroup>(R.id.radioGroup).checkedRadioButtonId) {
             R.id.radio_fem -> "Feminino"
             R.id.radio_masc -> "Masculino"
@@ -93,13 +91,16 @@ class CriaPerfil2 : AppCompatActivity() {
             else -> null
         }
 
-       if (altura > 0){
-            intent.putExtra("altura",altura)
-            intent.putExtra("peso",peso)
-            intent.putExtra("genero",genero)
-        }
-        startActivity(telaL)
-        finish()
+        val telaL = Intent(this, CriaPerfil::class.java)
+        telaL.putExtra("nome", nome)
+        telaL.putExtra("sobrenome", sobrenome)
+        telaL.putExtra("idade", idade)
+        telaL.putExtra("altura", altura)
+        telaL.putExtra("peso", peso)
+        telaL.putExtra("genero", genero)
+
+        setResult(RESULT_OK, telaL) // Define os dados de resultado e o código de resultado
+        finish() // Retorna à tela CriaPerfil1
     }
 
 

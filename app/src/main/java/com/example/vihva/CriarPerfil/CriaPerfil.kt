@@ -1,6 +1,7 @@
 package com.example.vihva.CriarPerfil
 
 import android.content.Intent
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -16,35 +17,12 @@ class CriaPerfil : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cria_perfil)
 
-        //recepçao das intents caso volte para essa tela as informações fiquem salvas
-        val nome = intent.getStringExtra("nome")
-        val sobrenome = intent.getStringExtra("sobrenome")
-        val idade = intent.getIntExtra("idade",0)
-        val altura = intent.getIntExtra("altura",0)
-        val peso = intent.getIntExtra("peso",0)
-        val genero = intent.getStringExtra("genero")
-
         // Referenciando os EditTexts e o botão
         val editNome = findViewById<EditText>(R.id.edit_nome)
         val editSobrenome = findViewById<EditText>(R.id.edit_sobrenome)
         val editIdade = findViewById<EditText>(R.id.edit_idade)
         val btnProximo = findViewById<Button>(R.id.btn_proximo)
-
-        //caso as intent que eu recebi da segunda tela não sejam nulas elas estarão nas edit text
-        if (intent.getStringExtra("nome") != null) {
-
-            editNome.setText("$nome")
-            editSobrenome.setText("$sobrenome")
-            editIdade.setText("$idade")
-
-            val breadDados = findViewById<TextView>(R.id.breadDados)
-            breadDados.setTextColor(resources.getColor(R.color.telaPassada))
-
-            breadDados.setOnClickListener {
-                val intent = Intent(this, CriaPerfil2::class.java)
-                startActivity(intent)
-            }
-        }
+        val breadDados = findViewById<TextView>(R.id.breadDados)
 
         // Definindo o evento de clique para o botão
         btnProximo.setOnClickListener {
@@ -60,8 +38,18 @@ class CriaPerfil : AppCompatActivity() {
 
                 // Verificando se a idade é válida (entre 13 e 100 anos)
                 if (idade != null && idade in 13..100) {
+
                     // Se todos os campos estiverem preenchidos e a idade for válida, navegar para a próxima tela
                     irParaTelaCriaPerfil2(nome, sobrenome, idade)
+
+                    // Adicionando um atraso para a troca de cor do TextView breadDados
+                    val cor = resources.getColor(R.color.telaPassada)
+                    Handler().postDelayed({
+                        breadDados.setOnClickListener {
+                            irParaTelaCriaPerfil2(nome, sobrenome, idade)
+                        }
+                        breadDados.setTextColor(cor)
+                    }, 1000)
                 } else {
                     // Se a idade não for válida, exibir um Toast informando o usuário
                     showToast("Insira uma idade válida (entre 13 e 100 anos)")
@@ -77,9 +65,15 @@ class CriaPerfil : AppCompatActivity() {
     // Função para navegar para a tela CriaPerfil2
     private fun irParaTelaCriaPerfil2(nome: String, sobrenome: String, idade: Int) {
         val intent = Intent(this, CriaPerfil2::class.java)
+        val altura = intent.getIntExtra("altura",0)
+        val peso = intent.getIntExtra("peso",0)
+        val genero = intent.getStringExtra("genero")
         intent.putExtra("nome", nome)
         intent.putExtra("sobrenome", sobrenome)
         intent.putExtra("idade", idade)
+        intent.putExtra("altura", altura)
+        intent.putExtra("peso", peso)
+        intent.putExtra("genero", genero)
         startActivity(intent)
     }
 

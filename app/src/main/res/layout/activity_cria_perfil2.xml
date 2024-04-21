@@ -113,13 +113,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <NumberPicker
-        android:id="@+id/np_peso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        tools:ignore="MissingConstraints" />
-
     <TextView
         android:id="@+id/txt_genero"
         style="@style/text"
