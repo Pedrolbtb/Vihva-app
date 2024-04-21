@@ -36,10 +36,7 @@ class FotoBio : AppCompatActivity() {
 
         //Exibindo os dados nas TextViews
         val textNome = findViewById<TextView>(R.id.text_nome)
-        textNome.text = "$nome"
-
-        val textSobrenome = findViewById<TextView>(R.id.text_sobrenome)
-        textSobrenome.text = "$sobrenome"
+        textNome.text = "$nome $sobrenome"
 
        val textIdade = findViewById<TextView>(R.id.text_idade)
         textIdade.text = "$idade anos"
@@ -76,7 +73,6 @@ class FotoBio : AppCompatActivity() {
             criaPerfil2.putExtra("nome", nome)
             criaPerfil2.putExtra("sobrenome", sobrenome)
             criaPerfil2.putExtra("idade", idade)
-            criaPerfil2.putExtra("genero", genero)
 
             startActivity(criaPerfil2)
             finish()

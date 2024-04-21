@@ -20,9 +20,13 @@ class CriaPerfil2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cria_perfil2)
 
+        val nome = intent.getStringExtra("nome")
+        val sobrenome = intent.getStringExtra("sobrenome")
+        val idade = intent.getIntExtra("idade",0)
         val altura = intent.getIntExtra("altura",0)
         val peso = intent.getIntExtra("peso",0)
         val genero = intent.getStringExtra("genero")
+
 
 
         // Inicializando as variáveis com referências aos elementos da UI
@@ -66,7 +70,10 @@ class CriaPerfil2 : AppCompatActivity() {
                 val intent = Intent(this, FotoBio::class.java)
                 intent.putExtra("altura", altura)
                 intent.putExtra("peso", peso)
-                intent.putExtra("genero", genero) // Adicionando o valor do gênero à Intent
+                intent.putExtra("genero", genero)
+                intent.putExtra("nome", nome)
+                intent.putExtra("sobrenome", sobrenome)
+                intent.putExtra("idade", idade)// Adicionando o valor do gênero à Intent
                 startActivity(intent)
                 finish() // Finalizando a atividade atual
             } else {
@@ -100,7 +107,7 @@ class CriaPerfil2 : AppCompatActivity() {
         telaL.putExtra("genero", genero)
 
         setResult(RESULT_OK, telaL) // Define os dados de resultado e o código de resultado
-        finish() // Retorna à tela CriaPerfil1
+        startActivity(telaL)
     }
 
 
