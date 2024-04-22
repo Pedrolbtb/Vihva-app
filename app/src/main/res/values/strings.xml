@@ -71,6 +71,8 @@
 
     <string name="text_300">0/300</string>
 
+    <string name="text_error_login">Erro ao realizar login</string>
+
 
 
 </resources>

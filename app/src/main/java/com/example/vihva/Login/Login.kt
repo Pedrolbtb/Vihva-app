@@ -1,6 +1,7 @@
 package com.example.vihva.Login
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -30,6 +31,8 @@ class Login : AppCompatActivity() {
 
             if (email.isEmpty() || senha.isEmpty()) {
                 showToast("Preencha todos os campos!")
+                binding.editEmail.setBackgroundDrawable(resources.getDrawable(R.drawable.edit_text_error))
+                binding.editSenha.setBackgroundDrawable(resources.getDrawable(R.drawable.edit_text_error))
             } else {
                 // Autenticar usuário com e-mail e senha
                 auth.signInWithEmailAndPassword(email, senha)

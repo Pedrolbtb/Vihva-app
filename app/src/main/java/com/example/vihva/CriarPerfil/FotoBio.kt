@@ -31,22 +31,7 @@ class FotoBio : AppCompatActivity() {
         // Inicializa a imageView com base em seu ID no layout
         imageView = findViewById(R.id.img_save)
         editTextBiografia = findViewById(R.id.Edit_biografia)
-        contadorCaracteres = findViewById(R.id.contador_caracteres)
 
-        //COnfigura um TextWatcher para a EditTExt de biografia
-        editTextBiografia.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int){}
-
-            override fun afterTextChanged(s: Editable?){
-                // Atualiza o contador de caracteres
-                s?.let{
-                    val caracteresDigitados = s.length
-                    contadorCaracteres.text = "$caracteresDigitados/250"
-                }
-            }
-        })
 
         //Recuperando os extras da intent
         val nome = intent.getStringExtra("nome")
