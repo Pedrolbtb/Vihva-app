@@ -23,6 +23,7 @@ import com.google.firebase.Firebase
 
 class FotoBio : AppCompatActivity() {
 
+
     // Declaração da propriedade lateinit para a imageView
     private lateinit var imageView: ImageView
     private lateinit var editTextBiografia: EditText
@@ -31,6 +32,7 @@ class FotoBio : AppCompatActivity() {
     // Companion object para declarar uma constante para o código de solicitação de imagem
     companion object{
         val IMAGE_REQUEST_CODE = 100
+        private const val TAG = "KotlinActivit  y"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,6 +102,9 @@ class FotoBio : AppCompatActivity() {
 
         }
 
+        findViewById<Button>(R.id.btn_proximo)
+        basicReadWrite()
+
     }
 ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -121,5 +126,32 @@ class FotoBio : AppCompatActivity() {
 
     /////////////////////////////BANCO DE DADOS/////////////////////////////////////////
 
+    fun basicReadWrite() {
+        // [START write_message]
+        // Write a message to the database
+        val database = Firebase.database
+        val myRef = database.getReference("message")
+
+        myRef.setValue("Hello, World!")
+        // [END write_message]
+
+        // [START read_message]
+        // Read from the database
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val nome = intent.getStringExtra("nome")
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                val value = dataSnapshot.getValue<String>()
+                Log.d(TAG, "O nome do usuário é $nome")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Failed to read value
+                Log.w(TAG, "Falha ao registrar.", error.toException())
+            }
+        })
+        // [END read_message]
+    }
 
 }
