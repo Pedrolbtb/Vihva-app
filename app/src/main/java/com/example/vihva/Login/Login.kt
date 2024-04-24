@@ -1,28 +1,71 @@
 package com.example.vihva.Login
 
 import android.content.Intent
-import android.content.res.ColorStateList
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
 import com.example.vihva.Cadastro.CadastroPac
 import com.example.vihva.CriarPerfil.CriaPerfil
 import com.example.vihva.R
-import com.example.vihva.databinding.ActivityMainBinding
+import com.example.vihva.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
 
 class Login : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityLoginBinding
     private val auth = FirebaseAuth.getInstance()
+
+    // Variáveis para armazenar os drawables originais dos campos de e-mail e senha
+    private lateinit var originalEmailDrawable: Drawable
+    private lateinit var originalSenhaDrawable: Drawable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Inicializa os drawables originais dos campos de e-mail e senha
+        originalEmailDrawable = binding.editEmail.background
+        originalSenhaDrawable = binding.editSenha.background
+
+        // Adiciona o textWatcher para restaurar o drawable original do campo de e-mail
+        binding.editEmail.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Não é necessário implementar neste caso
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Não é necessário implementar neste caso
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // Restaura o drawable original do campo de e-mail
+                binding.editEmail.background = originalEmailDrawable
+            }
+        })
+
+        // Adiciona o TextWatcher para restaurar o drawable original do campo de senha
+        binding.editSenha.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Não é necessário implementar neste caso
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Não é necessário implementar neste caso
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // Restaura o drawable original do campo de senha
+                binding.editSenha.background = originalSenhaDrawable
+            }
+        })
 
         // Configurando clique no botão de login
         binding.btnEntar.setOnClickListener {
@@ -31,16 +74,32 @@ class Login : AppCompatActivity() {
 
             if (email.isEmpty() || senha.isEmpty()) {
                 showToast("Preencha todos os campos!")
-                binding.editEmail.setBackgroundDrawable(resources.getDrawable(R.drawable.edit_text_error))
-                binding.editSenha.setBackgroundDrawable(resources.getDrawable(R.drawable.edit_text_error))
+
+                // Configura o background dos campos de e-mail e senha para vermelho
+                binding.editEmail.background = resources.getDrawable(R.drawable.edit_text_error)
+                binding.editSenha.background = resources.getDrawable(R.drawable.edit_text_error)
             } else {
-                // Autenticar usuário com e-mail e senha
                 auth.signInWithEmailAndPassword(email, senha)
-                    .addOnCompleteListener { autenticacao ->
-                        if (autenticacao.isSuccessful) {
-                            irParaTelaPrincipal() // Ir para a tela principal após o login
+                    .addOnCompleteListener { login ->
+                        // Configura o background dos campos de e-mail e senha para vermelho em caso de erro
+                        if (!login.isSuccessful) {
+                            binding.editEmail.background = resources.getDrawable(R.drawable.edit_text_error)
+                            binding.editSenha.background = resources.getDrawable(R.drawable.edit_text_error)
                         } else {
-                            showToast("Erro ao realizar o login!")
+                            // Limpa o texto dos campos se o login for bem-sucedido
+                            binding.editEmail.text = null
+                            binding.editSenha.text = null
+                        }
+
+                        if (login.isSuccessful) {
+                            irParaTelaPrincipal()
+                        } else {
+                            val mensagemErro = when (login.exception) {
+                                is FirebaseAuthInvalidCredentialsException -> "Credenciais inválidas. Verifique seu e-mail ou senha."
+                                is FirebaseAuthInvalidUserException -> "Usuário não encontrado. Verifique seu e-mail."
+                                else -> "Erro ao realizar o login. Tente novamente mais tarde."
+                            }
+                            showToast(mensagemErro)
                         }
                     }
             }

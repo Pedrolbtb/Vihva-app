@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.vihva.Login.Login
+import com.example.vihva.Cadastro.CadastroPac
 import com.example.vihva.R
 import com.example.vihva.databinding.ActivityCadastroPacBinding
 import com.google.firebase.FirebaseNetworkException
@@ -60,6 +60,11 @@ class CadastroPac : AppCompatActivity() {
                             else -> "Erro ao cadastrar usuário"
                         }
                         showToast(mensagemErro)
+                        // Limpa o texto quando ocorre um erro
+                        binding.editEmail.text = null
+                        binding.editSenha.text = null
+                        binding.editConfirmsenha.text = null
+
                     } else {
                         //enviar email de verificação
                         enviarEmailVerificacao()
@@ -94,14 +99,14 @@ class CadastroPac : AppCompatActivity() {
 
     // Função para ir para a tela de login
     private fun irParaTelaLoginP() {
-        val telaLoginIntent = Intent(this, Login::class.java)
+        val telaLoginIntent = Intent(this, CadastroPac::class.java)
         startActivity(telaLoginIntent)
         finish()
     }
 
     // Função para ir para a tela de criação de perfil
     private fun irParaTelaLoginT() {
-        val telaL = Intent(this, Login::class.java)
+        val telaL = Intent(this, CadastroPac::class.java)
         startActivity(telaL)
     }
 
