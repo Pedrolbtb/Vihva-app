@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/remédio"
+        android:enabled="true"
+        android:icon="@drawable/ic_inicio"
+        android:title="@string/text_navbar_inicio"
+        />
+
+    <item
+        android:id="@+id/calendario"
+        android:enabled="true"
+        android:icon="@drawable/ic_inicio"
+        android:title="@string/text_navbar_inicio"/>
+
+    <item
+        android:id="@+id/inicio"
+        android:enabled="true"
+        android:icon="@drawable/ic_inicio"
+        android:title="@string/text_navbar_inicio"/>
+
+    <item
+        android:id="@+id/alarme"
+        android:enabled="true"
+        android:icon="@drawable/ic_inicio"
+        android:title="@string/text_navbar_inicio"/>
+
+    <item
+        android:id="@+id/perfil"
+        android:enabled="true"
+        android:icon="@drawable/ic_inicio"
+        android:title="@string/text_navbar_inicio"/>
+</menu>

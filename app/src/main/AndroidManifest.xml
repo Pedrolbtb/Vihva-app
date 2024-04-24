@@ -24,7 +24,7 @@
             android:name=".Inicio.Inicio"
             android:exported="false" />
         <activity
-            android:name=".Configurações.configuracao"
+            android:name=".Configurações.configuracoes"
             android:exported="false" />
         <activity
             android:name=".CriarPerfil.CriaPerfil2"
