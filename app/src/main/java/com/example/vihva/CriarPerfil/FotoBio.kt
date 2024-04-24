@@ -11,6 +11,15 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.vihva.R
+import android.util.Log
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.database
+import com.google.firebase.database.getValue
+import com.google.firebase.Firebase
+
+
 
 class FotoBio : AppCompatActivity() {
 
@@ -92,7 +101,7 @@ class FotoBio : AppCompatActivity() {
         }
 
     }
-
+////////////////////////////////////////////////////////////////////////////////////////////
 
     // Método para abrir a galeria de mídia e selecionar uma imagem
     private fun pickImageGallery(){
@@ -109,4 +118,8 @@ class FotoBio : AppCompatActivity() {
             imageView.setImageURI(data?.data) // Define a imagem selecionada na imageView
         }
     }
+
+    /////////////////////////////BANCO DE DADOS/////////////////////////////////////////
+
+
 }
