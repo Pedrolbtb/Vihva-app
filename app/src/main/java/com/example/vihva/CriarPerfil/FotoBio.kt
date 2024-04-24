@@ -45,8 +45,6 @@ class FotoBio : AppCompatActivity() {
 
 
 
-
-
         //Recuperando os extras da intent
         val nome = intent.getStringExtra("nome")
         val sobrenome = intent.getStringExtra("sobrenome")
@@ -104,18 +102,23 @@ class FotoBio : AppCompatActivity() {
 ////////////////////////////////////////////////////////////////////////////////////////////
 
     // Método para abrir a galeria de mídia e selecionar uma imagem
-    private fun pickImageGallery(){
-        val intent = Intent(Intent.ACTION_PICK) // Cria um intent para abrir a galeria
-        intent.type = "image/*" // Define o tipo de mídia como imagens
-        startActivityForResult(intent, IMAGE_REQUEST_CODE) // Inicia a atividade esperando um resultado
+    private fun pickImageGallery() {
+        val intent = Intent(Intent.ACTION_PICK) // Criação de uma Intent para selecionar um item
+        intent.type = "image/*" // Define o tipo de item a ser selecionado (neste caso, qualquer imagem)
+        startActivityForResult(intent, IMAGE_REQUEST_CODE) // Inicia uma atividade para selecionar um item e espera o resultado
     }
 
-    // Método chamado quando o resultado da atividade anterior é retornado
+    // Função chamada quando uma atividade iniciada por este aplicativo retorna um resultado
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        // Verifica se o resultado é para a solicitação de imagem e foi bem-sucedido
-        if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK ){
-            imageView.setImageURI(data?.data) // Define a imagem selecionada na imageView
+        // Verifica se o resultado veio da seleção da imagem e se foi bem-sucedido
+        if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            // Define a imagem selecionada no ImageView
+            imageView.setImageURI(data.data)
+
+            imageView.clipToOutline = true
+            // Define a propriedade clipToOutline do ImageView como true para aplicar a forma do contorno do ImageView
+            imageView.clipToOutline = true
         }
     }
 

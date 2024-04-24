@@ -134,7 +134,7 @@
     </style>
 
     <style name="foto">
-        <item name="android:background">@drawable/foto</item>
+        <item name="android:background">@drawable/adicionar_foto</item>
     </style>
 
     <style name="Button_salvar">
