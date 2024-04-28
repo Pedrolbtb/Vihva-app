@@ -1,10 +1,14 @@
 package com.companyvihva.vihva.Cadastro
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.companyvihva.vihva.Login.Login
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.databinding.ActivityCadastroPacBinding
 import com.google.firebase.FirebaseNetworkException
@@ -16,78 +20,124 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class CadastroPac : AppCompatActivity() {
 
-    // Referência para o binding do layout
     private lateinit var binding: ActivityCadastroPacBinding
-
-    // Instância do Firebase Auth
     private val auth = FirebaseAuth.getInstance()
-    private val bd = FirebaseFirestore.getInstance()
+
+    private lateinit var originalEmailDrawable: Drawable
+    private lateinit var originalSenhaDrawable: Drawable
+    private lateinit var originalConfirmSenhaDrawable: Drawable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Inflar o layout usando ViewBinding
         binding = ActivityCadastroPacBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Configurar o listener para o texto "Já tem uma conta? Faça login"
+        originalEmailDrawable = binding.editEmail.background
+        originalSenhaDrawable = binding.editSenha.background
+        originalConfirmSenhaDrawable = binding.editConfirmsenha.background
+
         binding.textTelaCadastro.setOnClickListener {
-            irParaTelaLoginT()
+            irParaTelaLogin()
         }
 
-        // Configurar o listener para o botão de cadastro
-        binding.btnCadastro.setOnClickListener { view ->
+        binding.editEmail.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
 
-            val edit_email = binding.editEmail.text.toString()
-            val edit_senha = binding.editSenha.text.toString()
-            val edit_confirmsenha = binding.editConfirmsenha.text.toString()
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
 
-            // Verificar se todos os campos estão preenchidos
-            if (edit_email.isEmpty() || edit_senha.isEmpty() || edit_confirmsenha.isEmpty()) {
+            override fun afterTextChanged(s: Editable?) {
+                binding.editEmail.background = originalEmailDrawable
+            }
+        })
+
+        binding.editSenha.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                binding.editSenha.background = originalSenhaDrawable
+            }
+        })
+
+        binding.editConfirmsenha.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                binding.editConfirmsenha.background = originalConfirmSenhaDrawable
+            }
+        })
+
+        binding.btnCadastro.setOnClickListener {
+
+            val email = binding.editEmail.text.toString()
+            val senha = binding.editSenha.text.toString()
+            val confirmSenha = binding.editConfirmsenha.text.toString()
+
+            if (email.isEmpty() || senha.isEmpty() || confirmSenha.isEmpty()) {
                 showToast("Preencha todos os campos")
-            } else if (edit_senha == edit_confirmsenha) {
-                // Tentar criar um novo usuário no Firebase Auth
-                auth.createUserWithEmailAndPassword(edit_email, edit_senha).addOnCompleteListener { cadastro ->
+                if (email.isEmpty()) {
+                    binding.editEmail.background = resources.getDrawable(R.drawable.edit_text_error)
+                }
+                if (senha.isEmpty()) {
+                    binding.editSenha.background = resources.getDrawable(R.drawable.edit_text_error)
+                }
+                if (confirmSenha.isEmpty()) {
+                    binding.editConfirmsenha.background = resources.getDrawable(R.drawable.edit_text_error)
+                }
+            } else if (senha == confirmSenha) {
+                auth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener { cadastro ->
                     if (!cadastro.isSuccessful) {
-                        // Verificar o tipo de exceção e exibir mensagem de erro correspondente
-                        val mensagemErro = when(cadastro.exception){
-                            is FirebaseAuthWeakPasswordException -> "Digite uma senha com no mínimo 6 caracteres!"
-                            is FirebaseAuthInvalidCredentialsException -> "Digite um email válido"
-                            is FirebaseAuthUserCollisionException -> "Conta já cadastrada"
-                            is FirebaseNetworkException -> "Sem conexão com a internet"
-                            else -> "Erro ao cadastrar usuário"
+                        val exception = cadastro.exception
+                        if (exception != null) {
+                            when (exception) {
+                                is FirebaseAuthWeakPasswordException -> {
+                                    showToast("Digite uma senha com no mínimo 6 caracteres!")
+                                    binding.editSenha.background = resources.getDrawable(R.drawable.edit_text_error)
+                                    binding.editConfirmsenha.background = resources.getDrawable(R.drawable.edit_text_error)
+                                }
+                                is FirebaseAuthInvalidCredentialsException -> {
+                                    showToast("Digite um email válido")
+                                    binding.editEmail.background = resources.getDrawable(R.drawable.edit_text_error)
+                                }
+                                is FirebaseAuthUserCollisionException -> {
+                                    showToast("Conta já cadastrada")
+                                    binding.editEmail.background = resources.getDrawable(R.drawable.edit_text_error)
+                                }
+                                is FirebaseNetworkException -> {
+                                    showToast("Sem conexão com a internet")
+                                }
+                                else -> {
+                                    showToast("Erro ao cadastrar usuário")
+                                }
+                            }
                         }
-                        showToast(mensagemErro)
-                        // Limpa o texto quando ocorre um erro
-                        binding.editEmail.text = null
-                        binding.editSenha.text = null
-                        binding.editConfirmsenha.text = null
-
                     } else {
-                        //enviar email de verificação
                         enviarEmailVerificacao()
-                        // Ir para a tela de login após o envio do e-mail de verificação
-                        irParaTelaLoginP()
+                        irParaTelaLogin()
                     }
                 }
             } else {
-                // Caso as senhas não coincidam
                 showToast("As senhas não coincidem")
+                binding.editSenha.background = resources.getDrawable(R.drawable.edit_text_error)
+                binding.editConfirmsenha.background = resources.getDrawable(R.drawable.edit_text_error)
             }
         }
     }
 
-    // Função para exibir um Toast personalizado
     private fun showToast(message: String) {
-        // Inflar o layout do Toast personalizado
         val inflater = layoutInflater
         val layout = inflater.inflate(R.layout.toast, findViewById(R.id.toast))
-
-        // Configurar o texto do Toast
         val text = layout.findViewById<TextView>(R.id.toast)
         text.text = message
-
-        // Configurar e exibir o Toast
         with(Toast(applicationContext)) {
             duration = Toast.LENGTH_SHORT
             view = layout
@@ -95,20 +145,12 @@ class CadastroPac : AppCompatActivity() {
         }
     }
 
-    // Função para ir para a tela de login
-    private fun irParaTelaLoginP() {
-        val telaLoginIntent = Intent(this, CadastroPac::class.java)
+    private fun irParaTelaLogin() {
+        val telaLoginIntent = Intent(this, Login::class.java)
         startActivity(telaLoginIntent)
         finish()
     }
 
-    // Função para ir para a tela de criação de perfil
-    private fun irParaTelaLoginT() {
-        val telaL = Intent(this, CadastroPac::class.java)
-        startActivity(telaL)
-    }
-
-    //Função para enviar um Email de verificação
     private fun enviarEmailVerificacao() {
         val user = auth.currentUser
         user?.sendEmailVerification()?.addOnCompleteListener { task ->

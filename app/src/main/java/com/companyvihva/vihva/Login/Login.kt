@@ -81,25 +81,37 @@ class Login : AppCompatActivity() {
             } else {
                 auth.signInWithEmailAndPassword(email, senha)
                     .addOnCompleteListener { login ->
-                        // Configura o background dos campos de e-mail e senha para vermelho em caso de erro
+                        // Configura o background do campo relevante para vermelho em caso de erro
                         if (!login.isSuccessful) {
-                            binding.editEmail.background = resources.getDrawable(R.drawable.edit_text_error)
-                            binding.editSenha.background = resources.getDrawable(R.drawable.edit_text_error)
+                            val exception = login.exception
+                            if (exception is FirebaseAuthInvalidCredentialsException) {
+
+                                // Se o erro for de credenciais inválidas, apenas o campo de senha deve ficar vermelho
+                                binding.editSenha.background = resources.getDrawable(R.drawable.edit_text_error)
+
+                            } else if (exception is FirebaseAuthInvalidUserException) {
+                                // Se o erro for de usuário inválido, apenas o campo de e-mail deve ficar vermelho
+                                binding.editEmail.background = resources.getDrawable(R.drawable.edit_text_error)
+
+                            } else {
+                                // Se for qualquer outro erro, ambos os campos ficarão vermelhos
+                                binding.editEmail.background = resources.getDrawable(R.drawable.edit_text_error)
+                                binding.editSenha.background = resources.getDrawable(R.drawable.edit_text_error)
+                            }
                         } else {
                             // Limpa o texto dos campos se o login for bem-sucedido
                             binding.editEmail.text = null
                             binding.editSenha.text = null
                         }
 
-                        if (login.isSuccessful) {
-                            irParaTelaPrincipal()
-                        } else {
+                        if (!login.isSuccessful) {
                             val mensagemErro = when (login.exception) {
                                 is FirebaseAuthInvalidCredentialsException -> "Credenciais inválidas. Verifique seu e-mail ou senha."
                                 is FirebaseAuthInvalidUserException -> "Usuário não encontrado. Verifique seu e-mail."
                                 else -> "Erro ao realizar o login. Tente novamente mais tarde."
                             }
                             showToast(mensagemErro)
+
                         }
                     }
             }
@@ -185,3 +197,4 @@ class Login : AppCompatActivity() {
             }
     }
 }
+
