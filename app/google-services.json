@@ -7,6 +7,25 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:301199615509:android:37ce5c8c7e9a145f78d01c",
+        "android_client_info": {
+          "package_name": "com.companyvihva.vihva"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQuN32KCqwXAzScDN06kSMRzDCNa8s5c0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:301199615509:android:46eed1c82498e16078d01c",
         "android_client_info": {
           "package_name": "com.example.vihva"

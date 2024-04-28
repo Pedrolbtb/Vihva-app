@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.companyvihva.vihva.R
 import android.util.Log
+import com.companyvihva.vihva.Inicio.Inicio
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -97,8 +98,13 @@ class FotoBio : AppCompatActivity() {
 
         }
 
-        findViewById<Button>(R.id.btn_proximo)
+        findViewById<Button>(R.id.btn_proximo).setOnClickListener {
+            val intent = Intent(this, Inicio::class.java)
+            startActivity(intent)
+        }
         basicReadWrite()
+
+
 
     }
 ////////////////////////////////////////////////////////////////////////////////////////////

@@ -6,11 +6,41 @@ import android.os.Bundle
 import android.view.View
 import com.companyvihva.vihva.Configurações.Configuracoes
 import com.companyvihva.vihva.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class Inicio : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inicio)
+
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.remédio -> {
+                    val intentremedio = Intent(this, Remedio::class.java)
+                    startActivity(intentremedio)
+                    true
+                }
+                R.id.calendario -> {
+                    // Respond to navigation item 2 click
+                    true
+                }
+                R.id.inicio -> {
+                    // Respond to navigation item 2 click
+                    true
+                }
+                R.id.alarme -> {
+                    // Respond to navigation item 2 click
+                    true
+                }
+                R.id.perfil -> {
+                    // Respond to navigation item 2 click
+                    true
+                }
+                else -> false
+            }
+        }
+
+
     }//fim do oncreate
 
     fun irParaTelaConfig(View:View) {
