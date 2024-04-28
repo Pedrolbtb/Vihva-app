@@ -1,19 +1,17 @@
-package com.example.vihva.Cadastro
+package com.companyvihva.vihva.Cadastro
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.vihva.Cadastro.CadastroPac
-import com.example.vihva.R
-import com.example.vihva.databinding.ActivityCadastroPacBinding
+import com.companyvihva.vihva.R
+import com.companyvihva.vihva.databinding.ActivityCadastroPacBinding
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 
 class CadastroPac : AppCompatActivity() {

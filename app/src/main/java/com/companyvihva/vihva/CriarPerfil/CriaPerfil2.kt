@@ -1,17 +1,14 @@
-package com.example.vihva.CriarPerfil
+package com.companyvihva.vihva.CriarPerfil
 
-import android.R.attr.name
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.NumberPicker
 import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.vihva.R
+import com.companyvihva.vihva.R
 
 
 class CriaPerfil2 : AppCompatActivity() {

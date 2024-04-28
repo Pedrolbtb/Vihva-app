@@ -1,16 +1,13 @@
-package com.example.vihva.CriarPerfil
+package com.companyvihva.vihva.CriarPerfil
 
 import android.content.Intent
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.vihva.R
+import com.companyvihva.vihva.R
 import android.util.Log
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

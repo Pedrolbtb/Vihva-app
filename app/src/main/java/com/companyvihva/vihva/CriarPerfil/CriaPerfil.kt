@@ -1,16 +1,13 @@
-package com.example.vihva.CriarPerfil
+package com.companyvihva.vihva.CriarPerfil
 
 import android.content.Intent
-import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
-import com.example.vihva.R
-import com.example.vihva.databinding.ActivityFotoBioBinding
+import com.companyvihva.vihva.R
 
 class CriaPerfil : AppCompatActivity() {
 

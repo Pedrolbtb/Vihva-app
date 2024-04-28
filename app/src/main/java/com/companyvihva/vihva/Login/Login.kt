@@ -1,4 +1,4 @@
-package com.example.vihva.Login
+package com.companyvihva.vihva.Login
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
@@ -10,10 +10,10 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.example.vihva.Cadastro.CadastroPac
-import com.example.vihva.CriarPerfil.CriaPerfil
-import com.example.vihva.R
-import com.example.vihva.databinding.ActivityLoginBinding
+import com.companyvihva.vihva.Cadastro.CadastroPac
+import com.companyvihva.vihva.CriarPerfil.CriaPerfil
+import com.companyvihva.vihva.R
+import com.companyvihva.vihva.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException

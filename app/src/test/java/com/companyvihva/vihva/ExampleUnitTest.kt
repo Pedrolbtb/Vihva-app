@@ -1,4 +1,4 @@
-package com.example.vihva
+package com.companyvihva.vihva
 
 import org.junit.Test
 

@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.vihva"
+    namespace = "com.companyvihva.vihva"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.vihva"
+        applicationId = "com.companyvihva.vihva"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

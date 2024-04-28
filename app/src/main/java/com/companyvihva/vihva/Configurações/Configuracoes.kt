@@ -1,9 +1,9 @@
-package com.example.vihva.Configurações
+package com.companyvihva.vihva.Configurações
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.vihva.R
+import com.companyvihva.vihva.R
 
 class Configuracoes : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

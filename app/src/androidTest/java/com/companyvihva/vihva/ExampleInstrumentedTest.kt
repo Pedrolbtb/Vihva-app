@@ -1,4 +1,4 @@
-package com.example.vihva
+package com.companyvihva.vihva
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

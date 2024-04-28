@@ -1,12 +1,11 @@
-package com.example.vihva.Inicio
+package com.companyvihva.vihva.Inicio
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.vihva.Configurações.Configuracoes
-import com.example.vihva.CriarPerfil.CriaPerfil2
-import com.example.vihva.R
+import com.companyvihva.vihva.Configurações.Configuracoes
+import com.companyvihva.vihva.R
 
 class Inicio : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
