@@ -16,28 +16,25 @@
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
         <activity
-            android:name=".Inicio.Calendario"
+            android:name="com.companyvihva.vihva.Configurações.Configuracoes"
             android:exported="false" />
         <activity
-            android:name=".Configurações.Configuracoes"
+            android:name="com.companyvihva.vihva.CriarPerfil.FotoBio"
             android:exported="false" />
         <activity
-            android:name=".CriarPerfil.FotoBio"
+            android:name="com.companyvihva.vihva.Inicio.Inicio"
             android:exported="false" />
         <activity
-            android:name=".Inicio.Inicio"
+            android:name="com.companyvihva.vihva.CriarPerfil.CriaPerfil2"
             android:exported="false" />
         <activity
-            android:name=".CriarPerfil.CriaPerfil2"
+            android:name="com.companyvihva.vihva.CriarPerfil.CriaPerfil"
             android:exported="false" />
         <activity
-            android:name=".CriarPerfil.CriaPerfil"
+            android:name="com.companyvihva.vihva.Cadastro.CadastroPac"
             android:exported="false" />
         <activity
-            android:name=".Cadastro.CadastroPac"
-            android:exported="false" />
-        <activity
-            android:name=".Login.Login"
+            android:name="com.companyvihva.vihva.Login.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
