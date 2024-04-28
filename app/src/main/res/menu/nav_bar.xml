@@ -4,14 +4,14 @@
         android:id="@+id/remédio"
         android:enabled="true"
         android:icon="@drawable/ic_inicio"
-        android:title="@string/text_navbar_inicio"
+        android:title="Remédio"
         />
 
     <item
         android:id="@+id/calendario"
         android:enabled="true"
         android:icon="@drawable/ic_inicio"
-        android:title="@string/text_navbar_inicio"/>
+        android:title="Calendário"/>
 
     <item
         android:id="@+id/inicio"
@@ -23,11 +23,11 @@
         android:id="@+id/alarme"
         android:enabled="true"
         android:icon="@drawable/ic_inicio"
-        android:title="@string/text_navbar_inicio"/>
+        android:title="Alarme"/>
 
     <item
         android:id="@+id/perfil"
         android:enabled="true"
         android:icon="@drawable/ic_inicio"
-        android:title="@string/text_navbar_inicio"/>
+        android:title="Perfil"/>
 </menu>

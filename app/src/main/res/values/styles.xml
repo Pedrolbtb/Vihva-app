@@ -62,7 +62,7 @@
         <item name="android:inputType">textEmailAddress</item>
         <item name="android:layout_marginStart">40dp</item>
         <item name="android:layout_marginEnd">40dp</item>
-        <item name="android:textColor">@color/hint</item>
+        <item name="android:textColor">@color/Letras</item>
         <item name="android:textSize">20dp</item>
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
     </style>
@@ -157,6 +157,14 @@
         <item name="fontFamily">@font/peanut_butter</item>
         <item name="android:textSize">50sp</item>
         <item name="android:textColor">@color/Letras</item>
+    </style>
+    
+    <style name="text_doenca_e_remedio">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/Letras</item>
+        <item name="android:textSize">30sp</item>
+        <item name="fontFamily">@font/cloudsoft_bold_700</item>
     </style>
 
 </resources>
