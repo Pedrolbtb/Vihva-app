@@ -76,8 +76,24 @@
     <string name="text_navbar_inicio">Início</string>
 
     <string name="text_doencas_inicio">Doenças</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="text_celular">Celular</string>
+
+    <string name="text_mensagem">Mensagem</string>
+
+    <string name="text_msg_padrao">SOCORRO! Por favor me ajude! Estou em perigo e preciso de assistência imediata. Esta mensagem foi
+    enviada automaticamente pelo APP Vihva. É crucial contatar as autoridades competentes abaixo a última localização do celular</string>
+
+    <string name="text_restaurar">Restaurar</string>
+
+    <array name="ddi">
+        <item>+1 EUA</item>
+        <item>+55 Brasil</item>
+        <item>+49 Alemanha</item>
+        <item>+244 Angola</item>
+    </array>
 </resources>
 

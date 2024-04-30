@@ -9,39 +9,41 @@
     <EditText
         android:id="@+id/editTextPhone"
         android:layout_width="260dp"
-        android:layout_height="44dp"
+        android:layout_height="48dp"
         android:layout_marginStart="76dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="10dp"
         android:ems="10"
+        android:hint="@string/text_celular"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.368"
-        app:layout_constraintStart_toStartOf="@+id/spinner"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/spinerDDI"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCelular" />
 
     <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="76dp"
-        android:layout_height="39dp"
+        android:id="@+id/spinerDDI"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
+        android:entries="@array/ddi"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextCelular" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/editTextCelular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
-        android:text="Telefone"
+        android:text="@string/text_celular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/editTextMsg"
         android:layout_width="0dp"
         android:layout_height="128dp"
         android:layout_marginLeft="20dp"
@@ -50,20 +52,21 @@
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        android:text="@string/text_msg_padrao"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewMsg" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewMsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="TextView"
+        android:text="@string/text_mensagem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/spinerDDI" />
 
     <Button
         android:id="@+id/btn_confirmar"
@@ -71,18 +74,18 @@
         android:layout_height="0dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="20dp"
-        android:text="Salvar"
+        android:text="@string/text_salvar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextMsg" />
 
     <Button
         android:id="@+id/btn_voltar"
-        android:layout_width="95dp"
-        android:layout_height="0dp"
+        android:layout_width="137dp"
+        android:layout_height="49dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="8dp"
-        android:text="Voltar"
+        android:text="@string/text_restaurar"
         app:layout_constraintEnd_toStartOf="@+id/btn_confirmar"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextMsg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

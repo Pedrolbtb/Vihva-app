@@ -21,6 +21,7 @@ class Inicio : AppCompatActivity() {
         setContentView(binding.root)
         replaceFragment(Inicio1())
 
+        //codigo da nav bar que leva de um fragment a outro
         binding.bottomNavigation.setOnItemSelectedListener {
             when(it.itemId) {
                 R.id.remédio -> replaceFragment(Remedio())
