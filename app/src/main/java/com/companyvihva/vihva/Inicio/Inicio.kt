@@ -1,12 +1,15 @@
 package com.companyvihva.vihva.Inicio
 
+import Inicio1
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.Configurações.Configuracoes
+import com.companyvihva.vihva.CriarPerfil.CriaPerfil2
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.databinding.ActivityInicioBinding
 import com.companyvihva.vihva.databinding.ActivityLoginBinding
@@ -45,6 +48,8 @@ class Inicio : AppCompatActivity() {
             }
             true
         }
+
+
 
     }//fim do oncreate
 
