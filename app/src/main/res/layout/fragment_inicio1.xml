@@ -6,22 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Inicio.Inicio1">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background_home"
         tools:context=".Inicio.Inicio">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        style="@style/titulo_inicio"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/titulo_login"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageButton
             android:id="@+id/btn_config"
@@ -66,6 +57,7 @@
             app:strokeWidth="1dp" />
 
         <TextView
+            android:id="@+id/text_iniciodoenca"
             style="@style/text_doenca_e_remedio"
             android:text="@string/text_doencas_inicio"
             android:layout_marginTop="140dp"
@@ -73,5 +65,52 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
+
+        <ImageButton
+            android:id="@+id/card_diabete"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/engrenagem"
+            android:background="#00FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_iniciodoenca"
+            />
+
+        <TextView
+            android:id="@+id/text_inicioremedio"
+            style="@style/text_doenca_e_remedio"
+            android:text="@string/text_remedio_inicio"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_diabete"
+            />
+
+        <ImageButton
+            android:id="@+id/card_remedio1"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/engrenagem"
+            android:background="#00FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_inicioremedio"
+            />
+
+        <ImageButton
+            android:id="@+id/card_remedio2"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/engrenagem"
+            android:background="#00FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_remedio1"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

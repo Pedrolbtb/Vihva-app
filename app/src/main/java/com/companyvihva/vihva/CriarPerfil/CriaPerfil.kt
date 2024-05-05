@@ -72,6 +72,7 @@ class CriaPerfil : AppCompatActivity() {
                     intent.putExtra("peso", peso)
                     intent.putExtra("genero", genero)
                     startActivity(intent)
+
                 } else {
                     // Se a idade não for válida, exibir um Toast informando o usuário
                     showToast("Insira uma idade válida (entre 13 e 100 anos)")
