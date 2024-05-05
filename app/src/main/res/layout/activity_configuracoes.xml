@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/off_white"
     tools:context=".Configurações.Configuracoes">
 
     <EditText
@@ -42,7 +43,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/editTextMsg"
         android:layout_width="0dp"
         android:layout_height="128dp"
@@ -53,6 +54,7 @@
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:text="@string/text_msg_padrao"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMsg" />
@@ -68,12 +70,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinerDDI" />
 
+
+
     <Button
         android:id="@+id/btn_confirmar"
         android:layout_width="98dp"
         android:layout_height="0dp"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="48dp"
         android:text="@string/text_salvar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextMsg" />
@@ -83,7 +87,7 @@
         android:layout_width="137dp"
         android:layout_height="49dp"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="28dp"
         android:text="@string/text_restaurar"
         app:layout_constraintEnd_toStartOf="@+id/btn_confirmar"
         app:layout_constraintTop_toBottomOf="@+id/editTextMsg" />

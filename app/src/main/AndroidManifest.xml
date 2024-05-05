@@ -22,7 +22,7 @@
             android:name="com.companyvihva.vihva.CriarPerfil.FotoBio"
             android:exported="false" />
         <activity
-            android:name="com.companyvihva.vihva.Inicio.Inicio"
+            android:name="com.companyvihva.vihva.Login.Login"
             android:exported="false" />
         <activity
             android:name="com.companyvihva.vihva.CriarPerfil.CriaPerfil2"
@@ -34,7 +34,7 @@
             android:name="com.companyvihva.vihva.Cadastro.CadastroPac"
             android:exported="false" />
         <activity
-            android:name="com.companyvihva.vihva.Login.Login"
+            android:name="com.companyvihva.vihva.Inicio.Inicio"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

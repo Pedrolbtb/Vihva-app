@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+ <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">vihva</string>
 
     <!--titulo na tela de login-->
@@ -84,8 +84,8 @@
 
     <string name="text_mensagem">Mensagem</string>
 
-    <string name="text_msg_padrao">SOCORRO! Por favor me ajude! Estou em perigo e preciso de assistência imediata. Esta mensagem foi
-    enviada automaticamente pelo APP Vihva. É crucial contatar as autoridades competentes abaixo a última localização do celular</string>
+    <string name="text_msg_padrao">SOCORRO! Por favor me ajude! Estou em perigo e preciso de assistência imediata. Esta mensagem padrão foi
+    enviada automaticamente pelo APP Vihva. É crucial contatar as autoridades competentes abaixo a última localização do seu celular</string>
 
     <string name="text_restaurar">Restaurar</string>
 
