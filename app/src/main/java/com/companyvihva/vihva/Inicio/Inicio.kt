@@ -11,6 +11,8 @@ import com.companyvihva.vihva.R
 import com.companyvihva.vihva.databinding.ActivityInicioBinding
 import com.companyvihva.vihva.databinding.ActivityLoginBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.selects.select
+
 
 class Inicio : AppCompatActivity() {
 
@@ -20,6 +22,9 @@ class Inicio : AppCompatActivity() {
         binding = ActivityInicioBinding.inflate(layoutInflater)
         setContentView(binding.root)
         replaceFragment(Inicio1())
+
+        //tela inicia selecionada o inicio
+        binding.bottomNavigation.selectedItemId = R.id.inicio
 
         //codigo da nav bar que leva de um fragment a outro
         binding.bottomNavigation.setOnItemSelectedListener {
@@ -41,7 +46,6 @@ class Inicio : AppCompatActivity() {
             true
         }
 
-
     }//fim do oncreate
 
     fun irParaTelaConfig(View:View) {
@@ -50,6 +54,8 @@ class Inicio : AppCompatActivity() {
         telaL.putExtra("phone", 98955)
         startActivity(telaL)
     }
+
+
 
    private fun replaceFragment(fragment: Fragment){
        val fragmentManager = supportFragmentManager

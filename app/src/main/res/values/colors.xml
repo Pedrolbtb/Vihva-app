@@ -11,5 +11,6 @@
     <color name="hint">#8c8c8c</color> //cor da hint mais escura
     <color name="vermelho_alerta">#ff6961</color> //cor do vermelho usado para alertas
     <color name="telaPassada">#648691</color> //cor de uma tela que já foi usada como na breadcrumb
+    <color name="indicador_selecao">#99FFFAF5</color>
 
 </resources>
