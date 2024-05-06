@@ -9,26 +9,32 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.companyvihva.vihva.R
 import android.util.Log
+import android.widget.Toast
 import com.companyvihva.vihva.Inicio.Inicio
+import com.companyvihva.vihva.databinding.ActivityFotoBioBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 import com.google.firebase.database.getValue
 import com.google.firebase.Firebase
-
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class FotoBio : AppCompatActivity() {
 
+    val firebaseRef = FirebaseDatabase.getInstance().reference
 
     // Declaração da propriedade lateinit para a imageView
     private lateinit var imageView: ImageView
     private lateinit var editTextBiografia: EditText
     private lateinit var contadorCaracteres: TextView
+    private var _binding: ActivityFotoBioBinding? = null
+    private val binding get() = _binding
 
     // Companion object para declarar uma constante para o código de solicitação de imagem
-    companion object{
+    companion object {
         val IMAGE_REQUEST_CODE = 100
         private const val TAG = "KotlinActivit  y"
     }
@@ -42,15 +48,12 @@ class FotoBio : AppCompatActivity() {
         editTextBiografia = findViewById(R.id.Edit_biografia)
 
 
-
-
-
         //Recuperando os extras da intent
         val nome = intent.getStringExtra("nome")
         val sobrenome = intent.getStringExtra("sobrenome")
-        val idade = intent.getIntExtra("idade",0)
-        val altura = intent.getIntExtra("altura",0)
-        val peso = intent.getIntExtra("peso",0)
+        val idade = intent.getIntExtra("idade", 0)
+        val altura = intent.getIntExtra("altura", 0)
+        val peso = intent.getIntExtra("peso", 0)
         val genero = intent.getStringExtra("genero")
 
         //Exibindo os dados nas TextViews
@@ -83,7 +86,7 @@ class FotoBio : AppCompatActivity() {
             val genero = intent.getStringExtra("genero")
             val nome = intent.getStringExtra("nome")
             val sobrenome = intent.getStringExtra("sobrenome")
-            val idade = intent.getIntExtra("idade",0 )
+            val idade = intent.getIntExtra("idade", 0)
 
             val criaPerfil2 = Intent(this, CriaPerfil2::class.java)
             criaPerfil2.putExtra("altura", altura)
@@ -100,10 +103,9 @@ class FotoBio : AppCompatActivity() {
 
         findViewById<Button>(R.id.btn_proximo).setOnClickListener {
             val intent = Intent(this, Inicio::class.java)
+            saveData()
             startActivity(intent)
         }
-        basicReadWrite()
-
 
 
     }
@@ -112,8 +114,12 @@ class FotoBio : AppCompatActivity() {
     // Método para abrir a galeria de mídia e selecionar uma imagem
     private fun pickImageGallery() {
         val intent = Intent(Intent.ACTION_PICK) // Criação de uma Intent para selecionar um item
-        intent.type = "image/*" // Define o tipo de item a ser selecionado (neste caso, qualquer imagem)
-        startActivityForResult(intent, IMAGE_REQUEST_CODE) // Inicia uma atividade para selecionar um item e espera o resultado
+        intent.type =
+            "image/*" // Define o tipo de item a ser selecionado (neste caso, qualquer imagem)
+        startActivityForResult(
+            intent,
+            IMAGE_REQUEST_CODE
+        ) // Inicia uma atividade para selecionar um item e espera o resultado
     }
 
     // Função chamada quando uma atividade iniciada por este aplicativo retorna um resultado
@@ -132,32 +138,51 @@ class FotoBio : AppCompatActivity() {
 
     /////////////////////////////BANCO DE DADOS/////////////////////////////////////////
 
-    fun basicReadWrite() {
-        // [START write_message]
-        // Write a message to the database
-        val database = Firebase.database
-        val myRef = database.getReference("message")
+    private fun saveData() {
+        val nome = binding?.textNome?.text.toString()
+        val idade = binding?.textIdade?.text.toString()
 
-        myRef.setValue("Hello, World!")
-        // [END write_message]
+        val login_cliente = hashMapOf(
+            "nome" to nome,
+            "idade" to idade
+        )
 
-        // [START read_message]
-        // Read from the database
-        myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val nome = intent.getStringExtra("nome")
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                val value = dataSnapshot.getValue<String>()
-                Log.d(TAG, "O nome do usuário é $nome")
+        val db = FirebaseFirestore.getInstance()
+        db.collection("Vihva").add(login_cliente)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Dados salvos com sucesso", Toast.LENGTH_SHORT).show()
             }
+            .addOnFailureListener {
+                Toast.makeText(this, "Erro ao salvar os dados", Toast.LENGTH_SHORT).show()
 
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Log.w(TAG, "Falha ao registrar.", error.toException())
+
+                fun basicReadWrite() {
+                    // [START write_message]
+                    // Write a message to the database
+                    val database = Firebase.database
+                    val myRef = database.getReference("message")
+
+                    myRef.setValue("Hello, World!")
+                    // [END write_message]
+
+                    // [START read_message]
+                    // Read from the database
+                    myRef.addValueEventListener(object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            val nome = intent.getStringExtra("nome")
+                            // This method is called once with the initial value and again
+                            // whenever data at this location is updated.
+                            val value = dataSnapshot.getValue<String>()
+                            Log.d(TAG, "O nome do usuário é $nome")
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            // Failed to read value
+                            Log.w(TAG, "Falha ao registrar.", error.toException())
+                        }
+                    })
+                    // [END read_message]
+                }
             }
-        })
-        // [END read_message]
     }
-
 }
