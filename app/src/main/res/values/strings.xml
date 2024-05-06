@@ -96,5 +96,14 @@
         <item>+49 Alemanha</item>
         <item>+244 Angola</item>
     </array>
+
+    <string name="hora_padrao">00:00</string>
+
+    <string name="escolher_horario">escolher Horario</string>
+
+    <string name="definir_alarme">Definir alarme</string>
+
+    <string name="cancelar_alarme">cancelar alarme</string>
+
 </resources>
 
