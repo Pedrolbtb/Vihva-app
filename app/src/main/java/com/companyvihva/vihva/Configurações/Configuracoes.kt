@@ -1,6 +1,7 @@
 package com.companyvihva.vihva.Configurações
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -9,40 +10,61 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import com.companyvihva.vihva.R
+import com.companyvihva.vihva.databinding.ActivityConfiguracoesBinding
 
 class Configuracoes : AppCompatActivity() {
+
+    private lateinit var spinnerDDI: Spinner
+    private lateinit var  editTextPhone: EditText
+    private lateinit var  editTextMsg: EditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_configuracoes)
 
-        /* TESTE DE INTENTS
-        val intent = intent
-        val name = intent.getStringExtra("name")
-        val phone = intent.getIntExtra("phone", 0)
+        // Inflar o layout usando o View Binding
+        //binding = ActivityConfiguracoesBinding.inflate(layoutInflater)
+        //setContentView(binding.root)
 
-        Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
-        */
 
         //obter um conjunto de preferências do app
-        val preference = getSharedPreferences("Vihva", Context.MODE_PRIVATE)
+        val preference = getSharedPreferences("vihva", Context.MODE_PRIVATE)
 
-        //ler as preferencias
-        val ddi = preference.getInt("ddi",2)
-        val phone = preference.getLong("text_celular", 0)
-        val mensagem = preference.getString("text_msg_padrao",R.string.text_msg_padrao.toString() )
+        loadPreference(preference)
 
-        val spinnerDDI: Spinner = findViewById(R.id.spinerDDI)
-        val editTextCelular: EditText = findViewById(R.id.editTextPhone)
-        val editTextMsg: EditText = findViewById(R.id.editTextMsg)
+        spinnerDDI = findViewById(R.id.spinerDDI)
+        editTextPhone = findViewById(R.id.editTextPhone)
+        editTextMsg = findViewById(R.id.editTextMsg)
 
+
+        //Salva as preferencias
         findViewById<Button>(R.id.btn_confirmar).setOnClickListener {
-            preference.edit().putInt("ddi", spinnerDDI.selectedItemPosition)
-            preference.edit().putLong("phone", editTextCelular.text.toString().toLong())
-            preference.edit().putString("text_msg_padrao", editTextMsg.text.toString())
-            preference.edit().apply()
+            preference.edit()
+            .putInt("ddi", spinnerDDI.selectedItemPosition)
+            .putLong("phone", editTextPhone.text.toString().toLong())
+            .putString("text_msg_padrao", editTextMsg.text.toString())
+            .apply()
+
+            //exibe o toast de confirmação
+            Toast.makeText(this, getString(R.string.Toast_configuracoes_sucesso), Toast.LENGTH_SHORT).show()
+
+
+        }// fim do save
+
+       findViewById<Button>(R.id.btn_restaurar).setOnClickListener {
+
+       }
+
 
         }
 
+         fun loadPreference(preferences: SharedPreferences){
+
+
+        //Exibe as preferencias
+        spinnerDDI.setSelection(preferences,getInt())
+        editTextPhone.setText(phone.toString())
+        editTextMsg.setText(mensagem)
+    }//fim do onCreate
 
     }
-}

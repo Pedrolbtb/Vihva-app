@@ -44,30 +44,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <View
-        android:id="@+id/containerComponents"
-        style="@style/ContainerComponents"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMsg" />
-
-
-    <TextView
+    <EditText
         android:id="@+id/editTextMsg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="256dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:text="@string/text_msg_padrao"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@id/containerComponents"
-        app:layout_constraintStart_toStartOf="@id/containerComponents"
-        app:layout_constraintTop_toTopOf="@+id/containerComponents" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewMsg"
@@ -93,7 +85,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextMsg" />
 
     <Button
-        android:id="@+id/btn_voltar"
+        android:id="@+id/btn_restaurar"
         android:layout_width="137dp"
         android:layout_height="49dp"
         android:layout_marginTop="36dp"
