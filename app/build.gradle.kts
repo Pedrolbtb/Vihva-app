@@ -72,6 +72,8 @@ dependencies {
     implementation("com.google.firebase:firebase-database")
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-common-ktx")
+    implementation ("com.google.firebase:firebase-firestore-ktx:23.0.3")
+
 
     //dependencia da biblioteca de mascaras
     implementation ("com.github.santalu:maskara:1.0.0")

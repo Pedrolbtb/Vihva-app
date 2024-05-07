@@ -32,6 +32,8 @@ class CadastroPac : AppCompatActivity() {
         binding = ActivityCadastroPacBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         originalEmailDrawable = binding.editEmail.background
         originalSenhaDrawable = binding.editSenha.background
         originalConfirmSenhaDrawable = binding.editConfirmsenha.background
