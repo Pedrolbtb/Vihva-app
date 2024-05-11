@@ -106,5 +106,7 @@
     <string name="cancelar_alarme">cancelar alarme</string>
 
     <string name="Toast_configuracoes_sucesso">Configurações salvas</string>
+
+    <string name="string_editar">Editar</string>
 </resources>
 
