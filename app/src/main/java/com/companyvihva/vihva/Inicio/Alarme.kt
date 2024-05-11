@@ -1,6 +1,8 @@
 package com.companyvihva.vihva.Inicio
 
+import android.content.Context
 import android.os.Bundle
+import android.content.SharedPreferences
 import android.text.format.DateFormat.is24HourFormat
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,6 +31,7 @@ class Alarme : Fragment() {
 
         // Configurar o listener de clique para o botão de imagem
         add_foto.setOnClickListener {
+            //picker de hora
             val picker =
                 MaterialTimePicker.Builder()
                     .setTimeFormat(TimeFormat.CLOCK_12H)
@@ -41,7 +44,11 @@ class Alarme : Fragment() {
                 val hour = picker.hour // Obter a hora selecionada
                 val minute = picker.minute // Obter o minuto selecionado
 
-                saveData(hour,minute)
+                val preferencehour = requireActivity().getSharedPreferences("vihva", Context.MODE_PRIVATE)
+                val editor = preferencehour.edit()
+                editor.putInt("hour", hour)
+                editor.putInt("minute", minute)
+                editor.apply()
             }
 
             picker.show(childFragmentManager, "timePicker")
@@ -55,7 +62,7 @@ class Alarme : Fragment() {
         return rootView
     }
 
-    private fun saveData(hour: Int, minute: Int){
+    /*private fun saveData(hour: Int, minute: Int){
         val dadosCliente = HashMap<String, Any>()
         dadosCliente["hora"] = hour
         dadosCliente["minuto"] = minute
@@ -67,7 +74,7 @@ class Alarme : Fragment() {
             .addOnFailureListener { e ->
                 Toast.makeText(requireContext(), "Erro ao salvar os dados: ${e.message}", Toast.LENGTH_SHORT).show()
             }
-    }
+    }*/
 }
 
 
