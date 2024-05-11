@@ -1,6 +1,7 @@
 package com.companyvihva.vihva.Inicio
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,39 +38,38 @@ class Perfil : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Obter o UID do usuário atualmente autenticado
         val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
 
-        // Verificar se o UID do usuário é válido
         currentUserUid?.let { uid ->
-            // Referência ao documento do usuário no Firestore
             val userDocRef = db.collection("clientes").document(uid)
 
-            // Ler os dados do documento do usuário
             userDocRef.get()
                 .addOnSuccessListener { document ->
-                    if (document != null && document.exists()){
-                        // O documento existe, você pode acessar os dados aqui
-                        val nome = document.getString("nome")
-                        val sobrenome = document.getString("sobrenome")
-                        val peso = document.getString("peso")
-                        val idade = document.getString("idade")
-                        val altura = document.getString("altura")
-                        val genero = document.getString("genero")
+                    if (document != null && document.exists()) {
+                        val data = document.data
+                        if (data != null) {
+                            val nome = data["nome"] as? String
+                            val sobrenome = data["sobrenome"] as? String
+                            val peso = data["peso"] as? Double
+                            val idade = data["idade"] as? Int
+                            val altura = data["altura"] as? Double
+                            val genero = data["genero"] as? String
 
-                        // Exibir os dados nos TextViews
-                        view.findViewById<TextView>(R.id.text_nome).text = "Nome: $nome $sobrenome"
-                        view.findViewById<TextView>(R.id.text_genero).text = "Gênero: $genero"
-                        view.findViewById<TextView>(R.id.text_idade).text = "Idade: $idade"
-                        view.findViewById<TextView>(R.id.text_altura).text = "Altura: $altura"
-                        view.findViewById<TextView>(R.id.text_peso).text = "Peso: $peso"
+                            view.findViewById<TextView>(R.id.text_nome).text =
+                                "Nome: $nome $sobrenome"
+                            view.findViewById<TextView>(R.id.text_genero).text = "Gênero: $genero"
+                            view.findViewById<TextView>(R.id.text_idade).text = "Idade: $idade"
+                            view.findViewById<TextView>(R.id.text_altura).text = "Altura: $altura"
+                            view.findViewById<TextView>(R.id.text_peso).text = "Peso: $peso"
+                        } else {
+                            Log.d("PerfilFragment", "Document data is null")
+                        }
                     } else {
-                        // documento vazio
+                        Log.d("PerfilFragment", "Document does not exist")
                     }
                 }
                 .addOnFailureListener { exception ->
-                    // Ocorreu um erro ao tentar acessar o documento
-                    // Você pode lidar com isso de acordo com sua lógica de negócios
+                    Log.d("PerfilFragment", "Error getting document", exception)
                 }
         }
     }
