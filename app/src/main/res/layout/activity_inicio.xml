@@ -92,7 +92,6 @@
             app:itemRippleColor="@color/indicador_selecao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:labelVisibilityMode="labeled"
             app:itemTextColor="@drawable/nav_bar_color"
             app:itemIconTint="@drawable/nav_bar_color"
             app:itemTextAppearanceActive="@font/cloudsoft_bold_700"

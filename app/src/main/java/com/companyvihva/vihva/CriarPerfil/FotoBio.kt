@@ -39,6 +39,7 @@ class FotoBio : AppCompatActivity() {
         imageView = findViewById(R.id.img_save)
         editTextBiografia = findViewById(R.id.Edit_biografia)
 
+
         //Recuperando os extras da intent
         val nome = intent.getStringExtra("nome")
         val sobrenome = intent.getStringExtra("sobrenome")
