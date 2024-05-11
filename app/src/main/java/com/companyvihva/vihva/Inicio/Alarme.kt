@@ -1,60 +1,73 @@
 package com.companyvihva.vihva.Inicio
 
 import android.os.Bundle
+import android.text.format.DateFormat.is24HourFormat
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.Toast
 import com.companyvihva.vihva.R
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
+import com.google.firebase.firestore.FirebaseFirestore
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Alarme.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Alarme : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    val db = FirebaseFirestore.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_alarme, container, false)
+        // Inflar o layout primeiro
+        val rootView = inflater.inflate(R.layout.fragment_alarme, container, false)
+
+        // Encontrar o botão de imagem após inflar o layout
+        val add_foto = rootView.findViewById<ImageButton>(R.id.add_foto)
+
+        // Configurar o listener de clique para o botão de imagem
+        add_foto.setOnClickListener {
+            val picker =
+                MaterialTimePicker.Builder()
+                    .setTimeFormat(TimeFormat.CLOCK_12H)
+                    .setHour(12)
+                    .setMinute(10)
+                    .setTitleText("Selecionar horário")
+                    .build()
+
+            picker.addOnPositiveButtonClickListener {
+                val hour = picker.hour // Obter a hora selecionada
+                val minute = picker.minute // Obter o minuto selecionado
+
+                saveData(hour,minute)
+            }
+
+            picker.show(childFragmentManager, "timePicker")
+        }
+
+        // Verificar o formato de hora do sistema usando o contexto da atividade associada ao fragmento
+        val isSystem24Hour = is24HourFormat(requireContext())
+        val clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
+
+        // Retornar a raiz do layout inflado
+        return rootView
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Alarme.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Alarme().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun saveData(hour: Int, minute: Int){
+        val dadosCliente = HashMap<String, Any>()
+        dadosCliente["hora"] = hour
+        dadosCliente["minuto"] = minute
+
+        db.collection("alarme").add(dadosCliente)
+            .addOnSuccessListener { documentReference ->
+                Toast.makeText(requireContext(), "Dados salvos com sucesso", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(requireContext(), "Erro ao salvar os dados: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 }
+
+

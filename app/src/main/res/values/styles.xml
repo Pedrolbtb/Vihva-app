@@ -137,7 +137,6 @@
         <item name="android:background">@drawable/adicionarfoto</item>
     </style>
 
-    <style name="fotoDois">@drawable/mais</style>
 
     <style name="Button_salvar">
         <item name="android:background">@drawable/button</item>

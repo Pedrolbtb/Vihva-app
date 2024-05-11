@@ -94,4 +94,18 @@
         app:layout_constraintEnd_toStartOf="@+id/btn_confirmar"
         app:layout_constraintTop_toBottomOf="@+id/editTextMsg" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_delete"
+        android:background="@drawable/button_voltar"
+        android:layout_width="200dp"
+        android:textColor="@color/off_white"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:layout_height="wrap_content"
+        android:text="Deletar conta"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

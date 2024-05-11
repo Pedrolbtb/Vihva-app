@@ -20,7 +20,6 @@ class FotoBio : AppCompatActivity() {
 
     private lateinit var imageView: ImageView
     private lateinit var editTextBiografia: EditText
-    private lateinit var contadorCaracteres: TextView
     private var _binding: ActivityFotoBioBinding? = null
     private val binding get() = _binding
     private val db = FirebaseFirestore.getInstance() // Referência para o Firestore
