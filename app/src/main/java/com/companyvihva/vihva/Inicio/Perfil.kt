@@ -5,15 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.companyvihva.vihva.R
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 // Declaração da classe Perfil, que é um Fragment
 class Perfil : Fragment() {
 
+    //Declaração da instancia do FireStore como propriedade da classe
+    private lateinit var db: FirebaseFirestore
+
     // Método onCreate() chamado quando a atividade está sendo criada
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Inicialização do Firestore dentro do onCreate
+        db = FirebaseFirestore.getInstance()
     }
 
     // Método onCreateView() usado para inflar a IU do fragmento
@@ -25,9 +33,44 @@ class Perfil : Fragment() {
         return inflater.inflate(R.layout.fragment_perfil, container, false)
     }
 
- val db = FirebaseFirestore.getInstance()
+    // Método onViewCreated() chamado após a criação da visualização do fragmento
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        // Obter o UID do usuário atualmente autenticado
+        val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
 
+        // Verificar se o UID do usuário é válido
+        currentUserUid?.let { uid ->
+            // Referência ao documento do usuário no Firestore
+            val userDocRef = db.collection("clientes").document(uid)
+
+            // Ler os dados do documento do usuário
+            userDocRef.get()
+                .addOnSuccessListener { document ->
+                    if (document != null && document.exists()){
+                        // O documento existe, você pode acessar os dados aqui
+                        val nome = document.getString("nome")
+                        val sobrenome = document.getString("sobrenome")
+                        val peso = document.getString("peso")
+                        val idade = document.getString("idade")
+                        val altura = document.getString("altura")
+                        val genero = document.getString("genero")
+
+                        // Exibir os dados nos TextViews
+                        view.findViewById<TextView>(R.id.text_nome).text = "Nome: $nome $sobrenome"
+                        view.findViewById<TextView>(R.id.text_genero).text = "Gênero: $genero"
+                        view.findViewById<TextView>(R.id.text_idade).text = "Idade: $idade"
+                        view.findViewById<TextView>(R.id.text_altura).text = "Altura: $altura"
+                        view.findViewById<TextView>(R.id.text_peso).text = "Peso: $peso"
+                    } else {
+                        // documento vazio
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    // Ocorreu um erro ao tentar acessar o documento
+                    // Você pode lidar com isso de acordo com sua lógica de negócios
+                }
+        }
+    }
 }
-
-
