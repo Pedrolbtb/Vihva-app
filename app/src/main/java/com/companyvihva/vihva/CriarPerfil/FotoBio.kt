@@ -1,16 +1,15 @@
 package com.companyvihva.vihva.CriarPerfil
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import com.companyvihva.vihva.R
-import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.Inicio.Inicio
+import com.companyvihva.vihva.R
 import com.companyvihva.vihva.databinding.ActivityFotoBioBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -38,29 +37,30 @@ class FotoBio : AppCompatActivity() {
         imageView = findViewById(R.id.img_save)
         editTextBiografia = findViewById(R.id.Edit_biografia)
 
-        // Recupera os dados da intent anterior
-        val nome = intent.getStringExtra("nome")
-        val sobrenome = intent.getStringExtra("sobrenome")
-        val idade = intent.getIntExtra("idade", 0)
-        val altura = intent.getIntExtra("altura", 0)
-        val peso = intent.getIntExtra("peso", 0)
-        val genero = intent.getStringExtra("genero")
 
-        // Exibe os dados nas TextViews
+        // Recupera os dados da intent anterior
+        val nome = intent.getStringExtra("nome") ?: ""
+        val sobrenome = intent.getStringExtra("sobrenome") ?: ""
+        val idade = intent.getIntExtra("idade", 18)
+        val altura = intent.getIntExtra("altura", 160)
+        val peso = intent.getIntExtra("peso", 60)
+        val genero = intent.getStringExtra("genero") ?: ""
+
+// Exibe os dados nas TextViews
         val textNome = findViewById<TextView>(R.id.text_nome)
-        textNome.text = "$nome $sobrenome"
+        textNome.text = if (nome.isNotEmpty() && sobrenome.isNotEmpty()) "$nome $sobrenome" else "Nome não fornecido"
 
         val textIdade = findViewById<TextView>(R.id.text_idade)
-        textIdade.text = "$idade anos"
+        textIdade.text = if (idade > 0) "$idade anos" else "Idade não fornecida"
 
         val textAltura = findViewById<TextView>(R.id.text_altura)
-        textAltura.text = "$altura cm"
+        textAltura.text = if (altura > 0) "$altura cm" else "Altura não fornecida"
 
         val textPeso = findViewById<TextView>(R.id.text_peso)
-        textPeso.text = "$peso kg"
+        textPeso.text = if (peso > 0) "$peso kg" else "Peso não fornecido"
 
         val textGenero = findViewById<TextView>(R.id.text_genero)
-        textGenero.text = "$genero"
+        textGenero.text = if (genero.isNotEmpty()) genero else "Gênero não fornecido"
 
         // Define um OnClickListener para a imageView
         imageView.setOnClickListener {
@@ -71,12 +71,12 @@ class FotoBio : AppCompatActivity() {
         findViewById<Button>(R.id.btn_retornar).setOnClickListener {
 
             // Passa os dados para a próxima activity
-            val genero = intent.getStringExtra("genero")
-            val nome = intent.getStringExtra("nome")
-            val sobrenome = intent.getStringExtra("sobrenome")
-            val idade = intent.getIntExtra("idade", 0)
-            val altura = intent.getIntExtra("altura", 0)
-            val peso = intent.getIntExtra("peso", 0)
+            val genero=intent.getStringExtra("genero")
+            val nome=intent.getStringExtra("nome")
+            val sobrenome=intent.getStringExtra("sobrenome")
+            val idade=intent.getIntExtra("idade" , 0)
+            val altura=intent.getIntExtra("altura" , 0)
+            val peso=intent.getIntExtra("peso" , 0)
 
             val criaPerfil2 = Intent(this, CriaPerfil2::class.java)
             criaPerfil2.putExtra("altura", altura)

@@ -2,11 +2,11 @@ package com.companyvihva.vihva.Inicio
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -46,24 +46,19 @@ class Perfil : Fragment() {
             userDocRef.get()
                 .addOnSuccessListener { document ->
                     if (document != null && document.exists()) {
-                        val data = document.data
-                        if (data != null) {
-                            val nome = data["nome"] as? String
-                            val sobrenome = data["sobrenome"] as? String
-                            val idade = data["idade"] as? Int
-                            val altura = data["altura"] as? Int
-                            val peso = data["peso"] as? Int
-                            val genero = data["genero"] as? String
+                        val nome = document.getString("nome")
+                        val sobrenome = document.getString("sobrenome")
+                        val idade = document.getLong("idade")?.toInt()
+                        val altura = document.getLong("altura")?.toInt()
+                        val peso = document.getLong("peso")?.toInt()
+                        val genero = document.getString("genero")
 
-                            view.findViewById<TextView>(R.id.text_nome).text =
-                                "Nome: $nome $sobrenome"
-                            view.findViewById<TextView>(R.id.text_genero).text = "Gênero: $genero"
-                            view.findViewById<TextView>(R.id.text_idade).text = "Idade: $idade"
-                            view.findViewById<TextView>(R.id.text_altura).text = "Altura: $altura"
-                            view.findViewById<TextView>(R.id.text_peso).text = "Peso: $peso"
-                        } else {
-                            Log.d("PerfilFragment", "Document data is null")
-                        }
+                        view.findViewById<TextView>(R.id.text_nome).text =
+                            "Nome: ${nome ?: "Nome não fornecido"} ${sobrenome ?: "Sobrenome não fornecido"}"
+                        view.findViewById<TextView>(R.id.text_genero).text = "Gênero: ${genero ?: "Gênero não fornecido"}"
+                        view.findViewById<TextView>(R.id.text_idade).text = "Idade: ${idade ?: "Idade não fornecida"}"
+                        view.findViewById<TextView>(R.id.text_altura).text = "Altura: ${altura ?: "Altura não fornecida"}"
+                        view.findViewById<TextView>(R.id.text_peso).text = "Peso: ${peso ?: "Peso não fornecido"}"
                     } else {
                         Log.d("PerfilFragment", "Document does not exist")
                     }
