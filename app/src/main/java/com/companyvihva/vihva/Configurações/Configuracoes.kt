@@ -11,7 +11,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import com.companyvihva.vihva.R
-import com.companyvihva.vihva.Configurações.ActivityDeletarPerfil
+//import com.companyvihva.vihva.Configurações.ActivityDeletarPerfil
 
 
 
@@ -29,7 +29,7 @@ class Configuracoes : AppCompatActivity() {
 
         findViewById<Button>(R.id.btn_delete).setOnClickListener {
            // // Redirecionar para a ActivityDeletarPerfil
-            startActivity(Intent(this, ActivityDeletarPerfil::class.java))
+          //  startActivity(Intent(this, ActivityDeletarPerfil::class.java))
         //    startActivity(ActivityDeletarPerfil)
        // }
 
