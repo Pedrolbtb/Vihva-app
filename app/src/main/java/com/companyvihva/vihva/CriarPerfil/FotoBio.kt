@@ -71,12 +71,12 @@ class FotoBio : AppCompatActivity() {
         findViewById<Button>(R.id.btn_retornar).setOnClickListener {
 
             // Passa os dados para a próxima activity
-            val altura = intent.getIntExtra("altura", 0)
-            val peso = intent.getIntExtra("peso", 0)
             val genero = intent.getStringExtra("genero")
             val nome = intent.getStringExtra("nome")
             val sobrenome = intent.getStringExtra("sobrenome")
             val idade = intent.getIntExtra("idade", 0)
+            val altura = intent.getIntExtra("altura", 0)
+            val peso = intent.getIntExtra("peso", 0)
 
             val criaPerfil2 = Intent(this, CriaPerfil2::class.java)
             criaPerfil2.putExtra("altura", altura)
@@ -120,7 +120,7 @@ class FotoBio : AppCompatActivity() {
 
     // Método para salvar os dados no Firestore
     private fun saveData(nome: String?, sobrenome: String?, genero: String?, idade: Int, altura: Int, peso: Int) {
-        // Verifica se algum dos campos essenciais está vazio
+// Verifica se algum dos campos essenciais está vazio
         if (nome.isNullOrEmpty() || sobrenome.isNullOrEmpty()) {
             Toast.makeText(this, "Por favor, preencha todos os campos", Toast.LENGTH_SHORT).show()
             return

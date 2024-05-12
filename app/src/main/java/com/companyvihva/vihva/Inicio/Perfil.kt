@@ -50,9 +50,9 @@ class Perfil : Fragment() {
                         if (data != null) {
                             val nome = data["nome"] as? String
                             val sobrenome = data["sobrenome"] as? String
-                            val peso = data["peso"] as? Double
                             val idade = data["idade"] as? Int
-                            val altura = data["altura"] as? Double
+                            val altura = data["altura"] as? Int
+                            val peso = data["peso"] as? Int
                             val genero = data["genero"] as? String
 
                             view.findViewById<TextView>(R.id.text_nome).text =
