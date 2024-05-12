@@ -46,25 +46,25 @@ class FotoBio : AppCompatActivity() {
         val genero = intent.getStringExtra("genero")
 
 // Verifica se os valores são nulos e atribui valores padrão se forem
-        val idadeCorrigida = if (idade == 0) 18 else idade
-        val alturaCorrigida = if (altura == 0) 160 else altura
-        val pesoCorrigido = if (peso == 0) 60 else peso
+        val idadeCorrigida = if (idade != null) idade else 18
+        val alturaCorrigida = if (altura != null) altura else 160
+        val pesoCorrigido = if (peso != null) peso else 60
 
 // Exibe os dados nas TextViews
-        val textNome=findViewById<TextView>(R.id.text_nome)
-        textNome.text="$nome $sobrenome"
+        val textNome = findViewById<TextView>(R.id.text_nome)
+        textNome.text = "$nome $sobrenome"
 
-        val textIdade=findViewById<TextView>(R.id.text_idade)
-        textIdade.text="$idadeCorrigida anos"
+        val textIdade = findViewById<TextView>(R.id.text_idade)
+        textIdade.text = "$idadeCorrigida anos"
 
-        val textAltura=findViewById<TextView>(R.id.text_altura)
-        textAltura.text="$alturaCorrigida cm"
+        val textAltura = findViewById<TextView>(R.id.text_altura)
+        textAltura.text = "$alturaCorrigida cm"
 
-        val textPeso=findViewById<TextView>(R.id.text_peso)
-        textPeso.text="$pesoCorrigido kg"
+        val textPeso = findViewById<TextView>(R.id.text_peso)
+        textPeso.text = "$pesoCorrigido kg"
 
-        val textGenero=findViewById<TextView>(R.id.text_genero)
-        textGenero.text=genero
+        val textGenero = findViewById<TextView>(R.id.text_genero)
+        textGenero.text = genero
 
         // Define um OnClickListener para a imageView
         imageView.setOnClickListener {
