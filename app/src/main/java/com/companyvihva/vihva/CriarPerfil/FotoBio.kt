@@ -1,16 +1,15 @@
 package com.companyvihva.vihva.CriarPerfil
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import com.companyvihva.vihva.R
-import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.Inicio.Inicio
+import com.companyvihva.vihva.R
 import com.companyvihva.vihva.databinding.ActivityFotoBioBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -52,20 +51,20 @@ class FotoBio : AppCompatActivity() {
         val pesoCorrigido = if (peso == 0) 60 else peso
 
 // Exibe os dados nas TextViews
-        val textNome = findViewById<TextView>(R.id.text_nome)
-        textNome.text = "$nome $sobrenome"
+        val textNome=findViewById<TextView>(R.id.text_nome)
+        textNome.text="$nome $sobrenome"
 
-        val textIdade = findViewById<TextView>(R.id.text_idade)
-        textIdade.text = "$idadeCorrigida anos"
+        val textIdade=findViewById<TextView>(R.id.text_idade)
+        textIdade.text="$idadeCorrigida anos"
 
-        val textAltura = findViewById<TextView>(R.id.text_altura)
-        textAltura.text = "$alturaCorrigida cm"
+        val textAltura=findViewById<TextView>(R.id.text_altura)
+        textAltura.text="$alturaCorrigida cm"
 
-        val textPeso = findViewById<TextView>(R.id.text_peso)
-        textPeso.text = "$pesoCorrigido kg"
+        val textPeso=findViewById<TextView>(R.id.text_peso)
+        textPeso.text="$pesoCorrigido kg"
 
-        val textGenero = findViewById<TextView>(R.id.text_genero)
-        textGenero.text = genero
+        val textGenero=findViewById<TextView>(R.id.text_genero)
+        textGenero.text=genero
 
         // Define um OnClickListener para a imageView
         imageView.setOnClickListener {
@@ -76,12 +75,12 @@ class FotoBio : AppCompatActivity() {
         findViewById<Button>(R.id.btn_retornar).setOnClickListener {
 
             // Passa os dados para a próxima activity
-            val genero = intent.getStringExtra("genero")
-            val nome = intent.getStringExtra("nome")
-            val sobrenome = intent.getStringExtra("sobrenome")
-            val idade = intent.getIntExtra("idade", 0)
-            val altura = intent.getIntExtra("altura", 0)
-            val peso = intent.getIntExtra("peso", 0)
+            val genero=intent.getStringExtra("genero")
+            val nome=intent.getStringExtra("nome")
+            val sobrenome=intent.getStringExtra("sobrenome")
+            val idade=intent.getIntExtra("idade" , 0)
+            val altura=intent.getIntExtra("altura" , 0)
+            val peso=intent.getIntExtra("peso" , 0)
 
             val criaPerfil2 = Intent(this, CriaPerfil2::class.java)
             criaPerfil2.putExtra("altura", altura)
