@@ -37,34 +37,30 @@ class FotoBio : AppCompatActivity() {
         imageView = findViewById(R.id.img_save)
         editTextBiografia = findViewById(R.id.Edit_biografia)
 
-// Recupera os dados da intent anterior
-        val nome = intent.getStringExtra("nome")
-        val sobrenome = intent.getStringExtra("sobrenome")
-        val idade = intent.getIntExtra("idade", 0)
-        val altura = intent.getIntExtra("altura", 0)
-        val peso = intent.getIntExtra("peso", 0)
-        val genero = intent.getStringExtra("genero")
 
-// Verifica se os valores são nulos e atribui valores padrão se forem
-        val idadeCorrigida = if (idade != null) idade else 18
-        val alturaCorrigida = if (altura != null) altura else 160
-        val pesoCorrigido = if (peso != null) peso else 60
+        // Recupera os dados da intent anterior
+        val nome = intent.getStringExtra("nome") ?: ""
+        val sobrenome = intent.getStringExtra("sobrenome") ?: ""
+        val idade = intent.getIntExtra("idade", 18)
+        val altura = intent.getIntExtra("altura", 160)
+        val peso = intent.getIntExtra("peso", 60)
+        val genero = intent.getStringExtra("genero") ?: ""
 
 // Exibe os dados nas TextViews
         val textNome = findViewById<TextView>(R.id.text_nome)
-        textNome.text = "$nome $sobrenome"
+        textNome.text = if (nome.isNotEmpty() && sobrenome.isNotEmpty()) "$nome $sobrenome" else "Nome não fornecido"
 
         val textIdade = findViewById<TextView>(R.id.text_idade)
-        textIdade.text = "$idadeCorrigida anos"
+        textIdade.text = if (idade > 0) "$idade anos" else "Idade não fornecida"
 
         val textAltura = findViewById<TextView>(R.id.text_altura)
-        textAltura.text = "$alturaCorrigida cm"
+        textAltura.text = if (altura > 0) "$altura cm" else "Altura não fornecida"
 
         val textPeso = findViewById<TextView>(R.id.text_peso)
-        textPeso.text = "$pesoCorrigido kg"
+        textPeso.text = if (peso > 0) "$peso kg" else "Peso não fornecido"
 
         val textGenero = findViewById<TextView>(R.id.text_genero)
-        textGenero.text = genero
+        textGenero.text = if (genero.isNotEmpty()) genero else "Gênero não fornecido"
 
         // Define um OnClickListener para a imageView
         imageView.setOnClickListener {

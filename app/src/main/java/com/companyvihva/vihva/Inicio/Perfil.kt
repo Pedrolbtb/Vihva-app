@@ -2,11 +2,11 @@ package com.companyvihva.vihva.Inicio
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -57,10 +57,10 @@ class Perfil : Fragment() {
 
                             view.findViewById<TextView>(R.id.text_nome).text =
                                 "Nome: $nome $sobrenome"
-                            view.findViewById<TextView>(R.id.text_genero).text = "$genero"
-                            view.findViewById<TextView>(R.id.text_idade).text = "$idade anos"
-                            view.findViewById<TextView>(R.id.text_altura).text = "$altura cm"
-                            view.findViewById<TextView>(R.id.text_peso).text = "$peso kg"
+                            view.findViewById<TextView>(R.id.text_genero).text = "Gênero: $genero"
+                            view.findViewById<TextView>(R.id.text_idade).text = "Idade: $idade"
+                            view.findViewById<TextView>(R.id.text_altura).text = "Altura: $altura"
+                            view.findViewById<TextView>(R.id.text_peso).text = "Peso: $peso"
                         } else {
                             Log.d("PerfilFragment", "Document data is null")
                         }
