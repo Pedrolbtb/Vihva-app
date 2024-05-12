@@ -1,0 +1,29 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Oval preto -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#6096a8" />
+        </shape>
+    </item>
+    <!-- Cruz branca -->
+    <!-- Linha horizontal -->
+    <item android:left="30dp" android:right="30dp">
+
+        <shape android:shape="line">
+            <stroke
+                android:width="19dp"
+                android:color="#FFFAF5" />
+        </shape>
+    </item>
+    <!-- Linha vertical -->
+    <item android:left="30dp" android:right="30dp">
+        <rotate
+            android:fromDegrees="90">
+            <shape android:shape="line">
+                <stroke
+                    android:width="19dp"
+                    android:color="#FFFAF5" />
+            </shape>
+        </rotate>
+    </item>
+</layer-list>
