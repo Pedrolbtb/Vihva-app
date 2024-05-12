@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="390dp"
+    android:layout_height="140dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/widget_alarme">
+
+    <TextView
+        android:id="@+id/desc_alarme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="aaaaaaaaaa"
+        android:textSize="25sp"
+        android:textColor="@color/off_white"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/hora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="45dp"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:text="aaaaaa"
+        android:textColor="@color/off_white"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/programado"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/programado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/off_white"
+        android:textSize="15sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="Não programado"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/alarm_droparrow" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:trackTint="@color/off_white"
+        app:thumbTint="@color/Letras"
+        />
+
+
+</android.support.constraint.ConstraintLayout>

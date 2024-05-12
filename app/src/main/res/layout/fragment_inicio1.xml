@@ -69,11 +69,12 @@
         <ImageButton
             android:id="@+id/card_diabete"
             android:layout_width="wrap_content"
-            android:layout_height="72dp"
+            android:layout_height="180dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:background="#00FFFFFF"
-            android:src="@drawable/engrenagem"
+            android:scaleType="fitStart"
+            android:src="@drawable/pasta__1_"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_iniciodoenca" />
 

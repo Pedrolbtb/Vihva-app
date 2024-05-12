@@ -7,6 +7,7 @@
     tools:context=".Inicio.Alarme">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/total"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background_home"
@@ -36,16 +37,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_alarme" />
 
-        <View
-            android:id="@+id/containerComponents"
-            android:layout_height="100dp"
+        <LinearLayout
+            android:id="@+id/layout_alarme"
             android:layout_width="match_parent"
-            android:layout_marginTop="190dp"
-            android:background="@drawable/alarme"
+            android:layout_height="570dp"
+            android:orientation="vertical"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-           />
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -30,7 +30,6 @@ class Configuracoes : AppCompatActivity() {
         //obter um conjunto de preferências do app
         val preference = getSharedPreferences("vihva", Context.MODE_PRIVATE)
 
-        loadPreference(preference)
 
         spinnerDDI = findViewById(R.id.spinerDDI)
         editTextPhone = findViewById(R.id.editTextPhone)
@@ -58,17 +57,7 @@ class Configuracoes : AppCompatActivity() {
 
         }
 
-         fun loadPreference(preferences: SharedPreferences){
-          val ddi = preferences.getInt("ddi",0)
-          val phone = preferences.getLong("phone",0)
-          val mensagem = preferences.getString("text_msg_padrao","")
 
-             //Exibe as preferencias
-             //spinnerDDI.setSelection(ddi)
-             //editTextPhone.setText(phone.toString())
-            // editTextMsg.setText(mensagem)
 
 
     }//fim do onCreate
-
-    }
