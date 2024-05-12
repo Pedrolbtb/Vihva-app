@@ -38,7 +38,7 @@ class FotoBio : AppCompatActivity() {
         imageView = findViewById(R.id.img_save)
         editTextBiografia = findViewById(R.id.Edit_biografia)
 
-        // Recupera os dados da intent anterior
+// Recupera os dados da intent anterior
         val nome = intent.getStringExtra("nome")
         val sobrenome = intent.getStringExtra("sobrenome")
         val idade = intent.getIntExtra("idade", 0)
@@ -46,21 +46,26 @@ class FotoBio : AppCompatActivity() {
         val peso = intent.getIntExtra("peso", 0)
         val genero = intent.getStringExtra("genero")
 
-        // Exibe os dados nas TextViews
+// Verifica se os valores são nulos e atribui valores padrão se forem
+        val idadeCorrigida = if (idade == 0) 18 else idade
+        val alturaCorrigida = if (altura == 0) 160 else altura
+        val pesoCorrigido = if (peso == 0) 60 else peso
+
+// Exibe os dados nas TextViews
         val textNome = findViewById<TextView>(R.id.text_nome)
         textNome.text = "$nome $sobrenome"
 
         val textIdade = findViewById<TextView>(R.id.text_idade)
-        textIdade.text = "$idade anos"
+        textIdade.text = "$idadeCorrigida anos"
 
         val textAltura = findViewById<TextView>(R.id.text_altura)
-        textAltura.text = "$altura cm"
+        textAltura.text = "$alturaCorrigida cm"
 
         val textPeso = findViewById<TextView>(R.id.text_peso)
-        textPeso.text = "$peso kg"
+        textPeso.text = "$pesoCorrigido kg"
 
         val textGenero = findViewById<TextView>(R.id.text_genero)
-        textGenero.text = "$genero"
+        textGenero.text = genero
 
         // Define um OnClickListener para a imageView
         imageView.setOnClickListener {
