@@ -57,10 +57,10 @@ class Perfil : Fragment() {
 
                             view.findViewById<TextView>(R.id.text_nome).text =
                                 "Nome: $nome $sobrenome"
-                            view.findViewById<TextView>(R.id.text_genero).text = "Gênero: $genero"
-                            view.findViewById<TextView>(R.id.text_idade).text = "Idade: $idade"
-                            view.findViewById<TextView>(R.id.text_altura).text = "Altura: $altura"
-                            view.findViewById<TextView>(R.id.text_peso).text = "Peso: $peso"
+                            view.findViewById<TextView>(R.id.text_genero).text = "$genero"
+                            view.findViewById<TextView>(R.id.text_idade).text = "$idade anos"
+                            view.findViewById<TextView>(R.id.text_altura).text = "$altura cm"
+                            view.findViewById<TextView>(R.id.text_peso).text = "$peso kg"
                         } else {
                             Log.d("PerfilFragment", "Document data is null")
                         }
