@@ -54,11 +54,11 @@ class Perfil : Fragment() {
                         val genero = document.getString("genero")
 
                         view.findViewById<TextView>(R.id.text_nome).text =
-                            "Nome: ${nome ?: "Nome não fornecido"} ${sobrenome ?: "Sobrenome não fornecido"}"
-                        view.findViewById<TextView>(R.id.text_genero).text = "Gênero: ${genero ?: "Gênero não fornecido"}"
-                        view.findViewById<TextView>(R.id.text_idade).text = "Idade: ${idade ?: "Idade não fornecida"}"
-                        view.findViewById<TextView>(R.id.text_altura).text = "Altura: ${altura ?: "Altura não fornecida"}"
-                        view.findViewById<TextView>(R.id.text_peso).text = "Peso: ${peso ?: "Peso não fornecido"}"
+                            "${nome ?: "Nome não fornecido"} ${sobrenome ?: "Sobrenome não fornecido"}"
+                        view.findViewById<TextView>(R.id.text_genero).text = "${genero ?: "Gênero não fornecido"}"
+                        view.findViewById<TextView>(R.id.text_idade).text = "${idade ?: "Idade não fornecida"} anos"
+                        view.findViewById<TextView>(R.id.text_altura).text = "${altura ?: "Altura não fornecida"} cm"
+                        view.findViewById<TextView>(R.id.text_peso).text = "${peso ?: "Peso não fornecido"} kg"
                     } else {
                         Log.d("PerfilFragment", "Document does not exist")
                     }
