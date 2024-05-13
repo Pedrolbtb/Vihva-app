@@ -115,14 +115,14 @@ class FotoBio : AppCompatActivity() {
         dadosCliente["peso"] = peso
         dadosCliente["biografia"] = biografia!!
 
-        try {
+        //try {
             // Convertendo a imagem em bytes
-            val drawable = imageView.drawable
-            val bitmap = (drawable as BitmapDrawable).bitmap
-            val outputStream = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
-            val imageData = outputStream.toByteArray()
-            dadosCliente["bytesImagem"] = imageData
+           // val drawable = imageView.drawable
+           // val bitmap = (drawable as BitmapDrawable).bitmap
+           // val outputStream = ByteArrayOutputStream()
+           /// bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+           // val imageData = outputStream.toByteArray()
+           // dadosCliente["bytesImagem"] = imageData
 
             // Adiciona os dados à coleção "clientes" no Firestore
             db.collection("clientes").add(dadosCliente)
@@ -138,14 +138,14 @@ class FotoBio : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-        } catch (e: Exception) {
-            Log.e(TAG, "Erro ao converter a imagem em bytes: ", e)
-            Toast.makeText(
-                this,
-                "Erro ao converter a imagem em bytes: ${e.message}",
-                Toast.LENGTH_SHORT
-            ).show()
+       // } catch (e: Exception) {
+         //   Log.e(TAG, "Erro ao converter a imagem em bytes: ", e)
+          //  Toast.makeText(
+           //     this,
+            //    "Erro ao converter a imagem em bytes: ${e.message}",
+             //   Toast.LENGTH_SHORT
+           // ).show()
         }
     }
-}
+//}
 
