@@ -1,3 +1,5 @@
+package com.companyvihva.vihva.Configurações;
+
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +9,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import com.companyvihva.vihva.R
-import com.companyvihva.vihva.databinding.ActivityDeletarPerfilBinding
+import com.companyvihva.vihva.databinding.ActivityConfiguracoesBinding
 
 class Configuracoes : AppCompatActivity() {
 
@@ -22,7 +24,7 @@ class Configuracoes : AppCompatActivity() {
         val btn_delete = findViewById<Button>(R.id.btn_delete)
         btn_delete.setOnClickListener {
             // Ao clicar no botão de deletar, leva o usuário para a tela de deletar perfil
-            val intent = Intent(this, ActivityDeletarPerfilBinding::class.java)
+            val intent = Intent(this, Configuracoes::class.java)
             startActivity(intent)
         }
 
