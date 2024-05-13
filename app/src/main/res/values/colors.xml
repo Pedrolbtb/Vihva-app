@@ -13,7 +13,7 @@
     <color name="telaPassada">#648691</color> //cor de uma tela que já foi usada como na breadcrumb
     <color name="indicador_selecao">#99FFFAF5</color>//cinza
     <color name="rosa_claro">#FFB6C1</color>
-    <color name="rosa_escuto">#FF8484</color>
+    <color name="rosa_escuro">#FF8484</color>
 
 
     ////CORES DO CHAT QUE VAO MUDAR/////
