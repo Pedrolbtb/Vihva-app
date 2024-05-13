@@ -19,11 +19,11 @@
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/spinerDDI"
+        app:layout_constraintStart_toStartOf="@+id/spinnerDDI"
         app:layout_constraintTop_toBottomOf="@+id/editTextCelular" />
 
     <Spinner
-        android:id="@+id/spinerDDI"
+        android:id="@+id/spinnerDDI"
         android:layout_width="120dp"
         android:layout_height="48dp"
         android:layout_marginStart="20dp"
@@ -49,12 +49,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginTop="256dp"
+        android:layout_marginEnd="10dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        android:text="@string/text_msg_padrao"
+        android:text="@string/default_msg"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -70,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinerDDI" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerDDI" />
 
 
 

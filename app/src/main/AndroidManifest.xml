@@ -28,7 +28,7 @@
             android:name=".Descricao.Descricao"
             android:exported="false" />
         <activity
-            android:name=".Configurações.Configuracoes"
+            android:name=".Inicio.Inicio"
             android:exported="false" />
         <activity
             android:name=".CriarPerfil.FotoBio"
@@ -46,7 +46,7 @@
             android:name=".Cadastro.CadastroPac"
             android:exported="false" />
         <activity
-            android:name=".Inicio.Inicio"
+            android:name=".Configurações.Configuracoes"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

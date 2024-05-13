@@ -65,6 +65,7 @@ dependencies {
     implementation("com.android.support.constraint:constraint-layout:1.1.3")
     implementation ("com.google.android.material:material:<version>")
 
+
     //dependencias do Firebase
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
     implementation("com.google.firebase:firebase-analytics")

@@ -11,7 +11,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import com.companyvihva.vihva.R
-//import com.companyvihva.vihva.Configurações.ActivityDeletarPerfil
+import com.companyvihva.vihva.Configurações.ActivityDeletarPerfil
 
 
 
@@ -21,51 +21,79 @@ class Configuracoes : AppCompatActivity() {
 
     private lateinit var spinnerDDI: Spinner
     private lateinit var editTextPhone: EditText
-    private lateinit var editTextMsg: EditText
+    private lateinit var editTextMessage: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_configuracoes)
 
-        findViewById<Button>(R.id.btn_delete).setOnClickListener {
-           // // Redirecionar para a ActivityDeletarPerfil
-          //  startActivity(Intent(this, ActivityDeletarPerfil::class.java))
-        //    startActivity(ActivityDeletarPerfil)
-       // }
+        val btn_delete = findViewById<Button>(R.id.btn_delete)
 
-        // Obter um conjunto de preferências do app
-        val preference = getSharedPreferences("vihva", Context.MODE_PRIVATE)
-       // loadPreference(preference)
+        btn_delete.setOnClickListener {
+            val intent = Intent(this, NovaTelaActivity::class.java)
+            startActivity(intent)
 
-        spinnerDDI = findViewById(R.id.spinerDDI)
+        /* SÓ TESTE
+        val nome = intent.getStringExtra("nome")
+        val nome = intent.getIntExtra("nome", 0)
+
+        Toast.makeTest(this, name + "Tel: " + phone, Toast.LENGHT_SHORT).show()
+         */
+
+
+        //vincula XML (tela)  e Kotlin (classe)
+        spinnerDDI = findViewById(R.id.spinnerDDI)
         editTextPhone = findViewById(R.id.editTextPhone)
-        editTextMsg = findViewById(R.id.editTextMsg)
+        editTextMessage = findViewById(R.id.editTextMsg)
 
-        // Salvar as preferências
+        //obter um conjunto de preferências do App
+        val preferences = getSharedPreferences(
+            "socorro",
+            Context.MODE_PRIVATE
+        ); /* esse mode private é pra não pegar tipo o modo escuro do seu celular, é p vc escolher só pra esse app*/
+
+        //ler as preferências(se existir)
+        loadPreferences(preferences)
+        //ddi é int pq ele tá num vetor, então ta salvando a POSIÇÃO (0, 1, 2...)
+
+
+        //botão salvar das preferencias
         findViewById<Button>(R.id.btn_confirmar).setOnClickListener {
-            preference.edit()
+            //val editPreferences = preferences.edit()
+            //preferences.edit().putInt("ddi", spinnerDDI.selectedItemPosition)
+            //preferences.edit().putLong("phone", editTextPhone.text.toString().toLong())
+            //preferences.edit().putString("default_msg", editTextMessage.text.toString())
+            //preferences.edit().apply()
+
+            preferences.edit()
                 .putInt("ddi", spinnerDDI.selectedItemPosition)
                 .putLong("phone", editTextPhone.text.toString().toLong())
-                .putString("text_msg_padrao", editTextMsg.text.toString())
+                .putString("default_msg", editTextMessage.text.toString())
                 .apply()
 
-            // Exibir o toast de confirmação
-            Toast.makeText(this, getString(R.string.Toast_configuracoes_sucesso), Toast.LENGTH_SHORT).show()
-        }
+            //TOAST é a mensagenzinha que aparece embaixo falando que deu certo
+            Toast.makeText(this, getString(R.string.preferences_success), Toast.LENGTH_SHORT).show()
 
+        }//fim do save
+
+        //ouvinte do click do botão restaurar
         findViewById<Button>(R.id.btn_restaurar).setOnClickListener {
-            // Implementar a lógica de restaurar as configurações padrão aqui
-        }
-    }
 
-   // private fun loadPreference(preferences: SharedPreferences) {
-        //val ddi = preferences.getInt("ddi", 0)
-       // val phone = preferences.getLong("phone", 0)
-       // val mensagem = preferences.getString("text_msg_padrao", "")
 
-        // Exibir as preferências
-        // spinnerDDI.setSelection(ddi)
-        // editTextPhone.setText(phone.toString())
-        // editTextMsg.setText(mensagem)
-    }
-}
+        }//fim do restaurar
+
+    } //fim do onCreate
+
+    fun loadPreferences(preferences: SharedPreferences){
+        //ja faz isso la embaixo
+        //val ddi = preferences.getInt("ddi",2) //se tiver ddi(preferencia), pega ela, se n tiver, pega o padrão (posição 2: Brasil)
+        //val phone = preferences.getLong("phone",0) //ex.: 19.999.739.741; int não salva toda essa qtde, só 32bits
+        //val defaultMsg = preferences.getString("default_msg",getString (R.string.default_msg)) //R é uma classe q guarda tudo que eu crio de tela
+
+        //exibir as preferencias
+        spinnerDDI.setSelection( preferences.getInt("ddi",2))
+        editTextPhone.setText(preferences.getLong("phone",0).toString())
+        editTextMessage.setText(preferences.getString("default_msg",getString (R.string.default_msg)))
+    }//fim do loadpreferences
+
+}//fim da classe
