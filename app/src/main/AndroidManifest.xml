@@ -16,9 +16,14 @@
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31" >
         <activity
-            android:name=".Configurações.Deletar_perfil"
+            android:name=".Inicio.Lista_chats"
             android:exported="false" />
-        <!-- Outras atividades aqui -->
+        <activity
+            android:name=".Inicio.Chat"
+            android:exported="false" />
+        <activity
+            android:name=".Configurações.Deletar_perfil"
+            android:exported="false" /> <!-- Outras atividades aqui -->
         <activity
             android:name=".Descricao.Descricao"
             android:exported="false" />
@@ -43,7 +48,6 @@
         <activity
             android:name=".Configurações.Configuracoes"
             android:exported="true" >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
