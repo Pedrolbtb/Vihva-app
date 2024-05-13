@@ -48,9 +48,9 @@ class Perfil : Fragment() {
                     if (document != null && document.exists()) {
                         val nome = document.getString("nome")
                         val sobrenome = document.getString("sobrenome")
-                        val idade = document.getLong("idade")?.toInt()
-                        val altura = document.getLong("altura")?.toInt()
-                        val peso = document.getLong("peso")?.toInt()
+                        val idade = document.getLong("idade")?.toString()
+                        val altura = document.getLong("altura")?.toString()
+                        val peso = document.getLong("peso")?.toString()
                         val genero = document.getString("genero")
 
                         view.findViewById<TextView>(R.id.text_nome).text =

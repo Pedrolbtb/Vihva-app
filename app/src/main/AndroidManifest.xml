@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
         android:allowBackup="true"
@@ -21,12 +24,7 @@
         <activity
             android:name=".Inicio.Lista_chats"
             android:exported="false" />
-        <activity
-            android:name=".Configurações.Deletar_perfil"
-            android:exported="false" />
-        <activity
-            android:name=".Inicio.Chat"
-            android:exported="false" /> <!-- Outras atividades aqui -->
+
         <activity
             android:name=".Descricao.Descricao"
             android:exported="false" />
@@ -37,7 +35,7 @@
             android:name=".CriarPerfil.FotoBio"
             android:exported="false" />
         <activity
-            android:name=".Login.Login"
+            android:name=".Configurações.Configuracoes"
             android:exported="false" />
         <activity
             android:name=".CriarPerfil.CriaPerfil2"
@@ -49,7 +47,7 @@
             android:name=".Cadastro.CadastroPac"
             android:exported="false" />
         <activity
-            android:name=".Configuracoes.Configuracoes"
+            android:name=".Login.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
