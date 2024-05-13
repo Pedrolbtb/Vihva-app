@@ -168,4 +168,12 @@
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
     </style>
 
+    <style name="Button_AddUsuario">
+        <item name="android:background">@drawable/adicionarfoto</item> <!-- Aqui você define o fundo do botão -->
+        <item name="android:textColor">@color/Letras</item> <!-- Aqui você define a cor do texto do botão -->
+        <item name="android:textSize">20sp</item> <!-- Aqui você define o tamanho do texto do botão -->
+    </style>
+
+
+
 </resources>
