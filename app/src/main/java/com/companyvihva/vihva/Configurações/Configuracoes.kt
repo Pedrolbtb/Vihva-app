@@ -1,15 +1,17 @@
 package com.companyvihva.vihva.Configurações
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import com.companyvihva.vihva.R
-//import com.companyvihva.vihva.Configurações.ActivityDeletarPerfil
+import com.companyvihva.vihva.Configurações.ActivityDeletarPerfil
 
 
 
@@ -28,7 +30,7 @@ class Configuracoes : AppCompatActivity() {
         val btn_delete = findViewById<Button>(R.id.btn_delete)
 
         btn_delete.setOnClickListener {
-            val intent = Intent(this, activity_deletar_perfil::class.java)
+            val intent = Intent(this, NovaTelaActivity::class.java)
             startActivity(intent)
 
         /* SÓ TESTE
