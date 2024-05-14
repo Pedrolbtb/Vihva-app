@@ -1,5 +1,6 @@
 package com.companyvihva.vihva.Configurações;
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.databinding.ActivityConfiguracoesBinding
 
@@ -58,7 +60,25 @@ class Configuracoes : AppCompatActivity() {
         // Ouvinte do botão para restaurar preferências
         findViewById<Button>(R.id.btn_restaurar).setOnClickListener {
             // Aqui você pode implementar a lógica para restaurar as preferências
-        }
+            AlertDialog.Builder(this)
+                .setTitle(getString(R.string.text_warning))
+                .setMessage(getString(R.string.text_restore_mensage))
+                .setPositiveButton("Sim", DialogInterface.OnClickListener{dialogInterface, i ->
+
+
+                    preferences.edit()
+                        .remove("ddi")
+                        .remove("phone")
+                        .remove("default_msg")
+                        .apply()
+
+                    //carrega as novas preferencias(similar ao refresh em aplicações web
+                    loadPreferences(preferences)
+                })
+                .setNegativeButton("Não", null)
+                .create()
+                .show()
+        }//Fim do restaurar
     }
 
     // Método para carregar preferências e atualizar a UI
@@ -66,10 +86,7 @@ class Configuracoes : AppCompatActivity() {
         spinnerDDI.setSelection(preferences.getInt("ddi", 2))
         editTextPhone.setText(preferences.getLong("phone", 0).toString())
         editTextMessage.setText(
-            preferences.getString(
-                "default_msg",
-                getString(R.string.default_msg)
-            )
-        )
-    }
-}
+            preferences.getString("default_msg", getString(R.string.default_msg)))
+
+    }// fim do loadPreferences
+}//fim da classe

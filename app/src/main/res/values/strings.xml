@@ -114,5 +114,13 @@
     <string name="preferences_success">Preferências salvas com sucesso!</string>
 
     <string name="string_editar">Editar</string>
+
+    <string name="text_warning">Atenção</string>
+
+    <string name="text_restore_mensage">"Deseja realmente restaurar as preferencias para o padrão?"</string>
+
+
+
+
 </resources>
 
