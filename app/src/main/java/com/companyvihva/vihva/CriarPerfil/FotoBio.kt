@@ -140,7 +140,7 @@ class FotoBio : AppCompatActivity() {
             )
 
             // Atualiza o documento existente com os dados adicionais do perfil
-            db.collection("clientes").document(uid).update(dadosPerfil)
+            db.collection("clientes").document(uid).update(dadosPerfil as Map<String, Any>)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Dados salvos com sucesso", Toast.LENGTH_SHORT).show()
                 }

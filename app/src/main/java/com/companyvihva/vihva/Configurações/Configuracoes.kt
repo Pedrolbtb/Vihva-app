@@ -1,6 +1,5 @@
 package com.companyvihva.vihva.Configurações;
 
-import Deletar_perfil
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity

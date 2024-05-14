@@ -24,6 +24,8 @@
         <activity
             android:name=".Inicio.Lista_chats"
             android:exported="false" />
+        <activity android:name=".Configurações.Deletar_perfil"
+            android:exported="false"/>
 
         <activity
             android:name=".Descricao.Descricao"
