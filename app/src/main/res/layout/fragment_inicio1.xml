@@ -74,7 +74,7 @@
             android:layout_marginTop="10dp"
             android:background="#00FFFFFF"
             android:scaleType="fitStart"
-            android:src="@drawable/pasta_tcc__1_"
+            android:src="@drawable/pasta_2_svg"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_iniciodoenca" />
 
