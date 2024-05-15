@@ -126,9 +126,9 @@
     <style name="layout_campos">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">20dp</item>
         <item name="android:textColor">@color/Letras</item>
         <item name="hintEnabled">false</item>
+        <item name="android:layout_marginTop">20dp</item>
         <item name="endIconMode">clear_text</item>
         <item name="endIconTint">@color/Letras</item>
     </style>
@@ -172,6 +172,21 @@
         <item name="android:background">@drawable/adicionarfoto</item> <!-- Aqui você define o fundo do botão -->
         <item name="android:textColor">@color/Letras</item> <!-- Aqui você define a cor do texto do botão -->
         <item name="android:textSize">20sp</item> <!-- Aqui você define o tamanho do texto do botão -->
+    </style>
+
+    <style name="Edit_Text_Alarme">
+
+        <!--limita a quantidade de caracteres-->
+        <item name="android:maxLength">25</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!--puxando o style drawlable/edittext-->
+        <item name="android:background">@drawable/edit_text</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:inputType">textEmailAddress</item>
+        <item name="android:textColor">@color/Letras</item>
+        <item name="android:textSize">20dp</item>
+        <item name="fontFamily">@font/cloudsoft_bold_700</item>
     </style>
 
 

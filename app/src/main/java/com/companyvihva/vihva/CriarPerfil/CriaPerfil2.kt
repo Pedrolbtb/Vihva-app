@@ -27,7 +27,7 @@ class CriaPerfil2 : AppCompatActivity() {
 
 
         // Inicializando as variáveis com referências aos elementos da UI
-        val edit_altura: EditText = findViewById<EditText>(R.id.edit_altura)
+        val edit_altura: EditText = findViewById<EditText>(R.id.edit_nome_alarme)
         val edit_peso = findViewById<EditText>(R.id.edit_peso)
         val radio_group = findViewById<RadioGroup>(R.id.radioGroup)
 

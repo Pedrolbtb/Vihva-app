@@ -74,7 +74,7 @@
 
         <!-- campos de altura-->
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_altura"
+            android:id="@+id/edit_nome_alarme"
             style="@style/Edit_Text_Login"
             android:drawableTint="@color/Letras"
             android:hint="@string/text_caltura"
