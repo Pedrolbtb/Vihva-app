@@ -1,23 +1,24 @@
 package com.companyvihva.vihva.Inicio
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-// Declaração da classe Perfil, que é um Fragment
 class Perfil : Fragment() {
 
-    //Declaração da instancia do FireStore como propriedade da classe
     private lateinit var db: FirebaseFirestore
 
-    // Método onCreate() chamado quando a atividade está sendo criada
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -25,7 +26,6 @@ class Perfil : Fragment() {
         db = FirebaseFirestore.getInstance()
     }
 
-    // Método onCreateView() usado para inflar a IU do fragmento
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,7 +34,6 @@ class Perfil : Fragment() {
         return inflater.inflate(R.layout.fragment_perfil, container, false)
     }
 
-    // Método onViewCreated() chamado após a criação da visualização do fragmento
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -59,7 +58,7 @@ class Perfil : Fragment() {
                         view.findViewById<TextView>(R.id.text_idade).text = "${idade ?: "Idade não fornecida"} anos"
                         view.findViewById<TextView>(R.id.text_altura).text = "${altura ?: "Altura não fornecida"} cm"
                         view.findViewById<TextView>(R.id.text_peso).text = "${peso ?: "Peso não fornecido"} kg"
-                        view.findViewById<TextView>(R.id.View_biografia).text = "${biografia ?: "Biograifa não fornecida"} "
+                        view.findViewById<TextView>(R.id.View_biografia).text = "${biografia ?: "Biografia não fornecida"} "
                     } else {
                         Log.d("PerfilFragment", "Document does not exist")
                     }
@@ -68,5 +67,84 @@ class Perfil : Fragment() {
                     Log.d("PerfilFragment", "Error getting document", exception)
                 }
         }
+
+        val btn_editar = view.findViewById<Button>(R.id.btn_editar)
+        btn_editar.setOnClickListener {
+            // Abrir o popup para editar o perfil
+            showEditPerfilPopup()
+        }
+    }
+
+    private fun showEditPerfilPopup(){
+        // Inflar o layout do popup
+        val inflater = LayoutInflater.from(requireContext())
+        val popupView = inflater.inflate(R.layout.popup_editar_bio, null)
+
+        // Criar o AlertDialog
+        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+        alertDialogBuilder.setView(popupView)
+
+        // Encontrar os elementos dentro do popup
+        val editNomeV2 = popupView.findViewById<EditText>(R.id.edit_nome_v2)
+        val editSobreNomeV2 = popupView.findViewById<EditText>(R.id.edit_sobrenome_v2)
+        val editIdadeV2 = popupView.findViewById<EditText>(R.id.edit_idade_v2)
+        val editAlturaV2 = popupView.findViewById<EditText>(R.id.edit_altura_v2)
+        val editPesoV2 = popupView.findViewById<EditText>(R.id.edit_peso_V2)
+        val radioGroupV2 = popupView.findViewById<RadioGroup>(R.id.radioGroup_v2)
+        val editbiografiaV2 = popupView.findViewById<EditText>(R.id.edit_biografia_V2)
+        val btnSAlvarV2 = popupView.findViewById<Button>(R.id.btn_salvar_V2)
+
+        // Configurar o AlertDialog e exibi-lo
+        val alertDialog = alertDialogBuilder.create()
+
+
+        //Adiciona o OnClicklistener ao botão "Salvar"
+
+        popupView.findViewById<Button>(R.id.btn_salvar_V2).setOnClickListener {
+            val novoNome = editNomeV2.text.toString()
+            val novoSobrenome = editSobreNomeV2.text.toString()
+            val novaIdade = editIdadeV2.text.toString().toIntOrNull()
+            val novaAltura = editAlturaV2.text.toString().toIntOrNull()
+            val novoPeso = editPesoV2.text.toString().toIntOrNull()
+            val novoGenero = when (radioGroupV2.checkedRadioButtonId){
+                R.id.radio_masc_v2 -> "Masculino"
+                R.id.radio_fem_v2 -> "Feminino"
+                R.id.radio_Semgen_v2 -> "prefiro não dizer"
+
+                else -> null
+            }
+
+            val novaBiografia = editbiografiaV2.text.toString()
+
+            //Atualizar os valores no Firebase
+            val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
+            currentUserId?.let {uid ->
+                val userDocRef = db.collection("clientes").document(uid)
+                userDocRef.update(
+                    mapOf(
+                        "nome" to novoNome,
+                        "sobrenome" to novoSobrenome,
+                        "idade" to novaIdade,
+                        "altura" to novaAltura,
+                        "peso" to novoPeso,
+                        "genero" to novoGenero,
+                        "biografia" to novaBiografia
+                    )
+
+                ).addOnSuccessListener {
+                    Log.d("PerfilFragment", "Informações atualizadas com sucesso")
+                    //Fecha o AlertDialog após salvar
+                    alertDialog.dismiss()
+                }.addOnFailureListener{
+
+                }
+
+
+
+            }
+
+        }
+        alertDialog.show()
+
     }
 }

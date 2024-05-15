@@ -119,6 +119,10 @@
 
     <string name="text_restore_mensage">"Deseja realmente restaurar as preferencias para o padrão?"</string>
 
+    <string name="text_popup_edita_topo">Editar informações</string>
+
+    <string name="text_editar_title_bio">Editar Biografia</string>
+
 
 
 
