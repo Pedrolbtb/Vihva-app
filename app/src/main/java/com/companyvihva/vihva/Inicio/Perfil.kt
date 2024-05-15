@@ -85,12 +85,12 @@ class Perfil : Fragment() {
         alertDialogBuilder.setView(popupView)
 
         // Encontrar os elementos dentro do popup
-        val editNomeV2 = popupView.findViewById<EditText>(R.id.edit_nome_v2)
-        val editSobreNomeV2 = popupView.findViewById<EditText>(R.id.edit_sobrenome_v2)
-        val editIdadeV2 = popupView.findViewById<EditText>(R.id.edit_idade_v2)
-        val editAlturaV2 = popupView.findViewById<EditText>(R.id.edit_altura_v2)
+        val editNomeV2 = popupView.findViewById<EditText>(R.id.edit_nome_V2)
+        val editSobreNomeV2 = popupView.findViewById<EditText>(R.id.edit_sobrenome_V2)
+        val editIdadeV2 = popupView.findViewById<EditText>(R.id.edit_idade_V2)
+        val editAlturaV2 = popupView.findViewById<EditText>(R.id.edit_altura_V2)
         val editPesoV2 = popupView.findViewById<EditText>(R.id.edit_peso_V2)
-        val radioGroupV2 = popupView.findViewById<RadioGroup>(R.id.radioGroup_v2)
+        val radioGroupV2 = popupView.findViewById<RadioGroup>(R.id.radioGroup)
         val editbiografiaV2 = popupView.findViewById<EditText>(R.id.edit_biografia_V2)
         val btnSAlvarV2 = popupView.findViewById<Button>(R.id.btn_salvar_V2)
 
@@ -107,9 +107,9 @@ class Perfil : Fragment() {
             val novaAltura = editAlturaV2.text.toString().toIntOrNull()
             val novoPeso = editPesoV2.text.toString().toIntOrNull()
             val novoGenero = when (radioGroupV2.checkedRadioButtonId){
-                R.id.radio_masc_v2 -> "Masculino"
-                R.id.radio_fem_v2 -> "Feminino"
-                R.id.radio_Semgen_v2 -> "prefiro não dizer"
+                R.id.radio_masc_V2 -> "Masculino"
+                R.id.radio_fem_V2-> "Feminino"
+                R.id.radio_Semgen_V2-> "prefiro não dizer"
 
                 else -> null
             }

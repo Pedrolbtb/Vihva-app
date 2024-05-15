@@ -20,19 +20,16 @@
 
 
         <activity
-            android:name=".Inicio.Lista_chats"
-            android:exported="false" />
-        <activity
             android:name=".Descricao.Descricao"
             android:exported="false" />
         <activity
-            android:name=".Inicio.Inicio"
+            android:name=".Configurações.Configuracoes"
             android:exported="false" />
         <activity
             android:name=".CriarPerfil.FotoBio"
             android:exported="false" />
         <activity
-            android:name=".Login.Login"
+            android:name=".Inicio.Inicio"
             android:exported="false" />
         <activity
             android:name=".CriarPerfil.CriaPerfil2"
@@ -44,14 +41,14 @@
             android:name=".Cadastro.CadastroPac"
             android:exported="false" />
         <activity
-            android:name=".Configurações.Configuracoes"
+            android:name=".Login.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
