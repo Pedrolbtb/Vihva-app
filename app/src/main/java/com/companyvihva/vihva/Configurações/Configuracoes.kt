@@ -5,13 +5,17 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.companyvihva.vihva.Login.Login
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.databinding.ActivityConfiguracoesBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class Configuracoes : AppCompatActivity() {
 
@@ -25,9 +29,8 @@ class Configuracoes : AppCompatActivity() {
 
         val btn_delete = findViewById<Button>(R.id.btn_delete)
         btn_delete.setOnClickListener {
-            // Ao clicar no botão de deletar, leva o usuário para a tela de deletar perfil
-            val intent = Intent(this, Deletar_perfil::class.java)
-            startActivity(intent)
+            // Abrir o popup para confirmar a exclusão
+            showDeleteProfilePopup()
         }
 
         // Vincula elementos do layout com variáveis Kotlin
@@ -86,7 +89,71 @@ class Configuracoes : AppCompatActivity() {
         spinnerDDI.setSelection(preferences.getInt("ddi", 2))
         editTextPhone.setText(preferences.getLong("phone", 0).toString())
         editTextMessage.setText(
-            preferences.getString("default_msg", getString(R.string.default_msg)))
 
-    }// fim do loadPreferences
-}//fim da classe
+            preferences.getString(
+                "default_msg",
+                getString(R.string.default_msg)
+            )
+        )
+    }
+
+    // Método para mostrar o popup de exclusão de perfil
+    private fun showDeleteProfilePopup() {
+        // Inflar o layout do popup
+        val inflater = LayoutInflater.from(this)
+        val popupView = inflater.inflate(R.layout.popup_deletar_perfil, null)
+
+        // Criar um AlertDialog
+        val alertDialogBuilder = AlertDialog.Builder(this)
+        alertDialogBuilder.setView(popupView)
+
+        // Encontrar os botões dentro do popup
+        val btnSim = popupView.findViewById<Button>(R.id.btn_sim)
+        val btnNao = popupView.findViewById<Button>(R.id.btn_nao)
+
+        // Criar e mostrar o AlertDialog
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
+
+        //Configurar os cliques dos botões
+        btnNao.setOnClickListener {
+            // Fecha o alertDialog
+            alertDialog.dismiss()
+        }
+
+        btnSim.setOnClickListener {
+            // Excluir a conta do Firebase Authentication
+            val user = FirebaseAuth.getInstance().currentUser
+            val db = FirebaseFirestore.getInstance()
+
+            user?.delete()
+                ?.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+
+                        //Excluir o documento do perfil do usuario no Firestore
+                        user.uid.let { userID ->
+                            db.collection("clientes").document(userID)
+                                .delete()
+                                .addOnCompleteListener {
+                                    //Documento excluido com sucesso
+                                    startActivity(Intent(this, Login::class.java))
+                                }
+                                .addOnFailureListener{ e ->
+                                    //Ocorreu um erro ao excluir usuario abre um toast
+                                    Toast.makeText(this,"Erro ao excluir o perfil ", Toast.LENGTH_SHORT).show()
+                                }
+                        }
+                    } else {
+                        // Ocorreu um erro ao excluir a conta
+                        // Exiba uma mensagem de erro ao usuário ou lide com o erro de outra forma
+                        Toast.makeText(this, "Erro ao excluir a conta", Toast.LENGTH_SHORT).show()
+                    }
+                }
+        }
+    }
+}
+
+
+// fim do loadPreferences
+//fim da classe
+

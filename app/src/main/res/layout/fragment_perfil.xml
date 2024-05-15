@@ -97,8 +97,8 @@
             app:layout_constraintTop_toTopOf="parent"
             >
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/Edit_biografia"
+            <TextView
+                android:id="@+id/View_biografia"
                 style="@style/Edit_Text_Perfil"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
