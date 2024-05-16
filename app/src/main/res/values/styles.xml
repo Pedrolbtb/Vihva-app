@@ -140,15 +140,21 @@
 
     <style name="Button_salvar">
         <item name="android:background">@drawable/button</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:width">180dp</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/Letras</item>
+        <item name="android:textColor">@color/off_white</item>
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
     </style>
 
     <style name="Button_retornar">
         <item name="android:background">@drawable/button_voltar</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/Letras</item>
+        <item name="android:width">180dp</item>
+        <item name="android:textColor">@color/off_white</item>
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
     </style>
 
@@ -187,6 +193,10 @@
         <item name="android:textColor">@color/Letras</item>
         <item name="android:textSize">20dp</item>
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
+    </style>
+
+    <style name="container_linha">
+        <item name="background">@drawable/container_linha</item>
     </style>
 
 

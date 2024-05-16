@@ -4,38 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Inicio.CriaAlarme"
-    android:background="@color/off_white">
+    android:background="@color/off_white"
+    tools:context=".Inicio.CriaAlarme">
 
     <NumberPicker
         android:id="@+id/hour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
+        android:layout_marginStart="95dp"
         android:layout_marginTop="40dp"
         android:scaleX="2"
         android:scaleY="2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
+    <NumberPicker
+        android:id="@+id/minute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:scaleX="2"
+        android:scaleY="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/hour"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/containerAlarme"
-        android:background="@drawable/container_alarme"
         android:layout_width="410dp"
         android:layout_height="430dp"
+        android:background="@drawable/container_alarme"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_nome_alarme"
         style="@style/layout_campos"
+        android:layout_marginTop="80dp"
         android:textColor="@color/Letras"
         app:expandedHintEnabled="false"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/containerAlarme"
@@ -55,48 +63,116 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-        <View
-            android:id="@+id/container_som"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="15dp"
-            app:layout_constraintTop_toBottomOf="@+id/layout_nome_alarme"
-            />
+    <View
+        android:id="@+id/container_som"
+        style="@style/container_linha"
+        android:layout_width="500dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/container_linha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_nome_alarme" />
 
-        <TextView
-            android:id="@+id/somdoalarme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Som do Alarme"
-            android:textSize="20dp"
-            android:layout_margin="5dp"
-            android:fontFamily="@font/cloudsoft_bold_700"
-            android:textColor="@color/black"
-            android:layout_marginStart="90dp"
-            app:layout_constraintTop_toTopOf="@id/container_som"
-            app:layout_constraintStart_toStartOf="@id/container_som"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="5dp"
-            android:text="homecoming"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/somdoalarme"
-            />
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
+    <TextView
+        android:id="@id/somdoalarme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        app:trackTint="@color/black"
-        app:thumbTint="@color/Letras"
-        android:layout_marginTop="25dp"
-        app:layout_constraintTop_toBottomOf="@+id/layout_nome_alarme"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="7dp"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:text="Som do Alarme"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/container_som" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="5dp"
+        android:text="Homecoming"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/somdoalarme" />
+
+    <View
+        android:id="@+id/container_vibracao"
+        style="@style/container_linha"
+        android:layout_width="500dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/container_linha"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_som" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_som"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_nome_alarme"
+        app:thumbTint="@color/Letras"
+        app:trackTint="@color/black" />
+
+    <TextView
+        android:id="@+id/vibracao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="7dp"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:text="Vibração"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/container_vibracao" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="5dp"
+        android:text="Basic call"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vibracao" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_vibracao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/container_vibracao"
+        app:thumbTint="@color/Letras"
+        app:trackTint="@color/black" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_salvarAlarme"
+        style="@style/Button_salvar"
+        android:layout_marginEnd="20dp"
+        android:text="@string/text_salvar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_vibracao" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_retornarAlarme"
+        style="@style/Button_retornar"
+        android:text="@string/text_voltar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_salvarAlarme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_vibracao" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

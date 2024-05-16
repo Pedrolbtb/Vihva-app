@@ -51,16 +51,16 @@
         >
 
     <!-- edit text do email -->
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/edit_email"
-        style="@style/Edit_Text_Login"
-        android:layout_marginTop="20dp"
-        android:drawableTint="@color/Letras"
-        android:hint="@string/title_login"
-        android:inputType="textEmailAddress"
-        android:nextFocusForward="@id/edit_senha"
-        android:textColorHint="@color/hint"
-        />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_email"
+            style="@style/Edit_Text_Login"
+            android:layout_marginTop="20dp"
+            android:drawableTint="@color/Letras"
+            android:hint="@string/title_login"
+            android:inputType="textEmailAddress"
+            android:maxLength="70"
+            android:nextFocusForward="@id/edit_senha"
+            android:textColorHint="@color/hint" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
