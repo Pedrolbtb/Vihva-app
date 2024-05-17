@@ -199,6 +199,22 @@
         <item name="background">@drawable/container_linha</item>
     </style>
 
+    <style name="lista_remedio">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!--puxando o style drawlable/edittext-->
+        <item name="android:background">@drawable/lista_remedio</item>
+        <!--padding do campo-->
+        <item name="android:padding">20dp</item>
+        <item name="android:layout_marginLeft">49dp</item>
+        <item name="android:layout_marginRight">50dp</item>
+        <item name="android:inputType">text</item>
+        <item name="android:layout_marginStart">40dp</item>
+        <item name="android:layout_marginEnd">40dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/cloudsoft_bold_700</item>
+    </style>
+
 
 
 </resources>

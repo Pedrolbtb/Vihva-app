@@ -1,5 +1,7 @@
+
 package com.companyvihva.vihva.Login
 
+import Inicio1
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
@@ -7,20 +9,22 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.companyvihva.vihva.Cadastro.CadastroPac
 import com.companyvihva.vihva.CriarPerfil.CriaPerfil
+import com.companyvihva.vihva.Inicio.Inicio
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import com.google.firebase.firestore.FirebaseFirestore
 
 class Login : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val auth = FirebaseAuth.getInstance()
+    private val db = FirebaseFirestore.getInstance()
 
     // Variáveis para armazenar os drawables originais dos campos de e-mail e senha
     private lateinit var originalEmailDrawable: Drawable
@@ -82,8 +86,8 @@ class Login : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, senha)
                     .addOnCompleteListener { login ->
                         if (login.isSuccessful) {
-                            // Se o login for bem-sucedido, vá para a tela principal
-                            irParaTelaPrincipal()
+                            // Se o login for bem-sucedido, verifique se o documento do usuário existe no banco de dados
+                            verificarDocumentoUsuario()
                         } else {
                             // Se o login falhar, trate os erros e mostre uma mensagem ao usuário
                             val exception = login.exception
@@ -122,72 +126,104 @@ class Login : AppCompatActivity() {
         }
     }
 
-    // Função para abrir a tela de cadastro
+    // Função para verificar se o documento do usuário existe no banco de dados
+    private fun verificarDocumentoUsuario() {
+        val uid = auth.currentUser?.uid
+
+        if (uid != null) {
+            db.collection("clientes").document(uid).get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        // Se o documento existir, verifique se contém as informações necessárias do perfil
+                        val nome = document.getString("nome")
+                        val sobrenome = document.getString("sobrenome")
+                        val biografia = document.getString("biografia")
+                        val genero = document.getString("genero")
+                        val peso = document.getLong("peso")
+                        val altura = document.getLong("altura")
+                        val idade = document.getLong("idade")
+                        val email = document.getString("email")
+
+                        if (nome != null && sobrenome != null && biografia != null && genero != null && peso != null && altura != null && idade != null && email!= null) {
+                            // Se o documento contiver todas as informações do perfil, vá para a tela principal
+                            irParaTelaPrincipal()
+
+
+                        } else {
+                            // Caso contrário, redirecione o usuário para a tela de criação de perfil
+                         //   irParaTelaCriacaoPerfil()
+                        }
+                    } else {
+                        // Se o documento não existir, redirecione o usuário para a tela de criação de perfil
+                        irParaTelaCriacaoPerfil()
+                    }
+                }
+                .addOnFailureListener { e ->
+                    showToast("Erro ao verificar a existência do documento: ${e.message}")
+                }
+        } else {
+            showToast("Usuário não autenticado")
+        }
+    }
+
+    // Função para redirecionar o usuário para a tela principal
+    private fun irParaTelaPrincipal() {
+        val telaPrincipal = Intent(this, Inicio::class.java) // Substitua TelaPrincipal pela sua atividade principal
+        startActivity(telaPrincipal)
+    }
+
+    // Função para redirecionar o usuário para a tela de criação de perfil
+    private fun irParaTelaCriacaoPerfil() {
+        val telaCriacaoPerfil = Intent(this, CriaPerfil::class.java)
+        startActivity(telaCriacaoPerfil)
+    }
+
+    // Função para exibir uma mensagem Toast
+    private fun showToast(mensagem: String) {
+        Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show()
+    }
+
+    // Função para redirecionar o usuário para a tela de cadastro
     private fun irParaTelaCadastro() {
         val telaCadastro = Intent(this, CadastroPac::class.java)
         startActivity(telaCadastro)
     }
 
-    // Função para abrir a tela principal
-    private fun irParaTelaPrincipal() {
-        val telaPrincipal = Intent(this, CriaPerfil::class.java) // Altere para a tela principal desejada
-        startActivity(telaPrincipal)
-    }
-
-    // Função para exibir uma mensagem Toast
-    private fun showToast(message: String) {
-        // Inflar o layout do Toast personalizado
-        val inflater = layoutInflater
-        val layout = inflater.inflate(R.layout.toast, findViewById(R.id.toast))
-
-        // Configurar o texto do Toast
-        val text = layout.findViewById<TextView>(R.id.toast)
-        text.text = message
-
-        // Configurar e exibir o Toast
-        with(Toast(applicationContext)) {
-            duration = Toast.LENGTH_SHORT
-            view = layout
-            show()
-        }
-    }
-
-    // Função para mostrar o dialog de redefinição de senha
+    // Função para exibir o diálogo de redefinição de senha
     private fun mostrarDialogRedefinirSenha() {
-        // Construir o dialog
-        val emailDialog = AlertDialog.Builder(this)
-        val emailInput = EditText(this)
-        emailDialog.setTitle("Esqueci minha senha")
-        emailDialog.setMessage("Insira seu e-mail para redefinir a senha:")
-        emailDialog.setView(emailInput)
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Redefinir Senha")
+        builder.setMessage("Insira seu e-mail para redefinir sua senha")
 
-        // Configurar botões do dialog
-        emailDialog.setPositiveButton("Enviar") { dialog, _ ->
-            val email = emailInput.text.toString()
+        val input = EditText(this)
+        builder.setView(input)
+
+        builder.setPositiveButton("Enviar") { dialog, which ->
+            val email = input.text.toString()
             if (email.isNotEmpty()) {
-                enviarEmailRedefinicaoSenha(email)
+                enviarEmailRedefinirSenha(email)
             } else {
-                showToast("Por favor, insira seu e-mail.")
+                showToast("Por favor, insira seu e-mail")
             }
-            dialog.dismiss()
-        }
-        emailDialog.setNegativeButton("Cancelar") { dialog, _ ->
-            dialog.dismiss()
         }
 
-        // Mostrar o dialog
-        emailDialog.show()
+        builder.setNegativeButton("Cancelar") { dialog, which ->
+            dialog.cancel()
+        }
+
+        builder.show()
     }
 
-    // Função para enviar e-mail de redefinição de senha
-    private fun enviarEmailRedefinicaoSenha(email: String) {
+    // Função para enviar o e-mail de redefinição de senha
+    private fun enviarEmailRedefinirSenha(email: String) {
         auth.sendPasswordResetEmail(email)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    showToast("E-mail de redefinição de senha enviado para $email.")
+                    showToast("E-mail de redefinição de senha enviado para $email")
                 } else {
-                    showToast("Falha ao enviar e-mail de redefinição de senha. Verifique se o endereço de e-mail está correto.")
+                    showToast("Erro ao enviar o e-mail de redefinição de senha: ${task.exception?.message}")
                 }
             }
     }
 }
+ 

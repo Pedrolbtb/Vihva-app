@@ -7,8 +7,6 @@
     tools:context=".Inicio.Remedio">
 
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,84 +19,17 @@
             style="@style/text_doenca_e_remedio"
             android:layout_marginTop="100dp"
             android:text="Remedios"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/Edit_biografia"
-            style="@style/Edit_Text_Perfil"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="top"
-            android:hint="3-dipirona"
-            android:inputType="textMultiLine"
-            android:maxLength="300"
-            android:textColor="@color/Letras"
-            android:textColorHint="@color/hint"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.694" />
 
-        <com.google.android.material.textfield.TextInputEditText
 
-            style="@style/Edit_Text_Perfil"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="top"
-            android:hint="1-dipirona"
-            android:inputType="textMultiLine"
-            android:maxLength="300"
-            android:textColor="@color/Letras"
-            android:textColorHint="@color/hint"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.29" />
-
-        <com.google.android.material.textfield.TextInputEditText
-
-            style="@style/Edit_Text_Perfil"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="top"
-            android:hint="4-dipirona"
-            android:inputType="textMultiLine"
-            android:maxLength="300"
-            android:textColor="@color/Letras"
-            android:textColorHint="@color/hint"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.89" />
-
-        <com.google.android.material.textfield.TextInputEditText
-
-            style="@style/Edit_Text_Perfil"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="top"
-            android:hint="2-dipirona"
-            android:inputType="textMultiLine"
-            android:maxLength="300"
-            android:textColor="@color/Letras"
-            android:textColorHint="@color/hint"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.499" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 </FrameLayout>
