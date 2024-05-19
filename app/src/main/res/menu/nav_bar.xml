@@ -16,7 +16,7 @@
     <item
         android:id="@+id/inicio"
         android:enabled="true"
-        android:icon="@drawable/ic_inicio"
+        android:icon="@drawable/casinha__1_"
         android:title="@string/text_navbar_inicio"/>
 
     <item
