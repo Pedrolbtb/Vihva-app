@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.companyvihva.vihva.Inicio.Remedio1
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.model.Remedio2
 

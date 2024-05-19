@@ -133,6 +133,6 @@ class Remedio1 : Fragment() {
         // Adicione mais itens conforme necessário
 
 
-        return inflater.inflate(R.layout.remedio2, container, false)
+        return view
     }
 }
