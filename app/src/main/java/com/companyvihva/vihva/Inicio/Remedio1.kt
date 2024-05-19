@@ -21,7 +21,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Remedio.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Remedio2Fragment : Fragment() {
+class Remedio1 : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -53,7 +53,7 @@ class Remedio2Fragment : Fragment() {
 
         // Adicione os itens à lista
         val remedio1 = Remedio2(
-            R.drawable.remedio,
+            R.drawable.adicionarfoto,
             "Dipirona",
             "Descrição da Dipirona."
         )
@@ -62,7 +62,7 @@ class Remedio2Fragment : Fragment() {
 
         // Adicione os itens à lista
         val remedio2 = Remedio2(
-            R.drawable.remedio,
+            R.drawable.adicionarfoto,
             "Dipirona",
             "Descrição da Dipirona."
         )
@@ -71,7 +71,7 @@ class Remedio2Fragment : Fragment() {
 
         // Adicione os itens à lista
         val remedio3 = Remedio2(
-            R.drawable.remedio,
+            R.drawable.adicionarfoto,
             "Dipirona",
             "Descrição da Dipirona."
         )
@@ -80,7 +80,7 @@ class Remedio2Fragment : Fragment() {
 
         // Adicione os itens à lista
         val remedio4 = Remedio2(
-            R.drawable.remedio,
+            R.drawable.adicionarfoto,
             "Dipirona",
             "Descrição da Dipirona."
         )
@@ -89,7 +89,7 @@ class Remedio2Fragment : Fragment() {
 
         // Adicione os itens à lista
         val remedio5 = Remedio2(
-            R.drawable.remedio,
+            R.drawable.adicionarfoto,
             "Dipirona",
             "Descrição da Dipirona."
         )
@@ -98,7 +98,7 @@ class Remedio2Fragment : Fragment() {
 
         // Adicione os itens à lista
         val remedio6 = Remedio2(
-            R.drawable.remedio,
+            R.drawable.adicionarfoto,
             "Dipirona",
             "Descrição da Dipirona."
         )
@@ -107,7 +107,7 @@ class Remedio2Fragment : Fragment() {
 
         // Adicione os itens à lista
         val remedio7 = Remedio2(
-            R.drawable.remedio,
+            R.drawable.adicionarfoto,
             "Dipirona",
             "Descrição da Dipirona."
         )
@@ -116,7 +116,7 @@ class Remedio2Fragment : Fragment() {
 
         // Adicione os itens à lista
         val remedio8 = Remedio2(
-            R.drawable.remedio,
+            R.drawable.adicionarfoto,
             "Dipirona",
             "Descrição da Dipirona."
         )
@@ -125,7 +125,7 @@ class Remedio2Fragment : Fragment() {
 
         // Adicione os itens à lista
         val remedio9 = Remedio2(
-            R.drawable.remedio,
+            R.drawable.adicionarfoto,
             "Dipirona",
             "Descrição da Dipirona."
         )
