@@ -13,6 +13,18 @@ import com.google.firebase.firestore.FirebaseFirestore
 class Remedio1 : Fragment() {
 
     private lateinit var firestore: FirebaseFirestore
+    private lateinit var adapterRemedio: AdapterRemedio
+    private val listaRemedios: MutableList<Remedio2> = mutableListOf()
+    private val documentos = listOf(
+        "insulina",
+        "metformina",
+        "sulfonilureias",
+        "inibidoresdpp4",
+        "inibidoresdeSGLT2",
+        "agonistasdoGLP1",
+        "tiazolidinedionas",
+        "Inibidoresdaalfaglicosidase"
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,37 +41,35 @@ class Remedio1 : Fragment() {
         recyclerViewRemedios.layoutManager = LinearLayoutManager(context)
         recyclerViewRemedios.setHasFixedSize(true)
 
-        // Lista de remédios
-        val listaRemedios: MutableList<Remedio2> = mutableListOf()
-        val adapterRemedio = AdapterRemedio(requireContext(), listaRemedios)
+        adapterRemedio = AdapterRemedio(requireContext(), listaRemedios)
         recyclerViewRemedios.adapter = adapterRemedio
 
-        // Lista de documentos específicos
-        val documentos = listOf(
-            "insulina",
-            "metformina",
-            "sulfonilureias",
-            "inibidoresdpp4",
-            "inibidoresdeSGLT2",
-            "agonistasdoGLP1",
-            "tiazolidinedionas",
-            "Inibidoresdaalfaglicosidase",
-            "meglitinidas"
-        )
+        // Inicia a busca sequencial de documentos
+        fetchRemedio(0)
 
-        // Busca os dados do Firestore para cada documento na lista
-        for (documento in documentos) {
-            firestore.collection("remedios").document(documento).get()
+        return view
+    }
+
+    private fun fetchRemedio(index: Int) {
+        // Verifica se o índice fornecido está dentro dos limites do array documentos
+        if (index < documentos.size) {
+            // Obtém o ID do documento no índice especificado pelo parâmetro index do array documentos
+            val docId = documentos[index]
+
+            // Acessa a coleção "remedios" no Firestore e recupera o documento correspondente ao ID
+            firestore.collection("remedios").document(docId).get()
                 .addOnSuccessListener { document ->
+                    // Verifica se o documento não é nulo
                     if (document != null) {
+                        // Extrai o valor do campo "nome" do documento
                         val nome = document.getString("nome")
-                        val descricao = document.getString("descricao")
-                        val url = document.getString("Url")
 
+                        // Extrai o valor do campo "Url" do documento
+                        val url = document.getString("Url")
                         // Cria um objeto Remedio2 com os dados obtidos
                         val remedio = Remedio2(
                             url ?: "", // Se a URL for nula, atribui uma string vazia
-                            nome ?: "" // Se o nome for nulo, atribui uma string vazia
+                            nome ?: "", // Se o nome for nulo, atribui uma string vazia
                         )
 
                         // Adiciona o remédio à lista
@@ -67,13 +77,15 @@ class Remedio1 : Fragment() {
 
                         // Notifica o adaptador sobre as mudanças nos dados
                         adapterRemedio.notifyDataSetChanged()
+
+                        // Busca o próximo remédio
+                        fetchRemedio(index + 1)
                     }
                 }
                 .addOnFailureListener { exception ->
                     // Trata o erro, se houver
+                    fetchRemedio(index + 1) // Tenta buscar o próximo remédio mesmo em caso de falha
                 }
         }
-
-        return view
     }
 }

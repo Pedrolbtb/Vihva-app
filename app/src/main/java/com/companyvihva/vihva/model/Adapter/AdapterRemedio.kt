@@ -9,7 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.model.Remedio2
-import com.squareup.picasso.Picasso
+import  com.squareup.picasso.Picasso
+//import com.squareup.picasso.Picasso
 
 // AdapterRemedio é uma classe que estende RecyclerView.Adapter e é responsável por
 // adaptar os dados da lista de remédios para serem exibidos em um RecyclerView.
