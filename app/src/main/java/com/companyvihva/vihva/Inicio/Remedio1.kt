@@ -34,31 +34,45 @@ class Remedio1 : Fragment() {
         val adapterRemedio = AdapterRemedio(requireContext(), listaRemedios)
         recyclerViewRemedios.adapter = adapterRemedio
 
-        // Busca os dados do Firestore para o remédio "insulina"
-        firestore.collection("remedios").document("insulina").get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    val nome = document.getString("nome")
-                    val descricao = document.getString("descricao")
-                    val url = document.getString("Url")
+        // Lista de documentos específicos
+        val documentos = listOf(
+            "insulina",
+            "metformina",
+            "sulfonilureias",
+            "inibidoresdpp4",
+            "inibidoresdeSGLT2",
+            "agonistasdoGLP-1",
+            "tiazolidinedionas",
+            "Inibidoresdaalfaglicosidase"
+        )
 
-                    // Cria um objeto Remedio2 com os dados obtidos
-                    val insulina = Remedio2(
-                        url ?: "",// Se a URL for nula, atribui uma string vazia
-                        nome ?: "", // Se o nome for nulo, atribui uma string vazia
-                        descricao ?: "" // Se a descrição for nula, atribui uma string vazia
-                    )
+        // Busca os dados do Firestore para cada documento na lista
+        for (documento in documentos) {
+            firestore.collection("remedios").document(documento).get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        val nome = document.getString("nome")
+                        val descricao = document.getString("descricao")
+                        val url = document.getString("Url")
 
-                    // Adiciona o remédio à lista
-                    listaRemedios.add(insulina)
+                        // Cria um objeto Remedio2 com os dados obtidos
+                        val remedio = Remedio2(
+                            url ?: "", // Se a URL for nula, atribui uma string vazia
+                            nome ?: "", // Se o nome for nulo, atribui uma string vazia
+                            descricao ?: "" // Se a descrição for nula, atribui uma string vazia
+                        )
 
-                    // Notifica o adaptador sobre as mudanças nos dados
-                    adapterRemedio.notifyDataSetChanged()
+                        // Adiciona o remédio à lista
+                        listaRemedios.add(remedio)
+
+                        // Notifica o adaptador sobre as mudanças nos dados
+                        adapterRemedio.notifyDataSetChanged()
+                    }
                 }
-            }
-            .addOnFailureListener { exception ->
-                // Trata o erro, se houver
-            }
+                .addOnFailureListener { exception ->
+                    // Trata o erro, se houver
+                }
+        }
 
         return view
     }
