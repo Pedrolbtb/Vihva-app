@@ -13,6 +13,7 @@ import com.companyvihva.vihva.CriarPerfil.CriaPerfil2
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.databinding.ActivityInicioBinding
 import com.companyvihva.vihva.databinding.ActivityLoginBinding
+import com.companyvihva.vihva.model.Remedio2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.selects.select
 
@@ -32,7 +33,7 @@ class Inicio : AppCompatActivity() {
         //codigo da nav bar que leva de um fragment a outro
         binding.bottomNavigation.setOnItemSelectedListener {
             when(it.itemId) {
-                R.id.remédio -> replaceFragment(Remedio())
+                R.id.remédio -> replaceFragment(Remedio1())
 
                 R.id.calendario -> replaceFragment(Calendario())
 

@@ -12,7 +12,7 @@
         android:id="@+id/fotoremedio"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:src="@drawable/remedio"
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 

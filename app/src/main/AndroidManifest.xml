@@ -29,7 +29,7 @@
             android:name=".CriarPerfil.FotoBio"
             android:exported="false" />
         <activity
-            android:name=".Inicio.Inicio"
+            android:name=".Login.Login"
             android:exported="false" />
         <activity
             android:name=".CriarPerfil.CriaPerfil2"
@@ -41,7 +41,7 @@
             android:name=".Cadastro.CadastroPac"
             android:exported="false" />
         <activity
-            android:name=".Login.Login"
+            android:name=".Inicio.Inicio"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
