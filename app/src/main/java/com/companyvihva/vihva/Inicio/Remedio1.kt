@@ -41,9 +41,10 @@ class Remedio1 : Fragment() {
             "sulfonilureias",
             "inibidoresdpp4",
             "inibidoresdeSGLT2",
-            "agonistasdoGLP-1",
+            "agonistasdoGLP1",
             "tiazolidinedionas",
-            "Inibidoresdaalfaglicosidase"
+            "Inibidoresdaalfaglicosidase",
+            "meglitinidas"
         )
 
         // Busca os dados do Firestore para cada documento na lista
@@ -58,8 +59,7 @@ class Remedio1 : Fragment() {
                         // Cria um objeto Remedio2 com os dados obtidos
                         val remedio = Remedio2(
                             url ?: "", // Se a URL for nula, atribui uma string vazia
-                            nome ?: "", // Se o nome for nulo, atribui uma string vazia
-                            descricao ?: "" // Se a descrição for nula, atribui uma string vazia
+                            nome ?: "" // Se o nome for nulo, atribui uma string vazia
                         )
 
                         // Adiciona o remédio à lista

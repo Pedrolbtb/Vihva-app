@@ -21,7 +21,6 @@ class AdapterRemedio(private val context: Context, private val remedios: Mutable
         // Declaração das views dentro do item da lista
         val foto = itemView.findViewById<ImageView>(R.id.fotoremedio)
         val nome = itemView.findViewById<TextView>(R.id.nomeRemedio)
-        val descricao = itemView.findViewById<TextView>(R.id.descriçãoRemedio)
     }
 
     // Este método é responsável por inflar o layout de cada item da lista e criar um novo
@@ -45,8 +44,7 @@ class AdapterRemedio(private val context: Context, private val remedios: Mutable
         // Define o nome do remédio no TextView
         holder.nome.text = remedios[position].nome
 
-        // Define a descrição do remédio no TextView
-        holder.descricao.text = remedios[position].descricao
+
     }
 
 
