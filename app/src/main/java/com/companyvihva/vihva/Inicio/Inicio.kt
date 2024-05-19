@@ -1,6 +1,7 @@
 package com.companyvihva.vihva.Inicio
 
 import Inicio1
+import Remedio1
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

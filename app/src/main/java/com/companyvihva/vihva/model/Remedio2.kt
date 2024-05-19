@@ -1,7 +1,7 @@
 package com.companyvihva.vihva.model
 
 data class Remedio2(
-    val foto: Int,
+    val foto: String,
     val nome: String,
     val descricao: String
 

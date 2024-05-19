@@ -28,6 +28,9 @@
         <activity
             android:name=".CriarPerfil.FotoBio"
             android:exported="false" />
+
+
+
         <activity
             android:name=".Login.Login"
             android:exported="false" />

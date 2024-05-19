@@ -12,7 +12,6 @@
         android:id="@+id/fotoremedio"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:src="@drawable/cruz"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 
@@ -22,7 +21,6 @@
         android:id="@+id/nomeRemedio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="remedio"
         android:textSize="20sp"
         android:textColor="@color/black"
 
@@ -39,7 +37,6 @@
         android:id="@+id/descriçãoRemedio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="remedio para diabetes sdsddsdsdssdsdsdssdsdsdsdsdsdsdsdsddsdds"
         android:textSize="16sp"
         android:layout_marginStart="140dp"
         android:layout_marginTop="10dp"

@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.companyvihva.vihva.Inicio.Remedio1
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.model.Remedio2
+import com.squareup.picasso.Picasso
 
 // AdapterRemedio é uma classe que estende RecyclerView.Adapter e é responsável por
 // adaptar os dados da lista de remédios para serem exibidos em um RecyclerView.
@@ -27,7 +27,7 @@ class AdapterRemedio(private val context: Context, private val remedios: Mutable
     // Este método é responsável por inflar o layout de cada item da lista e criar um novo
     // RemedioViewHolder para representar a visualização de um item na lista.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RemedioViewHolder {
-        val itemLista = LayoutInflater.from(context).inflate(R.layout.remedio_item, parent, false)
+        val itemLista = LayoutInflater.from(context).inflate(R.layout.fragment_remedio, parent, false)
         val holder = RemedioViewHolder(itemLista)
         return holder
     }
@@ -37,11 +37,17 @@ class AdapterRemedio(private val context: Context, private val remedios: Mutable
 
     // Este método é responsável por atualizar o conteúdo de cada item da lista com base na posição.
     override fun onBindViewHolder(holder: RemedioViewHolder, position: Int) {
-        // Define a imagem do remédio no ImageView
-        holder.foto.setImageResource(remedios[position].foto)
+        // Carrega a imagem do remédio no ImageView usando Picasso
+        Picasso.get()
+            .load(remedios[position].foto)
+            .into(holder.foto)
+
         // Define o nome do remédio no TextView
         holder.nome.text = remedios[position].nome
+
         // Define a descrição do remédio no TextView
         holder.descricao.text = remedios[position].descricao
     }
+
+
 }

@@ -74,6 +74,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-common-ktx")
     implementation ("com.google.firebase:firebase-firestore-ktx:23.0.3")
+    implementation ("com.squareup.picasso:picasso:2.71828")
 
 
     //dependencia da biblioteca de mascaras
