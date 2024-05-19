@@ -60,6 +60,78 @@ class Remedio2Fragment : Fragment() {
         listaRemedios.add(remedio1)
         // Adicione mais itens conforme necessário
 
+        // Adicione os itens à lista
+        val remedio2 = Remedio2(
+            R.drawable.remedio,
+            "Dipirona",
+            "Descrição da Dipirona."
+        )
+        listaRemedios.add(remedio2)
+        // Adicione mais itens conforme necessário
+
+        // Adicione os itens à lista
+        val remedio3 = Remedio2(
+            R.drawable.remedio,
+            "Dipirona",
+            "Descrição da Dipirona."
+        )
+        listaRemedios.add(remedio3)
+        // Adicione mais itens conforme necessário
+
+        // Adicione os itens à lista
+        val remedio4 = Remedio2(
+            R.drawable.remedio,
+            "Dipirona",
+            "Descrição da Dipirona."
+        )
+        listaRemedios.add(remedio4)
+        // Adicione mais itens conforme necessário
+
+        // Adicione os itens à lista
+        val remedio5 = Remedio2(
+            R.drawable.remedio,
+            "Dipirona",
+            "Descrição da Dipirona."
+        )
+        listaRemedios.add(remedio5)
+        // Adicione mais itens conforme necessário
+
+        // Adicione os itens à lista
+        val remedio6 = Remedio2(
+            R.drawable.remedio,
+            "Dipirona",
+            "Descrição da Dipirona."
+        )
+        listaRemedios.add(remedio6)
+        // Adicione mais itens conforme necessário
+
+        // Adicione os itens à lista
+        val remedio7 = Remedio2(
+            R.drawable.remedio,
+            "Dipirona",
+            "Descrição da Dipirona."
+        )
+        listaRemedios.add(remedio7)
+        // Adicione mais itens conforme necessário
+
+        // Adicione os itens à lista
+        val remedio8 = Remedio2(
+            R.drawable.remedio,
+            "Dipirona",
+            "Descrição da Dipirona."
+        )
+        listaRemedios.add(remedio8)
+        // Adicione mais itens conforme necessário
+
+        // Adicione os itens à lista
+        val remedio9 = Remedio2(
+            R.drawable.remedio,
+            "Dipirona",
+            "Descrição da Dipirona."
+        )
+        listaRemedios.add(remedio9)
+        // Adicione mais itens conforme necessário
+
 
         return inflater.inflate(R.layout.remedio2, container, false)
     }
