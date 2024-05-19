@@ -38,7 +38,7 @@ class Inicio1 : Fragment() {
         val view = inflater.inflate(R.layout.fragment_inicio1, container, false)
 
         // Encontra o botão de imagem
-        val card_diabete = view.findViewById<ImageButton>(R.id.card_diabete)
+        val card_diabete = view.findViewById<View>(R.id.card_diabete)
 
         card_diabete.setOnClickListener {
             myDialog.setContentView(R.layout.popup_descricao)

@@ -3,32 +3,32 @@
     <item
         android:id="@+id/remédio"
         android:enabled="true"
-        android:icon="@drawable/ic_inicio"
+        android:icon="@drawable/ic_pilulas"
         android:title="Remédio"
         />
 
     <item
         android:id="@+id/calendario"
         android:enabled="true"
-        android:icon="@drawable/ic_inicio"
+        android:icon="@drawable/ic_calendario"
         android:title="Calendário"/>
 
     <item
         android:id="@+id/inicio"
         android:enabled="true"
-        android:icon="@drawable/casinha__1_"
+        android:icon="@drawable/ic_inicio"
         android:title="@string/text_navbar_inicio"/>
 
     <item
         android:id="@+id/alarme"
         android:enabled="true"
         android:checked="true"
-        android:icon="@drawable/ic_inicio"
+        android:icon="@drawable/ic_alarme"
         android:title="Alarme"/>
 
     <item
         android:id="@+id/perfil"
         android:enabled="true"
-        android:icon="@drawable/ic_inicio"
+        android:icon="@drawable/ic_perfil"
         android:title="Perfil"/>
 </menu>

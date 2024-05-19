@@ -100,7 +100,7 @@
         style="@style/container_linha"
         android:layout_width="500dp"
         android:layout_height="70dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/container_linha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -172,7 +172,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.69" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
