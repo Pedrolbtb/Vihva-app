@@ -17,8 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
-
-
         <activity
             android:name=".Descricao.Descricao"
             android:exported="false" />
@@ -29,7 +27,7 @@
             android:name=".CriarPerfil.FotoBio"
             android:exported="false" />
         <activity
-            android:name=".Login.Login"
+            android:name=".Inicio.Inicio"
             android:exported="false" />
         <activity
             android:name=".CriarPerfil.CriaPerfil2"
@@ -41,7 +39,7 @@
             android:name=".Cadastro.CadastroPac"
             android:exported="false" />
         <activity
-            android:name=".Inicio.Inicio"
+            android:name=".Login.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
