@@ -86,6 +86,7 @@ class FotoBio : AppCompatActivity() {
             val biografia = editTextBiografia.text.toString()
             saveData(nome, sobrenome, genero, idade, altura, peso, biografia)
             startActivity(intent)
+            finish()
         }
     }
 
