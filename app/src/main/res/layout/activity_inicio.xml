@@ -1,79 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
-
     android:layout_height="match_parent"
-
     android:background="@drawable/background_home"
-
     tools:context=".Inicio.Inicio">
 
+
     <FrameLayout
-
         android:id="@+id/frame_layout"
-
         android:layout_width="match_parent"
-
         android:layout_height="match_parent"
-
         app:layout_constraintBottom_toBottomOf="parent"
-
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintHorizontal_bias="1.0"
-
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent"
-
         app:layout_constraintVertical_bias="0.0" />
 
-
-
-
     <LinearLayout
-
         android:layout_width="412dp"
-
         android:layout_height="74dp"
-
         android:orientation="horizontal"
-
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintBottom_toBottomOf="parent"
-
         tools:layout_editor_absoluteY="656dp">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-
             android:id="@+id/bottom_navigation"
-
             android:background="@drawable/navbar_gradient"
-
-            app:itemRippleColor="@color/indicador_selecao"
-
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
-
-            app:itemTextColor="@drawable/nav_bar_color"
-
-            app:itemIconTint="@drawable/nav_bar_color"
-
+            app:itemBackground="@drawable/seletor_navbar"
+            app:itemActiveIndicatorStyle="@color/off_white"
+            app:itemRippleColor="@color/indicador_selecao"
             app:itemTextAppearanceActive="@font/cloudsoft_bold_700"
-
             app:menu="@menu/nav_bar"/>
-
     </LinearLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+

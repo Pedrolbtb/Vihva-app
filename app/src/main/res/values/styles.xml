@@ -3,21 +3,14 @@
 
     <!--style do container que abriga o login-->
     <style name="ContainerComponents">
-
         <!--o match parente faz a width pegar toda a extensao do layout-->
         <item name="android:layout_width">match_parent</item>
-
         <!--valor da altura do container-->
         <item name="android:layout_height">270dp</item>
-
         <!--puxando os components do background direto do drawable-->
         <item name="android:background">@drawable/container_components</item>
-
         <item name="android:layout_marginRight">20dp</item>
-
         <item name="android:layout_marginLeft">20dp</item>
-
-
     </style>
 
 
@@ -215,6 +208,10 @@
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
     </style>
 
-
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorAccent">@color/Letras</item>
+        <item name="android:statusBarColor">@color/off_white</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 
 </resources>

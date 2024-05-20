@@ -40,7 +40,8 @@
             android:exported="false" />
         <activity
             android:name=".Login.Login"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
