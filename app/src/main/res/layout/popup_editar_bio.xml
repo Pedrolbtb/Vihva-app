@@ -24,6 +24,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_nome"
+            style="@style/layout_campos"
+            app:endIconTint="@color/Letras"
+            app:endIconMode="clear_text"
+            app:hintTextColor="@color/Letras"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_topo_popup_edit_bio">
+
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_nome_V2"
             style="@style/Edit_Text_Login"
@@ -38,28 +49,49 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_topo_popup_edit_bio" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_sobrenome"
+            style="@style/layout_campos"
+            app:endIconTint="@color/Letras"
+            app:endIconMode="clear_text"
+            app:hintTextColor="@color/Letras"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_nome">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_sobrenome_V2"
             style="@style/Edit_Text_Login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="15dp"
             android:drawableTint="@color/Letras"
             android:hint="@string/text_csobrenome"
             android:inputType="text"
             android:textColor="@color/Letras"
             android:textColorHint="@color/hint"
+            />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_idade"
+            style="@style/layout_campos"
+            app:endIconTint="@color/Letras"
+            app:endIconMode="clear_text"
+            app:hintTextColor="@color/Letras"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_nome_V2" />
+            app:layout_constraintTop_toBottomOf="@+id/layout_nome">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_idade_V2"
             style="@style/Edit_Text_Login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="15dp"
             android:drawableTint="@color/Letras"
             android:hint="@string/text_idade"
             android:inputType="number"
@@ -67,21 +99,37 @@
             android:textColorHint="@color/hint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_sobrenome_V2" />
+            app:layout_constraintTop_toBottomOf="@+id/layout_sobrenome" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_altura"
+            style="@style/layout_campos"
+            app:suffixText="cm"
+            android:textColor="@color/Letras"
+            app:expandedHintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_idade"
+            app:suffixTextColor="@color/hint">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_altura_V2"
             style="@style/Edit_Text_Login"
             android:drawableTint="@color/Letras"
             android:hint="@string/text_caltura"
+            android:layout_marginTop="15dp"
             android:inputType="number"
             android:maxLength="3"
-            android:layout_marginTop="8dp"
             android:textColor="@color/Letras"
             android:textColorHint="@color/hint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_idade_V2" />
+            app:layout_constraintTop_toBottomOf="@+id/layout_idade" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_peso_V2"
@@ -90,12 +138,12 @@
             android:hint="@string/text_cpeso"
             android:inputType="number"
             android:maxLength="2"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="15dp"
             android:textColor="@color/Letras"
             android:textColorHint="@color/hint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_altura_V2" />
+            app:layout_constraintTop_toBottomOf="@+id/layout_idade" />
 
         <TextView
             android:id="@+id/txt_genero"
@@ -153,6 +201,7 @@
             style="@style/Edit_Text_Perfil"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_marginTop="15dp"
             android:hint="@string/text_biografia"
             android:gravity="top"
             android:textColor="@color/Letras"
@@ -169,7 +218,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="15dp"
             android:text="@string/text_salvar"
             android:textColor="@color/off_white"
             android:textSize="20sp"
