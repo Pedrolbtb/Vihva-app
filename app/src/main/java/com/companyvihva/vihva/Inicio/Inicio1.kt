@@ -1,59 +1,95 @@
 import android.app.Dialog
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Spinner
-import android.widget.Toast
+import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.R
-
+import com.google.firebase.firestore.FirebaseFirestore
+import com.squareup.picasso.Picasso
 
 class Inicio1 : Fragment() {
 
-    ///////socorro///////////
-    private lateinit var spinnerDDI: Spinner
-    private lateinit var editTextPhone: EditText
-    private lateinit var editTextMessage: EditText
-    ///////socorro/////////////
-
-
+    // Firebase
+    private lateinit var db: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ):  View? {
-        // Declare a variável Dialog
-        val myDialog: Dialog
-
-        // Inicialize a variável Dialog
-        myDialog = Dialog(requireContext())
-
-        // Inflate the layout for this fragment
+    ): View? {
+        // Infla o layout para este fragmento
         val view = inflater.inflate(R.layout.fragment_inicio1, container, false)
+
+        // Inicializa o Firebase
+        db = FirebaseFirestore.getInstance()
+
+
 
         // Encontra o botão de imagem
         val card_diabete = view.findViewById<View>(R.id.card_diabete)
 
         card_diabete.setOnClickListener {
-            myDialog.setContentView(R.layout.popup_descricao)
-            myDialog.show()
+            // Chama o método para mostrar o popup quando o botão é clicado
+            mostrarPopup()
         }
-
-
-
 
         // Retorna a view inflada
         return view
+    }
 
+    // Método para mostrar os dados no popup
+    private fun mostrarPopup() {
+        // Referência ao documento "diabetes" na coleção "doenca"
+        val docRef = db.collection("doenca").document("diabetes")
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    // Obtém dados do documento Firestore
+                    val nome = document.getString("nome")
+                    val descricao = document.getString("descricao")
+                    val imageUrl1 = document.getString("Url")
+                    val imageUrl2 = document.getString("Url2")
 
-    }////fim do onCreate
+                    // Infla o layout do popup
+                    val inflater = requireActivity().layoutInflater
+                    val popupView = inflater.inflate(R.layout.popup_descricao, null)
 
+                    // Encontra elementos no layout
+                    val nomeTextView: TextView = popupView.findViewById(R.id.diabetes)
+                    val descricaoTextView: TextView = popupView.findViewById(R.id.descricao)
+                    val imageView1: ImageView = popupView.findViewById(R.id.foto_diabete1)
+                    val imageView2: ImageView = popupView.findViewById(R.id.foto_diabete2)
 
+                    // Define dados nos TextViews
+                    nomeTextView.text = nome
+                    descricaoTextView.text = descricao
 
+                    // Carrega imagens com o Picasso
+                    if (imageUrl1 != null && imageUrl2 != null) {
+                        Picasso.get().load(imageUrl1).into(imageView1)
+                        Picasso.get().load(imageUrl2).into(imageView2)
+                    }
+
+                    // Mostra o popup
+                    val popupWindow = androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                        .setView(popupView)
+                        .create()
+                    popupWindow.show()
+                } else {
+                    // Trata documento não encontrado
+                    Log.d("Inicio1", "Documento não encontrado")
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Trata falhas
+                Log.e("Inicio1", "Erro ao obter documento", exception)
+            }
+    }
 }

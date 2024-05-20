@@ -63,6 +63,7 @@
             android:layout_marginTop="170dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="430dp"
+            android:clickable="true"
             android:background="@drawable/view_doenca"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

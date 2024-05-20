@@ -7,6 +7,7 @@
     android:background="@drawable/view_doenca">
 
     <ImageView
+        android:id="@+id/image_widget"
         android:layout_width="90dp"
         android:layout_height="100dp"
         android:layout_marginStart="30dp"
@@ -21,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/cloudsoft_bold_700"
-        android:text="Diabetes"
+        android:text=""
         android:layout_marginEnd="100dp"
         android:textColor="#247894"
         android:textSize="35sp"

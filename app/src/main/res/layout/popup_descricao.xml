@@ -21,7 +21,7 @@
         android:id="@+id/diabetes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Diabetes"
+        android:text=""
         android:fontFamily="@font/cloudsoft_bold_700"
         android:textSize="30sp"
         android:textColor="@color/black"
@@ -39,7 +39,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diabetes"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+         />
 
     <ImageView
         android:id="@+id/foto_diabete2"
@@ -49,7 +49,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diabetes"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+         />
 
     <TextView
         android:id="@+id/descricao"
@@ -60,7 +60,6 @@
         android:layout_marginTop="30dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:textColor="@color/black"
-        android:text="Descrição: Diabetes Mellitus (DM) é uma síndrome metabólica de origem múltipla, decorrente da falta de insulina e/ou da incapacidade e/ou falta de insulina exercer adequadamente seus efeitos, caracterizando altas taxa de açúcar no sangue ( hiperglicemia) de forma permanente. de forma permanente."
         app:layout_constraintTop_toBottomOf="@+id/foto_diabete1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
