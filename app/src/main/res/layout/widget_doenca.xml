@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="140dp"
+    android:layout_width="320dp"
+    android:layout_height="147dp"
+    tools:context=".Inicio.Inicio"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/view_doenca">
 

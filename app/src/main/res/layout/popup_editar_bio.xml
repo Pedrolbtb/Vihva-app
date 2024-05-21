@@ -12,6 +12,14 @@
         android:layout_gravity="center"
         >
 
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="88dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/textView_topo_popup_edit_bio"
             android:layout_width="wrap_content"
@@ -172,6 +180,7 @@
             android:id="@+id/radioGroup"
             android:layout_width="350dp"
             android:layout_height="50dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -203,6 +212,7 @@
             <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/radio_Semgen_V2"
                 style="@style/Radio_Button"
+                android:layout_marginBottom="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/text_cnao"

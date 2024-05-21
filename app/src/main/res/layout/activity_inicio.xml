@@ -35,7 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:itemBackground="@drawable/seletor_navbar"
-            app:itemActiveIndicatorStyle="@color/off_white"
+            app:itemActiveIndicatorStyle="@color/black"
+            app:itemTextColor="@color/black"
             app:itemRippleColor="@color/indicador_selecao"
             app:itemTextAppearanceActive="@font/cloudsoft_bold_700"
             app:menu="@menu/nav_bar"/>

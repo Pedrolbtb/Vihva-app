@@ -32,6 +32,7 @@ class Inicio1 : Fragment() {
 
 
 
+
         // Encontra o botão de imagem
         val card_diabete = view.findViewById<View>(R.id.card_diabete)
 
