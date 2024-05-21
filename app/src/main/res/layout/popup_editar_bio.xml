@@ -2,6 +2,7 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@color/off_white"
     android:layout_height="wrap_content"
     android:fillViewport="true">
 
@@ -9,16 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@color/white">
+        >
 
         <TextView
             android:id="@+id/textView_topo_popup_edit_bio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="90dp"
             android:fontFamily="@font/cloudsoft_bold_700"
             android:text="@string/string_editar"
-            android:textColor="@color/azul"
+            android:textColor="@color/Letras"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +49,7 @@
             android:textColorHint="@color/hint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_topo_popup_edit_bio" />
+            app:layout_constraintTop_toBottomOf="@+id/gen" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -131,6 +132,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_peso"
+            style="@style/layout_campos"
+            app:suffixText="cm"
+            android:textColor="@color/Letras"
+            app:expandedHintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_altura"
+            app:suffixTextColor="@color/hint">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_peso_V2"
             style="@style/Edit_Text_Login"
@@ -145,6 +157,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_idade" />
 
+        </com.google.android.material.textfield.TextInputLayout>
+
         <TextView
             android:id="@+id/txt_genero"
             style="@style/text"
@@ -152,12 +166,13 @@
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_peso_V2" />
+            app:layout_constraintTop_toBottomOf="@+id/layout_peso" />
 
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="350dp"
             android:layout_height="50dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -196,6 +211,18 @@
 
         </RadioGroup>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_bio"
+            style="@style/layout_campos"
+            app:counterEnabled="true"
+            app:counterMaxLength="300"
+            android:textColor="@color/Letras"
+            app:expandedHintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/radioGroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            >
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_biografia_V2"
             style="@style/Edit_Text_Perfil"
@@ -208,9 +235,9 @@
             android:textColorHint="@color/hint"
             android:inputType="textMultiLine"
             android:maxLength="300"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+             />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_salvar_V2"
@@ -218,11 +245,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="5dp"
             android:text="@string/text_salvar"
             android:textColor="@color/off_white"
             android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@+id/edit_biografia_V2"
+            app:layout_constraintTop_toBottomOf="@+id/layout_bio"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
