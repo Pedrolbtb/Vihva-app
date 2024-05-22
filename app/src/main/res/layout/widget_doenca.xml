@@ -24,17 +24,17 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text=""
-        android:layout_marginEnd="100dp"
+        android:layout_marginEnd="40dp"
         android:textColor="#247894"
-        android:textSize="35sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"

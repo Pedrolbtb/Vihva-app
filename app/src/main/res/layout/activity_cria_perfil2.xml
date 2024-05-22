@@ -105,7 +105,7 @@
             android:drawableTint="@color/Letras"
             android:hint="@string/text_cpeso"
             android:inputType="number"
-            android:maxLength="2"
+            android:maxLength="3"
             android:nextFocusForward="@id/edit_senha"
             android:textColor="@color/Letras"
             android:textColorHint="@color/hint" />

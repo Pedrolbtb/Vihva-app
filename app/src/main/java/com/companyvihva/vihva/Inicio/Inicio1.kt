@@ -1,15 +1,11 @@
-import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.R
 import com.google.firebase.firestore.FirebaseFirestore
@@ -30,8 +26,35 @@ class Inicio1 : Fragment() {
         // Inicializa o Firebase
         db = FirebaseFirestore.getInstance()
 
+        // Referência ao documento "doenca" na coleção, precisa ajustar conforme sua estrutura
+        val doencaRef = db.collection("doenca").document("diabetes")
 
+        doencaRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    // Documentos encontrados no BD
+                    val nome = document.getString("nome") ?: ""
+                    val imageUrl = document.getString("Url") ?: ""
 
+                    // Atualizando os campos da UI
+                    val nomeTextView: TextView = view.findViewById(R.id.nome_widget)
+                    val imageView1: ImageView = view.findViewById(R.id.image_widget)
+
+                    nomeTextView.text = nome
+
+                    // Carregando a imagem em uma imageView utilizando Picasso
+                    if (imageUrl.isNotEmpty()) {
+                        Picasso.get().load(imageUrl).into(imageView1)
+                    } else {
+                        Toast.makeText(requireContext(), "URL da imagem não encontrado", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "Documento não encontrado", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(requireContext(), "Erro ao carregar dados: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
 
         // Encontra o botão de imagem
         val card_diabete = view.findViewById<View>(R.id.card_diabete)

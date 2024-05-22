@@ -71,32 +71,7 @@ class Inicio : AppCompatActivity() {
         // Referência ao documento/coleção no Cloud Firestore
         val doencaRef = db.collection("doenca").document("diabetes")
 
-        doencaRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null && document.exists()) {
-                    // Documentos encontrados no BD
-                    val nome = document.getString("nome") ?: ""
-                    val imageUrl = document.getString("Url") ?: ""
 
-                    // Atualizando os campos da UI
-                    val nomeTextView: TextView = findViewById(R.id.nome_widget)
-                    val imageView1: ImageView = findViewById(R.id.image_widget)
-
-                    nomeTextView.text = nome
-
-                    // Carregando a imagem em uma imageView utilizando Picasso
-                    if (imageUrl.isNotEmpty()) {
-                        Picasso.get().load(imageUrl).into(imageView1)
-                    } else {
-                        Toast.makeText(this, "URL da imagem não encontrado", Toast.LENGTH_SHORT).show()
-                    }
-                } else {
-                    Toast.makeText(this, "Documento não encontrado", Toast.LENGTH_SHORT).show()
-                }
-            }
-            .addOnFailureListener { exception ->
-                Toast.makeText(this, "Erro ao carregar dados: ${exception.message}", Toast.LENGTH_SHORT).show()
-            }
     }
 
     fun irParaTelaConfig(view: View) {
