@@ -137,7 +137,7 @@ class FotoBio : AppCompatActivity() {
             if (drawable != null) {
                 val bitmap = (drawable as BitmapDrawable).bitmap
                 val outputStream = ByteArrayOutputStream()
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream)
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
                 val data = outputStream.toByteArray()
 
                 // Referência ao storage do Firebase para armazenar a imagem
