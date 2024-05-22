@@ -65,12 +65,12 @@ class Inicio1 : Fragment() {
         }
 
         // Encontrar o botão dentro do popup para fechar o AlertDialog
-        //val close_button = popupView.findViewById<Buttom>(R.id.close_button)
-        // Configurar o clique do botão para fechar o AlertDialog
-        //close_button.setOnClickListener {
-            //fecha
-            //alertDialog.dismiss()
-        //}
+        /*val close_button = popupView.findViewById<Buttom>(R.id.close_button)
+         //Configurar o clique do botão para fechar o AlertDialog
+        close_button.setOnClickListener {
+           // fecha
+            alertDialog.dismiss()
+        }*/
 
         // Retorna a view inflada
         return view
