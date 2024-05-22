@@ -1,11 +1,14 @@
 package com.companyvihva.vihva.Login
 import Inicio1
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -162,25 +165,39 @@ class Login : AppCompatActivity() {
         startActivity(telaCadastro)
     }
     // Função para exibir o diálogo de redefinição de senha
+    @SuppressLint("MissingInflatedId")
     private fun mostrarDialogRedefinirSenha() {
+        val inflater = LayoutInflater.from(this)
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Redefinir Senha")
-        builder.setMessage("Insira seu e-mail para redefinir sua senha")
-        val input = EditText(this)
-        builder.setView(input)
-        builder.setPositiveButton("Enviar") { dialog, which ->
+        val popupView = inflater.inflate(R.layout.popup_esqueci_senha, null)
+
+        builder.setView(popupView)
+
+        val alertDialog = builder.create()
+        alertDialog.show()
+
+        // Encontrar os botões dentro do layout inflado
+        val btnCancelar = popupView.findViewById<Button>(R.id.btnCancelar)
+        val btnEnviar = popupView.findViewById<Button>(R.id.btnEnviar)
+        val input = popupView.findViewById<EditText>(R.id.editTextTextEmailAddress)
+
+        // Configurar listener para o botão Cancelar
+        btnCancelar.setOnClickListener {
+            alertDialog.dismiss() // Fechar o diálogo ao cancelar
+        }
+
+        // Configurar listener para o botão Enviar
+        btnEnviar.setOnClickListener {
             val email = input.text.toString()
             if (email.isNotEmpty()) {
                 enviarEmailRedefinirSenha(email)
+                alertDialog.dismiss() // Fechar o diálogo após enviar o e-mail
             } else {
                 showToast("Por favor, insira seu e-mail")
             }
         }
-        builder.setNegativeButton("Cancelar") { dialog, which ->
-            dialog.cancel()
-        }
-        builder.show()
     }
+
     // Função para enviar o e-mail de redefinição de senha
     private fun enviarEmailRedefinirSenha(email: String) {
         auth.sendPasswordResetEmail(email)
