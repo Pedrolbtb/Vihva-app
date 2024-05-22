@@ -1,3 +1,5 @@
+package com.companyvihva.vihva
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -5,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.companyvihva.vihva.R
 import com.companyvihva.vihva.model.Adapter.AdapterRemedio
 import com.companyvihva.vihva.model.Remedio2
 import com.google.firebase.firestore.FirebaseFirestore
@@ -45,11 +46,12 @@ class Remedio1 : Fragment() {
         recyclerViewRemedios.adapter = adapterRemedio
 
         // Inicia a busca sequencial de documentos
-        fetchRemedio(0)
+        fetchRemedio(0) // Alteração feita: chamada do método fetchRemedio(0) para iniciar a busca dos remédios
 
         return view
     }
 
+    // Novo método adicionado para buscar os remédios no Firestore
     private fun fetchRemedio(index: Int) {
         // Verifica se o índice fornecido está dentro dos limites do array documentos
         if (index < documentos.size) {
@@ -69,7 +71,7 @@ class Remedio1 : Fragment() {
                         // Cria um objeto Remedio2 com os dados obtidos
                         val remedio = Remedio2(
                             url ?: "", // Se a URL for nula, atribui uma string vazia
-                            nome ?: "", // Se o nome for nulo, atribui uma string vazia
+                            nome ?: "" // Se o nome for nulo, atribui uma string vazia
                         )
 
                         // Adiciona o remédio à lista

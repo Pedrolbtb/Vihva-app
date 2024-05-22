@@ -1,7 +1,7 @@
 package com.companyvihva.vihva.Inicio
 
 import Inicio1
-import Remedio1
+
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +14,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.Configurações.Configuracoes
 import com.companyvihva.vihva.R
+import com.companyvihva.vihva.Remedio1
 import com.companyvihva.vihva.databinding.ActivityInicioBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso

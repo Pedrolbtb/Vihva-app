@@ -1,16 +1,18 @@
 package com.companyvihva.vihva.model.Adapter
 
+import android.app.Activity
 import android.content.Context
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.model.Remedio2
-import  com.squareup.picasso.Picasso
-//import com.squareup.picasso.Picasso
+import com.squareup.picasso.Picasso
 
 // AdapterRemedio é uma classe que estende RecyclerView.Adapter e é responsável por
 // adaptar os dados da lista de remédios para serem exibidos em um RecyclerView.
@@ -28,8 +30,7 @@ class AdapterRemedio(private val context: Context, private val remedios: Mutable
     // RemedioViewHolder para representar a visualização de um item na lista.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RemedioViewHolder {
         val itemLista = LayoutInflater.from(context).inflate(R.layout.fragment_remedio, parent, false)
-        val holder = RemedioViewHolder(itemLista)
-        return holder
+        return RemedioViewHolder(itemLista)
     }
 
     // Este método retorna o número total de itens na lista de remédios.
@@ -45,8 +46,32 @@ class AdapterRemedio(private val context: Context, private val remedios: Mutable
         // Define o nome do remédio no TextView
         holder.nome.text = remedios[position].nome
 
-
+        // Define o clique no item para mostrar o popup
+        holder.itemView.setOnClickListener {
+            showPopup(remedios[position])
+        }
     }
 
+    // Método para exibir o popup com informações do remédio
+    private fun showPopup(remedio: Remedio2) {
+        // Infla o layout do popup
+        val inflater = LayoutInflater.from(context)
+        val popupView = inflater.inflate(R.layout.popup_desc_remedio, null)
 
+        // Configura os textos do popup
+        val nomeTextView = popupView.findViewById<TextView>(R.id.Remedio)
+        val descricaoTextView = popupView.findViewById<TextView>(R.id.descricao1)
+        nomeTextView.text = remedio.nome
+        descricaoTextView.text = remedio.foto // Se houver descrição, ajuste isso para o campo correto
+
+        // Cria e mostra o PopupWindow
+        val popupWindow = PopupWindow(
+            popupView,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            true
+        )
+        // Define a posição do popup na tela
+        popupWindow.showAtLocation((context as Activity).findViewById(android.R.id.content), Gravity.CENTER, 0, 0)
+    }
 }

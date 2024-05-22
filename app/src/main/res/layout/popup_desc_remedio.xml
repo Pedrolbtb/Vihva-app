@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="330dp"
+    android:layout_width="340dp"
     android:layout_height="600dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
@@ -24,8 +24,8 @@
 
     <TextView
         android:id="@+id/descricao1"
-        android:layout_width="258dp"
-        android:layout_height="219dp"
+        android:layout_width="267dp"
+        android:layout_height="233dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:gravity="center"
 
@@ -39,18 +39,39 @@
 
     <androidx.appcompat.widget.AppCompatButton
 
+        android:id="@+id/appCompatButton"
+        android:layout_width="141dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:text="Adicionar Remedio"
+        android:textColor="@color/off_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.919"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descricao1"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.appcompat.widget.AppCompatButton
+
+        android:id="@+id/addAlarme"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginTop="82dp"
+        android:layout_marginBottom="56dp"
         android:background="@drawable/button"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="Adicionar alarme"
         android:textColor="@color/off_white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/appCompatButton"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-
-        />
+        app:layout_constraintTop_toBottomOf="@+id/descricao1"
+        app:layout_constraintVertical_bias="0.909" />
 
 
 </android.support.constraint.ConstraintLayout>
