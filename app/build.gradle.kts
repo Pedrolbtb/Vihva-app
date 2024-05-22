@@ -85,4 +85,8 @@ dependencies {
     //Dependencias GPS
     implementation("androidx.activity:activity-ktx:1.9.0")
     implementation("androidx.fragment:fragment-ktx:1.7.1")
+
+    //Firebase Storage
+    implementation ("com.google.firebase:firebase-storage:20.0.0")
+
 }

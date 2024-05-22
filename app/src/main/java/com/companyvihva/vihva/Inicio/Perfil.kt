@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.squareup.picasso.Picasso
 
 class Perfil : Fragment() {
 
@@ -52,6 +54,7 @@ class Perfil : Fragment() {
                         val peso = document.getLong("peso")?.toString()
                         val biografia = document.getString("biografia")
                         val genero = document.getString("genero")
+                        val imageUrl = document.getString("imageUrl")
 
                         view.findViewById<TextView>(R.id.text_nome).text = "${nome ?: "Nome não fornecido"} ${sobrenome ?: "Sobrenome não fornecido"}"
                         view.findViewById<TextView>(R.id.text_genero).text = "${genero ?: "Gênero não fornecido"}"
@@ -59,6 +62,11 @@ class Perfil : Fragment() {
                         view.findViewById<TextView>(R.id.text_altura).text = "${altura ?: "Altura não fornecida"} cm"
                         view.findViewById<TextView>(R.id.text_peso).text = "${peso ?: "Peso não fornecido"} kg"
                         view.findViewById<TextView>(R.id.View_biografia).text = "${biografia ?: "Biografia não fornecida"} "
+
+                        // Carregar a imagem usando Picasso
+                        imageUrl?.let {
+                            Picasso.get().load(it).into(view.findViewById<ImageView>(R.id.img_save_perfil))
+                        }
                     } else {
                         Log.d("PerfilFragment", "Document does not exist")
                     }
@@ -136,20 +144,10 @@ class Perfil : Fragment() {
                     //Fecha o AlertDialog após salvar
                     alertDialog.dismiss()
                 }.addOnFailureListener{
-
+                    Log.e("PerfilFragment", "Erro ao atualizar informações", it)
                 }
-
-
-
             }
-
         }
         alertDialog.show()
     }
-
-
-
 }
-
-
-
