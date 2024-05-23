@@ -1,6 +1,9 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <stroke
-        android:color="@color/hint"
-        android:width="2dp"
-        android:height="1dp"/>
-</shape>
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:gravity="bottom">
+        <shape>
+            <size android:height="2dp" />
+            <solid android:color="@color/Letras" />
+        </shape>
+    </item>
+</layer-list>

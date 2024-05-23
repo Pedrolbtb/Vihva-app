@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import com.companyvihva.vihva.Configurações.Config_List
 import com.companyvihva.vihva.Configurações.Configuracoes
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.Remedio1
@@ -76,7 +77,7 @@ class Inicio : AppCompatActivity() {
     }
 
     fun irParaTelaConfig(view: View) {
-        val telaL = Intent(this, Configuracoes::class.java)
+        val telaL = Intent(this, Config_List::class.java)
         telaL.putExtra("name", "Batman")
         telaL.putExtra("phone", 98955)
         startActivity(telaL)
