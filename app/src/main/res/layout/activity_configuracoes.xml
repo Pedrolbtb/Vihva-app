@@ -37,7 +37,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
+        android:fontFamily="@font/cloudsoft_bold_700"
         android:text="@string/text_celular"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,13 +75,13 @@
         app:layout_constraintTop_toBottomOf="@+id/spinnerDDI" />
 
 
-
     <Button
         android:id="@+id/btn_confirmar"
         android:layout_width="98dp"
         android:layout_height="0dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="48dp"
+        android:backgroundTint="@color/Letras"
         android:text="@string/text_salvar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextMsg" />
@@ -90,6 +92,7 @@
         android:layout_height="49dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="28dp"
+        android:backgroundTint="@color/Letras"
         android:text="@string/text_restaurar"
         app:layout_constraintEnd_toStartOf="@+id/btn_confirmar"
         app:layout_constraintTop_toBottomOf="@+id/editTextMsg" />
