@@ -16,6 +16,7 @@ import com.companyvihva.vihva.R
 import com.companyvihva.vihva.databinding.ActivityConfiguracoesBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 
 class Configuracoes : AppCompatActivity() {
 
@@ -66,7 +67,7 @@ class Configuracoes : AppCompatActivity() {
             AlertDialog.Builder(this)
                 .setTitle(getString(R.string.text_warning))
                 .setMessage(getString(R.string.text_restore_mensage))
-                .setPositiveButton("Sim", DialogInterface.OnClickListener{dialogInterface, i ->
+                .setPositiveButton("Sim", DialogInterface.OnClickListener { dialogInterface, i ->
 
 
                     preferences.edit()
@@ -130,29 +131,69 @@ class Configuracoes : AppCompatActivity() {
                 ?.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
 
-                        //Excluir o documento do perfil do usuario no Firestore
+                        // Excluir o documento do perfil do usuario no Firestore
                         user.uid.let { userID ->
-                            db.collection("clientes").document(userID)
-                                .delete()
-                                .addOnCompleteListener {
-                                    //Documento excluido com sucesso
-                                    startActivity(Intent(this, Login::class.java))
+                            // Referência para o documento do usuário no Firestore
+                            val userDocRef = db.collection("clientes").document(userID)
+
+                            // Deletar documento do usuário no Firestore
+                            userDocRef.delete()
+                                .addOnCompleteListener { task ->
+                                    if (task.isSuccessful) {
+                                        // Documento excluído com sucesso
+
+                                        // Excluir pasta no Firebase Storage
+                                        val storageRef =
+                                            FirebaseStorage.getInstance().reference.child("users/$userID/")
+                                        storageRef.delete().addOnCompleteListener { storageTask ->
+                                            if (storageTask.isSuccessful) {
+                                                // Pasta excluída com sucesso
+                                                startActivity(Intent(this, Login::class.java))
+                                            } else {
+                                                // Ocorreu um erro ao excluir a pasta no Storage
+                                                Toast.makeText(
+                                                    this,
+                                                    "Erro ao excluir a pasta no Storage",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
+                                        }.addOnFailureListener { storageException ->
+                                            // Ocorreu um erro ao excluir a pasta no Storage
+                                            Toast.makeText(
+                                                this,
+                                                "Erro ao excluir a pasta no Storage: ${storageException.message}",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                    } else {
+                                        // Ocorreu um erro ao excluir o documento no Firestore
+                                        Toast.makeText(
+                                            this,
+                                            "Erro ao excluir o perfil",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
                                 }
-                                .addOnFailureListener{ e ->
-                                    //Ocorreu um erro ao excluir usuario abre um toast
-                                    Toast.makeText(this,"Erro ao excluir o perfil ", Toast.LENGTH_SHORT).show()
+                                .addOnFailureListener { e ->
+                                    // Ocorreu um erro ao excluir o documento no Firestore
+                                    Toast.makeText(
+                                        this,
+                                        "Erro ao excluir o perfil: ${e.message}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
+                        } ?: run {
+                            // Ocorreu um erro ao excluir a conta
+                            // Exiba uma mensagem de erro ao usuário ou lide com o erro de outra forma
+                            Toast.makeText(this, "Erro ao excluir a conta", Toast.LENGTH_SHORT)
+                                .show()
                         }
-                    } else {
-                        // Ocorreu um erro ao excluir a conta
-                        // Exiba uma mensagem de erro ao usuário ou lide com o erro de outra forma
-                        Toast.makeText(this, "Erro ao excluir a conta", Toast.LENGTH_SHORT).show()
+
                     }
                 }
         }
     }
 }
-
 
 // fim do loadPreferences
 //fim da classe

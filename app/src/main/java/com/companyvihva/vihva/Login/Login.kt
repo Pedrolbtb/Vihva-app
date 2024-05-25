@@ -25,6 +25,7 @@ class Login : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
+
     // Variáveis para armazenar os drawables originais dos campos de e-mail e senha
     private lateinit var originalEmailDrawable: Drawable
     private lateinit var originalSenhaDrawable: Drawable

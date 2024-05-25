@@ -141,7 +141,9 @@ class FotoBio : AppCompatActivity() {
                 val data = outputStream.toByteArray()
 
                 // Referência ao storage do Firebase para armazenar a imagem
-                val storageRef = storage.reference.child("images/$uid.jpg")
+                val uid = FirebaseAuth.getInstance().currentUser?.uid
+                val storageRef = storage.reference.child("users/$uid/profile_image.jpg")
+
                 val uploadTask = storageRef.putBytes(data)
                 uploadTask.addOnSuccessListener {
                     storageRef.downloadUrl.addOnSuccessListener { uri ->
@@ -149,13 +151,15 @@ class FotoBio : AppCompatActivity() {
                         dadosPerfil["imageUrl"] = uri.toString()
 
                         // Atualiza o documento existente com os dados adicionais do perfil
-                        db.collection("clientes").document(uid).update(dadosPerfil as Map<String, Any>)
-                            .addOnSuccessListener {
-                                Toast.makeText(this, "Dados salvos com sucesso", Toast.LENGTH_SHORT).show()
-                            }
-                            .addOnFailureListener { e ->
-                                Toast.makeText(this, "Erro ao salvar os dados: ${e.message}", Toast.LENGTH_SHORT).show()
-                            }
+                        if (uid != null) {
+                            db.collection("clientes").document(uid).update(dadosPerfil as Map<String, Any>)
+                                .addOnSuccessListener {
+                                    Toast.makeText(this, "Dados salvos com sucesso", Toast.LENGTH_SHORT).show()
+                                }
+                                .addOnFailureListener { e ->
+                                    Toast.makeText(this, "Erro ao salvar os dados: ${e.message}", Toast.LENGTH_SHORT).show()
+                                }
+                        }
                     }
                 }.addOnFailureListener { e ->
                     Toast.makeText(this, "Erro ao fazer upload da imagem: ${e.message}", Toast.LENGTH_SHORT).show()
