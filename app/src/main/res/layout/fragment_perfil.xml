@@ -17,7 +17,7 @@
             android:id="@+id/img_save_perfil"
             style="@style/foto"
             android:layout_width="130dp"
-            android:layout_height="125dp"
+            android:layout_height="130dp"
             android:layout_marginEnd="190dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@+id/layout_bio"

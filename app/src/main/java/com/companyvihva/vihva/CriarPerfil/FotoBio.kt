@@ -68,6 +68,12 @@ class FotoBio : AppCompatActivity() {
 
         // Configura o OnClickListener para o botão retornar
         findViewById<Button>(R.id.btn_retornar).setOnClickListener {
+            val altura = intent.getIntExtra("altura", 0)
+            val peso = intent.getIntExtra("peso", 0)
+            val genero = intent.getStringExtra("genero")
+            val nome = intent.getStringExtra("nome")
+            val sobrenome = intent.getStringExtra("sobrenome")
+            val idade = intent.getIntExtra("idade", 0)
             val criaPerfil2 = Intent(this, CriaPerfil2::class.java)
             criaPerfil2.putExtra("altura", altura)
             criaPerfil2.putExtra("peso", peso)

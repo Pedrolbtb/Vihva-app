@@ -2,6 +2,7 @@
     <!-- Oval preto -->
     <item>
         <shape android:shape="oval">
+            <corners android:radius="65dp"/>
             <solid android:color="#6096a8" />
         </shape>
     </item>
@@ -11,7 +12,7 @@
 
         <shape android:shape="line">
             <stroke
-                android:width="19dp"
+                android:width="7dp"
                 android:color="#FFFAF5" />
         </shape>
     </item>
@@ -21,7 +22,7 @@
             android:fromDegrees="90">
             <shape android:shape="line">
                 <stroke
-                    android:width="19dp"
+                    android:width="7dp"
                     android:color="#FFFAF5" />
             </shape>
         </rotate>

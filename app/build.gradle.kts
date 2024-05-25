@@ -64,6 +64,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("com.android.support.constraint:constraint-layout:1.1.3")
     implementation ("com.google.android.material:material:<version>")
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 
 
     //dependencias do Firebase

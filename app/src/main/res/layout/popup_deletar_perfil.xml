@@ -36,7 +36,7 @@
         android:id="@+id/descricao"
         android:layout_width="270dp"
         android:layout_height="200dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:gravity="center"
         android:text="@string/text_msg_padrao_deletar"
@@ -45,6 +45,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diabetes" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:elevation="3dp"
+        android:hint="@string/text_csenha"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descricao"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/Letras">
+
+        <!--edit text da senha -->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_senhadeleta"
+            style="@style/Edit_Text_Login"
+            android:layout_width="match_parent"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:hint="@string/text_csenha"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:textColor="@color/Letras"
+            android:textColorHint="@color/hint"
+            android:textSize="15sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_nao"

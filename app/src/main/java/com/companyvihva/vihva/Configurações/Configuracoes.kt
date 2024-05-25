@@ -3,7 +3,6 @@ package com.companyvihva.vihva.Configurações;
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Button
@@ -11,9 +10,11 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.Login.Login
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.databinding.ActivityConfiguracoesBinding
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -40,10 +41,7 @@ class Configuracoes : AppCompatActivity() {
         editTextMessage = findViewById(R.id.editTextMsg)
 
         // Obter um conjunto de preferências do aplicativo
-        val preferences = getSharedPreferences(
-            "socorro",
-            MODE_PRIVATE
-        )
+        val preferences = getSharedPreferences("socorro", MODE_PRIVATE)
 
         // Carregar preferências
         loadPreferences(preferences)
@@ -57,45 +55,35 @@ class Configuracoes : AppCompatActivity() {
                 .apply()
 
             // Exibir uma mensagem de sucesso
-            Toast.makeText(this, getString(R.string.preferences_success), Toast.LENGTH_SHORT)
-                .show()
+            Toast.makeText(this, getString(R.string.preferences_success), Toast.LENGTH_SHORT).show()
         }
 
         // Ouvinte do botão para restaurar preferências
         findViewById<Button>(R.id.btn_restaurar).setOnClickListener {
-            // Aqui você pode implementar a lógica para restaurar as preferências
             AlertDialog.Builder(this)
                 .setTitle(getString(R.string.text_warning))
                 .setMessage(getString(R.string.text_restore_mensage))
-                .setPositiveButton("Sim", DialogInterface.OnClickListener { dialogInterface, i ->
-
-
+                .setPositiveButton("Sim") { _, _ ->
                     preferences.edit()
                         .remove("ddi")
                         .remove("phone")
                         .remove("default_msg")
                         .apply()
 
-                    //carrega as novas preferencias(similar ao refresh em aplicações web
+                    // Carrega as novas preferências (similar ao refresh em aplicações web)
                     loadPreferences(preferences)
-                })
+                }
                 .setNegativeButton("Não", null)
                 .create()
                 .show()
-        }//Fim do restaurar
+        } // Fim do restaurar
     }
 
     // Método para carregar preferências e atualizar a UI
     private fun loadPreferences(preferences: SharedPreferences) {
         spinnerDDI.setSelection(preferences.getInt("ddi", 2))
         editTextPhone.setText(preferences.getLong("phone", 0).toString())
-        editTextMessage.setText(
-
-            preferences.getString(
-                "default_msg",
-                getString(R.string.default_msg)
-            )
-        )
+        editTextMessage.setText(preferences.getString("default_msg", getString(R.string.default_msg)))
     }
 
     // Método para mostrar o popup de exclusão de perfil
@@ -116,7 +104,7 @@ class Configuracoes : AppCompatActivity() {
         val alertDialog = alertDialogBuilder.create()
         alertDialog.show()
 
-        //Configurar os cliques dos botões
+        // Configurar os cliques dos botões
         btnNao.setOnClickListener {
             // Fecha o alertDialog
             alertDialog.dismiss()
@@ -127,74 +115,63 @@ class Configuracoes : AppCompatActivity() {
             val user = FirebaseAuth.getInstance().currentUser
             val db = FirebaseFirestore.getInstance()
 
-            user?.delete()
-                ?.addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
+            user?.let { userID ->
+                // Referência para o documento do usuário no Firestore
+                val userDocRef = db.collection("clientes").document(userID.uid)
 
-                        // Excluir o documento do perfil do usuario no Firestore
-                        user.uid.let { userID ->
-                            // Referência para o documento do usuário no Firestore
-                            val userDocRef = db.collection("clientes").document(userID)
-
-                            // Deletar documento do usuário no Firestore
-                            userDocRef.delete()
-                                .addOnCompleteListener { task ->
-                                    if (task.isSuccessful) {
-                                        // Documento excluído com sucesso
-
-                                        // Excluir pasta no Firebase Storage
-                                        val storageRef =
-                                            FirebaseStorage.getInstance().reference.child("users/$userID/")
-                                        storageRef.delete().addOnCompleteListener { storageTask ->
-                                            if (storageTask.isSuccessful) {
-                                                // Pasta excluída com sucesso
-                                                startActivity(Intent(this, Login::class.java))
-                                            } else {
-                                                // Ocorreu um erro ao excluir a pasta no Storage
-                                                Toast.makeText(
-                                                    this,
-                                                    "Erro ao excluir a pasta no Storage",
-                                                    Toast.LENGTH_SHORT
-                                                ).show()
-                                            }
-                                        }.addOnFailureListener { storageException ->
-                                            // Ocorreu um erro ao excluir a pasta no Storage
-                                            Toast.makeText(
-                                                this,
-                                                "Erro ao excluir a pasta no Storage: ${storageException.message}",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
+                // Deletar documento do usuário no Firestore
+                userDocRef.delete()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            // Documento excluído com sucesso
+                            deleteUserFolder(userID.uid) {
+                                // Excluir a conta do Firebase Authentication
+                                user.delete()
+                                    .addOnCompleteListener { deleteTask ->
+                                        if (deleteTask.isSuccessful) {
+                                            // Conta excluída com sucesso
+                                            startActivity(Intent(this, Login::class.java))
+                                            finish()
+                                        } else {
+                                            // Ocorreu um erro ao excluir a conta
+                                            Toast.makeText(this, "Erro ao excluir a conta", Toast.LENGTH_SHORT).show()
                                         }
-                                    } else {
-                                        // Ocorreu um erro ao excluir o documento no Firestore
-                                        Toast.makeText(
-                                            this,
-                                            "Erro ao excluir o perfil",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
                                     }
-                                }
-                                .addOnFailureListener { e ->
-                                    // Ocorreu um erro ao excluir o documento no Firestore
-                                    Toast.makeText(
-                                        this,
-                                        "Erro ao excluir o perfil: ${e.message}",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                        } ?: run {
-                            // Ocorreu um erro ao excluir a conta
-                            // Exiba uma mensagem de erro ao usuário ou lide com o erro de outra forma
-                            Toast.makeText(this, "Erro ao excluir a conta", Toast.LENGTH_SHORT)
-                                .show()
+                            }
+                        } else {
+                            // Ocorreu um erro ao excluir o documento no Firestore
+                            Toast.makeText(this, "Erro ao excluir o perfil", Toast.LENGTH_SHORT).show()
                         }
-
                     }
-                }
+            } ?: run {
+                // Ocorreu um erro ao excluir a conta
+                Toast.makeText(this, "Erro ao excluir a conta", Toast.LENGTH_SHORT).show()
+            }
         }
     }
+
+    private fun deleteUserFolder(userId: String, onComplete: () -> Unit) {
+        val storageRef = FirebaseStorage.getInstance().reference.child("users/$userId/")
+        storageRef.listAll()
+            .addOnSuccessListener { listResult ->
+                val items = listResult.items
+                val tasks = items.map { it.delete() }
+
+                // Wait for all delete tasks to complete
+                Tasks.whenAllComplete(tasks)
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            // All files deleted successfully
+                            onComplete()
+                        } else {
+                            // Handle failures
+                            Toast.makeText(this, "Erro ao excluir arquivos na pasta do usuário", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+            }
+            .addOnFailureListener { e ->
+                // Ocorreu um erro ao listar os arquivos na pasta
+                Toast.makeText(this, "Erro ao listar arquivos na pasta: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
 }
-
-// fim do loadPreferences
-//fim da classe
-
