@@ -45,7 +45,7 @@ class Inicio : AppCompatActivity() {
                 R.id.remédio -> replaceFragment(Remedio1())
                 R.id.calendario -> replaceFragment(com.companyvihva.vihva.Inicio.Calendario())
                 R.id.inicio -> replaceFragment(Inicio1())
-                R.id.alarme -> replaceFragment(com.companyvihva.vihva.Inicio.Alarme())
+                R.id.alarme -> replaceFragment(Alarme())
                 R.id.perfil -> replaceFragment(com.companyvihva.vihva.Inicio.Perfil())
                 else -> {
                     false

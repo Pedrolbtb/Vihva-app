@@ -9,38 +9,38 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="69dp"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
             android:gravity="center"
-            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 style="@style/titulo_inicio"
-                android:text="@string/titulo_login"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_gravity="center"
                 android:layout_marginStart="30dp"
+                android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:layout_gravity="center" />
+                android:text="@string/titulo_login" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/sos"
                 style="@style/sos"
-                android:layout_marginEnd="15dp"
-                android:layout_marginTop="2dp"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_gravity="center"
-                android:background="@drawable/sos" />
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/sos"
+                android:contentDescription="@string/text_sos" />
 
             <ImageButton
                 android:id="@+id/btn_config"
@@ -49,6 +49,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="30dp"
                 android:background="#00FFFFFF"
+                android:contentDescription="@string/Toast_configuracoes_sucesso"
                 android:onClick="irParaTelaConfig"
                 android:scaleType="fitXY"
                 android:src="@drawable/engrenagem"
@@ -73,96 +74,96 @@
 
         <View
             android:id="@+id/card_remedio1"
-            android:layout_width="320dp"
+            android:layout_width="328dp"
             android:layout_height="95dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="400dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="250dp"
             android:background="@drawable/view_remedio_verde"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_remedio" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <View
             android:id="@+id/card_remedio2"
-            android:layout_width="320dp"
+            android:layout_width="328dp"
             android:layout_height="95dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="360dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="150dp"
             android:background="@drawable/view_remedio_verde"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_remedio1" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/layout_medicamentos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginStart="45dp"
-            android:layout_marginTop="130dp"
-            android:layout_marginBottom="30dp"
             android:layout_marginEnd="30dp"
-            app:layout_constraintBottom_toTopOf="@+id/card_diabete"
+            android:layout_marginBottom="545dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
             <TextView
                 android:id="@+id/text_iniciodoenca"
                 style="@style/text_doenca_e_remedio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text_doencas_inicio"
-                android:gravity="start|bottom" />
+                android:gravity="start|bottom"
+                android:text="@string/text_doencas_inicio" />
 
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#00FFFFFF"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="170dp"
-                android:src="@drawable/add_foto"
-
-                android:gravity="end|bottom" />
+                android:layout_marginTop="5dp"
+                android:background="#00FFFFFF"
+                android:contentDescription="adicione doenças"
+                android:gravity="end|bottom"
+                android:src="@drawable/add_foto" />
         </LinearLayout>
-
 
 
         <LinearLayout
             android:id="@+id/layout_remedio"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="45dp"
             android:layout_marginEnd="30dp"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_diabete">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/text_inicioremedio"
                 style="@style/text_doenca_e_remedio"
-                android:textColor="@color/letras_remedios"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="start|bottom"
                 android:text="@string/text_remedio_inicio"
-                android:layout_gravity="start|bottom" />
+                android:textColor="@color/letras_remedios" />
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#00FFFFFF"
+                android:layout_gravity="end|bottom"
                 android:layout_marginStart="80dp"
                 android:layout_marginBottom="5dp"
-                android:src="@drawable/add_verde"
-                android:layout_gravity="end|bottom" />
+                android:background="#00FFFFFF"
+                android:contentDescription="adicione remedios"
+                android:src="@drawable/add_verde" />
         </LinearLayout>
+
 
 
 

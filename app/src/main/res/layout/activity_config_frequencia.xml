@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/off_white"
+    tools:context=".Alarme.ConfigFrequencia">
+
+    <TextView
+        android:id="@+id/text_alarme"
+        style="@style/text_doenca_e_remedio"
+        android:layout_marginBottom="540dp"
+        android:text="Programação do alarme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/View_Programacao"
+        style="@style/Container_Alarme"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_marginTop="100dp"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/container_Frequencia"
+        style="@style/container_linha"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="480dp"
+        android:background="@drawable/container_linha"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao"
+        app:layout_constraintTop_toTopOf="@+id/View_Programacao" />
+
+    <TextView
+        android:id="@+id/programacaoalarme"
+        style="@style/text_botoesAlarme"
+        android:layout_marginEnd="227dp"
+        android:layout_marginBottom="20dp"
+        android:elevation="1dp"
+        android:text="Frequência"
+        app:layout_constraintBottom_toBottomOf="@+id/container_Frequencia"
+        app:layout_constraintEnd_toEndOf="@id/container_Frequencia"
+        app:layout_constraintStart_toStartOf="@id/container_Frequencia"
+        app:layout_constraintTop_toTopOf="@+id/container_Frequencia" />
+
+    <TextView
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="15dp"
+        android:elevation="1dp"
+        android:text="1 vez ao dia"
+        app:layout_constraintBottom_toBottomOf="@+id/container_Frequencia"
+        app:layout_constraintEnd_toEndOf="@+id/container_Frequencia"
+        app:layout_constraintStart_toStartOf="@+id/container_Frequencia"
+        app:layout_constraintTop_toBottomOf="@+id/programacaoalarme" />
+
+    <View
+        android:id="@+id/container_DuracaoAlarme"
+        style="@style/container_linha"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="410dp"
+        android:background="@drawable/container_linha"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao"
+        app:layout_constraintTop_toBottomOf="@id/container_Frequencia" />
+
+    <TextView
+        android:id="@+id/duracaodolembrete"
+        style="@style/text_botoesAlarme"
+        android:layout_marginEnd="255dp"
+        android:layout_marginBottom="20dp"
+        android:elevation="1dp"
+        android:text="Duração"
+        app:layout_constraintBottom_toBottomOf="@+id/container_DuracaoAlarme"
+        app:layout_constraintEnd_toEndOf="@id/container_DuracaoAlarme"
+        app:layout_constraintStart_toStartOf="@id/container_DuracaoAlarme"
+        app:layout_constraintTop_toTopOf="@+id/container_DuracaoAlarme" />
+
+    <TextView
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="15dp"
+        android:elevation="1dp"
+        android:text="1 vez ao dia"
+        app:layout_constraintBottom_toBottomOf="@+id/container_DuracaoAlarme"
+        app:layout_constraintEnd_toEndOf="@+id/container_DuracaoAlarme"
+        app:layout_constraintStart_toStartOf="@+id/container_DuracaoAlarme"
+        app:layout_constraintTop_toBottomOf="@+id/duracaodolembrete" />
+
+    <TextView
+        android:id="@+id/detalhesdolembrete"
+        style="@style/text_botoesAlarme"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="350dp"
+        android:elevation="1dp"
+        android:text="Detalhes do lembrete"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao"
+        app:layout_constraintTop_toBottomOf="@id/container_DuracaoAlarme" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.94" />
+
+    <View
+        android:id="@+id/container_apartir"
+        style="@style/container_linha"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="170dp"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao"
+        app:layout_constraintTop_toBottomOf="@id/container_Frequencia" />
+
+    <TextView
+        android:id="@+id/apartir"
+        style="@style/text_botoesAlarme"
+        android:layout_marginEnd="230dp"
+        android:elevation="1dp"
+        android:text="A partir de"
+        app:layout_constraintBottom_toBottomOf="@+id/container_apartir"
+        app:layout_constraintEnd_toEndOf="@id/container_apartir"
+        app:layout_constraintStart_toStartOf="@id/container_apartir"
+        app:layout_constraintTop_toTopOf="@+id/container_apartir" />
+
+    <TextView
+        android:id="@+id/hora_apartir"
+        style="@style/text_botoesAlarme"
+        android:layout_marginStart="240dp"
+        android:elevation="1dp"
+        android:text="12:10"
+        app:layout_constraintBottom_toBottomOf="@+id/container_apartir"
+        app:layout_constraintEnd_toEndOf="@id/container_apartir"
+        app:layout_constraintStart_toStartOf="@id/container_apartir"
+        app:layout_constraintTop_toTopOf="@+id/container_apartir" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_salvarAlarme"
+        style="@style/Button_salvar"
+        android:layout_width="300dp"
+        android:layout_marginTop="430dp"
+        android:text="Salvar"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao"
+        app:layout_constraintTop_toTopOf="@id/View_Programacao"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

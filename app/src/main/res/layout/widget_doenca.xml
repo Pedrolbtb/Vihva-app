@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="320dp"
-    android:layout_height="147dp"
-    tools:context=".Inicio.Inicio"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/view_doenca">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="147dp"
+    android:background="@drawable/view_doenca"
+    android:elevation="3dp"
+    tools:context=".Inicio.Inicio">
 
     <ImageView
         android:id="@+id/image_widget"
@@ -22,9 +23,9 @@
         android:id="@+id/nome_widget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text=""
-        android:layout_marginEnd="40dp"
         android:textColor="#247894"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,8 +41,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/seta_direita" />
-
-
 
 
 </android.support.constraint.ConstraintLayout>

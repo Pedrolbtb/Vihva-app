@@ -121,6 +121,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/Letras</item>
         <item name="hintEnabled">false</item>
+        <item name="elevation">4dp</item>
         <item name="android:layout_marginTop">20dp</item>
         <item name="endIconMode">clear_text</item>
         <item name="endIconTint">@color/Letras</item>
@@ -206,6 +207,20 @@
         <item name="android:layout_marginEnd">40dp</item>
         <item name="android:textSize">20sp</item>
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
+    </style>
+
+    <style name="Container_Alarme">
+        <item name="android:background">@drawable/container_components</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+    </style>
+
+    <style name="text_botoesAlarme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/cloudsoft_bold_700</item>
+        <item name="android:textColor">@color/Letras</item>
     </style>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">

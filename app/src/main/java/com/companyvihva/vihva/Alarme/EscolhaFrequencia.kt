@@ -1,12 +1,12 @@
-package com.companyvihva.vihva.Inicio
+package com.companyvihva.vihva.Alarme
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.companyvihva.vihva.R
 
-class CriaAlarme : AppCompatActivity() {
+class EscolhaFrequencia : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cria_alarme)
+        setContentView(R.layout.activity_escolha_frequencia)
     }
 }

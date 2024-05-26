@@ -5,49 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/off_white"
-    tools:context=".Inicio.CriaAlarme">
+    tools:context=".Alarme.CriaAlarme">
 
-    <NumberPicker
-        android:id="@+id/hour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="40dp"
-        android:scaleX="2"
-        android:scaleY="2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <NumberPicker
-        android:id="@+id/minute"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:scaleX="2"
-        android:scaleY="2"
+    <TextView
+        android:id="@+id/text_alarme"
+        style="@style/text_doenca_e_remedio"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="30dp"
+        android:text="Detalhes do alarme"
+        app:layout_constraintBottom_toTopOf="@+id/containerAlarme"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/hour"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/containerAlarme"
-        android:layout_width="410dp"
-        android:layout_height="430dp"
-        android:background="@drawable/container_alarme"
+        style="@style/ContainerComponents"
+        android:layout_width="match_parent"
+        android:layout_height="580dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@id/containerAlarme"
+        app:layout_constraintStart_toStartOf="@id/containerAlarme"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_nome_alarme"
         style="@style/layout_campos"
-        android:layout_marginTop="80dp"
+        android:layout_marginBottom="470dp"
         android:textColor="@color/Letras"
         app:expandedHintEnabled="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/containerAlarme"
+        app:layout_constraintEnd_toEndOf="@id/containerAlarme"
+        app:layout_constraintStart_toStartOf="@id/containerAlarme"
         app:layout_constraintTop_toTopOf="@+id/containerAlarme"
         app:suffixTextColor="@color/hint">
+
 
         <!-- campos de altura-->
         <com.google.android.material.textfield.TextInputEditText
@@ -55,7 +49,7 @@
             style="@style/Edit_Text_Login"
             android:layout_width="match_parent"
             android:drawableTint="@color/Letras"
-            android:hint="Nome do Alarme"
+            android:hint="Nome do remédio"
             android:inputType="text"
             android:nextFocusForward="@id/edit_senha"
             android:textColor="@color/Letras"
@@ -64,115 +58,198 @@
 
 
     <View
-        android:id="@+id/container_som"
+        android:id="@+id/container_programacaoRemedio"
         style="@style/container_linha"
-        android:layout_width="500dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="300dp"
         android:background="@drawable/container_linha"
+        app:layout_constraintBottom_toBottomOf="@id/containerAlarme"
+        app:layout_constraintEnd_toEndOf="@id/containerAlarme"
+        app:layout_constraintStart_toStartOf="@id/containerAlarme"
+        app:layout_constraintTop_toTopOf="@+id/containerAlarme" />
+
+    <TextView
+        android:id="@+id/programacaoalarme"
+        style="@style/text_botoesAlarme"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="30dp"
+        android:text="Programação do remédio"
+        app:layout_constraintBottom_toBottomOf="@+id/container_programacaoRemedio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_nome_alarme" />
+        app:layout_constraintTop_toTopOf="@+id/container_programacaoRemedio" />
 
     <TextView
-        android:id="@id/somdoalarme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="7dp"
-        android:fontFamily="@font/cloudsoft_bold_700"
-        android:text="Som do Alarme"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/container_som" />
 
-    <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="5dp"
-        android:text="Homecoming"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/somdoalarme" />
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="15dp"
+        android:text="Diriamente - 20 vezes entre as 8:00 e as 20:00 sem data de termino"
+        app:layout_constraintBottom_toBottomOf="@+id/container_programacaoRemedio"
+        app:layout_constraintEnd_toEndOf="@+id/container_programacaoRemedio"
+        app:layout_constraintStart_toStartOf="@+id/container_programacaoRemedio"
+        app:layout_constraintTop_toBottomOf="@+id/programacaoalarme" />
 
     <View
         android:id="@+id/container_vibracao"
         style="@style/container_linha"
-        android:layout_width="500dp"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="300dp"
         android:background="@drawable/container_linha"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_som" />
+        app:layout_constraintBottom_toBottomOf="@id/containerAlarme"
+        app:layout_constraintEnd_toEndOf="@id/containerAlarme"
+        app:layout_constraintStart_toStartOf="@id/containerAlarme"
+        app:layout_constraintTop_toBottomOf="@+id/container_programacaoRemedio" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switch_som"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_nome_alarme"
-        app:thumbTint="@color/Letras"
-        app:trackTint="@color/black" />
 
     <TextView
-        android:id="@+id/vibracao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="7dp"
-        android:fontFamily="@font/cloudsoft_bold_700"
-        android:text="Vibração"
-        android:textSize="20sp"
+        android:id="@+id/estoque"
+        style="@style/text_botoesAlarme"
+        android:layout_marginEnd="235dp"
+        android:layout_marginBottom="30dp"
+        android:text="Estoque"
+        app:layout_constraintBottom_toBottomOf="@+id/container_vibracao"
+        app:layout_constraintEnd_toEndOf="@+id/container_vibracao"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/container_vibracao" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="5dp"
-        android:text="Basic call"
+        android:layout_marginEnd="170dp"
+        android:layout_marginBottom="20dp"
+        android:text="30 capsulas restantes"
+        app:layout_constraintBottom_toBottomOf="@+id/container_vibracao"
+        app:layout_constraintEnd_toEndOf="@+id/container_vibracao"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vibracao" />
+        app:layout_constraintTop_toBottomOf="@+id/estoque" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switch_vibracao"
+
+    <View
+        android:id="@+id/container_configAlarme"
+        style="@style/container_linha"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="230dp"
+        android:background="@drawable/container_linha"
+        app:layout_constraintBottom_toBottomOf="@id/containerAlarme"
+        app:layout_constraintEnd_toEndOf="@id/containerAlarme"
+        app:layout_constraintStart_toStartOf="@id/containerAlarme"
+        app:layout_constraintTop_toBottomOf="@+id/container_vibracao" />
+
+
+    <TextView
+        android:id="@+id/configSom"
+        style="@style/text_botoesAlarme"
+        android:layout_marginEnd="190dp"
+        android:layout_marginBottom="30dp"
+        android:text="Som do alarme"
+        app:layout_constraintBottom_toBottomOf="@+id/container_configAlarme"
+        app:layout_constraintEnd_toEndOf="@+id/containerAlarme"
+        app:layout_constraintStart_toStartOf="@id/container_configAlarme"
+        app:layout_constraintTop_toTopOf="@id/container_configAlarme" />
+
+    <TextView
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/container_vibracao"
-        app:thumbTint="@color/Letras"
-        app:trackTint="@color/black" />
+        android:layout_marginEnd="245dp"
+        android:layout_marginBottom="20dp"
+        android:text="Homecoming"
+        app:layout_constraintBottom_toBottomOf="@+id/container_configAlarme"
+        app:layout_constraintEnd_toEndOf="@+id/containerAlarme"
+        app:layout_constraintStart_toStartOf="@id/container_configAlarme"
+        app:layout_constraintTop_toBottomOf="@+id/configSom" />
+
+    <View
+        android:id="@+id/container_configVibra"
+        style="@style/container_linha"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="150dp"
+        android:background="@drawable/container_linha"
+        app:layout_constraintBottom_toBottomOf="@id/containerAlarme"
+        app:layout_constraintEnd_toEndOf="@+id/containerAlarme"
+        app:layout_constraintStart_toStartOf="@+id/containerAlarme"
+        app:layout_constraintTop_toBottomOf="@+id/container_configAlarme" />
+
+
+    <TextView
+        android:id="@+id/configVibra"
+        style="@style/text_botoesAlarme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="230dp"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:text="Vibração"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/container_configVibra"
+        app:layout_constraintEnd_toEndOf="@+id/container_configVibra"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/container_configVibra" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="265dp"
+        android:layout_marginBottom="20dp"
+        android:text="Basic call"
+        app:layout_constraintBottom_toBottomOf="@+id/container_configVibra"
+        app:layout_constraintEnd_toEndOf="@+id/container_configVibra"
+        app:layout_constraintStart_toStartOf="@id/containerAlarme"
+        app:layout_constraintTop_toBottomOf="@+id/configVibra" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_pausar"
+        style="@style/Button_retornar"
+        android:layout_width="300dp"
+        android:layout_marginTop="80dp"
+        android:text="Pausar lembretes"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/containerAlarme"
+        app:layout_constraintEnd_toEndOf="@id/containerAlarme"
+        app:layout_constraintStart_toStartOf="@id/containerAlarme"
+        app:layout_constraintTop_toBottomOf="@+id/container_vibracao" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_salvarAlarme"
         style="@style/Button_salvar"
-        android:layout_marginEnd="20dp"
-        android:text="@string/text_salvar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_vibracao" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_retornarAlarme"
-        style="@style/Button_retornar"
-        android:text="@string/text_voltar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_salvarAlarme"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_vibracao" />
+        android:layout_width="300dp"
+        android:layout_marginBottom="10dp"
+        android:text="Salvar"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/containerAlarme"
+        app:layout_constraintEnd_toEndOf="@id/containerAlarme"
+        app:layout_constraintStart_toStartOf="@id/containerAlarme"
+        app:layout_constraintTop_toBottomOf="@+id/btn_pausar" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.69" />
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.96" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

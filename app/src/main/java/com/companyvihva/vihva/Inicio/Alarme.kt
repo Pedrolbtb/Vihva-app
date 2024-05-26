@@ -1,6 +1,5 @@
 package com.companyvihva.vihva.Inicio
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,12 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.companyvihva.vihva.CriarPerfil.CriaPerfil
+import com.companyvihva.vihva.Alarme.CriaAlarme
 import com.companyvihva.vihva.R
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.firestore.FirebaseFirestore
 
 class Alarme : Fragment() {
@@ -34,7 +30,7 @@ class Alarme : Fragment() {
         val add_foto = rootView.findViewById<ImageButton>(R.id.add_foto)
         add_foto.setOnClickListener {
 
-            val telaA = Intent(requireActivity(), CriaAlarme::class.java)
+            /*val telaA = Intent(requireActivity(), CriaAlarme::class.java)
             startActivity(telaA)
 
              var hour: Int = -1
@@ -59,7 +55,9 @@ class Alarme : Fragment() {
                 // Adicionar margem ao layout
                 layoutToAdd.layoutParams = params
 
-                parentLayout.addView(layoutToAdd)
+                parentLayout.addView(layoutToAdd)*/
+
+                irParaCriaAlarme()
             }
 
 
@@ -91,4 +89,12 @@ class Alarme : Fragment() {
         val mensagem = preferences.getString("text_msg_padrao", "")
         // Use esses valores conforme necessário
     }
+
+    private fun irParaCriaAlarme() {
+        val telaCriaAlarme = Intent(requireActivity(), CriaAlarme::class.java)
+        startActivity(telaCriaAlarme)
+
+    }
+
 }
+

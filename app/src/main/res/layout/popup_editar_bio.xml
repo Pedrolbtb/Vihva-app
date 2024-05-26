@@ -145,7 +145,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_peso"
             style="@style/layout_campos"
-            app:suffixText="cm"
+            app:suffixText="kg"
             android:textColor="@color/Letras"
             app:expandedHintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"

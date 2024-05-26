@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/off_white"
+    tools:context=".Alarme.EscolhaFrequencia">
+
+
+        <TextView
+            android:id="@+id/text_alarme"
+            style="@style/text_doenca_e_remedio"
+            android:layout_marginTop="55dp"
+            android:text="Frequência do alarme"
+            app:layout_constraintBottom_toTopOf="@id/View_Frequencia"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/View_Frequencia"
+            style="@style/Container_Alarme"
+            android:layout_width="match_parent"
+            android:layout_height="430dp"
+            android:elevation="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup_frequencia"
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="70dp"
+            android:elevation="6dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/View_Frequencia"
+            app:layout_constraintEnd_toEndOf="@id/View_Frequencia"
+            app:layout_constraintStart_toStartOf="@id/View_Frequencia"
+            app:layout_constraintTop_toTopOf="@+id/View_Frequencia">
+
+            <!-- radio de feminino -->
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/radio_diariamente"
+                style="@style/Radio_Button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/container_linha"
+                android:text="Diariamente"
+                android:textColor="@color/Letras"
+                android:textSize="17sp" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/radio_nada"
+                style="@style/Radio_Button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/container_linha"
+                android:text="Quando necessário (nenhum lembrete)"
+                android:textColor="@color/Letras"
+                android:textSize="17sp" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/radio_intervalo"
+                style="@style/Radio_Button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/container_linha"
+                android:text="Intervalo"
+                android:textColor="@color/Letras"
+                android:textSize="17sp" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/radio_dias"
+                style="@style/Radio_Button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/container_linha"
+                android:text="Dias especificos da semana"
+                android:textColor="@color/Letras"
+                android:textSize="17sp" />
+
+            <!-- radio de masculino -->
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/radio_ciclo"
+                style="@style/Radio_Button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/container_linha"
+                android:text="Ciclico"
+                android:textColor="@color/Letras"
+                android:textSize="17sp" />
+
+
+        </RadioGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

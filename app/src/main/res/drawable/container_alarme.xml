@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--codigo do que vai dentro do container-->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!--cor de fundo-->
+    <solid android:color="@color/white"/>
 
-    <stroke android:width="2dp" android:color="@color/Letras"/>
-    <corners android:topLeftRadius="30dp" android:topRightRadius="30dp"/>
+    <corners android:radius="15dp"/>
 
-
+    <!--borda do fundo-->
+    <stroke android:color="#247894" android:width="2dp"/>
 </shape>

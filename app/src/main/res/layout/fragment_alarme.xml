@@ -61,8 +61,6 @@
         <TextView
             android:id="@+id/text_alarme"
             style="@style/text_doenca_e_remedio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="120dp"
             android:text="Alarme"
             app:layout_constraintBottom_toTopOf="@+id/layout_alarme"

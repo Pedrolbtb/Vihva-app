@@ -17,7 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <TextView
         android:id="@+id/breadNome"
         style="@style/breadcrumpL"
@@ -48,22 +47,22 @@
         app:layout_constraintStart_toEndOf="@+id/breadBarraUm"
         app:layout_constraintTop_toBottomOf="@+id/titulo_login" />
 
-
     <!-- fundo dos campos de cadastro -->
     <View
         android:id="@+id/containerComponents"
         style="@style/ContainerComponents"
         android:layout_height="380dp"
         android:layout_marginTop="80dp"
+        android:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_altura"
         style="@style/layout_campos"
+        android:elevation="4dp"
         app:suffixText="cm"
         android:textColor="@color/Letras"
         app:expandedHintEnabled="false"
@@ -83,7 +82,6 @@
             android:nextFocusForward="@id/edit_senha"
             android:textColor="@color/Letras"
             android:textColorHint="@color/hint" />
-
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- campos de peso -->
@@ -92,12 +90,12 @@
         style="@style/layout_campos"
         app:suffixText="kg"
         android:textColor="@color/Letras"
+        android:elevation="4dp"
         app:expandedHintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_altura"
         app:suffixTextColor="@color/hint">
-
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_peso"
@@ -109,15 +107,14 @@
             android:nextFocusForward="@id/edit_senha"
             android:textColor="@color/Letras"
             android:textColorHint="@color/hint" />
-
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <TextView
         android:id="@+id/txt_genero"
         style="@style/text"
         android:layout_marginTop="10dp"
         android:text="@string/text_genero"
+        android:elevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_peso" />
@@ -127,6 +124,7 @@
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:orientation="horizontal"
+        android:elevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_genero">
@@ -160,21 +158,21 @@
             android:text="@string/text_cnao"
             android:textColor="@color/Letras"
             android:textSize="14sp" />
-
     </RadioGroup>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_proximo"
         style="@style/Button"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:elevation="20dp"
         android:text="@string/text_salvar"
         android:textColor="@color/off_white"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/containerComponents"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
 
     <ProgressBar
         android:id="@+id/progressbar_login"
@@ -189,8 +187,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/containerComponents" />
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
