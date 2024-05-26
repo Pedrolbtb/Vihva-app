@@ -6,6 +6,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.ImageView
 import android.widget.PopupWindow
 import android.widget.TextView
@@ -16,7 +17,7 @@ import com.squareup.picasso.Picasso
 
 // AdapterRemedio é uma classe que estende RecyclerView.Adapter e é responsável por
 // adaptar os dados da lista de remédios para serem exibidos em um RecyclerView.
-class AdapterRemedio(private val context: Context, private val remedios: MutableList<Remedio2>) : RecyclerView.Adapter<AdapterRemedio.RemedioViewHolder>() {
+class AdapterRemedio(private val context: Context, private val remedios: MutableList<Remedio2>, private val onItemClickListener: (Remedio2) -> Unit) : RecyclerView.Adapter<AdapterRemedio.RemedioViewHolder>() {
 
     // RemedioViewHolder é uma classe interna que mantém referências às views de cada item
     // da lista de remédios.
@@ -24,6 +25,15 @@ class AdapterRemedio(private val context: Context, private val remedios: Mutable
         // Declaração das views dentro do item da lista
         val foto = itemView.findViewById<ImageView>(R.id.fotoremedio)
         val nome = itemView.findViewById<TextView>(R.id.nomeRemedio)
+
+        fun bind(remedio: Remedio2) {
+            Picasso.get().load(remedio.foto).into(foto)
+            nome.text = remedio.nome
+
+            itemView.setOnClickListener {
+                onItemClickListener(remedio)
+            }
+        }
     }
 
     // Este método é responsável por inflar o layout de cada item da lista e criar um novo
@@ -45,33 +55,16 @@ class AdapterRemedio(private val context: Context, private val remedios: Mutable
 
         // Define o nome do remédio no TextView
         holder.nome.text = remedios[position].nome
+        holder.bind(remedios[position])
 
-        // Define o clique no item para mostrar o popup
-        holder.itemView.setOnClickListener {
-            showPopup(remedios[position])
+
+
         }
-    }
 
-    // Método para exibir o popup com informações do remédio
-    private fun showPopup(remedio: Remedio2) {
-        // Infla o layout do popup
-        val inflater = LayoutInflater.from(context)
-        val popupView = inflater.inflate(R.layout.popup_desc_remedio, null)
 
-        // Configura os textos do popup
-        val nomeTextView = popupView.findViewById<TextView>(R.id.Remedio)
-        val descricaoTextView = popupView.findViewById<TextView>(R.id.descricao1)
-        nomeTextView.text = remedio.nome
-        descricaoTextView.text = remedio.foto // Se houver descrição, ajuste isso para o campo correto
 
-        // Cria e mostra o PopupWindow
-        val popupWindow = PopupWindow(
-            popupView,
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-            true
-        )
-        // Define a posição do popup na tela
-        popupWindow.showAtLocation((context as Activity).findViewById(android.R.id.content), Gravity.CENTER, 0, 0)
-    }
+
+
+
+
 }

@@ -7,18 +7,13 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.Configurações.Config_List
-import com.companyvihva.vihva.Configurações.Configuracoes
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.Remedio1
 import com.companyvihva.vihva.databinding.ActivityInicioBinding
 import com.google.firebase.firestore.FirebaseFirestore
-import com.squareup.picasso.Picasso
 
 class Inicio : AppCompatActivity() {
     private lateinit var binding: ActivityInicioBinding
@@ -48,10 +43,10 @@ class Inicio : AppCompatActivity() {
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.remédio -> replaceFragment(Remedio1())
-                R.id.calendario -> replaceFragment(Calendario())
+                R.id.calendario -> replaceFragment(com.companyvihva.vihva.Inicio.Calendario())
                 R.id.inicio -> replaceFragment(Inicio1())
-                R.id.alarme -> replaceFragment(Alarme())
-                R.id.perfil -> replaceFragment(Perfil())
+                R.id.alarme -> replaceFragment(com.companyvihva.vihva.Inicio.Alarme())
+                R.id.perfil -> replaceFragment(com.companyvihva.vihva.Inicio.Perfil())
                 else -> {
                     false
                 }
