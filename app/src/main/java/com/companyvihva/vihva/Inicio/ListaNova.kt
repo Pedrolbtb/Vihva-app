@@ -38,14 +38,15 @@ class ListaNova : AppCompatActivity() {
 
     private fun fetchSubList(remedioId: String) {
         val subDocumentos = when (remedioId) {
-            "Insulina" -> listOf("tiazolidinedionas", "Inibidoresdaalfaglicosidase")
-            "Metformina" -> listOf("metformina", "insulina")
-            "sulfonilureias" -> listOf("insulina", "metformina", "insulina")
-            "inibidoresdpp4" -> listOf("metformina", "insulina")
-            "inibidoresdeSGLT2" -> listOf("insulina", "metformina")
-            "agonistasdoGLP1" -> listOf("insulina", "metformina")
-            "tiazolidinedionas" -> listOf("metformina", "insulina")
-            "Inibidoresdaalfaglicosidase" -> listOf("insulina", "metformina")
+            "Insulina" -> listOf("humalog", "novolog", "lantus", "levemir")
+            "Metformina" -> listOf("glifage", "glucophage")
+            "sulfonilureias" -> listOf("glibenclamida", "glipizida", "glimepirida")
+            "inibidoresdpp4" -> listOf("sitagliptina","saxagliptina", "glinagliptina")
+            "inibidoresdeSGLT2" -> listOf("daplaglifozina", "enpagueliflozina", "canaglifozina")
+            "agonistasdoGLP1" -> listOf("exenatida", "Liraglutida", "dulaglutida")
+            "tiazolidinedionas" -> listOf("pioglitazona", "rosiglitazona")
+            "Inibidoresdaalfaglicosidase" -> listOf("acarbose", "Miglitol")
+
             // Adicione mais listas conforme necessário
             else -> emptyList()
         }
@@ -61,7 +62,9 @@ class ListaNova : AppCompatActivity() {
                 if (document != null) {
                     val nome = document.getString("nome")
                     val url = document.getString("Url")
-                    val listanew = Listanew(url ?: "", nome ?: "")
+                    val tipo = document.getString("tipo")
+                    val listanew = Listanew(url ?: "", nome ?: "", tipo?:"")
+
                     dadosListaNova.add(listanew)
                     adapterListaNova.notifyDataSetChanged()
                     Log.d("Firestore", "DocumentSnapshot data: ${document.data}")
