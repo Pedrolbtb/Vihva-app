@@ -1,4 +1,5 @@
 package com.companyvihva.vihva.Inicio
+
 import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
@@ -13,6 +14,7 @@ import android.widget.ImageView
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.CriarPerfil.FotoBio
 import com.companyvihva.vihva.R
@@ -20,27 +22,31 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
+
 class Perfil : Fragment() {
     private lateinit var db: FirebaseFirestore
     private lateinit var imageView: ImageView
     private var selectedImageUri: Uri? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-// Inicialização do Firestore dentro do onCreate
+        // Inicialização do Firestore dentro do onCreate
         db = FirebaseFirestore.getInstance()
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-// Inflar o layout do fragmento
+        // Inflar o layout do fragmento
         return inflater.inflate(R.layout.fragment_perfil, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-// Inicialize a imageView aqui
+        // Inicialize a imageView aqui
         imageView = view.findViewById(R.id.img_save_perfil)
-// Define um ouvinte de clique para a imageView
+        // Define um ouvinte de clique para a imageView
         imageView.setOnClickListener {
             pickImageGallery() // Chama o método para selecionar uma imagem da galeria
         }
@@ -64,7 +70,7 @@ class Perfil : Fragment() {
                         view.findViewById<TextView>(R.id.text_altura).text = "${altura ?: "Altura não fornecida"} cm"
                         view.findViewById<TextView>(R.id.text_peso).text = "${peso ?: "Peso não fornecido"} kg"
                         view.findViewById<TextView>(R.id.View_biografia).text = "${biografia ?: "Biografia não fornecida"} "
-// Carregar a imagem usando Picasso
+                        // Carregar a imagem usando Picasso
                         imageUrl?.let {
                             Picasso.get().load(it).into(imageView)
                         }
@@ -78,18 +84,21 @@ class Perfil : Fragment() {
         }
         val btn_editar = view.findViewById<Button>(R.id.btn_editar)
         btn_editar.setOnClickListener {
-// Abrir o popup para editar o perfil
+            // Abrir o popup para editar o perfil
             showEditPerfilPopup()
         }
     }
+
     private fun showEditPerfilPopup(){
-// Inflar o layout do popup
+        // Inflar o layout do popup
         val inflater = LayoutInflater.from(requireContext())
         val popupView = inflater.inflate(R.layout.popup_editar_bio, null)
-// Criar o AlertDialog
+        // Criar o AlertDialog
         val alertDialogBuilder = AlertDialog.Builder(requireContext())
         alertDialogBuilder.setView(popupView)
-// Encontrar os elementos dentro do popup
+        val alertDialog = alertDialogBuilder.create()
+
+        // Encontrar os elementos dentro do popup
         val editNomeV2 = popupView.findViewById<EditText>(R.id.edit_nome_V2)
         val editSobreNomeV2 = popupView.findViewById<EditText>(R.id.edit_sobrenome_V2)
         val editIdadeV2 = popupView.findViewById<EditText>(R.id.edit_idade_V2)
@@ -98,9 +107,14 @@ class Perfil : Fragment() {
         val radioGroupV2 = popupView.findViewById<RadioGroup>(R.id.radioGroup)
         val editbiografiaV2 = popupView.findViewById<EditText>(R.id.edit_biografia_V2)
         val btnSAlvarV2 = popupView.findViewById<Button>(R.id.btn_salvar_V2)
-// Configurar o AlertDialog e exibi-lo
-        val alertDialog = alertDialogBuilder.create()
-// Adiciona o OnClickListener ao botão "Salvar"
+        val btnClose = popupView.findViewById<AppCompatImageButton>(R.id.btnClose)
+
+        // Configurar o botão de fechar
+        btnClose.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        // Adiciona o OnClickListener ao botão "Salvar"
         btnSAlvarV2.setOnClickListener {
             val novoNome = editNomeV2.text.toString()
             val novoSobrenome = editSobreNomeV2.text.toString()
@@ -114,7 +128,7 @@ class Perfil : Fragment() {
                 else -> null
             }
             val novaBiografia = editbiografiaV2.text.toString()
-// Atualizar os valores no Firebase
+            // Atualizar os valores no Firebase
             val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
             currentUserId?.let { uid ->
                 val userDocRef = db.collection("clientes").document(uid)
@@ -130,11 +144,11 @@ class Perfil : Fragment() {
                 userDocRef.update(updates)
                     .addOnSuccessListener {
                         Log.d("PerfilFragment", "Informações atualizadas com sucesso")
-// Verifique se uma nova imagem foi selecionada
+                        // Verifique se uma nova imagem foi selecionada
                         selectedImageUri?.let {
                             uploadImageToFirebaseStorage(it, uid)
                         }
-// Fecha o AlertDialog após salvar
+                        // Fecha o AlertDialog após salvar
                         alertDialog.dismiss()
                     }
                     .addOnFailureListener {
@@ -142,25 +156,29 @@ class Perfil : Fragment() {
                     }
             }
         }
+
         alertDialog.show()
     }
+
     private fun pickImageGallery() {
         val intent = Intent(Intent.ACTION_PICK) // Criação de uma Intent para selecionar um item
         intent.type = "image/*" // Define o tipo de item a ser selecionado (neste caso, qualquer imagem)
         startActivityForResult(intent, FotoBio.IMAGE_REQUEST_CODE) // Inicia uma atividade para selecionar um item e espera o resultado
     }
+
     // Função chamada quando uma atividade iniciada por este aplicativo retorna um resultado
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-// Verifica se o resultado veio da seleção da imagem e se foi bem-sucedido
+        // Verifica se o resultado veio da seleção da imagem e se foi bem-sucedido
         if (requestCode == FotoBio.IMAGE_REQUEST_CODE && resultCode == AppCompatActivity.RESULT_OK && data != null) {
             selectedImageUri = data.data
-// Define a imagem selecionada no ImageView
+            // Define a imagem selecionada no ImageView
             imageView.setImageURI(selectedImageUri)
-// Define a propriedade clipToOutline do ImageView como true para aplicar a forma do contorno do ImageView
+            // Define a propriedade clipToOutline do ImageView como true para aplicar a forma do contorno do ImageView
             imageView.clipToOutline = true
         }
     }
+
     private fun uploadImageToFirebaseStorage(imageUri: Uri, userId: String) {
         val storageRef = FirebaseStorage.getInstance().reference.child("profile_images/$userId.jpg")
         storageRef.putFile(imageUri)
@@ -176,6 +194,7 @@ class Perfil : Fragment() {
                 Log.e("PerfilFragment", "Erro ao fazer upload da imagem", e)
             }
     }
+
     private fun updateUserProfileImageUrl(imageUrl: String, userId: String) {
         val userDocRef = db.collection("clientes").document(userId)
         userDocRef.update("imageUrl", imageUrl)
