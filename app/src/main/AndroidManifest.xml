@@ -20,6 +20,36 @@
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
         <activity
+            android:name=".Alarme.Tela10Alarme"
+            android:exported="false" />
+        <activity
+            android:name=".Alarme.Tela9Alarme"
+            android:exported="false" />
+        <activity
+            android:name=".Alarme.Tela8Alarme"
+            android:exported="false" />
+        <activity
+            android:name=".Alarme.Tela7Alarme"
+            android:exported="false" />
+        <activity
+            android:name=".Alarme.Telas6Alarme"
+            android:exported="false" />
+        <activity
+            android:name=".Alarme.Tela5Alarme"
+            android:exported="false" />
+        <activity
+            android:name=".Alarme.Tela4Alarme"
+            android:exported="false" />
+        <activity
+            android:name=".Alarme.Tela3Alarme"
+            android:exported="false" />
+        <activity
+            android:name=".Alarme.Telas2alarme"
+            android:exported="false" />
+        <activity
+            android:name=".Alarme.Tela1Alarme"
+            android:exported="false" />
+        <activity
             android:name=".Alarme.EscolhaFrequencia"
             android:exported="false" />
         <activity
