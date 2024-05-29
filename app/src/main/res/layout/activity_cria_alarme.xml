@@ -76,19 +76,18 @@
         android:id="@+id/programacaoalarme"
         style="@style/text_botoesAlarme"
         android:layout_marginEnd="100dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="55dp"
         android:text="Programação do remédio"
         app:layout_constraintBottom_toBottomOf="@+id/container_programacaoRemedio"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/container_programacaoRemedio"
+        app:layout_constraintStart_toStartOf="@id/container_programacaoRemedio"
         app:layout_constraintTop_toTopOf="@+id/container_programacaoRemedio" />
 
     <TextView
-
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:text="Diriamente - 20 vezes entre as 8:00 e as 20:00 sem data de termino"
         app:layout_constraintBottom_toBottomOf="@+id/container_programacaoRemedio"
         app:layout_constraintEnd_toEndOf="@+id/container_programacaoRemedio"
@@ -96,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/programacaoalarme" />
 
     <View
-        android:id="@+id/container_vibracao"
+        android:id="@+id/container_estoque"
         style="@style/container_linha"
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -113,13 +112,13 @@
     <TextView
         android:id="@+id/estoque"
         style="@style/text_botoesAlarme"
-        android:layout_marginEnd="235dp"
+        android:layout_marginEnd="255dp"
         android:layout_marginBottom="30dp"
         android:text="Estoque"
-        app:layout_constraintBottom_toBottomOf="@+id/container_vibracao"
-        app:layout_constraintEnd_toEndOf="@+id/container_vibracao"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/container_vibracao" />
+        app:layout_constraintBottom_toBottomOf="@+id/container_estoque"
+        app:layout_constraintEnd_toEndOf="@+id/container_estoque"
+        app:layout_constraintStart_toStartOf="@id/container_estoque"
+        app:layout_constraintTop_toTopOf="@id/container_estoque" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -127,8 +126,8 @@
         android:layout_marginEnd="170dp"
         android:layout_marginBottom="20dp"
         android:text="30 capsulas restantes"
-        app:layout_constraintBottom_toBottomOf="@+id/container_vibracao"
-        app:layout_constraintEnd_toEndOf="@+id/container_vibracao"
+        app:layout_constraintBottom_toBottomOf="@+id/container_estoque"
+        app:layout_constraintEnd_toEndOf="@+id/container_estoque"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/estoque" />
 
@@ -146,7 +145,7 @@
         app:layout_constraintBottom_toBottomOf="@id/containerAlarme"
         app:layout_constraintEnd_toEndOf="@id/containerAlarme"
         app:layout_constraintStart_toStartOf="@id/containerAlarme"
-        app:layout_constraintTop_toBottomOf="@+id/container_vibracao" />
+        app:layout_constraintTop_toBottomOf="@+id/container_estoque" />
 
 
     <TextView
@@ -192,14 +191,14 @@
         style="@style/text_botoesAlarme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="230dp"
+        android:layout_marginEnd="250dp"
         android:layout_marginBottom="30dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="Vibração"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/container_configVibra"
         app:layout_constraintEnd_toEndOf="@+id/container_configVibra"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/container_configVibra"
         app:layout_constraintTop_toTopOf="@id/container_configVibra" />
 
     <TextView
@@ -223,7 +222,7 @@
         app:layout_constraintBottom_toBottomOf="@id/containerAlarme"
         app:layout_constraintEnd_toEndOf="@id/containerAlarme"
         app:layout_constraintStart_toStartOf="@id/containerAlarme"
-        app:layout_constraintTop_toBottomOf="@+id/container_vibracao" />
+        app:layout_constraintTop_toBottomOf="@+id/container_estoque" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_salvarAlarme"

@@ -15,11 +15,21 @@ class CriaAlarme : AppCompatActivity() {
             irParaConfigFrequencia()
         }
 
+        val container_Estoque = findViewById<View>(R.id.container_estoque).setOnClickListener {
+            irParaConfigEstoque()
+        }
+
     }
 
     private fun irParaConfigFrequencia() {
         val telaConfigFrequencia = Intent(this, ConfigFrequencia::class.java)
         startActivity(telaConfigFrequencia)
+
+    }
+
+    private fun irParaConfigEstoque() {
+        val telaConfigEstoque = Intent(this, ConfigEstoque::class.java)
+        startActivity(telaConfigEstoque)
 
     }
 }

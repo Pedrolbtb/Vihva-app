@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/off_white"
+    tools:context=".Alarme.ConfigEstoque">
+
+
+    <TextView
+        android:id="@+id/text_alarme"
+        style="@style/text_doenca_e_remedio"
+        android:layout_marginBottom="540dp"
+        android:text="Estoque e tipo do alarme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/View_Programacao"
+        style="@style/Container_Alarme"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_marginTop="100dp"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.493" />
+
+    <View
+        android:id="@+id/container_tipo"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="470dp"
+        android:background="@drawable/container_linha"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao"
+        app:layout_constraintTop_toTopOf="@+id/View_Programacao" />
+
+    <TextView
+        android:id="@+id/tipodemedicacao"
+        style="@style/text_botoesAlarme"
+        android:layout_marginEnd="150dp"
+        android:elevation="1dp"
+        android:text="Tipo de medicação"
+        app:layout_constraintBottom_toBottomOf="@+id/container_tipo"
+        app:layout_constraintEnd_toEndOf="@id/container_tipo"
+        app:layout_constraintStart_toStartOf="@id/container_tipo"
+        app:layout_constraintTop_toTopOf="@+id/container_tipo" />
+
+    <TextView
+        android:id="@+id/hora_apartir"
+        style="@style/text_botoesAlarme"
+        android:layout_marginStart="240dp"
+        android:elevation="1dp"
+        android:text="cápsula"
+        android:textColor="@color/hint"
+        app:layout_constraintBottom_toBottomOf="@+id/container_tipo"
+        app:layout_constraintEnd_toEndOf="@id/container_tipo"
+        app:layout_constraintStart_toStartOf="@id/container_tipo"
+        app:layout_constraintTop_toTopOf="@+id/container_tipo" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_salvarAlarme"
+        style="@style/Button_salvar"
+        android:layout_width="300dp"
+        android:layout_marginTop="430dp"
+        android:text="Salvar"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao"
+        app:layout_constraintTop_toTopOf="@id/View_Programacao" />
+
+    <TextView
+        android:id="@+id/titulo_estoque"
+        style="@style/text_botoesAlarme"
+        android:layout_marginEnd="250dp"
+        android:layout_marginBottom="420dp"
+        android:elevation="1dp"
+        android:text="Estoque"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao"
+        app:layout_constraintTop_toBottomOf="@+id/container_tipo" />
+
+
+
+    <View
+        android:id="@+id/container_lembreounao"
+        style="@style/container_linha"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="230dp"
+        android:background="@drawable/container_linha"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_estoque" />
+
+    <TextView
+        android:id="@+id/textview_lembreounao"
+        style="@style/text_botoesAlarme"
+        android:layout_marginEnd="110dp"
+        android:elevation="1dp"
+        android:text="Lembre-me de comprar"
+        app:layout_constraintBottom_toBottomOf="@+id/container_lembreounao"
+        app:layout_constraintEnd_toEndOf="@id/container_lembreounao"
+        app:layout_constraintStart_toStartOf="@id/container_lembreounao"
+        app:layout_constraintTop_toTopOf="@+id/container_lembreounao" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="236dp"
+        android:elevation="1dp"
+        app:layout_constraintStart_toStartOf="@id/container_lembreounao"
+        app:layout_constraintTop_toTopOf="@id/container_lembreounao"
+        app:layout_constraintBottom_toBottomOf="@id/container_lembreounao"
+        app:layout_constraintEnd_toEndOf="@id/container_lembreounao"
+        app:thumbTint="@color/Letras"
+        app:trackTint="@color/letras_remedios" />
+
+    <View
+        android:id="@+id/container_estoque"
+        style="@style/container_linha"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="95dp"
+        android:background="@drawable/container_linha"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_estoque" />
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="370dp"
+        android:elevation="1dp"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:text="Selecione o quanto vc tem de medicamentos em casa e receba alarmes quando estiver próximo do fim"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@+id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@+id/View_Programacao"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_estoque" />
+
+    <TextView
+        android:id="@+id/textview_qtdestoque"
+        style="@style/text_botoesAlarme"
+        android:layout_marginEnd="200dp"
+        android:elevation="1dp"
+        android:text="Estoque atual"
+        app:layout_constraintBottom_toBottomOf="@+id/container_estoque"
+        app:layout_constraintEnd_toEndOf="@id/container_estoque"
+        app:layout_constraintStart_toStartOf="@id/container_estoque"
+        app:layout_constraintTop_toTopOf="@+id/container_estoque" />
+
+    <TextView
+        android:id="@+id/qtd_estoque"
+        style="@style/text_botoesAlarme"
+        android:layout_marginStart="240dp"
+        android:elevation="1dp"
+        android:text="30"
+        android:textColor="@color/hint"
+        app:layout_constraintBottom_toBottomOf="@+id/container_estoque"
+        app:layout_constraintEnd_toEndOf="@id/container_estoque"
+        app:layout_constraintStart_toStartOf="@id/container_estoque"
+        app:layout_constraintTop_toTopOf="@+id/container_estoque" />
+
+    <View
+        android:id="@+id/container_estoqueAtual"
+        style="@style/container_linha"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/container_linha"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_estoque" />
+
+    <TextView
+        android:id="@+id/textview_qtdestoqueAlarme"
+        style="@style/text_botoesAlarme"
+        android:layout_marginEnd="190dp"
+        android:elevation="1dp"
+        android:text="Lembre me em"
+        app:layout_constraintBottom_toBottomOf="@+id/container_estoqueAtual"
+        app:layout_constraintEnd_toEndOf="@id/container_estoqueAtual"
+        app:layout_constraintStart_toStartOf="@id/container_estoqueAtual"
+        app:layout_constraintTop_toTopOf="@+id/container_estoqueAtual" />
+
+    <TextView
+        android:id="@+id/qtd_estoqueAlarme"
+        style="@style/text_botoesAlarme"
+        android:layout_marginStart="240dp"
+        android:elevation="1dp"
+        android:text="10"
+        android:textColor="@color/hint"
+        app:layout_constraintBottom_toBottomOf="@+id/container_estoqueAtual"
+        app:layout_constraintEnd_toEndOf="@id/container_estoqueAtual"
+        app:layout_constraintStart_toStartOf="@id/container_estoqueAtual"
+        app:layout_constraintTop_toTopOf="@+id/container_estoqueAtual" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="42dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

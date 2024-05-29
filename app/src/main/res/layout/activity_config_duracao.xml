@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/off_white"
+    tools:context=".Alarme.ConfigDuracao">
+
+    <TextView
+        android:id="@+id/text_alarme"
+        style="@style/text_doenca_e_remedio"
+        android:layout_marginTop="135dp"
+        android:text="Duração do alarme"
+        app:layout_constraintBottom_toTopOf="@id/View_Duracao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/View_Duracao"
+        style="@style/Container_Alarme"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup_frequencia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="140dp"
+        android:elevation="6dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Duracao"
+        app:layout_constraintEnd_toEndOf="@id/View_Duracao"
+        app:layout_constraintStart_toStartOf="@id/View_Duracao"
+        app:layout_constraintTop_toTopOf="@+id/View_Duracao">
+
+        <!-- radio de feminino -->
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/radio_semfim"
+            style="@style/Radio_Button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/container_linha"
+            android:text="Sem data para acabar"
+            android:textColor="@color/Letras"
+            android:textSize="17sp" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/atexdata"
+            style="@style/Radio_Button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/container_linha"
+            android:text="Até a data"
+            android:textColor="@color/Letras"
+            android:textSize="17sp" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/escolha_atexdata"
+        android:layout_width="368dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="95dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/View_Duracao"
+        app:layout_constraintEnd_toEndOf="@+id/View_Duracao"
+        app:layout_constraintStart_toStartOf="@+id/View_Duracao"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_frequencia">
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_salvarAlarme"
+        style="@style/Button_salvar"
+        android:layout_width="300dp"
+        android:text="Salvar"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/View_Duracao"
+        app:layout_constraintEnd_toEndOf="@+id/View_Duracao"
+        app:layout_constraintStart_toStartOf="@+id/View_Duracao"
+        app:layout_constraintTop_toBottomOf="@id/escolha_atexdata"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

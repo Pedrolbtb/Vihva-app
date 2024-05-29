@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.companyvihva.vihva.R
 
-class Tela1Alarme : AppCompatActivity() {
+class ConfigDuracao : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tela1_alarme)
+        setContentView(R.layout.activity_config_duracao)
     }
 }

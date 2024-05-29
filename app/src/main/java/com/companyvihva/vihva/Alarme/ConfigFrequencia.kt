@@ -17,6 +17,9 @@ class ConfigFrequencia : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config_frequencia)
 
+        var container_duraacao = findViewById<View>(R.id.container_DuracaoAlarme).setOnClickListener {
+            irParaDuracao()
+        }
 
         val container_frequencia = findViewById<View>(R.id.container_Frequencia).setOnClickListener {
             irParaFrequencia()
@@ -52,6 +55,11 @@ class ConfigFrequencia : AppCompatActivity() {
     private fun irParaFrequencia() {
         val telaFrequencia = Intent(this, EscolhaFrequencia::class.java)
         startActivity(telaFrequencia)
+    }
+
+    private fun irParaDuracao() {
+        val telaDuracao = Intent(this, ConfigDuracao::class.java)
+        startActivity(telaDuracao)
     }
 
     private fun displayStoredTime() {

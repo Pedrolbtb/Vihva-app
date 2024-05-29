@@ -118,21 +118,7 @@
         app:layout_constraintEnd_toEndOf="@id/View_Programacao"
         app:layout_constraintStart_toStartOf="@id/View_Programacao"
         app:layout_constraintTop_toBottomOf="@id/container_DuracaoAlarme" />
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.94" />
+    
 
     <View
         android:id="@+id/container_apartir"
@@ -165,6 +151,7 @@
         android:layout_marginStart="240dp"
         android:elevation="1dp"
         android:text="12:10"
+        android:textColor="@color/hint"
         app:layout_constraintBottom_toBottomOf="@+id/container_apartir"
         app:layout_constraintEnd_toEndOf="@id/container_apartir"
         app:layout_constraintStart_toStartOf="@id/container_apartir"

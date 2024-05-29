@@ -28,7 +28,7 @@
         <TextView
             android:id="@+id/text_nome"
             style="@style/text"
-            android:layout_marginBottom="590dp"
+            android:layout_marginBottom="560dp"
             android:layout_marginEnd="25dp"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"

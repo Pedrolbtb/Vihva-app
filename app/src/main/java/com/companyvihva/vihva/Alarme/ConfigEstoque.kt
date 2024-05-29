@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.companyvihva.vihva.R
 
-class Tela3Alarme : AppCompatActivity() {
+class ConfigEstoque : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tela3_alarme)
+        setContentView(R.layout.activity_config_estoque)
     }
 }
