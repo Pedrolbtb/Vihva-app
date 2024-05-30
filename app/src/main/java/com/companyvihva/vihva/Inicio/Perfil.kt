@@ -180,7 +180,7 @@ class Perfil : Fragment() {
     }
 
     private fun uploadImageToFirebaseStorage(imageUri: Uri, userId: String) {
-        val storageRef = FirebaseStorage.getInstance().reference.child("profile_images/$userId.jpg")
+        val storageRef = FirebaseStorage.getInstance().reference.child("users/$userId/profile_image.jpg")
         storageRef.putFile(imageUri)
             .addOnSuccessListener { taskSnapshot ->
                 storageRef.downloadUrl.addOnSuccessListener { uri ->

@@ -49,7 +49,7 @@
             android:exported="false"
             android:theme="@style/Theme.Vihva" />
         <activity
-            android:name=".Login.Login"
+            android:name=".Inicio.Inicio"
             android:exported="false"
             android:theme="@style/Theme.Vihva" />
         <activity
@@ -69,7 +69,7 @@
             android:exported="false"
             android:theme="@style/Theme.Vihva" />
         <activity
-            android:name=".Inicio.Inicio"
+            android:name=".Login.Login"
             android:exported="true"
             android:theme="@style/Theme.Vihva">
             <intent-filter>
