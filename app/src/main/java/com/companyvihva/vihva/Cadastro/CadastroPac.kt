@@ -167,17 +167,9 @@ class CadastroPac : AppCompatActivity() {
         }
     }
 
-    // Função para exibir um Toast customizado
+    // Função para exibir um Toast
     private fun showToast(message: String) {
-        val inflater = layoutInflater
-        val layout = inflater.inflate(R.layout.toast, findViewById(R.id.toast))
-        val text = layout.findViewById<TextView>(R.id.toast)
-        text.text = message
-        with(Toast(applicationContext)) {
-            duration = Toast.LENGTH_SHORT
-            view = layout
-            show()
-        }
+        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 
     // Função para navegar para a tela de login
@@ -189,7 +181,7 @@ class CadastroPac : AppCompatActivity() {
 
     // Função para enviar o email de verificação para o usuário
     private fun enviarEmailVerificacao() {
-        val user = auth.currentUser
+        val user=auth.currentUser
         user?.sendEmailVerification()?.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 showToast("Um e-mail de verificação foi enviado para ${user.email}. Por favor, verifique seu e-mail.")
@@ -199,3 +191,4 @@ class CadastroPac : AppCompatActivity() {
         }
     }
 }
+
