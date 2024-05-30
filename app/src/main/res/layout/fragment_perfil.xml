@@ -13,10 +13,12 @@
         >
 
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_save_perfil"
             style="@style/foto"
             android:layout_width="130dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/Letras"
             android:layout_height="130dp"
             android:layout_marginEnd="190dp"
             android:scaleType="centerCrop"

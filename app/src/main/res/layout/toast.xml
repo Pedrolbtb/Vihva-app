@@ -4,14 +4,14 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="16dp"
-    android:background="@drawable/toast_personalizado">
+    >
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="25dp"
         android:layout_height="21dp"
         android:layout_marginRight="30dp"
-        android:src="@drawable/cruz" />
+         />
 
     <TextView
         android:id="@+id/toast"

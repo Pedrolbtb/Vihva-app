@@ -1,6 +1,8 @@
 package com.companyvihva.vihva
 
 import AdapterLista
+import Inicio1
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.model.Listanew
 import com.google.firebase.firestore.FirebaseFirestore
 import android.util.Log
+import android.widget.ImageButton
+import com.companyvihva.vihva.Login.Login
+import com.companyvihva.vihva.model.Remedio2
 import kotlin.collections.emptyList
 import kotlin.collections.List
 
@@ -24,6 +29,11 @@ class ListaNova : AppCompatActivity() {
         firestore = FirebaseFirestore.getInstance()
 
         val remedioId = intent.getStringExtra("remedioId")
+        val btn_voltar_listaRe = findViewById<ImageButton>(R.id.btn_voltarListaRe)
+
+        btn_voltar_listaRe.setOnClickListener {
+            voltar_listaRemedio()
+        }
 
         val recyclerViewListaNova = findViewById<RecyclerView>(R.id.recyclerview_nova_lista)
         recyclerViewListaNova.layoutManager = LinearLayoutManager(this)
@@ -35,6 +45,9 @@ class ListaNova : AppCompatActivity() {
         // Busca todos os dados e organiza conforme necessário
         remedioId?.let {
             fetchSubList(it)
+
+
+
         }
     }
 
@@ -76,4 +89,11 @@ class ListaNova : AppCompatActivity() {
                 Log.w("Firestore", "Error getting document", e)
             }
     }
+
+    private fun voltar_listaRemedio() {
+        val voltar_lista = Intent(this, Remedio1::class.java)
+        startActivity(voltar_lista)
+        finish()
+    }
 }
+
