@@ -16,7 +16,7 @@
             android:id="@+id/btnClose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="213dp"
+            android:layout_marginTop="330dp"
             android:layout_marginEnd="40dp"
             android:background="#00FFFFFF"
             android:src="@drawable/buttom_exit"
@@ -27,7 +27,7 @@
             android:id="@+id/textView_topo_popup_edit_bio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="210dp"
+            android:layout_marginTop="330dp"
             android:layout_marginStart="40dp"
             android:fontFamily="@font/cloudsoft_bold_700"
             android:text="@string/string_editar"
@@ -36,31 +36,45 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_save_perfil"
+            style="@style/foto"
+            android:layout_width="130dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/Letras"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toBottomOf="@+id/textView_topo_popup_edit_bio"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_nome"
             style="@style/layout_campos"
-            app:endIconTint="@color/Letras"
+            android:layout_marginTop="150dp"
             app:endIconMode="clear_text"
+            app:endIconTint="@color/Letras"
             app:hintTextColor="@color/Letras"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_topo_popup_edit_bio">
 
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_nome_V2"
-            style="@style/Edit_Text_Login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:drawableTint="@color/Letras"
-            android:hint="@string/text_breadNome"
-            android:inputType="text"
-            android:textColor="@color/Letras"
-            android:textColorHint="@color/hint"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gen" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_nome_V2"
+                style="@style/Edit_Text_Login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawableTint="@color/Letras"
+                android:hint="@string/text_breadNome"
+                android:inputType="text"
+                android:textColor="@color/Letras"
+                android:textColorHint="@color/hint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gen" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout

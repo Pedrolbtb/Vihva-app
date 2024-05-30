@@ -105,6 +105,8 @@
             android:layout_height="330dp"
             android:layout_marginTop="150dp"
             android:gravity="top"
+            android:textSize="20sp"
+            android:fontFamily="@font/cloudsoft_bold_700"
             android:layout_marginEnd="55dp"
             android:layout_marginStart="52dp"
             android:textColor="@color/Letras"

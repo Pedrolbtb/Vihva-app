@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.example.vihva",
+  "applicationId": "com.companyvihva.vihva",
   "variantName": "release",
   "elements": [
     {
