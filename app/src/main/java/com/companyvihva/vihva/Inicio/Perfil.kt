@@ -1,3 +1,4 @@
+
 package com.companyvihva.vihva.Inicio
 
 import android.app.AlertDialog
@@ -26,6 +27,7 @@ import com.squareup.picasso.Picasso
 class Perfil : Fragment() {
     private lateinit var db: FirebaseFirestore
     private var selectedImageUri: Uri? = null
+    private var popupImageView: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,7 +86,7 @@ class Perfil : Fragment() {
         }
     }
 
-    private fun showEditPerfilPopup(){
+    private fun showEditPerfilPopup() {
         // Inflar o layout do popup
         val inflater = LayoutInflater.from(requireContext())
         val popupView = inflater.inflate(R.layout.popup_editar_bio, null)
@@ -101,12 +103,12 @@ class Perfil : Fragment() {
         val editPesoV2 = popupView.findViewById<EditText>(R.id.edit_peso_V2)
         val radioGroupV2 = popupView.findViewById<RadioGroup>(R.id.radioGroup)
         val editbiografiaV2 = popupView.findViewById<EditText>(R.id.edit_biografia_V2)
-        val imgPerfilPopup = popupView.findViewById<ImageView>(R.id.img_perfil_popup)
+        popupImageView = popupView.findViewById(R.id.img_perfil_popup)  // Atualiza a referência ao ImageView do popup
         val btnSAlvarV2 = popupView.findViewById<Button>(R.id.btn_salvar_V2)
         val btnClose = popupView.findViewById<AppCompatImageButton>(R.id.btnClose)
 
         // Configurar o ImageView do popup para abrir a galeria
-        imgPerfilPopup.setOnClickListener {
+        popupImageView?.setOnClickListener {
             pickImageGalleryForPopup()
         }
 
@@ -190,8 +192,7 @@ class Perfil : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == FotoBio.IMAGE_REQUEST_CODE_POPUP && resultCode == AppCompatActivity.RESULT_OK && data != null) {
             selectedImageUri = data.data
-            val popupImageView = view?.findViewById<ImageView>(R.id.img_perfil_popup)
-            popupImageView?.setImageURI(selectedImageUri)
+            popupImageView?.setImageURI(selectedImageUri)  // Atualiza o ImageView do popup
             popupImageView?.clipToOutline = true
         }
     }
