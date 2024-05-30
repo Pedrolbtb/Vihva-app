@@ -25,7 +25,6 @@ import com.squareup.picasso.Picasso
 
 class Perfil : Fragment() {
     private lateinit var db: FirebaseFirestore
-    private lateinit var imageView: ImageView
     private var selectedImageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,12 +43,6 @@ class Perfil : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Inicialize a imageView aqui
-        imageView = view.findViewById(R.id.img_save_perfil)
-        // Define um ouvinte de clique para a imageView
-        imageView.setOnClickListener {
-            pickImageGallery() // Chama o método para selecionar uma imagem da galeria
-        }
         val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
         currentUserUid?.let { uid ->
             val userDocRef = db.collection("clientes").document(uid)
@@ -72,7 +65,9 @@ class Perfil : Fragment() {
                         view.findViewById<TextView>(R.id.View_biografia).text = "${biografia ?: "Biografia não fornecida"} "
                         // Carregar a imagem usando Picasso
                         imageUrl?.let {
-                            Picasso.get().load(it).into(imageView)
+                            view.findViewById<ImageView>(R.id.img_save_perfil).let { imageView ->
+                                Picasso.get().load(it).into(imageView)
+                            }
                         }
                     } else {
                         Log.d("PerfilFragment", "Document does not exist")
@@ -106,8 +101,14 @@ class Perfil : Fragment() {
         val editPesoV2 = popupView.findViewById<EditText>(R.id.edit_peso_V2)
         val radioGroupV2 = popupView.findViewById<RadioGroup>(R.id.radioGroup)
         val editbiografiaV2 = popupView.findViewById<EditText>(R.id.edit_biografia_V2)
+        val imgPerfilPopup = popupView.findViewById<ImageView>(R.id.img_perfil_popup)
         val btnSAlvarV2 = popupView.findViewById<Button>(R.id.btn_salvar_V2)
         val btnClose = popupView.findViewById<AppCompatImageButton>(R.id.btnClose)
+
+        // Configurar o ImageView do popup para abrir a galeria
+        imgPerfilPopup.setOnClickListener {
+            pickImageGalleryForPopup()
+        }
 
         // Configurar o botão de fechar
         btnClose.setOnClickListener {
@@ -116,66 +117,82 @@ class Perfil : Fragment() {
 
         // Adiciona o OnClickListener ao botão "Salvar"
         btnSAlvarV2.setOnClickListener {
-            val novoNome = editNomeV2.text.toString()
-            val novoSobrenome = editSobreNomeV2.text.toString()
-            val novaIdade = editIdadeV2.text.toString().toIntOrNull()
-            val novaAltura = editAlturaV2.text.toString().toIntOrNull()
-            val novoPeso = editPesoV2.text.toString().toIntOrNull()
-            val novoGenero = when (radioGroupV2.checkedRadioButtonId) {
-                R.id.radio_masc_V2 -> "Masculino"
-                R.id.radio_fem_V2 -> "Feminino"
-                R.id.radio_Semgen_V2 -> "Prefiro não dizer"
-                else -> null
-            }
-            val novaBiografia = editbiografiaV2.text.toString()
-            // Atualizar os valores no Firebase
             val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
             currentUserId?.let { uid ->
                 val userDocRef = db.collection("clientes").document(uid)
-                val updates = mapOf(
-                    "nome" to novoNome,
-                    "sobrenome" to novoSobrenome,
-                    "idade" to novaIdade,
-                    "altura" to novaAltura,
-                    "peso" to novoPeso,
-                    "genero" to novoGenero,
-                    "biografia" to novaBiografia
-                )
-                userDocRef.update(updates)
-                    .addOnSuccessListener {
-                        Log.d("PerfilFragment", "Informações atualizadas com sucesso")
-                        // Verifique se uma nova imagem foi selecionada
-                        selectedImageUri?.let {
-                            uploadImageToFirebaseStorage(it, uid)
+
+                userDocRef.get().addOnSuccessListener { document ->
+                    if (document != null && document.exists()) {
+                        val currentNome = document.getString("nome")
+                        val currentSobrenome = document.getString("sobrenome")
+                        val currentIdade = document.getLong("idade")?.toString()
+                        val currentAltura = document.getLong("altura")?.toString()
+                        val currentPeso = document.getLong("peso")?.toString()
+                        val currentBiografia = document.getString("biografia")
+                        val currentGenero = document.getString("genero")
+
+                        val novoNome = editNomeV2.text.toString().ifEmpty { currentNome }
+                        val novoSobrenome = editSobreNomeV2.text.toString().ifEmpty { currentSobrenome }
+                        val novaIdade = editIdadeV2.text.toString().ifEmpty { currentIdade }
+                            ?.toIntOrNull()
+                        val novaAltura = editAlturaV2.text.toString().ifEmpty { currentAltura }
+                            ?.toIntOrNull()
+                        val novoPeso = editPesoV2.text.toString().ifEmpty { currentPeso }
+                            ?.toIntOrNull()
+                        val novoGenero = when (radioGroupV2.checkedRadioButtonId) {
+                            R.id.radio_masc_V2 -> "Masculino"
+                            R.id.radio_fem_V2 -> "Feminino"
+                            R.id.radio_Semgen_V2 -> "Prefiro não dizer"
+                            else -> currentGenero
                         }
-                        // Fecha o AlertDialog após salvar
-                        alertDialog.dismiss()
+                        val novaBiografia = editbiografiaV2.text.toString().ifEmpty { currentBiografia }
+
+                        // Atualizar os valores no Firebase
+                        val updates = mapOf(
+                            "nome" to novoNome,
+                            "sobrenome" to novoSobrenome,
+                            "idade" to novaIdade,
+                            "altura" to novaAltura,
+                            "peso" to novoPeso,
+                            "genero" to novoGenero,
+                            "biografia" to novaBiografia
+                        )
+
+                        userDocRef.update(updates)
+                            .addOnSuccessListener {
+                                Log.d("PerfilFragment", "Informações atualizadas com sucesso")
+                                // Verifique se uma nova imagem foi selecionada
+                                selectedImageUri?.let {
+                                    uploadImageToFirebaseStorage(it, uid)
+                                }
+                                // Fecha o AlertDialog após salvar
+                                alertDialog.dismiss()
+                            }
+                            .addOnFailureListener {
+                                Log.e("PerfilFragment", "Erro ao atualizar informações", it)
+                            }
                     }
-                    .addOnFailureListener {
-                        Log.e("PerfilFragment", "Erro ao atualizar informações", it)
-                    }
+                }
             }
         }
 
         alertDialog.show()
     }
 
-    private fun pickImageGallery() {
-        val intent = Intent(Intent.ACTION_PICK) // Criação de uma Intent para selecionar um item
-        intent.type = "image/*" // Define o tipo de item a ser selecionado (neste caso, qualquer imagem)
-        startActivityForResult(intent, FotoBio.IMAGE_REQUEST_CODE) // Inicia uma atividade para selecionar um item e espera o resultado
+    private fun pickImageGalleryForPopup() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, FotoBio.IMAGE_REQUEST_CODE_POPUP)
     }
 
     // Função chamada quando uma atividade iniciada por este aplicativo retorna um resultado
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        // Verifica se o resultado veio da seleção da imagem e se foi bem-sucedido
-        if (requestCode == FotoBio.IMAGE_REQUEST_CODE && resultCode == AppCompatActivity.RESULT_OK && data != null) {
+        if (requestCode == FotoBio.IMAGE_REQUEST_CODE_POPUP && resultCode == AppCompatActivity.RESULT_OK && data != null) {
             selectedImageUri = data.data
-            // Define a imagem selecionada no ImageView
-            imageView.setImageURI(selectedImageUri)
-            // Define a propriedade clipToOutline do ImageView como true para aplicar a forma do contorno do ImageView
-            imageView.clipToOutline = true
+            val popupImageView = view?.findViewById<ImageView>(R.id.img_perfil_popup)
+            popupImageView?.setImageURI(selectedImageUri)
+            popupImageView?.clipToOutline = true
         }
     }
 
