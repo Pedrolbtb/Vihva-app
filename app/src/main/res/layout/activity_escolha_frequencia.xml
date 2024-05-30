@@ -12,7 +12,7 @@
             android:id="@+id/text_alarme"
             style="@style/text_doenca_e_remedio"
             android:layout_marginTop="55dp"
-            android:text="Frequência do alarme"
+            android:text="@string/frequencia_alarm"
             app:layout_constraintBottom_toTopOf="@id/View_Frequencia"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/container_linha"
-                android:text="Diariamente"
+                android:text="@string/diariamente"
                 android:textColor="@color/Letras"
                 android:textSize="17sp" />
 
@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/container_linha"
-                android:text="Quando necessário (nenhum lembrete)"
+                android:text="@string/qnd_ness"
                 android:textColor="@color/Letras"
                 android:textSize="17sp" />
 
@@ -70,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/container_linha"
-                android:text="Intervalo"
+                android:text="@string/intervalo"
                 android:textColor="@color/Letras"
                 android:textSize="17sp" />
 
@@ -80,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/container_linha"
-                android:text="Dias especificos da semana"
+                android:text="@string/dias_seman"
                 android:textColor="@color/Letras"
                 android:textSize="17sp" />
 
@@ -91,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/container_linha"
-                android:text="Ciclico"
+                android:text="@string/text_ciclo"
                 android:textColor="@color/Letras"
                 android:textSize="17sp" />
 

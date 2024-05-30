@@ -26,7 +26,7 @@
         android:id="@+id/text_alarme"
         style="@style/text_doenca_e_remedio"
         android:layout_marginTop="135dp"
-        android:text="Duração do alarme"
+        android:text="@string/text_dura_alarme"
         app:layout_constraintBottom_toTopOf="@id/View_Duracao"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/container_linha"
-            android:text="Sem data para acabar"
+            android:text="@string/text_data_acabar"
             android:textColor="@color/Letras"
             android:textSize="17sp" />
 
@@ -74,7 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/container_linha"
-            android:text="Até a data"
+            android:text="@string/text_ate_data"
             android:textColor="@color/Letras"
             android:textSize="17sp" />
     </RadioGroup>
@@ -97,7 +97,7 @@
         android:id="@+id/btn_salvarAlarme"
         style="@style/Button_salvar"
         android:layout_width="300dp"
-        android:text="Salvar"
+        android:text="@string/text_salvar"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/View_Duracao"
         app:layout_constraintEnd_toEndOf="@+id/View_Duracao"

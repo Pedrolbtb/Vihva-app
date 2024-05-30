@@ -25,6 +25,12 @@
     <!--texto do text para confirmar sua senha no cadastro-->
     <string name="text_confsenha">Confirmar senha</string>
 
+    <string name="text_enviar">Enviar</string>
+
+    <string name="text_redf_senha">Redefinir senha</string>
+
+    <string name="redef_senha_dois">Insira seu e-mail para redefinir sua senha</string>
+
     <!--texto do text para confirmar sua senha no cadastro-->
     <string name="text_confcadastro">Cadastrar</string>
 
@@ -49,7 +55,7 @@
 
     <string name="text_cnao">Prefiro não dizer</string>
 
-    <string name="text_sos">Após tocar no botão acima, uma mensagem de texto seja enviada para um contato de confiança</string>
+
 
     <string name="text_breadNome">Nome</string>
 
@@ -61,10 +67,13 @@
 
     <string name="text_breadOpc">Opcional</string>
 
+    //String do esqueci minha senha
     <string name="text_Esqminhasenha"><u>Esqueci minha senha</u> </string>
 
+    //String genero
     <string name="text_genero">Gênero</string>
 
+    //String que fica dentro da biografia
     <string name="text_biografia">Escreva sobre você</string>
 
     <string name="text_voltar">Voltar</string>
@@ -80,6 +89,106 @@
     <string name="text_remedio_inicio">Seus remédios</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="string_editar">Editar</string>
+
+
+
+    <string name="text_popup_edita_topo">Editar informações</string>
+
+    <string name="text_editar_title_bio">Editar Biografia</string>
+
+    <string name="close_button_description">Fechar</string>
+
+    <string name="button_back">Voltar</string>
+
+    <string name="text_adc_alarme">Adicionar alarme</string>
+
+    <string name="text_adc_remed">Adicionar remédio</string>
+
+
+   ///////strings alarme///////
+
+    <string name="text_alarme">Alarme</string>
+
+    <string name="text_dura_alarme">Duração do alarme</string>
+
+    <string name="text_data_acabar">Sem data para acabar</string>
+
+    <string name="text_ate_data">Até a data</string>
+
+    <string name="definir_alarme">Definir alarme</string>
+
+    <string name="cancelar_alarme">cancelar alarme</string>
+
+    <string name="hora_padrao">00:00</string>
+
+    <string name="escolher_horario">escolher Horario</string>
+
+    <string name="text_estoq_tip_alarme">Estoque e tipo do alarme</string>
+
+    <string name="tip_medicação">Tipo de medicação</string>
+
+    <string name="capsula">Cápsula</string>
+
+    <string name="estoque">Estoque</string>
+
+    <string name="text_do_estoq">Selecione o quanto vc tem de medicamentos em casa e receba alarmes quando estiver próximo do fim</string>
+
+    <string name="estoq_atual">Estoque atual</string>
+
+    <string name="lembre_me_em">Lembre me em</string>
+
+    <string name="prog_do_alarme">Programação do alarme</string>
+
+    <string name="prog_do_remedio">Programação do remédio</string>
+
+    <string name="conteudo_prog_remedio">Diriamente - 20 vezes entre as 8:00 e as 20:00 sem data de termino</string>
+
+    <string name="frequencia">Frequencia</string>
+
+    <string name="frequencia_alarm">Frequencia do alarme</string>
+
+    <string name="trinta_caps">30 capsulas restantes</string>
+
+    <string name="duracao">Duração</string>
+
+    <string name="det_lembre">Detalhes do lembrete</string>
+
+    <string name="det_alarme">Detalhes do alarme</string>
+
+    <string name="apart_de">Apartir de</string>
+
+    <string name="nom_do_remedio">Nome do remédio</string>
+
+    <string name="sound_alarm">Som do alarme</string>
+
+    <string name="homecoming">Homecoming</string>
+
+    <string name="basic_call">Basic Call</string>
+
+    <string name="vibration">Vibração</string>
+
+    <string name="text_pausar_lembrete">Pausar lembretes</string>
+
+    <string name="diariamente">Diariamente</string>
+
+    <string name="dias_seman">Dias da semana</string>
+
+    <string name="text_ciclo">Ciclo</string>
+
+    <string name="qnd_ness">Quando necessário (nenhum lembrete)</string>
+
+    <string name="intervalo">Intervalo</string>
+
+    //////Strings relacionadas ao SOS/Configurações//////
+
+    <string name="text_sos">Após tocar no botão acima, uma mensagem de texto seja enviada para um contato de confiança</string>
+
+    <string name="text_warning">Atenção</string>
+
+    <string name="text_restore_mensage">"Deseja realmente restaurar as preferencias para o padrão?"</string>
 
     <string name="text_celular">Celular</string>
 
@@ -100,31 +209,29 @@
         <item>+244 Angola</item>
     </array>
 
-    <string name="hora_padrao">00:00</string>
-
-    <string name="escolher_horario">escolher Horario</string>
-
-    <string name="definir_alarme">Definir alarme</string>
-
-    <string name="cancelar_alarme">cancelar alarme</string>
-
     <string name="Toast_configuracoes_sucesso">Configurações salvas</string>
 
     <string name="preferences_success">Preferências salvas com sucesso!</string>
 
-    <string name="string_editar">Editar</string>
+    <string name="config_btn_sos">Configurações do botão de sos</string>
 
-    <string name="text_warning">Atenção</string>
+    <string name="delet_cont">Deletar conta</string>
 
-    <string name="text_restore_mensage">"Deseja realmente restaurar as preferencias para o padrão?"</string>
+    <string name="text_btn_loguot">Logout</string>
 
-    <string name="text_popup_edita_topo">Editar informações</string>
+    <string name="text_aviso">AVISO</string>
 
-    <string name="text_editar_title_bio">Editar Biografia</string>
+    <string name="btn_sim">sim</string>
 
-    <string name="close_button_description">Fechar</string>
+    <string name="btn_nao">não</string>
 
-    <string name="button_back">Voltar</string>
-    
+
+    //Strings termos
+
+    <string name="text_recomendacao_um">Recomendamos a busca de um médico para ter certeza sobre sua saúde, o Vihva não substitui profissionais da saúde</string>
+
+
+
+
 </resources>
 

@@ -46,7 +46,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Configurações do botão de sos"
+                android:text="@string/config_btn_sos"
                 android:textSize="20sp" />
 
             <ImageView
@@ -71,7 +71,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Deletar conta"
+                android:text="@string/delet_cont"
                 android:textSize="20sp" />
 
             <ImageView

@@ -88,7 +88,7 @@
         android:textColor="@color/black"
         android:gravity="center"
         android:fontFamily="@font/cloudsoft_bold_700"
-        android:text="Recomendamos a busca de um médico para ter certeza sobre sua saúde, o Vihva não substitui profissionais da saúde"
+        android:text="@string/text_recomendacao_um"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

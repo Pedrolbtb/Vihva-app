@@ -62,7 +62,7 @@
             android:id="@+id/text_alarme"
             style="@style/text_doenca_e_remedio"
             android:layout_marginTop="120dp"
-            android:text="Alarme"
+            android:text="@string/text_alarme"
             app:layout_constraintBottom_toTopOf="@+id/layout_alarme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
