@@ -7,6 +7,9 @@ import android.os.Bundle
 import android.text.Layout
 import android.view.View
 import android.widget.ImageButton
+import android.widget.TableRow
+import com.companyvihva.vihva.Cadastro.CadastroPac
+import com.companyvihva.vihva.Inicio.Inicio
 import com.companyvihva.vihva.R
 
 class Config_List : AppCompatActivity() {
@@ -18,10 +21,13 @@ class Config_List : AppCompatActivity() {
             val telaConfig = Intent(this, Configuracoes::class.java)
             startActivity(telaConfig)
 
-        val voltr_configList = findViewById<ImageButton>(R.id.voltar_configList).setOnClickListener {
-            val telaInicio = Intent(this, Inicio1::class.java)
-            startActivity(telaInicio)
+
         }
+
+        val voltar_configList = findViewById<ImageButton>(R.id.voltar_configList)
+        voltar_configList.setOnClickListener {
+            val telaInicio = Intent(this, Inicio::class.java)
+            startActivity(telaInicio)
         }
     }
 }

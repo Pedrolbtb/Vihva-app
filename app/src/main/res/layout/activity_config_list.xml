@@ -14,15 +14,16 @@
         android:layout_gravity="start"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
+        android:layout_marginEnd="330dp"
+        android:layout_marginBottom="670dp"
         android:src="@drawable/arrow_voltar"
-        tools:layout_editor_absoluteY="47dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="411dp"
         android:layout_height="638dp"
         android:layout_marginTop="15dp"
@@ -46,7 +47,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Configurações do botão de sos"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <ImageView
                 android:layout_width="30dp"
@@ -56,10 +57,6 @@
                 app:srcCompat="@drawable/seta_direita" />
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="190dp"
-            android:background="@color/azul"></TableRow>
 
         <TableRow
             android:id="@+id/button_configList_deleteconta"
@@ -75,7 +72,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="Deletar conta"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <ImageView
                 android:layout_width="30dp"
@@ -85,10 +82,6 @@
                 app:srcCompat="@drawable/seta_direita" />
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="190dp"
-            android:background="@color/azul"></TableRow>
     </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
