@@ -22,7 +22,7 @@
             android:layout_height="130dp"
             android:layout_marginEnd="190dp"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toTopOf="@+id/layout_bio"
+            app:layout_constraintBottom_toTopOf="@+id/container_bio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +30,7 @@
         <TextView
             android:id="@+id/text_nome"
             style="@style/text"
-            android:layout_marginBottom="560dp"
+            android:layout_marginBottom="550dp"
             android:layout_marginEnd="25dp"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -45,9 +45,9 @@
             android:id="@+id/text_genero"
             style="@style/text"
             android:layout_marginEnd="110dp"
-            android:layout_marginBottom="120dp"
+            android:layout_marginBottom="100dp"
             android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/layout_bio"
+            app:layout_constraintBottom_toTopOf="@+id/container_bio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_save_perfil"
             app:layout_constraintTop_toBottomOf="@+id/text_nome" />
@@ -57,9 +57,9 @@
             style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="120dp"
+            android:layout_marginBottom="100dp"
             android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/layout_bio"
+            app:layout_constraintBottom_toTopOf="@+id/container_bio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/text_genero"
             app:layout_constraintTop_toBottomOf="@+id/text_nome" />
@@ -68,9 +68,9 @@
             android:id="@+id/text_altura"
             style="@style/text"
             android:layout_marginEnd="110dp"
-            android:layout_marginBottom="80dp"
+            android:layout_marginBottom="65dp"
             android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/layout_bio"
+            app:layout_constraintBottom_toTopOf="@+id/container_bio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_save_perfil"
             app:layout_constraintTop_toBottomOf="@+id/text_genero" />
@@ -78,44 +78,43 @@
         <TextView
             android:id="@+id/text_peso"
             style="@style/text"
-            android:layout_marginBottom="80dp"
+            android:layout_marginBottom="65dp"
             android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/layout_bio"
+            app:layout_constraintBottom_toTopOf="@+id/container_bio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/text_genero"
             app:layout_constraintTop_toBottomOf="@+id/text_idade" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_bio"
-            style="@style/layout_campos"
-            app:counterEnabled="true"
-            app:counterMaxLength="300"
+
+        <View
+            android:id="@+id/container_bio"
+            style="@style/Edit_Text_Perfil"
+            android:layout_width="match_parent"
             android:layout_marginTop="150dp"
+            android:layout_height="350dp"
+            android:gravity="top"
             android:textColor="@color/Letras"
-            app:expandedHintEnabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/View_biografia"
-                style="@style/Edit_Text_Perfil"
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:hint="@string/text_biografia"
-                android:gravity="top"
-                android:textColor="@color/Letras"
-                android:textColorHint="@color/hint"
-                android:inputType="textMultiLine"
-                android:maxLength="300"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/View_biografia"
+            android:layout_width="match_parent"
+            android:layout_height="330dp"
+            android:layout_marginTop="150dp"
+            android:gravity="top"
+            android:layout_marginEnd="55dp"
+            android:layout_marginStart="52dp"
+            android:textColor="@color/Letras"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
         <androidx.appcompat.widget.AppCompatButton
@@ -128,7 +127,7 @@
             android:text="@string/string_editar"
             android:textColor="@color/Letras"
             android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/layout_bio"
+            app:layout_constraintBottom_toTopOf="@+id/container_bio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_save_perfil" />

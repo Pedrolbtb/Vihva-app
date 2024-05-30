@@ -34,8 +34,8 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/sos"
                 style="@style/sos"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="15dp"
@@ -44,15 +44,15 @@
 
             <ImageButton
                 android:id="@+id/btn_config"
-                android:layout_width="65dp"
-                android:layout_height="65dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="30dp"
                 android:background="#00FFFFFF"
                 android:contentDescription="@string/Toast_configuracoes_sucesso"
                 android:onClick="irParaTelaConfig"
                 android:scaleType="fitXY"
-                android:src="@drawable/engrenagem"
+                android:src="@drawable/ic_config"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
