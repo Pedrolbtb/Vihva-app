@@ -30,7 +30,6 @@ class FotoBio : AppCompatActivity() {
 
     // Companion object para declarar uma constante para o código de solicitação de imagem
     companion object {
-        val IMAGE_REQUEST_CODE_POPUP = 100
         val IMAGE_REQUEST_CODE = 100
         private const val TAG = "KotlinActivity"
     }
