@@ -227,7 +227,7 @@
     
     <string name="text_explicacaoDelete">Caso queira deletar a sua conta do Vihva e os dados e imagens que guardamos, clique no botão abaixo e confirme com sua senha</string>
 
-    <string name="text_explicacaoDelete">Caso queira sair da sua conta do Vihva, clique no botão abaixo</string>
+    <string name="text_explicacaoLogout">Caso queira sair da sua conta do Vihva, clique no botão abaixo</string>
 
 
     //Strings termos
