@@ -11,6 +11,7 @@ import com.companyvihva.vihva.model.Listanew
 import com.google.firebase.firestore.FirebaseFirestore
 import android.util.Log
 import android.widget.ImageButton
+import com.companyvihva.vihva.Inicio.Calendario
 import com.companyvihva.vihva.Login.Login
 import com.companyvihva.vihva.model.Remedio2
 import kotlin.collections.emptyList
@@ -29,10 +30,9 @@ class ListaNova : AppCompatActivity() {
         firestore = FirebaseFirestore.getInstance()
 
         val remedioId = intent.getStringExtra("remedioId")
-        val btn_voltar_listaRe = findViewById<ImageButton>(R.id.btn_voltarListaRe)
-
-        btn_voltar_listaRe.setOnClickListener {
-            voltar_listaRemedio()
+        val btnVoltar = findViewById<ImageButton>(R.id.btn_voltarListaRe)
+        btnVoltar.setOnClickListener {
+            onBackPressed()
         }
 
         val recyclerViewListaNova = findViewById<RecyclerView>(R.id.recyclerview_nova_lista)
@@ -45,24 +45,19 @@ class ListaNova : AppCompatActivity() {
         // Busca todos os dados e organiza conforme necessário
         remedioId?.let {
             fetchSubList(it)
-
-
-
         }
     }
 
     private fun fetchSubList(remedioId: String) {
         val subDocumentos = when (remedioId) {
-            "Insulina" -> listOf("humalog", "novolog", "lantus", "levemir1")//ok
-            "Metformina" -> listOf("glifage", "glucophage")//ok
-            "sulfonilureias" -> listOf("glibenclamida", "glipizida", "glimepirida")//ok
-            "Inibidores Dpp4" -> listOf("sitagliptina","saxagliptina1", "glinagliptina")//ok
-            "Inibidores de SGLT2" -> listOf("dapagliflozina1", "empagliflozina ", "canagliflozina ")//ok
-            "Agonistas do GLP1" -> listOf("exenatida","liraglutida1", "dulaglutida1" )//ok
-            "Tiazolidinedionas" -> listOf("pioglitazona1","rosiglitazona1")//ok
-            "Inibidores de alfa glicosidase" -> listOf("acarbose1", "miglitol1")//ok
-
-            // Adicione mais listas conforme necessário
+            "Insulina" -> listOf("humalog", "novolog", "lantus", "levemir1")
+            "Metformina" -> listOf("glifage", "glucophage")
+            "sulfonilureias" -> listOf("glibenclamida", "glipizida", "glimepirida")
+            "Inibidores Dpp4" -> listOf("sitagliptina", "saxagliptina1", "glinagliptina")
+            "Inibidores de SGLT2" -> listOf("dapagliflozina1", "empagliflozina ", "canagliflozina ")
+            "Agonistas do GLP1" -> listOf("exenatida", "liraglutida1", "dulaglutida1")
+            "Tiazolidinedionas" -> listOf("pioglitazona1", "rosiglitazona1")
+            "Inibidores de alfa glicosidase" -> listOf("acarbose1", "miglitol1")
             else -> emptyList()
         }
 
@@ -78,7 +73,7 @@ class ListaNova : AppCompatActivity() {
                     val nome = document.getString("nome")
                     val url = document.getString("Url")
                     val tipo = document.getString("tipo")
-                    val listanew = Listanew(url ?: "", nome ?: "", tipo?:"")
+                    val listanew = Listanew(url ?: "", nome ?: "", tipo ?: "", docId)
 
                     dadosListaNova.add(listanew)
                     adapterListaNova.notifyDataSetChanged()
@@ -89,11 +84,4 @@ class ListaNova : AppCompatActivity() {
                 Log.w("Firestore", "Error getting document", e)
             }
     }
-
-    private fun voltar_listaRemedio() {
-        val voltar_lista = Intent(this, Remedio1::class.java)
-        startActivity(voltar_lista)
-        finish()
-    }
 }
-

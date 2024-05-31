@@ -13,11 +13,13 @@
         android:layout_height="40dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
         android:src="@drawable/arrow_voltar_verde"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerview_nova_lista"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.186" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_nova_lista"

@@ -1,26 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="340dp"
-    android:layout_height="600dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
-    android:background="@color/white">
+    android:background="@drawable/background_remedios">
+
+    <ImageButton
+        android:id="@+id/btn_voltarpop"
+        android:layout_width="53dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="32dp"
+        android:background="#00FFFFFF"
+        android:scaleType="fitCenter"
+
+        android:src="@drawable/arrow_voltar_verde"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/Remedio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/nomere"
+        android:layout_width="301dp"
+        android:layout_height="68dp"
 
+        android:layout_marginTop="136dp"
         android:fontFamily="@font/cloudsoft_bold_700"
-        android:textSize="30sp"
         android:textColor="@color/black"
-        android:layout_marginTop="90dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        />
-
+        app:layout_constraintHorizontal_bias="0.763"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/descricao1"
@@ -30,36 +43,35 @@
         android:gravity="center"
 
         android:textColor="@color/black"
-        android:textSize="15sp"
+        android:textSize="19sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Remedio"
-        app:layout_constraintVertical_bias="0.256" />
+        app:layout_constraintTop_toBottomOf="@+id/nomere"
+        app:layout_constraintVertical_bias="0.293" />
 
     <androidx.appcompat.widget.AppCompatButton
 
         android:id="@+id/appCompatButton"
-        android:layout_width="141dp"
-        android:layout_height="46dp"
+        android:layout_width="145dp"
+        android:layout_height="61dp"
+        android:layout_marginEnd="44dp"
         android:layout_marginBottom="56dp"
         android:background="@drawable/button"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="@string/text_adc_remed"
         android:textColor="@color/off_white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/addAlarme"
 
-        app:layout_constraintHorizontal_bias="0.919"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descricao1"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/addAlarme"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatButton
 
         android:id="@+id/addAlarme"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="162dp"
+        android:layout_height="62dp"
         android:layout_marginTop="82dp"
         android:layout_marginBottom="56dp"
         android:background="@drawable/button"
@@ -68,10 +80,10 @@
         android:textColor="@color/off_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/appCompatButton"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.703"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descricao1"
-        app:layout_constraintVertical_bias="0.909" />
+        app:layout_constraintVertical_bias="0.294" />
 
 
 </android.support.constraint.ConstraintLayout>

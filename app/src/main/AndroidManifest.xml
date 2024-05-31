@@ -19,9 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
-        <activity
-            android:name=".Configurações.Config_DeletarPerfil"
-            android:exported="false" />
+
         <activity
             android:name=".Alarme.ConfigEstoque"
             android:exported="false" />
@@ -47,11 +45,14 @@
             android:name=".ListaNova"
             android:exported="false" />
         <activity
+            android:name=".model.PopupRemedio"
+            android:exported="false" />
+        <activity
             android:name=".CriarPerfil.FotoBio"
             android:exported="false"
             android:theme="@style/Theme.Vihva" />
         <activity
-            android:name=".Inicio.Inicio"
+            android:name=".Login.Login"
             android:exported="false"
             android:theme="@style/Theme.Vihva" />
         <activity
@@ -71,7 +72,7 @@
             android:exported="false"
             android:theme="@style/Theme.Vihva" />
         <activity
-            android:name=".Login.Login"
+            android:name=".Inicio.Inicio"
             android:exported="true"
             android:theme="@style/Theme.Vihva">
             <intent-filter>
