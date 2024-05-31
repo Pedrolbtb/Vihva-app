@@ -3,7 +3,7 @@
 
     <string name="text_tabagismo">Você possui hábitos tabagistas?</string>
 
-    <string name="text_alcolismo">Você faz consumo de bebidas alcoólicas </string>
+    <string name="text_alcolismo">Você faz consumo de bebidas alcoólicas? </string>
 
     <!--titulo na tela de login-->
     <string name="titulo_login">Vihva</string>
@@ -225,9 +225,9 @@
 
     <string name="text_aviso">AVISO</string>
 
-    <string name="btn_sim">sim</string>
+    <string name="btn_sim">Sim</string>
 
-    <string name="btn_nao">não</string>
+    <string name="btn_nao">Não</string>
     
     <string name="text_explicacaoDelete">Caso queira deletar a sua conta do Vihva e os dados e imagens que guardamos, clique no botão abaixo e confirme com sua senha</string>
 
@@ -236,7 +236,7 @@
 
     //Strings termos
 
-    <string name="text_recomendacao_um">Recomendamos a busca de um médico para ter certeza sobre sua saúde, o Vihva não substitui profissionais da saúde</string>
+    <string name="text_recomendacao_um">Recomendamos a busca de um médico para ter certeza sobre seu estado, o Vihva não substitui profissionais da saúde</string>
 
 
 

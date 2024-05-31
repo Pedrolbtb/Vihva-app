@@ -9,7 +9,7 @@ import com.companyvihva.vihva.R
 class ConfigEstoque : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_config_duracao)
+        setContentView(R.layout.activity_config_estoque)
 
         // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)

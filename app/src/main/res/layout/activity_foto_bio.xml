@@ -18,15 +18,15 @@
         android:scaleType="centerCrop"
         app:civ_border_color="@color/Letras"
         app:civ_border_width="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/container_fotobio"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.417"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_nome"
         style="@style/text"
-        android:layout_marginBottom="620dp"
+        android:layout_marginBottom="530dp"
         android:layout_marginEnd="25dp"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,7 +40,9 @@
         android:id="@+id/text_genero"
         style="@style/text"
         android:layout_marginEnd="110dp"
+        android:layout_marginBottom="70dp"
         android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/container_fotobio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_save"
         app:layout_constraintTop_toBottomOf="@+id/text_nome" />
@@ -51,6 +53,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15sp"
+        android:layout_marginBottom="70dp"
+        app:layout_constraintBottom_toTopOf="@+id/container_fotobio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text_genero"
         app:layout_constraintTop_toBottomOf="@+id/text_nome" />
@@ -60,6 +64,8 @@
         style="@style/text"
         android:layout_marginEnd="110dp"
         android:textSize="15sp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/container_fotobio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_save"
         app:layout_constraintTop_toBottomOf="@+id/text_genero" />
@@ -68,33 +74,47 @@
         android:id="@+id/text_peso"
         style="@style/text"
         android:textSize="15sp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/container_fotobio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text_genero"
         app:layout_constraintTop_toBottomOf="@+id/text_idade" />
 
+    <View
+        android:id="@+id/container_fotobio"
+        style="@style/Edit_Text_Perfil"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:gravity="top"
+        android:textColor="@color/Letras"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/text_tabagismo"
         style="@style/text"
-        android:layout_marginTop="172dp"
+        android:layout_marginBottom="170dp"
+        android:gravity="center"
         android:text="@string/text_tabagismo"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.141"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/img_save" />
+        app:layout_constraintBottom_toBottomOf="@id/container_fotobio"
+        app:layout_constraintEnd_toEndOf="@id/container_fotobio"
+        app:layout_constraintStart_toStartOf="@id/container_fotobio"
+        app:layout_constraintTop_toTopOf="@id/container_fotobio" />
 
 
     <RadioGroup
         android:id="@+id/radioGroup_tabagismo"
         android:layout_width="142dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="140dp"
         android:elevation="4dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/container_fotobio"
+        app:layout_constraintEnd_toEndOf="@id/container_fotobio"
+        app:layout_constraintStart_toStartOf="@id/container_fotobio"
         app:layout_constraintTop_toBottomOf="@+id/text_tabagismo">
 
         <!-- radio de feminino -->
@@ -124,23 +144,27 @@
     <TextView
         android:id="@+id/text_alcolismo"
         style="@style/text"
+        android:layout_width="324dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="85dp"
+        android:gravity="center"
         android:text="@string/text_alcolismo"
         android:textSize="20sp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/container_fotobio"
+        app:layout_constraintEnd_toEndOf="@id/container_fotobio"
+        app:layout_constraintStart_toStartOf="@id/container_fotobio"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup_tabagismo" />
 
     <RadioGroup
         android:id="@+id/radioGroup_alc"
         android:layout_width="147dp"
         android:layout_height="59dp"
-        android:layout_marginTop="28dp"
         android:elevation="4dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/container_fotobio"
+        app:layout_constraintBottom_toBottomOf="@id/container_fotobio"
+        app:layout_constraintStart_toStartOf="@id/container_fotobio"
         app:layout_constraintTop_toBottomOf="@+id/text_alcolismo">
 
         <androidx.appcompat.widget.AppCompatRadioButton
@@ -166,23 +190,29 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_proximo"
         style="@style/Button_salvar"
+        android:layout_width="150dp"
+        android:textSize="19sp"
         android:layout_marginStart="195dp"
         android:layout_marginBottom="60dp"
         android:text="@string/text_salvar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_fotobio" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_retornar"
         style="@style/Button_retornar"
+        android:layout_width="150dp"
+        android:textSize="19sp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="60dp"
         android:text="@string/text_voltar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_proximo"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_fotobio" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

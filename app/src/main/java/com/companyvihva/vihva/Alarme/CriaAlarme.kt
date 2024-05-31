@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.companyvihva.vihva.Inicio.Inicio
 import com.companyvihva.vihva.R
 
 class CriaAlarme : AppCompatActivity() {
@@ -28,7 +29,7 @@ class CriaAlarme : AppCompatActivity() {
     }
 
     private fun irParaConfigEstoque() {
-        val telaConfigEstoque = Intent(this, ConfigEstoque::class.java)
+        val telaConfigEstoque = Intent(this, EscolhaFrequencia::class.java)
         startActivity(telaConfigEstoque)
 
     }
