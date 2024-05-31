@@ -7,63 +7,72 @@
     android:background="@color/off_white"
     tools:context=".Configurações.Config_DeletarPerfil">
 
+    <View
+    android:id="@+id/containerDelete"
+    style="@style/ContainerComponents"
+    android:layout_width="match_parent"
+    android:layout_height="580dp"
+    android:layout_marginBottom="15dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         style="@style/text_doenca_e_remedio"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="@string/text_explicacaoDelete"
-        android:layout_marginBottom="390dp"
+        android:layout_marginBottom="360dp"
         android:gravity="center"
+        android:text="@string/text_explicacaoDelete"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_delete"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="120dp"
         android:background="@drawable/button_voltar"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="Deletar conta"
         android:textColor="@color/off_white"
-        android:layout_marginBottom="190dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/ContainerD"
         style="@style/text_doenca_e_remedio"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="@string/text_explicacaoDelete"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="170dp"
         android:gravity="center"
+        android:text="@string/text_explicacaoDelete"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_logout"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
         android:background="@drawable/button_logout"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="Logout"
-        android:layout_marginTop="300dp"
         android:textColor="@color/off_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-         />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
