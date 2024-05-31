@@ -30,7 +30,6 @@ class FotoBio : AppCompatActivity() {
 
     // Companion object para declarar uma constante para o código de solicitação de imagem
     companion object {
-        val IMAGE_REQUEST_CODE_POPUP = 100
         val IMAGE_REQUEST_CODE = 100
         private const val TAG = "KotlinActivity"
     }
@@ -40,7 +39,7 @@ class FotoBio : AppCompatActivity() {
         setContentView(R.layout.activity_foto_bio) // Define o layout da atividade
         // Inicializa a imageView com base em seu ID no layout
         imageView = findViewById(R.id.img_save)
-        editTextBiografia = findViewById(R.id.container_fotobio)
+        editTextBiografia = findViewById(R.id.Edit_biografia)
 
         // Recuperando os extras da intent
         val nome = intent.getStringExtra("nome")
@@ -183,6 +182,6 @@ class FotoBio : AppCompatActivity() {
             }
         } else {
             Toast.makeText(this, "Usuário não autenticado", Toast.LENGTH_SHORT).show()
+            }
         }
-    }
 }
