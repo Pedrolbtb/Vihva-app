@@ -1,6 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">vihva</string>
 
+    <string name="text_tabagismo">Você possui hábitos tabagistas?</string>
+
+    <string name="text_alcolismo">Você faz consumo de bebidas alcoólicas </string>
+
     <!--titulo na tela de login-->
     <string name="titulo_login">Vihva</string>
 
