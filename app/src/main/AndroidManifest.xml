@@ -19,7 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
-
+        <activity
+            android:name=".Configurações.Config_DeletarPerfil"
+            android:exported="false" />
         <activity
             android:name=".Alarme.ConfigEstoque"
             android:exported="false" />

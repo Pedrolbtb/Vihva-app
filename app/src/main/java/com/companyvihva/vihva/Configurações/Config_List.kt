@@ -20,14 +20,18 @@ class Config_List : AppCompatActivity() {
         val configlist_sos = findViewById<View>(R.id.button_configList_sos).setOnClickListener {
             val telaConfig = Intent(this, Configuracoes::class.java)
             startActivity(telaConfig)
-
-
         }
 
         val voltar_configList = findViewById<ImageButton>(R.id.voltar_configList)
         voltar_configList.setOnClickListener {
             val telaInicio = Intent(this, Inicio::class.java)
             startActivity(telaInicio)
+        }
+
+        val buttonConfig_DeletarPerfil = findViewById<TableRow>(R.id.button_configList_deleteconta).setOnClickListener {
+            val telaDelete = Intent(this, Config_DeletarPerfil::class.java)
+            startActivity(telaDelete)
+            finish()
         }
     }
 }

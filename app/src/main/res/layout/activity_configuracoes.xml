@@ -9,122 +9,135 @@
 
     <EditText
         android:id="@+id/editTextPhone"
-        android:layout_width="260dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="10dp"
+        style="@style/Edit_Text_Login"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="190dp"
+        android:layout_marginBottom="520dp"
         android:ems="10"
         android:hint="@string/text_celular"
         android:inputType="phone"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/spinnerDDI"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextCelular" />
 
     <Spinner
         android:id="@+id/spinnerDDI"
-        android:layout_width="120dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="150dp"
+        android:layout_height="62dp"
+        android:layout_marginEnd="180dp"
+        android:layout_marginBottom="520dp"
+        android:background="@drawable/spinner"
+        android:textColor="@color/Letras"
+        android:textSize="10sp"
         android:entries="@array/ddi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCelular" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextCelular"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/editTextCelular"
+        style="@style/text_doenca_e_remedio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="540dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="@string/text_celular"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <EditText
-        android:id="@+id/editTextMsg"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="256dp"
-        android:layout_marginEnd="10dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:text="@string/default_msg"
-        android:textColor="@color/black"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_msgsos"
+        style="@style/layout_campos"
+        android:textColor="@color/Letras"
+        android:layout_marginTop="170dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="300"
+        app:expandedHintEnabled="false"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextMsg"
+            style="@style/Edit_Text_Perfil"
+            android:layout_width="match_parent"
+            android:layout_height="310dp"
+            android:gravity="top"
+            android:hint="@string/default_msg"
+            android:inputType="textMultiLine"
+            android:maxLength="300"
+            android:textColor="@color/Letras"
+            android:textColorHint="@color/hint"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textViewMsg"
+        style="@style/text_doenca_e_remedio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="240dp"
         android:text="@string/text_mensagem"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerDDI" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-    <Button
-        android:id="@+id/btn_confirmar"
-        android:layout_width="98dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="48dp"
-        android:backgroundTint="@color/Letras"
-        android:text="@string/text_salvar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMsg" />
-
-    <Button
-        android:id="@+id/btn_restaurar"
-        android:layout_width="137dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="28dp"
-        android:backgroundTint="@color/Letras"
-        android:text="@string/text_restaurar"
-        app:layout_constraintEnd_toStartOf="@+id/btn_confirmar"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMsg" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_delete"
+        android:id="@+id/btn_confirmar"
+        style="@style/Button_salvar"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_voltar"
-        android:fontFamily="@font/cloudsoft_bold_700"
-        android:text="@string/delet_cont"
-        android:textColor="@color/off_white"
+        android:layout_marginStart="170dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/text_salvar"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.869"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.959" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_msgsos" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_logout"
+        android:id="@+id/btn_restaurar"
+        style="@style/Button_retornar"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_logout"
-        android:fontFamily="@font/cloudsoft_bold_700"
-        android:text="@string/text_btn_loguot"
-        android:textColor="@color/off_white"
+        android:layout_height="49dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/text_restaurar"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintEnd_toStartOf="@+id/btn_confirmar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.959" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_msgsos" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="45dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

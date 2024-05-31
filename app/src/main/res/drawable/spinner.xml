@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background shape -->
+    <item>
+        <shape>
+            <corners android:radius="10dp"/>
+            <solid android:color="@color/white"/>
+            <stroke android:color="@color/Letras" android:width="2dp"/>
+        </shape>
+    </item>
+    <!-- Arrow icon -->
+    <item android:right="10dp" android:gravity="center_vertical|right">
+        <inset android:drawable="@drawable/arrow_down"/>
+    </item>
+</layer-list>
