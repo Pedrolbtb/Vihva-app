@@ -1,4 +1,4 @@
-package com.companyvihva.vihva
+package com.companyvihva.vihva.model.PopupRemedio
 
 import android.os.Bundle
 import android.util.Log
@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.companyvihva.vihva.R
 import com.companyvihva.vihva.model.OnRemedioSelectedListener
 import com.companyvihva.vihva.model.Remedio2
 import com.google.firebase.firestore.FirebaseFirestore

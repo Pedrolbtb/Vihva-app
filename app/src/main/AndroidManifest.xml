@@ -45,7 +45,7 @@
             android:name=".ListaNova"
             android:exported="false" />
         <activity
-            android:name=".model.PopupRemedio"
+            android:name=".model.PopupRemedio.PopupRemedio"
             android:exported="false" />
         <activity
             android:name=".CriarPerfil.FotoBio"

@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.companyvihva.vihva.PopupRemedio
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.model.Listanew
+import com.companyvihva.vihva.model.PopupRemedio.PopupRemedio
 import com.squareup.picasso.Picasso
 
 class AdapterLista(private val context: Context, private val listas: MutableList<Listanew>) :
