@@ -1,7 +1,7 @@
 package com.companyvihva.vihva
 
 import AdapterLista
-import Inicio1
+import com.companyvihva.vihva.Inicio.Inicio1
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

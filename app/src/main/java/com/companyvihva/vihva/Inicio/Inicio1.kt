@@ -1,25 +1,39 @@
+package com.companyvihva.vihva.Inicio
+
 import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.R
+import com.companyvihva.vihva.model.Adapter.AdapterRemedio
+import com.companyvihva.vihva.model.OnRemedioSelectedListener
+import com.companyvihva.vihva.model.Remedio2
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
-class Inicio1 : Fragment() {
-    // Firebase
+
+class Inicio1 : Fragment(), OnRemedioSelectedListener {
+
+    ////Firebase////
     private lateinit var db: FirebaseFirestore
+
+    private lateinit var remedios : MutableList<Remedio2>
+    private lateinit var adapter: AdapterRemedio
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
 // Infla o layout para este fragmento
         val view = inflater.inflate(R.layout.fragment_inicio1, container, false)
 // Inicializa o Firebase
@@ -57,7 +71,31 @@ class Inicio1 : Fragment() {
         }
 // Retorna a view inflada
         return view
+
+
+        ///teste de fazer o lance do remédio aparecer
+        remedios = mutableListOf()
+        adapter = AdapterRemedio(requireContext(), remedios){ remedio ->
+
+
+        }
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview_nova_lista)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        //retorna a view inflada
+        return view
+
+
+
     }
+
+
+
+
+
+
     // Método para mostrar os dados no popup
     private fun mostrarPopup() {
 // Referência ao documento "diabetes" na coleção "doenca"
@@ -114,5 +152,9 @@ class Inicio1 : Fragment() {
 // Trata falhas
                 Log.e("Inicio1", "Erro ao obter documento", exception)
             }
+    }
+
+    override fun onRemedioSelected(remedio: Remedio2) {
+        TODO("Not yet implemented")
     }
 }

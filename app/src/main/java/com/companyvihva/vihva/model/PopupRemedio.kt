@@ -1,15 +1,14 @@
-package com.companyvihva.vihva.model
+package com.companyvihva.vihva
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.companyvihva.vihva.R
-import android.content.Intent
+import com.companyvihva.vihva.model.OnRemedioSelectedListener
+import com.companyvihva.vihva.model.Remedio2
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlin.collections.List
-
 
 
 class PopupRemedio : AppCompatActivity() {
@@ -17,16 +16,13 @@ class PopupRemedio : AppCompatActivity() {
     private lateinit var firestore: FirebaseFirestore
     private lateinit var nomeTextView: TextView
     private lateinit var descricaoTextView: TextView
-
+    private var remedio: Remedio2? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.popup_desc_remedio)
 
-        // Inicializa o Firestore
         firestore = FirebaseFirestore.getInstance()
-
-        // Obtém o ID do documento do Firebase passado através do Intent
         val documentId = intent.getStringExtra("remedioId")
 
         val btnVoltar = findViewById<ImageButton>(R.id.btn_voltarpop)
@@ -34,40 +30,38 @@ class PopupRemedio : AppCompatActivity() {
             onBackPressed()
         }
 
-        // Referências aos TextViews no layout
-
         nomeTextView = findViewById(R.id.nomere)
         descricaoTextView = findViewById(R.id.descricao1)
 
-        // Se houver o ID do documento, busca os dados no Firebase
         documentId?.let { id ->
             fetchDadosDoFirebase(id)
+        }
+
+        val btnAdd = findViewById<Button>(R.id.btn_add_remédio)
+        btnAdd.setOnClickListener {
+            remedio?.let {
+                (application as? OnRemedioSelectedListener)?.onRemedioSelected(it)
+                finish()
+            }
         }
     }
 
     private fun fetchDadosDoFirebase(docId: String) {
-        // Referência ao documento no Firebase
         val docRef = firestore.collection("remedios").document(docId)
         docRef.get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
-                    // Obtém os dados do documento
                     val nome = document.getString("nome")
                     val descricao = document.getString("descricao")
-
-
-
-
-                    // Define os dados nos componentes da interface do usuário
+                    val foto = document.getString("foto")
+                    remedio = Remedio2(foto ?: "", nome ?: "")
                     nomeTextView.text = nome
                     descricaoTextView.text = descricao
                 } else {
-                    // Trata o caso em que o documento não existe
                     Log.d("PopupRemedio", "Documento não encontrado")
                 }
             }
             .addOnFailureListener { e ->
-                // Trata falhas na obtenção de dados do Firebase
                 Log.w("PopupRemedio", "Erro ao obter documento", e)
             }
     }

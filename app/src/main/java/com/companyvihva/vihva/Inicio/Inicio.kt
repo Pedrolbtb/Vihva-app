@@ -1,7 +1,6 @@
 package com.companyvihva.vihva.Inicio
 
-import Inicio1
-
+import com.companyvihva.vihva.Inicio.Inicio1
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity

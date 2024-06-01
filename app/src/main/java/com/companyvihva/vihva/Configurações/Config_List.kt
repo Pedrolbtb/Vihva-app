@@ -1,6 +1,6 @@
 package com.companyvihva.vihva.Configurações
 
-import Inicio1
+import com.companyvihva.vihva.Inicio.Inicio1
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

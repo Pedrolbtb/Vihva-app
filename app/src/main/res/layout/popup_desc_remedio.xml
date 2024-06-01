@@ -26,12 +26,12 @@
         android:layout_width="301dp"
         android:layout_height="68dp"
 
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="128dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.763"
+        app:layout_constraintHorizontal_bias="0.145"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,13 +46,14 @@
         android:textSize="19sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nomere"
-        app:layout_constraintVertical_bias="0.293" />
+        app:layout_constraintVertical_bias="0.43" />
 
     <androidx.appcompat.widget.AppCompatButton
 
-        android:id="@+id/appCompatButton"
+        android:id="@+id/btn_add_remédio"
         android:layout_width="145dp"
         android:layout_height="61dp"
         android:layout_marginEnd="44dp"
@@ -61,15 +62,15 @@
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="@string/text_adc_remed"
         android:textColor="@color/off_white"
-        app:layout_constraintBottom_toBottomOf="@+id/addAlarme"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_add_alarme"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/addAlarme"
+        app:layout_constraintTop_toTopOf="@+id/btn_add_alarme"
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatButton
 
-        android:id="@+id/addAlarme"
+        android:id="@+id/btn_add_alarme"
         android:layout_width="162dp"
         android:layout_height="62dp"
         android:layout_marginTop="82dp"
@@ -79,7 +80,7 @@
         android:text="@string/text_adc_alarme"
         android:textColor="@color/off_white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/appCompatButton"
+        app:layout_constraintEnd_toStartOf="@+id/btn_add_remédio"
         app:layout_constraintHorizontal_bias="0.703"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descricao1"
