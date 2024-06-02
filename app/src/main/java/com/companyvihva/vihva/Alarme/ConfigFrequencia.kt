@@ -50,6 +50,12 @@ class ConfigFrequencia : AppCompatActivity() {
 
                      picker.show(supportFragmentManager, "MaterialTimePicker")
         }
+
+        // Configurando o listener para o botão de voltar
+        val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
+        btnVoltar.setOnClickListener {
+            finish() // Fecha a atividade atual e retorna para a anterior
+        }
         }
 
 

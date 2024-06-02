@@ -63,7 +63,7 @@
             android:theme="@style/Theme.Vihva" />
         <activity
             android:name=".Alarme.CriaAlarme"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/Theme.Vihva" />
         <activity
             android:name=".CriarPerfil.CriaPerfil"
