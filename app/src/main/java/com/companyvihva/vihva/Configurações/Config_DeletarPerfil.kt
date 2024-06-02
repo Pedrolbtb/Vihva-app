@@ -1,20 +1,17 @@
 package com.companyvihva.vihva.Configurações
 
-import android.content.DialogInterface
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.Login.Login
 import com.companyvihva.vihva.R
 import com.google.android.gms.tasks.Tasks
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -40,9 +37,10 @@ class Config_DeletarPerfil : AppCompatActivity() {
         val alertDialogBuilder = AlertDialog.Builder(this)
         alertDialogBuilder.setView(popupView)
 
-        // Encontrar os botões dentro do popup
+        // Encontrar os botões e o campo de senha dentro do popup
         val btnSim = popupView.findViewById<Button>(R.id.btn_sim)
         val btnNao = popupView.findViewById<Button>(R.id.btn_nao)
+        val etPassword = popupView.findViewById<EditText>(R.id.edit_senhadeleta)
 
         // Criar e mostrar o AlertDialog
         val alertDialog = alertDialogBuilder.create()
@@ -55,44 +53,63 @@ class Config_DeletarPerfil : AppCompatActivity() {
         }
 
         btnSim.setOnClickListener {
-            // Excluir a conta do Firebase Authentication
+            // Verificar a senha antes de prosseguir com a exclusão
+            val senha = etPassword.text.toString().trim()
+            if (senha.isEmpty()) {
+                Toast.makeText(this, "Por favor, digite sua senha", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val user = FirebaseAuth.getInstance().currentUser
-            val db = FirebaseFirestore.getInstance()
-
             user?.let { userID ->
-                // Referência para o documento do usuário no Firestore
-                val userDocRef = db.collection("clientes").document(userID.uid)
+                val email = user.email
+                if (email != null) {
+                    val credential = EmailAuthProvider.getCredential(email, senha)
+                    user.reauthenticate(credential)
+                        .addOnCompleteListener { authTask ->
+                            if (authTask.isSuccessful) {
+                                // Reautenticação bem-sucedida, proceder com a exclusão
+                                val db = FirebaseFirestore.getInstance()
+                                val userDocRef = db.collection("clientes").document(userID.uid)
 
-                // Deletar documento do usuário no Firestore
-                userDocRef.delete()
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            // Documento excluído com sucesso
-                            deleteUserFolder(userID.uid) {
-                                // Excluir a conta do Firebase Authentication
-                                user.delete()
-                                    .addOnCompleteListener { deleteTask ->
-                                        if (deleteTask.isSuccessful) {
-                                            // Conta excluída com sucesso
-                                            startActivity(Intent(this, Login::class.java))
-                                            finish()
+                                userDocRef.delete()
+                                    .addOnCompleteListener { task ->
+                                        if (task.isSuccessful) {
+                                            // Documento excluído com sucesso
+                                            deleteUserFolder(userID.uid) {
+                                                // Excluir a conta do Firebase Authentication
+                                                user.delete()
+                                                    .addOnCompleteListener { deleteTask ->
+                                                        if (deleteTask.isSuccessful) {
+                                                            // Conta excluída com sucesso
+                                                            startActivity(Intent(this, Login::class.java))
+                                                            finish()
+                                                        } else {
+                                                            // Ocorreu um erro ao excluir a conta
+                                                            Toast.makeText(this, "Erro ao excluir a conta", Toast.LENGTH_SHORT).show()
+                                                        }
+                                                    }
+                                            }
                                         } else {
-                                            // Ocorreu um erro ao excluir a conta
-                                            Toast.makeText(this, "Erro ao excluir a conta", Toast.LENGTH_SHORT).show()
+                                            // Ocorreu um erro ao excluir o documento no Firestore
+                                            Toast.makeText(this, "Erro ao excluir o perfil", Toast.LENGTH_SHORT).show()
                                         }
                                     }
+                            } else {
+                                // A senha está incorreta
+                                Toast.makeText(this, "Senha incorreta, por favor, tente novamente", Toast.LENGTH_SHORT).show()
                             }
-                        } else {
-                            // Ocorreu um erro ao excluir o documento no Firestore
-                            Toast.makeText(this, "Erro ao excluir o perfil", Toast.LENGTH_SHORT).show()
                         }
-                    }
+                } else {
+                    // O email do usuário é nulo
+                    Toast.makeText(this, "Erro ao obter email do usuário", Toast.LENGTH_SHORT).show()
+                }
             } ?: run {
-                // Ocorreu um erro ao excluir a conta
-                Toast.makeText(this, "Erro ao excluir a conta", Toast.LENGTH_SHORT).show()
+                // Ocorreu um erro ao obter o usuário atual
+                Toast.makeText(this, "Erro ao obter o usuário atual", Toast.LENGTH_SHORT).show()
             }
-           }
         }
+    }
 
     private fun deleteUserFolder(userId: String, onComplete: () -> Unit) {
         val storageRef = FirebaseStorage.getInstance().reference.child("users/$userId/")
@@ -116,6 +133,6 @@ class Config_DeletarPerfil : AppCompatActivity() {
             .addOnFailureListener { e ->
                 // Ocorreu um erro ao listar os arquivos na pasta
                 Toast.makeText(this, "Erro ao listar arquivos na pasta: ${e.message}", Toast.LENGTH_SHORT).show()
-               }
-        }
+            }
+    }
 }

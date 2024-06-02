@@ -54,9 +54,19 @@
             android:exported="false"
             android:theme="@style/Theme.Vihva" />
         <activity
-            android:name=".Login.Login"
+            android:name=".Inicio.Inicio"
             android:exported="false"
             android:theme="@style/Theme.Vihva" />
+
+
+        <activity android:name=".Configurações.Config_DeletarPerfil"
+              android:exported="false"
+              android:theme="@style/Theme.Vihva"
+            />
+
+
+
+
         <activity
             android:name=".CriarPerfil.CriaPerfil2"
             android:exported="false"
@@ -74,7 +84,7 @@
             android:exported="false"
             android:theme="@style/Theme.Vihva" />
         <activity
-            android:name=".Inicio.Inicio"
+            android:name=".Login.Login"
             android:exported="true"
             android:theme="@style/Theme.Vihva">
             <intent-filter>
