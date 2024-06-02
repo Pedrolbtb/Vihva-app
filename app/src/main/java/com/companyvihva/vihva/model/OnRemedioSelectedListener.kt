@@ -1,6 +1,6 @@
 package com.companyvihva.vihva.model
 
 interface OnRemedioSelectedListener {
-    fun onRemedioSelected(remedio: Remedio2)
+    fun onRemedioSelected(remedio: Tipo_Classe)
 
 }

@@ -2,7 +2,7 @@ package com.companyvihva.vihva
 
 import android.app.Application
 import com.companyvihva.vihva.model.OnRemedioSelectedListener
-import com.companyvihva.vihva.model.Remedio2
+import com.companyvihva.vihva.model.Tipo_Classe
 
 class MyApplication : Application(), OnRemedioSelectedListener {
 
@@ -13,7 +13,7 @@ class MyApplication : Application(), OnRemedioSelectedListener {
         // Aqui você pode inicializar qualquer coisa necessária para o seu aplicativo
     }
 
-    override fun onRemedioSelected(remedio: Remedio2) {
+    override fun onRemedioSelected(remedio: Tipo_Classe) {
         remedioListener?.onRemedioSelected(remedio)
     }
 

@@ -9,13 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.model.Adapter.AdapterRemedio
-import com.companyvihva.vihva.model.Remedio2
+import com.companyvihva.vihva.model.Tipo_Classe
 import com.google.firebase.firestore.FirebaseFirestore
 
-class Remedio1 : Fragment() {
+class Classes_Remedio : Fragment() {
+
+    // Declarando variáveis
     private lateinit var firestore: FirebaseFirestore
     private lateinit var adapterRemedio: AdapterRemedio
-    private val listaRemedios: MutableList<Remedio2> = mutableListOf()
+    private val listaRemedios: MutableList<Tipo_Classe> = mutableListOf()
     private val documentos = listOf(
         "insulina",
         "metformina",
@@ -26,45 +28,60 @@ class Remedio1 : Fragment() {
         "tiazolidinedionas",
         "Inibidoresdaalfaglicosidase"
     )
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
+        // Inflando o layout do fragmento
         val view = inflater.inflate(R.layout.remedio2, container, false)
+
+        // Inicializando o Firestore
         firestore = FirebaseFirestore.getInstance()
 
+        // Encontrando o RecyclerView na view inflada e configurando-o
         val recyclerViewRemedios = view.findViewById<RecyclerView>(R.id.recyclerView_remedios)
         recyclerViewRemedios.layoutManager = LinearLayoutManager(context)
         recyclerViewRemedios.setHasFixedSize(true)
 
+        // Inicializando e configurando o Adapter
         adapterRemedio = AdapterRemedio(requireContext(), listaRemedios) { remedio ->
-            val intent = Intent(requireContext(), ListaNova::class.java)
+            val intent = Intent(requireContext(), Lista_Remedios::class.java)
             intent.putExtra("remedioId", remedio.nome) // Passe o ID ou nome do remédio como extra
             startActivity(intent)
         }
         recyclerViewRemedios.adapter = adapterRemedio
 
+        // Chamando a função para buscar os remédios
         fetchRemedio(0)
+
+        // Retornando a view inflada
         return view
-        return inflater.inflate(R.layout.fragment_remedio, container, false)
     }
 
+    // Função para buscar os remédios do Firestore
     private fun fetchRemedio(index: Int) {
         if (index < documentos.size) {
             val docId = documentos[index]
             firestore.collection("remedios").document(docId).get()
                 .addOnSuccessListener { document ->
                     if (document != null) {
+                        // Obtendo os detalhes do remédio do documento Firestore
                         val nome = document.getString("nome")
                         val url = document.getString("Url")
-                        val remedio = Remedio2(url ?: "", nome ?: "")
+                        val remedio = Tipo_Classe(url ?: "", nome ?: "")
+
+                        // Adicionando o remédio à lista e notificando o Adapter sobre a mudança
                         listaRemedios.add(remedio)
                         adapterRemedio.notifyDataSetChanged()
+
+                        // Chamando recursivamente a função para buscar o próximo remédio
                         fetchRemedio(index + 1)
                     }
                 }
                 .addOnFailureListener {
+                    // Em caso de falha, chamando recursivamente a função para buscar o próximo remédio
                     fetchRemedio(index + 1)
                 }
         }

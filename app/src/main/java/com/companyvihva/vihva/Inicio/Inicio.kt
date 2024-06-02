@@ -1,6 +1,5 @@
 package com.companyvihva.vihva.Inicio
 
-import com.companyvihva.vihva.Inicio.Inicio1
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +9,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.Configurações.Config_List
 import com.companyvihva.vihva.R
-import com.companyvihva.vihva.Remedio1
+import com.companyvihva.vihva.Classes_Remedio
 import com.companyvihva.vihva.databinding.ActivityInicioBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -41,7 +40,7 @@ class Inicio : AppCompatActivity() {
         // Código da nav bar que leva de um fragmento a outro
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.remédio -> replaceFragment(Remedio1())
+                R.id.remédio -> replaceFragment(Classes_Remedio())
                 R.id.calendario -> replaceFragment(com.companyvihva.vihva.Inicio.Calendario())
                 R.id.inicio -> replaceFragment(Inicio1())
                 R.id.alarme -> replaceFragment(Alarme())

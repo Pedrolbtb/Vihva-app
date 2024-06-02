@@ -1,6 +1,6 @@
 package com.companyvihva.vihva.model
 
-data class Listanew(
+data class Tipo_Remedios(
 
     val foto: String,
     val nome: String,

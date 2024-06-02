@@ -17,7 +17,7 @@ import com.companyvihva.vihva.MyApplication
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.model.Adapter.AdapterRemedio
 import com.companyvihva.vihva.model.OnRemedioSelectedListener
-import com.companyvihva.vihva.model.Remedio2
+import com.companyvihva.vihva.model.Tipo_Classe
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 class Inicio1 : Fragment(), OnRemedioSelectedListener {
@@ -25,7 +25,7 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
     //// Firebase ////
     private lateinit var db: FirebaseFirestore
 
-    private lateinit var remedios: MutableList<Remedio2>
+    private lateinit var remedios: MutableList<Tipo_Classe>
     private lateinit var adapter: AdapterRemedio
     private lateinit var recyclerView: RecyclerView
 
@@ -41,8 +41,9 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
         db = FirebaseFirestore.getInstance()
 
         // Inicializa o RecyclerView e o Adapter
+
         remedios = mutableListOf()
-        adapter = AdapterRemedio(requireContext(), remedios) { remedio ->
+        adapter = AdapterRemedio(requireContext(), remedios) { remedios ->
             // Implementar a ação ao clicar no remédio
         }
 
@@ -57,6 +58,7 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
         } else {
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
         }
 
         // Referência ao documento "doenca" na coleção, precisa ajustar conforme sua estrutura
@@ -151,7 +153,7 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
             }
     }
 
-    override fun onRemedioSelected(remedio: Remedio2) {
+    override fun onRemedioSelected(remedio: Tipo_Classe) {
         remedios.add(remedio)
         adapter.notifyDataSetChanged()
     }

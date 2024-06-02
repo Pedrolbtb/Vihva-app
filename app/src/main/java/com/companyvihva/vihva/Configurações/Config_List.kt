@@ -19,10 +19,15 @@ class Config_List : AppCompatActivity() {
             startActivity(telaConfig)
         }
 
-        findViewById<ImageButton>(R.id.voltar_configList).setOnClickListener {
-            val telaInicio = Intent(this, Inicio::class.java)
-            startActivity(telaInicio)
+        val btnVoltar = findViewById<ImageButton>(R.id.voltar_configList)
+        btnVoltar.setOnClickListener {
+            onBackPressed()
         }
+
+        /// findViewById<ImageButton>(R.id.voltar_configList).setOnClickListener {
+        //    val telaInicio = Intent(this, Inicio::class.java)
+          //  startActivity(telaInicio)
+       //  }
 
         findViewById<TableRow>(R.id.button_configList_deleteconta).setOnClickListener {
             val telaDelete = Intent(this, Config_DeletarPerfil::class.java)
