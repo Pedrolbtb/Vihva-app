@@ -11,9 +11,7 @@ import com.companyvihva.vihva.R
 import com.companyvihva.vihva.model.Remedio2
 import com.squareup.picasso.Picasso
 
-// AdapterRemedio é uma classe que estende RecyclerView.Adapter e é responsável por
-// adaptar os dados da lista de remédios para serem exibidos em um RecyclerView.
-class AdapterRemedio(private val context: Context, private val remedios: MutableList<Remedio2>, private val onItemClickListener: (Remedio2) -> Unit) : RecyclerView.Adapter<AdapterRemedio.RemedioViewHolder>() {
+class AdapterRemedio(private val context: Context, private val remedios: MutableList<Remedio2>, private val ignoredOnItemClickListener: (Remedio2) -> Unit) : RecyclerView.Adapter<AdapterRemedio.RemedioViewHolder>() {
 
     // RemedioViewHolder é uma classe interna que mantém referências às views de cada item
     // da lista de remédios.
@@ -27,7 +25,7 @@ class AdapterRemedio(private val context: Context, private val remedios: Mutable
             nome.text = remedio.nome
 
             itemView.setOnClickListener {
-                onItemClickListener(remedio)
+                ignoredOnItemClickListener(remedio)
             }
         }
     }

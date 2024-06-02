@@ -6,11 +6,10 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.companyvihva.vihva.MyApplication
 import com.companyvihva.vihva.R
-import com.companyvihva.vihva.model.OnRemedioSelectedListener
 import com.companyvihva.vihva.model.Remedio2
 import com.google.firebase.firestore.FirebaseFirestore
-
 
 class PopupRemedio : AppCompatActivity() {
 
@@ -40,8 +39,9 @@ class PopupRemedio : AppCompatActivity() {
 
         val btnAdd = findViewById<Button>(R.id.btn_add_remédio)
         btnAdd.setOnClickListener {
+            Log.d("PopupRemedio", "Botão clicado")
             remedio?.let {
-                (application as? OnRemedioSelectedListener)?.onRemedioSelected(it)
+                (application as MyApplication).onRemedioSelected(it)
                 finish()
             }
         }
@@ -67,3 +67,4 @@ class PopupRemedio : AppCompatActivity() {
             }
     }
 }
+

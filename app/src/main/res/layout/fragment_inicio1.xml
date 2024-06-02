@@ -57,13 +57,11 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
 
-
         <include
             android:id="@+id/card_diabete"
             layout="@layout/widget_doenca"
             android:layout_width="319dp"
             android:layout_height="147dp"
-            android:layout_below="@id/card_remedio1"
             android:layout_marginTop="170dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="430dp"
@@ -118,7 +116,6 @@
                 android:gravity="start|bottom"
                 android:text="@string/text_doencas_inicio" />
 
-
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -129,7 +126,6 @@
                 android:gravity="end|bottom"
                 android:src="@drawable/add_foto" />
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/layout_remedio"
@@ -164,8 +160,17 @@
                 android:src="@drawable/add_verde" />
         </LinearLayout>
 
-
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_nova_lista"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toBottomOf="@id/card_diabete"
+            app:layout_constraintBottom_toTopOf="@id/layout_remedio"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
