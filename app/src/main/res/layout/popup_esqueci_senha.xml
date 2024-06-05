@@ -10,7 +10,7 @@
         android:id="@+id/view"
         android:layout_width="349dp"
         android:layout_height="251dp"
-        android:background="@color/white"
+        android:background="@drawable/rounded_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,23 +52,29 @@
         app:layout_constraintTop_toTopOf="@+id/editTextTextEmailAddress" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnCancelar"
         android:layout_width="108dp"
         android:layout_height="36dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/Letras"
-        android:text="@string/cancelar_alarme"
+        android:layout_marginBottom="210dp"
+        android:background="@drawable/button_logout"
+        android:text="Cancelar"
+        android:textColor="@color/off_white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnEnviar"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnEnviar"
         android:layout_width="108dp"
         android:layout_height="37dp"
-        android:backgroundTint="@color/Letras"
+        android:layout_marginBottom="232dp"
+        android:background="@drawable/button"
         android:text="@string/text_enviar"
+        android:textColor="@color/off_white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toEndOf="@+id/btnCancelar"
         app:layout_constraintTop_toTopOf="@+id/btnCancelar" />
@@ -79,6 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/redef_senha_dois"
+        android:fontFamily="@font/cloudsoft_bold_700"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
