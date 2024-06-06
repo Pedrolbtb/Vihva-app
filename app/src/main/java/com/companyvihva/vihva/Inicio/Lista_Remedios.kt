@@ -1,6 +1,6 @@
 package com.companyvihva.vihva
 
-import com.companyvihva.vihva.model.Adapter.AdapterRemedios
+import com.companyvihva.vihva.model.Adapter.AdapterListanova
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +15,7 @@ class Lista_Remedios : AppCompatActivity() {
 
     // Declarando variáveis
     private lateinit var firestore: FirebaseFirestore
-    private lateinit var adapterRemediosNova: AdapterRemedios
+    private lateinit var adapterListanovaNova: AdapterListanova
     private val dadosListaNova: MutableList<Tipo_Remedios> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,8 +40,8 @@ class Lista_Remedios : AppCompatActivity() {
         recyclerViewListaNova.setHasFixedSize(true)
 
         // Inicializando e configurando o Adapter
-        adapterRemediosNova = AdapterRemedios(this, dadosListaNova)
-        recyclerViewListaNova.adapter = adapterRemediosNova
+        adapterListanovaNova = AdapterListanova(this, dadosListaNova)
+        recyclerViewListaNova.adapter = adapterListanovaNova
 
         // Busca todos os dados e organiza conforme necessário
         remedioId?.let {
@@ -86,7 +86,7 @@ class Lista_Remedios : AppCompatActivity() {
 
                     // Adicionando o remédio à lista e notificando o Adapter sobre a mudança
                     dadosListaNova.add(tipoRemedios)
-                    adapterRemediosNova.notifyDataSetChanged()
+                    adapterListanovaNova.notifyDataSetChanged()
 
                     // Log para verificar se os dados estão sendo recebidos corretamente
                     Log.d("Firestore", "DocumentSnapshot data: ${document.data}")

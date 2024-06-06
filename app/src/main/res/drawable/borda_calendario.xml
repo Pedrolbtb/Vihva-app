@@ -3,7 +3,4 @@
     <corners
     android:radius="10dp"
         />
-
-    <solid android:collor = "#fffff"
-/>
 </selector>

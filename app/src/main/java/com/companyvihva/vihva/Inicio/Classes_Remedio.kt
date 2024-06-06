@@ -46,7 +46,8 @@ class Classes_Remedio : Fragment() {
         recyclerViewRemedios.setHasFixedSize(true)
 
         // Inicializando e configurando o Adapter
-        adapterRemedio = AdapterRemedio(requireContext(), listaRemedios) { remedio ->
+        adapterRemedio = AdapterRemedio(requireContext(), listaRemedios)
+        { remedio ->
             val intent = Intent(requireContext(), Lista_Remedios::class.java)
             intent.putExtra("remedioId", remedio.nome) // Passe o ID ou nome do remédio como extra
             startActivity(intent)

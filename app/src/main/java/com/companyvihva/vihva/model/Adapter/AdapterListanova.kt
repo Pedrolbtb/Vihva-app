@@ -13,8 +13,8 @@ import com.companyvihva.vihva.model.Tipo_Remedios
 import com.companyvihva.vihva.model.PopupRemedio.DescriçãoRemedio
 import com.squareup.picasso.Picasso
 
-class AdapterRemedios(private val context: Context, private val listas: MutableList<Tipo_Remedios>) :
-    RecyclerView.Adapter<AdapterRemedios.ListaViewHolder>() {
+class AdapterListanova(private val context: Context, private val listas: MutableList<Tipo_Remedios>) :
+    RecyclerView.Adapter<AdapterListanova.ListaViewHolder>() {
 
     // Método onCreateViewHolder é responsável por inflar o layout de cada item da lista e criar um novo ListaViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListaViewHolder {
