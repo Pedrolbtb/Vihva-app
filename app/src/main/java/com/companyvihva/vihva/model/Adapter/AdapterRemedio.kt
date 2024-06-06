@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso
 class AdapterRemedio(
     private val context: Context,
     private val remedios: MutableList<Tipo_Classe>,
-    private val ignoredOnItemClickListener: (Tipo_Classe) -> Unit
+    private val onItemClickListener: (Tipo_Classe) -> Unit
 ) : RecyclerView.Adapter<AdapterRemedio.RemedioViewHolder>() {
 
     // Classe interna RemedioViewHolder que mantém referências às views de cada item da lista de remédios.
@@ -31,7 +31,7 @@ class AdapterRemedio(
 
             // Define o clique no item da lista
             itemView.setOnClickListener {
-                ignoredOnItemClickListener(remedio)
+                onItemClickListener(remedio)
             }
         }
     }

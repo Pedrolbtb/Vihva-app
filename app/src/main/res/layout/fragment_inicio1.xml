@@ -63,7 +63,6 @@
             android:layout_width="319dp"
             android:layout_height="147dp"
             android:layout_marginTop="170dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginBottom="430dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,10 +73,10 @@
             android:id="@+id/card_remedio1"
             android:layout_width="328dp"
             android:layout_height="95dp"
+            android:elevation="2dp"
             android:layout_marginTop="400dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginBottom="250dp"
-            android:background="@drawable/view_remedio_verde"
+            android:background="@drawable/background_widget_remedio"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,9 +86,9 @@
             android:id="@+id/card_remedio2"
             android:layout_width="328dp"
             android:layout_height="95dp"
+            android:elevation="2dp"
             android:layout_marginTop="360dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/view_remedio_verde"
+            android:background="@drawable/background_widget_remedio"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -116,15 +115,7 @@
                 android:gravity="start|bottom"
                 android:text="@string/text_doencas_inicio" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="170dp"
-                android:layout_marginTop="5dp"
-                android:background="#00FFFFFF"
-                android:contentDescription="adicione doenças"
-                android:gravity="end|bottom"
-                android:src="@drawable/add_foto" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -149,7 +140,7 @@
                 android:text="@string/text_remedio_inicio"
                 android:textColor="@color/letras_remedios" />
 
-            <ImageButton
+            <!--<ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|bottom"
@@ -157,7 +148,7 @@
                 android:layout_marginBottom="5dp"
                 android:background="#00FFFFFF"
                 android:contentDescription="adicione remedios"
-                android:src="@drawable/add_verde" />
+                android:src="@drawable/add_verde" />-->
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

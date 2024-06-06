@@ -34,9 +34,10 @@
             android:background="@drawable/navbar_gradient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:itemIconTint="@drawable/bottom_nav_color"
             app:itemBackground="@drawable/seletor_navbar"
-            app:itemActiveIndicatorStyle="@color/black"
-            app:itemTextColor="@color/black"
+            app:itemActiveIndicatorStyle="@color/Letras"
+            app:itemTextColor="#057BA2"
             app:itemTextAppearanceActive="@font/cloudsoft_bold_700"
             app:menu="@menu/nav_bar"/>
     </LinearLayout>

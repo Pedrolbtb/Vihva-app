@@ -64,9 +64,6 @@
               android:theme="@style/Theme.Vihva"
             />
 
-
-
-
         <activity
             android:name=".CriarPerfil.CriaPerfil2"
             android:exported="false"
