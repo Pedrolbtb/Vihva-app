@@ -4,6 +4,7 @@ data class Tipo_Classe(
    // val id: Int,
     val foto: String,
     val nome: String,
+    val descricao: String
     // val nomecomercial: String
 
        // Adicione este atributo para armazenar os dados do remédio

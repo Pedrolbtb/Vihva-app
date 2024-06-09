@@ -71,7 +71,7 @@ class Classes_Remedio : Fragment() {
                         // Obtendo os detalhes do remédio do documento Firestore
                         val nome = document.getString("nome")
                         val url = document.getString("Url")
-                        val remedio = Tipo_Classe(url ?: "", nome ?: "")
+                        val remedio = Tipo_Classe(url ?: "", nome ?: "","")
 
                         // Adicionando o remédio à lista e notificando o Adapter sobre a mudança
                         listaRemedios.add(remedio)

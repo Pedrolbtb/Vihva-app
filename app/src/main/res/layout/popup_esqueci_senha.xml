@@ -2,8 +2,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutRedefinirSenha"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="251dp"
     android:orientation="vertical">
 
     <View
@@ -14,8 +14,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.537" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
@@ -35,6 +34,8 @@
         android:layout_width="294dp"
         android:layout_height="43dp"
         android:ems="10"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:hint="@string/hint_esqueci_senha"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/view"
@@ -57,7 +58,7 @@
         android:layout_width="108dp"
         android:layout_height="36dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="210dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/button_logout"
         android:text="Cancelar"
         android:textColor="@color/off_white"
@@ -70,24 +71,32 @@
         android:id="@+id/btnEnviar"
         android:layout_width="108dp"
         android:layout_height="37dp"
-        android:layout_marginBottom="232dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/button"
         android:text="@string/text_enviar"
         android:textColor="@color/off_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toEndOf="@+id/btnCancelar"
-        app:layout_constraintTop_toTopOf="@+id/btnCancelar" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/redef_senha_dois"
         android:fontFamily="@font/cloudsoft_bold_700"
+        android:text="@string/redef_senha_dois"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="175dp" />
 
 </android.support.constraint.ConstraintLayout>

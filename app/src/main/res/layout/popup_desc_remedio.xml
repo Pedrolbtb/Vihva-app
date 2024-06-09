@@ -21,24 +21,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/nomere"
-        android:layout_width="301dp"
-        android:layout_height="68dp"
-
-        android:layout_marginTop="128dp"
+        style="@style/text_doenca_e_remedio"
+        android:layout_width="164dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="112dp"
         android:fontFamily="@font/cloudsoft_bold_700"
-        android:textColor="@color/black"
+        android:textColor="@color/letras_remedios"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintHorizontal_bias="0.534"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/descricao1"
-        android:layout_width="267dp"
-        android:layout_height="233dp"
+        android:layout_width="255dp"
+        android:layout_height="225dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:gravity="center"
 
@@ -49,16 +50,16 @@
         app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nomere"
-        app:layout_constraintVertical_bias="0.43" />
+        app:layout_constraintVertical_bias="0.532" />
 
     <androidx.appcompat.widget.AppCompatButton
 
         android:id="@+id/btn_add_remédio"
-        android:layout_width="145dp"
-        android:layout_height="61dp"
+        android:layout_width="155dp"
+        android:layout_height="62dp"
         android:layout_marginEnd="44dp"
         android:layout_marginBottom="56dp"
-        android:background="@drawable/button"
+        android:background="@drawable/button_verde"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="@string/text_adc_remed"
         android:textColor="@color/off_white"
@@ -81,10 +82,40 @@
         android:textColor="@color/off_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_add_remédio"
-        app:layout_constraintHorizontal_bias="0.703"
+        app:layout_constraintHorizontal_bias="0.716"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descricao1"
-        app:layout_constraintVertical_bias="0.294" />
+        app:layout_constraintVertical_bias="1.0" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+
+        android:layout_width="126dp"
+        android:layout_height="122dp"
+        android:layout_marginStart="112dp"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.286">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/remedio_foto_widget"
+            tools:layout_editor_absoluteX="10dp"
+            tools:layout_editor_absoluteY="323dp" />
+
+        <ImageView
+            android:id="@+id/foto_Remedio"
+            android:layout_width="121dp"
+            android:layout_height="112dp"
+
+            />
+
+
+    </androidx.cardview.widget.CardView>
 
 
 </android.support.constraint.ConstraintLayout>

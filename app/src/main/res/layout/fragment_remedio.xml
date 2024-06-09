@@ -21,7 +21,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="60dp"
-        android:background="@drawable/remedio_foto_widget"
+
         android:layout_height="60dp"
         android:layout_marginStart="30dp"
         app:cardCornerRadius="18dp"

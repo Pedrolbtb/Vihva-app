@@ -225,6 +225,8 @@
 
     <string name="text_aviso">AVISO</string>
 
+    <string name="hint_esqueci_senha">Insira seu email</string>
+
     <string name="text_hintsos">Enviaremos esta mensagem caso vc toque no botão sos</string>
 
     <string name="btn_sim">Sim</string>

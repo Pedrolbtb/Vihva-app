@@ -4,19 +4,23 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.MyApplication
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.model.Tipo_Classe
+import com.companyvihva.vihva.model.tipo_descricao
 import com.google.firebase.firestore.FirebaseFirestore
+import com.squareup.picasso.Picasso // Adicione a importação para Picasso
 
 class DescriçãoRemedio : AppCompatActivity() {
 
     private lateinit var firestore: FirebaseFirestore
     private lateinit var nomeTextView: TextView
     private lateinit var descricaoTextView: TextView
+    private lateinit var urlImageView: ImageView // Altere para ImageView para exibir a imagem
     private var remedio: Tipo_Classe? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +42,7 @@ class DescriçãoRemedio : AppCompatActivity() {
         // Referências para os TextViews que exibirão o nome e a descrição do remédio
         nomeTextView = findViewById(R.id.nomere)
         descricaoTextView = findViewById(R.id.descricao1)
+        urlImageView = findViewById(R.id.foto_Remedio) // Alterado para ImageView
 
         // Busca os dados do Firebase usando o ID do remédio
         documentId?.let { id ->
@@ -67,9 +72,17 @@ class DescriçãoRemedio : AppCompatActivity() {
                 if (document != null && document.exists()) {
                     val nome = document.getString("nome")
                     val descricao = document.getString("descricao")
-                    val foto = document.getString("foto")
+                    val url = document.getString("Url")
+
+                    // Carrega a imagem usando o Picasso se a URL estiver disponível
+                    val Url = document.getString("Url")
+                    Url?.let {
+                        Picasso.get().load(it).into(urlImageView)
+                    }
+
                     // Cria um objeto Remedio2 com os dados obtidos do Firebase
-                    remedio = Tipo_Classe(foto ?: "", nome ?: "")
+                    remedio = Tipo_Classe(url ?: "", nome ?: "", descricao ?: "")
+
                     // Atualiza os TextViews com o nome e a descrição do remédio
                     nomeTextView.text = nome
                     descricaoTextView.text = descricao
@@ -82,4 +95,3 @@ class DescriçãoRemedio : AppCompatActivity() {
             }
     }
 }
-
