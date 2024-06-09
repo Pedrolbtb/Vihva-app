@@ -9,15 +9,14 @@
 
     <ImageButton
         android:id="@+id/voltar_configList"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_gravity="start"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         android:layout_marginEnd="330dp"
-        android:layout_marginBottom="670dp"
-        android:src="@drawable/arrow_voltar"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/arrow_voltar_vermelho"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,8 +25,8 @@
         android:id="@+id/tableLayout"
         android:layout_width="411dp"
         android:layout_height="638dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="65dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

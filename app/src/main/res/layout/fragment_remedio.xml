@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="350dp"
+    android:layout_width="325dp"
     android:elevation="4dp"
+    android:layout_marginStart="10dp"
     android:layout_height="95dp"
     android:layout_marginBottom="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -22,9 +23,7 @@
         android:layout_width="60dp"
         android:background="@drawable/remedio_foto_widget"
         android:layout_height="60dp"
-
         android:layout_marginStart="30dp"
-
         app:cardCornerRadius="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,11 +46,10 @@
         android:id="@+id/nomeRemedio"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
+        android:layout_marginStart="60dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:textColor="#2B8B46"
-
-        android:textSize="25sp"
+        android:textSize="23sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

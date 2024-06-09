@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.model.Tipo_Remedios
 import com.google.firebase.firestore.FirebaseFirestore
 import android.util.Log
+import android.view.View
 import android.widget.ImageButton
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlin.collections.emptyList
 
 class Lista_Remedios : AppCompatActivity() {
@@ -17,6 +19,7 @@ class Lista_Remedios : AppCompatActivity() {
     private lateinit var firestore: FirebaseFirestore
     private lateinit var adapterListanovaNova: AdapterListanova
     private val dadosListaNova: MutableList<Tipo_Remedios> = mutableListOf()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

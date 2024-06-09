@@ -34,15 +34,15 @@
         <activity
             android:name=".Alarme.ConfigFrequencia"
             android:exported="false"
-            android:theme="@style/Theme.Vihva" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Configurações.Config_List"
             android:exported="false"
-            android:theme="@style/Theme.Vihva" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Configurações.Configuracoes"
             android:exported="false"
-            android:theme="@style/Theme.Vihva" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Lista_Remedios"
             android:exported="false" />
@@ -52,38 +52,38 @@
         <activity
             android:name=".CriarPerfil.FotoBio"
             android:exported="false"
-            android:theme="@style/Theme.Vihva" />
+            android:theme="@style/AppTheme" />
         <activity
-            android:name=".Login.Login"
+            android:name=".Inicio.Inicio"
             android:exported="false"
-            android:theme="@style/Theme.Vihva" />
+             />
 
 
         <activity android:name=".Configurações.Config_DeletarPerfil"
               android:exported="false"
-              android:theme="@style/Theme.Vihva"
+              android:theme="@style/AppTheme"
             />
 
         <activity
             android:name=".CriarPerfil.CriaPerfil2"
             android:exported="false"
-            android:theme="@style/Theme.Vihva" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Alarme.CriaAlarme"
             android:exported="true"
-            android:theme="@style/Theme.Vihva" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".CriarPerfil.CriaPerfil"
             android:exported="false"
-            android:theme="@style/Theme.Vihva" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Cadastro.CadastroPac"
             android:exported="false"
-            android:theme="@style/Theme.Vihva" />
+            android:theme="@style/AppTheme" />
         <activity
-            android:name=".Inicio.Inicio"
+            android:name=".Login.Login"
             android:exported="true"
-            android:theme="@style/Theme.Vihva">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,7 +1,12 @@
 package com.companyvihva.vihva.Inicio
 
 import android.app.AlertDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +15,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +26,7 @@ import com.companyvihva.vihva.model.OnRemedioSelectedListener
 import com.companyvihva.vihva.model.Tipo_Classe
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
+
 class Inicio1 : Fragment(), OnRemedioSelectedListener {
 
     //// Firebase ////
@@ -37,16 +44,31 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
         // Infla o layout para este fragmento
         val view = inflater.inflate(R.layout.fragment_inicio1, container, false)
 
+        // Encontra a TextView e aplica o SpannableString
+        val textAviso: TextView? = view.findViewById(R.id.textViewAviso)
+        val fullText = "Texto Exemplo"
+        val spannableString = SpannableString(fullText)
+
+        // Define a cor vermelha na primeira letra
+        val redColor = ContextCompat.getColor(requireContext(), R.color.vermelho_alerta)
+        spannableString.setSpan(
+            ForegroundColorSpan(redColor),
+            0,
+            1,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        // Define o SpannableString na TextView
+        textAviso?.text = spannableString
+
         // Inicializa o Firebase
         db = FirebaseFirestore.getInstance()
 
         // Inicializa o RecyclerView e o Adapter
-
         remedios = mutableListOf()
         adapter = AdapterRemedio(requireContext(), remedios) { remedios ->
             // Implementar a ação ao clicar no remédio
         }
-
 
         // Configura o listener de seleção de remédio no MyApplication
         (requireActivity().application as MyApplication).setOnRemedioSelectedListener(this)
@@ -58,7 +80,6 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
         } else {
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
         }
 
         // Referência ao documento "doenca" na coleção, precisa ajustar conforme sua estrutura
@@ -118,6 +139,19 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
                     val descricaoTextView: TextView = popupView.findViewById(R.id.descricao)
                     val imageView1: ImageView = popupView.findViewById(R.id.foto_diabete1)
                     val imageView2: ImageView = popupView.findViewById(R.id.foto_diabete2)
+                    val textViewAviso: TextView = popupView.findViewById(R.id.textViewAviso)
+
+                    // Aplica cor vermelha na primeira letra do aviso
+                    val avisoText = textViewAviso.text.toString()
+                    val spannableAviso = SpannableString(avisoText)
+                    val redColor = ContextCompat.getColor(requireContext(), R.color.vermelho_alerta)
+                    spannableAviso.setSpan(
+                        ForegroundColorSpan(redColor),
+                        0,
+                        6,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    textViewAviso.text = spannableAviso
 
                     // Define dados nos TextViews
                     nomeTextView.text = nome
@@ -135,6 +169,7 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
                     val popupWindow = AlertDialog.Builder(requireContext())
                         .setView(popupView)
                         .create()
+                    popupWindow.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     popupWindow.show()
 
                     val btnClose: AppCompatImageButton = popupView.findViewById(R.id.close_button)

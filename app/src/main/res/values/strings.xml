@@ -88,7 +88,7 @@
 
     <string name="text_navbar_inicio">Início</string>
 
-    <string name="text_doencas_inicio">Doenças</string>
+    <string name="text_doencas_inicio">Seus Tratamentos</string>
 
     <string name="text_remedio_inicio">Seus remédios</string>
 
@@ -225,6 +225,8 @@
 
     <string name="text_aviso">AVISO</string>
 
+    <string name="text_hintsos">Enviaremos esta mensagem caso vc toque no botão sos</string>
+
     <string name="btn_sim">Sim</string>
 
     <string name="btn_nao">Não</string>
@@ -236,7 +238,7 @@
 
     //Strings termos
 
-    <string name="text_recomendacao_um">Recomendamos a busca de um médico para ter certeza sobre seu estado, o Vihva não substitui profissionais da saúde</string>
+    <string name="text_recomendacao_um">AVISO: Recomendamos a busca de um médico para ter certeza sobre seu estado, o Vihva não substitui profissionais da saúde</string>
 
 
 

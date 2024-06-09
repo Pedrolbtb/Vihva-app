@@ -23,8 +23,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_nova_lista"
-        android:layout_width="wrap_content"
+        android:layout_width="360dp"
         android:layout_height="480dp"
+        android:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

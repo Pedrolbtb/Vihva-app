@@ -75,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="310dp"
             android:gravity="top"
-            android:hint="@string/default_msg"
+            android:hint="@string/text_hintsos"
             android:inputType="textMultiLine"
             android:maxLength="300"
             android:textColor="@color/Letras"

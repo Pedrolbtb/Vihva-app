@@ -81,14 +81,14 @@
           android:drawableTint="@color/Letras"
           android:hint="@string/text_breadNome"
           android:inputType="text"
+          android:maxLength="100"
           android:nextFocusForward="@id/edit_senha"
           android:textColor="@color/Letras"
           android:textColorHint="@color/hint"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="@+id/containerComponents"
 
-          />
+          app:layout_constraintTop_toTopOf="@+id/containerComponents" />
 
    </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,6 +113,7 @@
           android:drawableTint="@color/Letras"
           android:hint="@string/text_csobrenome"
           android:inputType="text"
+          android:maxLength="100"
           android:nextFocusForward="@id/edit_senha"
           android:textColor="@color/Letras"
           android:textColorHint="@color/hint"
@@ -144,6 +145,7 @@
           android:drawableTint="@color/Letras"
           android:hint="@string/text_idade"
           android:inputType="number"
+          android:maxLength="3"
           android:nextFocusForward="@id/edit_senha"
           android:textColor="@color/Letras"
           android:textColorHint="@color/hint"

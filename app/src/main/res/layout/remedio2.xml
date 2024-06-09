@@ -59,13 +59,13 @@
         android:id="@+id/recyclerView_remedios"
         android:layout_width="360dp"
         android:paddingStart="5dp"
-        android:layout_height="489dp"
+        android:layout_height="540dp"
+        android:layout_marginTop="120dp"
         android:elevation="2dp"
-        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
