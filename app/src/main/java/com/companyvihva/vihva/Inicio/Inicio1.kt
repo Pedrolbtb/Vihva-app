@@ -259,7 +259,7 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
                     val smsManager: SmsManager = SmsManager.getDefault()
                     // envia a mensagem
                     smsManager.sendTextMessage(
-                        "+15551234567",
+                        "+5519989769783",
                         null,
                         "https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}",
                         null,
