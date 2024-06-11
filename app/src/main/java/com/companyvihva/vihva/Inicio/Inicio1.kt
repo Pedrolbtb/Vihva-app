@@ -1,9 +1,11 @@
 package com.companyvihva.vihva.Inicio
 
 import android.app.AlertDialog
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.telephony.SmsManager
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
@@ -11,11 +13,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +29,8 @@ import com.companyvihva.vihva.R
 import com.companyvihva.vihva.model.Adapter.AdapterRemedio
 import com.companyvihva.vihva.model.OnRemedioSelectedListener
 import com.companyvihva.vihva.model.Tipo_Classe
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 
@@ -35,6 +42,11 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
     private lateinit var remedios: MutableList<Tipo_Classe>
     private lateinit var adapter: AdapterRemedio
     private lateinit var recyclerView: RecyclerView
+
+    // Declaração do serviço de localização
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    // Declarando o botão SOS
+    private lateinit var btnSOS: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,6 +75,14 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
 
         // Inicializa o Firebase
         db = FirebaseFirestore.getInstance()
+
+        // Inicializando o serviço de localização
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+
+        btnSOS = view.findViewById(R.id.sos)
+        btnSOS.setOnClickListener{
+            requestPermissions(arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.SEND_SMS),0)
+        }
 
         // Inicializa o RecyclerView e o Adapter
         remedios = mutableListOf()
@@ -158,7 +178,7 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
                     descricaoTextView.text = descricao
 
                     // Carrega imagens com o Picasso
-                    if (!imageUrl1.isNullOrEmpty()) {
+                    {
                         Picasso.get().load(imageUrl1).into(imageView1)
                     }
                     if (!imageUrl2.isNullOrEmpty()) {
@@ -191,5 +211,43 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
     override fun onRemedioSelected(remedio: Tipo_Classe) {
         remedios.add(remedio)
         adapter.notifyDataSetChanged()
+    }
+
+    private fun requestPermissions(permissions:Array<String>) {
+
+        //Verifica se o app não tem as permissões
+        if  (ActivityCompat.checkSelfPermission(requireContext(), permissions[0]) != PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(requireContext(), permissions[1]) != PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(requireContext(), permissions[2]) != PackageManager.PERMISSION_GRANTED )
+
+        {
+            // Pedindo permissão
+            ActivityCompat.requestPermissions(requireActivity(), permissions, 0)
+            ActivityCompat.requestPermissions(requireActivity(), permissions, 1)
+            ActivityCompat.requestPermissions(requireActivity(), permissions, 2)
+
+
+        } else {
+            //Temos a permissão
+            // Obter a localização
+            fusedLocationClient.lastLocation.addOnSuccessListener {location ->
+                Toast.makeText(requireContext(), "LAT: ${location.latitude} LONG: ${location.longitude}", Toast.LENGTH_LONG).show()
+
+                //Enviar msg de texto
+                val smsManager:SmsManager = SmsManager.getDefault()
+
+
+                //envia a mensagem
+                smsManager.sendTextMessage("+15555215554",
+                    null,
+                    "https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}",
+                    null,
+                    null)
+
+            }
+        }
+
+        /* val smsManager:SmsManager = SmsManager()
+        smsManager.sendTextMessage() */
     }
 }

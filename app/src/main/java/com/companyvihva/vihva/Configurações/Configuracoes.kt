@@ -175,6 +175,9 @@ class Configuracoes : AppCompatActivity() {
         )
     }
 
+
+
+
     // Método para verificar se a mensagem contém palavras proibidas
     private fun containsPalavrasProibidas(message: String): Boolean {
         return PROIBIDAS.any { message.contains(it, ignoreCase = true) }
