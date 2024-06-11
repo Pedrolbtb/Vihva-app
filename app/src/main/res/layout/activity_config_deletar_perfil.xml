@@ -7,6 +7,21 @@
     android:background="@color/off_white"
     tools:context=".Configurações.Config_DeletarPerfil">
 
+    <ImageButton
+        android:id="@+id/btnVoltar_deletePerfil"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="357dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="@string/button_back"
+        android:padding="15dp"
+        android:src="@drawable/arrow_voltar_vermelho"
+        android:text="@string/button_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <View
     android:id="@+id/containerDelete"
     style="@style/ContainerComponents"

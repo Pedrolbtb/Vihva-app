@@ -207,10 +207,16 @@
     <string name="text_restaurar">Restaurar</string>
 
     <array name="ddi">
-        <item>+1 EUA</item>
-        <item>+55 Brasil</item>
-        <item>+49 Alemanha</item>
-        <item>+244 Angola</item>
+        <item>DDD 11 </item>
+        <item>DDD 12 </item>
+        <item>DDD 13 </item>
+        <item>DDD 14 </item>
+        <item>DDD 15 </item>
+        <item>DDD 16 </item>
+        <item>DDD 17 </item>
+        <item>DDD 18 </item>
+        <item>DDD 19 </item>
+
     </array>
 
     <string name="Toast_configuracoes_sucesso">Configurações salvas</string>
@@ -227,7 +233,7 @@
 
     <string name="hint_esqueci_senha">Insira seu email</string>
 
-    <string name="text_hintsos">Enviaremos esta mensagem caso vc toque no botão sos</string>
+    <string name="text_hintsos">Enviaremos esta mensagem caso você toque no botão sos</string>
 
     <string name="btn_sim">Sim</string>
 

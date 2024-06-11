@@ -62,20 +62,22 @@ class CriaPerfil2 : AppCompatActivity() {
             }
 
             // Validando os dados inseridos pelo usuário
-            if (altura != null && altura >= 100 && altura <= 300 && peso != null && genero != null){
-                // Criando a Intent e iniciando a próxima atividade
-                val intent = Intent(this, FotoBio::class.java)
-                intent.putExtra("altura", altura)
-                intent.putExtra("peso", peso)
-                intent.putExtra("genero", genero)
-                intent.putExtra("nome", nome)
-                intent.putExtra("sobrenome", sobrenome)
-                intent.putExtra("idade", idade)// Adicionando o valor do gênero à Intent
-                startActivity(intent)
-                finish() // Finalizando a atividade atual
-            } else {
-                // Exibindo um Toast caso os dados não sejam válidos
-                showToast("Digite um valor de altura entre 100cm e 300cm, insira um peso e selecione um gênero")
+            if (peso != null) {
+                if (altura != null && altura >= 100 && altura <= 300 && peso >= 20 && peso <=300 && peso != null && genero != null){
+                    // Criando a Intent e iniciando a próxima atividade
+                    val intent = Intent(this, FotoBio::class.java)
+                    intent.putExtra("altura", altura)
+                    intent.putExtra("peso", peso)
+                    intent.putExtra("genero", genero)
+                    intent.putExtra("nome", nome)
+                    intent.putExtra("sobrenome", sobrenome)
+                    intent.putExtra("idade", idade)// Adicionando o valor do gênero à Intent
+                    startActivity(intent)
+                    finish() // Finalizando a atividade atual
+                } else {
+                    // Exibindo um Toast caso os dados não sejam válidos
+                    showToast("Digite um valor de altura entre 100cm e 300cm, insira um peso e selecione um gênero")
+                }
             }
         }
     }

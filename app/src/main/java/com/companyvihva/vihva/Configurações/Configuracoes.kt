@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -73,6 +74,10 @@ class Configuracoes : AppCompatActivity() {
             "Piroca",
             "piroca",
             "Rola",
+            "Rolão",
+            "Rolao",
+            "Rolona",
+            "rolona",
             "rola",
             "cuzão",
             "Cuzão",
@@ -92,6 +97,11 @@ class Configuracoes : AppCompatActivity() {
         spinnerDDI = findViewById(R.id.spinnerDDI)
         editTextPhone = findViewById(R.id.editTextPhone)
         editTextMessage = findViewById(R.id.editTextMsg)
+
+        val btnVoltar = findViewById<ImageButton>(R.id.btnVoltarConfigsos)
+        btnVoltar.setOnClickListener {
+            finish()
+        }
 
         //deixar spinner bonito
         val adapter = ArrayAdapter.createFromResource(

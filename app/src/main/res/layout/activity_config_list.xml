@@ -7,6 +7,8 @@
     android:background="@color/off_white"
     tools:context=".Configurações.Config_List">
 
+
+
     <ImageButton
         android:id="@+id/voltar_configList"
         android:layout_width="30dp"

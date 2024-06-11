@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,11 @@ class Config_DeletarPerfil : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config_deletar_perfil)
+
+        val btnVoltar = findViewById<ImageButton>(R.id.btnVoltar_deletePerfil)
+        btnVoltar.setOnClickListener {
+            finish()
+        }
 
         val btn_delete = findViewById<Button>(R.id.btn_delete)
         btn_delete.setOnClickListener {
