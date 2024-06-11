@@ -63,11 +63,6 @@ class Inicio : AppCompatActivity() {
             // Solicitar permissões aqui, se necessário
         } else {
 
-
-
-
-
-
         }
     }
 

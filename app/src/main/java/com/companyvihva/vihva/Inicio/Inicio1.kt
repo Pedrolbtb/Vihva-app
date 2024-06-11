@@ -20,7 +20,6 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,6 +30,7 @@ import com.companyvihva.vihva.model.OnRemedioSelectedListener
 import com.companyvihva.vihva.model.Tipo_Classe
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 
@@ -45,6 +45,7 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
 
     // Declaração do serviço de localização
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+
     // Declarando o botão SOS
     private lateinit var btnSOS: Button
 
@@ -80,8 +81,12 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
         btnSOS = view.findViewById(R.id.sos)
-        btnSOS.setOnClickListener{
-            requestPermissions(arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.SEND_SMS),0)
+        btnSOS.setOnClickListener {
+            requestPermissions(
+                android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.SEND_SMS
+            )
         }
 
         // Inicializa o RecyclerView e o Adapter
@@ -118,14 +123,23 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
                     if (imageUrl.isNotEmpty()) {
                         Picasso.get().load(imageUrl).into(imageView1)
                     } else {
-                        Toast.makeText(requireContext(), "URL da imagem não encontrado", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "URL da imagem não encontrado",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 } else {
-                    Toast.makeText(requireContext(), "Documento não encontrado", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Documento não encontrado", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
             .addOnFailureListener { exception ->
-                Toast.makeText(requireContext(), "Erro ao carregar dados: ${exception.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Erro ao carregar dados: ${exception.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
         // Encontra o botão de imagem
@@ -213,41 +227,58 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
         adapter.notifyDataSetChanged()
     }
 
-    private fun requestPermissions(permissions:Array<String>) {
-
-        //Verifica se o app não tem as permissões
-        if  (ActivityCompat.checkSelfPermission(requireContext(), permissions[0]) != PackageManager.PERMISSION_GRANTED ||
-            ActivityCompat.checkSelfPermission(requireContext(), permissions[1]) != PackageManager.PERMISSION_GRANTED ||
-            ActivityCompat.checkSelfPermission(requireContext(), permissions[2]) != PackageManager.PERMISSION_GRANTED )
-
-        {
+    private fun requestPermissions(vararg permissions: String) {
+        // Verifica se o app não tem as permissões
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                permissions[0]
+            ) != PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(
+                requireContext(),
+                permissions[1]
+            ) != PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(
+                requireContext(),
+                permissions[2]
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
             // Pedindo permissão
             ActivityCompat.requestPermissions(requireActivity(), permissions, 0)
-            ActivityCompat.requestPermissions(requireActivity(), permissions, 1)
-            ActivityCompat.requestPermissions(requireActivity(), permissions, 2)
-
-
         } else {
-            //Temos a permissão
+            // Temos a permissão
             // Obter a localização
-            fusedLocationClient.lastLocation.addOnSuccessListener {location ->
-                Toast.makeText(requireContext(), "LAT: ${location.latitude} LONG: ${location.longitude}", Toast.LENGTH_LONG).show()
+            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+                if (location != null) {
+                    Toast.makeText(
+                        requireContext(),
+                        "LAT: ${location.latitude} LONG: ${location.longitude}",
+                        Toast.LENGTH_LONG
+                    ).show()
 
-                //Enviar msg de texto
-                val smsManager:SmsManager = SmsManager.getDefault()
-
-
-                //envia a mensagem
-                smsManager.sendTextMessage("+15555215554",
-                    null,
-                    "https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}",
-                    null,
-                    null)
-
+                    // Enviar msg de texto
+                    val smsManager: SmsManager = SmsManager.getDefault()
+                    // envia a mensagem
+                    smsManager.sendTextMessage(
+                        "+15551234567",
+                        null,
+                        "https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}",
+                        null,
+                        null
+                    )
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Localização não disponível",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }.addOnFailureListener { e ->
+                Toast.makeText(
+                    requireContext(),
+                    "Erro ao obter localização: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
-
-        /* val smsManager:SmsManager = SmsManager()
-        smsManager.sendTextMessage() */
     }
 }
