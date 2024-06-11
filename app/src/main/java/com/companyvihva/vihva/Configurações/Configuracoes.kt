@@ -1,10 +1,7 @@
 package com.companyvihva.vihva.Configurações
 
-import android.content.DialogInterface
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -13,18 +10,20 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.companyvihva.vihva.Login.Login
 import com.companyvihva.vihva.R
-import com.google.android.gms.tasks.Tasks
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 
 class Configuracoes : AppCompatActivity() {
 
     private lateinit var spinnerDDI: Spinner
     private lateinit var editTextPhone: EditText
     private lateinit var editTextMessage: EditText
+
+    private fun savemessagetopreference() {
+
+    }
+
+
+
 
     // Definindo constantes e lista de palavras proibidas
     companion object {

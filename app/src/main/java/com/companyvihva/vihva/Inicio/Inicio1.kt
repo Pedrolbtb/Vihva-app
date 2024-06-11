@@ -17,12 +17,14 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.companyvihva.vihva.Configurações.Configuracoes
 import com.companyvihva.vihva.MyApplication
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.model.Adapter.AdapterRemedio
@@ -248,23 +250,32 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
             // Temos a permissão
             // Obter a localização
             fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-                if (location != null) {
-                    Toast.makeText(
-                        requireContext(),
-                        "LAT: ${location.latitude} LONG: ${location.longitude}",
-                        Toast.LENGTH_LONG
-                    ).show()
 
-                    // Enviar msg de texto
+                if (location != null) {
+                    val preferences = requireContext().getSharedPreferences(
+                        Configuracoes.PREF_NAME, AppCompatActivity.MODE_PRIVATE)
+
+                    val savedMessage = preferences.getString(
+                        Configuracoes.KEY_DEFAULT_MSG,
+                        "Mensagem padrão não definida"
+                    )
+
+                    val smsMessage = "$savedMessage\nhttps://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}"
+
                     val smsManager: SmsManager = SmsManager.getDefault()
-                    // envia a mensagem
                     smsManager.sendTextMessage(
                         "+5519989769783",
                         null,
-                        "https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}",
+                        smsMessage,
                         null,
                         null
                     )
+
+                    Toast.makeText(
+                        requireContext(),
+                        "SMS enviado com a localização e a mensagem salva!",
+                        Toast.LENGTH_LONG
+                    ).show()
                 } else {
                     Toast.makeText(
                         requireContext(),
