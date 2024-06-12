@@ -93,7 +93,7 @@
             android:gravity="top"
             android:hint="@string/text_hintsos"
             android:inputType="textMultiLine"
-            android:maxLength="300"
+            android:maxLength="160"
             android:textColor="@color/Letras"
             android:textColorHint="@color/hint"
             app:layout_constraintBottom_toBottomOf="parent"
