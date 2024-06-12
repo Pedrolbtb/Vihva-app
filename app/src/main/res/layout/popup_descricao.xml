@@ -10,7 +10,6 @@
     <TextView
         android:id="@+id/titulo_login"
         style="@style/titulo_inicio"
-
         android:layout_marginEnd="200dp"
         android:layout_marginBottom="590dp"
         android:padding="15dp"
@@ -54,8 +53,10 @@
         android:background="@drawable/container_foto_widget"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="395dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diabetes"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -63,28 +64,32 @@
         android:id="@+id/card_fotodiabete1"
         android:layout_width="105dp"
         android:layout_height="105dp"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="395dp"
         app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diabetes">
 
         <ImageView
             android:id="@+id/foto_diabete1"
             android:layout_width="105dp"
+            android:elevation="2dp"
             android:layout_height="105dp"
             android:scaleType="centerCrop"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/diabetes" />
-
     </androidx.cardview.widget.CardView>
 
     <View
         android:background="@drawable/container_foto_widget"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="395dp"
+        android:layout_marginStart="150dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diabetes"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -92,9 +97,11 @@
         android:id="@+id/card_fotodiabete2"
         android:layout_width="105dp"
         android:layout_height="105dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginBottom="395dp"
+        android:layout_marginStart="150dp"
         app:cardCornerRadius="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diabetes">
 

@@ -193,10 +193,9 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
                     nomeTextView.text = nome
                     descricaoTextView.text = descricao
 
-                    // Carrega imagens com o Picasso
-                    {
-                        Picasso.get().load(imageUrl1).into(imageView1)
-                    }
+
+                    Picasso.get().load(imageUrl1).into(imageView1)
+
                     if (!imageUrl2.isNullOrEmpty()) {
                         Picasso.get().load(imageUrl2).into(imageView2)
                     }

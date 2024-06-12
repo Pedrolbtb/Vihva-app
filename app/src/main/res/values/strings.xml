@@ -198,7 +198,7 @@
 
     <string name="text_mensagem">Mensagem</string>
 
-    <string name="default_msg">SOCORRO! Por favor me ajude! Estou em perigo e preciso de assistência imediata. Esta mensagem padrão foi
+    <string name="default_msg">SOCORRO, por favor me ajude. Estou em perigo e preciso de assistência imediata. Esta mensagem padrão foi
     enviada automaticamente pelo APP Vihva. É crucial contatar as autoridades competentes abaixo a última localização do seu celular</string>
 
     <string name="text_msg_padrao_deletar">Tem certeza que deseja deletar sua conta? essa ação é irreversível e irá
