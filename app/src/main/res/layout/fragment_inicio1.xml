@@ -69,31 +69,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/card_remedio1"
-            android:layout_width="328dp"
-            android:layout_height="95dp"
-            android:elevation="2dp"
-            android:layout_marginTop="400dp"
-            android:layout_marginBottom="250dp"
-            android:background="@drawable/background_widget_remedio"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <View
-            android:id="@+id/card_remedio2"
-            android:layout_width="328dp"
-            android:layout_height="95dp"
-            android:elevation="2dp"
-            android:layout_marginTop="360dp"
-            android:background="@drawable/background_widget_remedio"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <LinearLayout
             android:id="@+id/layout_medicamentos"
             android:layout_width="match_parent"
@@ -162,6 +137,15 @@
             app:layout_constraintBottom_toTopOf="@id/layout_remedio"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Recyclerview_remedioAdicionado"
+            android:layout_width="195dp"
+            android:layout_height="200dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_remedio" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

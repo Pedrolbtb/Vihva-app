@@ -26,8 +26,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.Configurações.Configuracoes
 import com.companyvihva.vihva.R
+import com.companyvihva.vihva.model.Adapter.AdapterListanova
 import com.companyvihva.vihva.model.Adapter.AdapterRemedio
 import com.companyvihva.vihva.model.Tipo_Classe
+import com.companyvihva.vihva.model.Tipo_Remedios
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.firestore.FirebaseFirestore
@@ -41,6 +43,8 @@ class Inicio1 : Fragment() {
     private lateinit var remedios: MutableList<Tipo_Classe>
     private lateinit var adapter: AdapterRemedio
     private lateinit var recyclerView: RecyclerView
+
+
 
     // Declaração do serviço de localização
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -60,6 +64,16 @@ class Inicio1 : Fragment() {
         val textAviso: TextView? = view.findViewById(R.id.textViewAviso)
         val fullText = "Texto Exemplo"
         val spannableString = SpannableString(fullText)
+
+
+        //recyclerview  para adicionar remedio
+        val recyclerview_remedioAdicionado = view.findViewById<RecyclerView>(R.id.Recyclerview_remedioAdicionado)
+        recyclerview_remedioAdicionado.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+        recyclerview_remedioAdicionado.setHasFixedSize(true)
+        //configurando o adapter
+        val listaInicio: MutableList<Tipo_Remedios> = mutableListOf()
+        val adapterListanova = AdapterListanova(requireContext(),listaInicio)
+
 
         // Define a cor vermelha na primeira letra
         val redColor = ContextCompat.getColor(requireContext(), R.color.vermelho_alerta)
