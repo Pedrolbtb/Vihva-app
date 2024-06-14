@@ -25,18 +25,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.Configurações.Configuracoes
-import com.companyvihva.vihva.MyApplication
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.model.Adapter.AdapterRemedio
-import com.companyvihva.vihva.model.OnRemedioSelectedListener
 import com.companyvihva.vihva.model.Tipo_Classe
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 
-class Inicio1 : Fragment(), OnRemedioSelectedListener {
+class Inicio1 : Fragment() {
 
     //// Firebase ////
     private lateinit var db: FirebaseFirestore
@@ -96,9 +93,6 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
         adapter = AdapterRemedio(requireContext(), remedios) { remedios ->
             // Implementar a ação ao clicar no remédio
         }
-
-        // Configura o listener de seleção de remédio no MyApplication
-        (requireActivity().application as MyApplication).setOnRemedioSelectedListener(this)
 
         // Encontra o RecyclerView na view inflada
         recyclerView = view.findViewById(R.id.recyclerview_nova_lista)
@@ -222,11 +216,6 @@ class Inicio1 : Fragment(), OnRemedioSelectedListener {
                 // Trata falhas
                 Log.e("Inicio1", "Erro ao obter documento", exception)
             }
-    }
-
-    override fun onRemedioSelected(remedio: Tipo_Classe) {
-        remedios.add(remedio)
-        adapter.notifyDataSetChanged()
     }
 
     private fun requestPermissions(vararg permissions: String) {

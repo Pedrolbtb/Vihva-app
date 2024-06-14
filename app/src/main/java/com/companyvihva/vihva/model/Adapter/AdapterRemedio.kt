@@ -1,4 +1,5 @@
 package com.companyvihva.vihva.model.Adapter
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
