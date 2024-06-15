@@ -19,7 +19,7 @@ class Config_List : AppCompatActivity() {
             startActivity(telaConfig)
         }
 
-        val btnVoltar = findViewById<ImageButton>(R.id.voltar_configList)
+        val btnVoltar = findViewById<ImageButton>(R.id.voltar_configlist)
         btnVoltar.setOnClickListener {
             onBackPressed()
         }

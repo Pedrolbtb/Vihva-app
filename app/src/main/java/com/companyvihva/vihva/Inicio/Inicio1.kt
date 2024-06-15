@@ -1,5 +1,5 @@
 package com.companyvihva.vihva.Inicio
-
+import android.Manifest
 import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -32,50 +32,30 @@ import com.companyvihva.vihva.model.Tipo_Classe
 import com.companyvihva.vihva.model.Tipo_Remedios
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.NonDisposableHandle.parent
+
 
 class Inicio1 : Fragment() {
 
-    //// Firebase ////
     private lateinit var db: FirebaseFirestore
-
-    private lateinit var remedios: MutableList<Tipo_Classe>
-    private lateinit var adapter: AdapterRemedio
-    private lateinit var recyclerView: RecyclerView
-
-
-
-    // Declaração do serviço de localização
+    private lateinit var adapterListanova: AdapterListanova
+    private lateinit var listaInicio: MutableList<Tipo_Remedios>
+    private lateinit var urlImageView: ImageView
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-
-    // Declarando o botão SOS
     private lateinit var btnSOS: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        // Infla o layout para este fragmento
         val view = inflater.inflate(R.layout.fragment_inicio1, container, false)
-
-        // Encontra a TextView e aplica o SpannableString
         val textAviso: TextView? = view.findViewById(R.id.textViewAviso)
         val fullText = "Texto Exemplo"
         val spannableString = SpannableString(fullText)
 
-
-        //recyclerview  para adicionar remedio
-        val recyclerview_remedioAdicionado = view.findViewById<RecyclerView>(R.id.Recyclerview_remedioAdicionado)
-        recyclerview_remedioAdicionado.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-        recyclerview_remedioAdicionado.setHasFixedSize(true)
-        //configurando o adapter
-        val listaInicio: MutableList<Tipo_Remedios> = mutableListOf()
-        val adapterListanova = AdapterListanova(requireContext(),listaInicio)
-
-
-        // Define a cor vermelha na primeira letra
         val redColor = ContextCompat.getColor(requireContext(), R.color.vermelho_alerta)
         spannableString.setSpan(
             ForegroundColorSpan(redColor),
@@ -83,53 +63,151 @@ class Inicio1 : Fragment() {
             1,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-
-        // Define o SpannableString na TextView
         textAviso?.text = spannableString
 
-        // Inicializa o Firebase
         db = FirebaseFirestore.getInstance()
 
-        // Inicializando o serviço de localização
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
         btnSOS = view.findViewById(R.id.sos)
         btnSOS.setOnClickListener {
             requestPermissions(
-                android.Manifest.permission.ACCESS_COARSE_LOCATION,
-                android.Manifest.permission.ACCESS_FINE_LOCATION,
-                android.Manifest.permission.SEND_SMS
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.SEND_SMS
             )
         }
 
-        // Inicializa o RecyclerView e o Adapter
-        remedios = mutableListOf()
-        adapter = AdapterRemedio(requireContext(), remedios) { remedios ->
-            // Implementar a ação ao clicar no remédio
-        }
+        setupRecyclerView(view)
+        fetchRemediosDoUsuario()
 
-        // Encontra o RecyclerView na view inflada
-        recyclerView = view.findViewById(R.id.recyclerview_nova_lista)
-        if (recyclerView == null) {
-            Log.e("Inicio1", "RecyclerView não encontrado!")
-        } else {
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        }
+        setupDiabetesInfo(view)
 
-        // Referência ao documento "doenca" na coleção, precisa ajustar conforme sua estrutura
+        return view
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////
+// Método setupRecyclerView
+    private fun setupRecyclerView(view: View) {
+        // Encontra a RecyclerView no layout com o ID Recyclerview_remedioAdicionado
+        val recyclerview_remedioAdicionado =
+            view.findViewById<RecyclerView>(R.id.Recyclerview_remedioAdicionado)
+
+        // Define o layout manager para a RecyclerView como LinearLayoutManager vertical
+        recyclerview_remedioAdicionado.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        // Define que a RecyclerView terá um tamanho fixo para otimizar o desempenho
+        recyclerview_remedioAdicionado.setHasFixedSize(true)
+
+        // Inicializa uma lista vazia para conter os itens da RecyclerView
+        listaInicio = mutableListOf()
+
+        // Inicializa o adapter da RecyclerView com a lista vazia
+        adapterListanova = AdapterListanova(requireContext(), listaInicio)
+
+        // Define o adapter criado para a RecyclerView
+        recyclerview_remedioAdicionado.adapter = adapterListanova
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+// Método fetchRemediosDoUsuario
+    // Método fetchRemediosDoUsuario para buscar os IDs dos remédios do usuário
+    private fun fetchRemediosDoUsuario() {
+        // Obtém o usuário atualmente logado
+        val user = FirebaseAuth.getInstance().currentUser
+        val uid = user?.uid
+
+        // Verifica se o UID do usuário não é nulo
+        if (uid != null) {
+            // Obtém a referência do documento do cliente no Firestore
+            val clientRef = db.collection("clientes").document(uid)
+
+            // Realiza a leitura assíncrona do documento do cliente
+            clientRef.get()
+                .addOnSuccessListener { document ->
+                    // Verifica se o documento existe e contém dados
+                    if (document != null && document.exists()) {
+                        // Obtém os IDs dos remédios do documento
+                        val remediosIds = document.get("remedios") as? List<String>
+
+                        // Verifica se existem remédios para o usuário
+                        remediosIds?.let {
+                            // Itera sobre os IDs dos remédios e chama o método para buscar os dados de cada um
+                            for (remedioId in it) {
+                                fetchDadosDoFirebase(remedioId)
+                            }
+                        }
+                    } else {
+                        // Loga uma mensagem de erro caso o documento do cliente não seja encontrado
+                        Log.d("Inicio1", "Documento do cliente não encontrado")
+                    }
+                }
+                .addOnFailureListener { e ->
+                    // Loga uma mensagem de erro em caso de falha ao obter o documento do cliente
+                    Log.w("Inicio1", "Erro ao obter documento do cliente", e)
+                }
+        }
+    }
+
+    // Método fetchDadosDoFirebase para buscar os detalhes de cada remédio usando o ID
+    private fun fetchDadosDoFirebase(remedioId: String) {
+        // Obtém a referência do documento do remédio no Firestore
+        val docRef = db.collection("remedios").document(remedioId)
+
+        // Realiza a leitura assíncrona do documento do remédio
+        docRef.get()
+            .addOnSuccessListener { document ->
+                // Verifica se o documento existe e contém dados
+                if (document != null && document.exists()) {
+                    // Obtém os campos do documento
+                    val nome = document.getString("nome")
+                    val tipo = document.getString("tipo")
+                    val descricao = document.getString("descricao")
+                    val url = document.getString("Url")
+
+                    // Verifica se nome, tipo e descricao não são nulos antes de criar o objeto Tipo_Remedios
+                    if (nome != null && tipo != null && descricao != null) {
+                        // Cria um objeto Tipo_Remedios com os dados obtidos
+                        val remedio = Tipo_Remedios(url ?: "", nome, tipo, descricao)
+
+                        // Atualiza a lista de remédios e notifica o adapter sobre a mudança nos dados
+                        atualizarListaRemedios(remedio)
+                    } else {
+                        // Loga uma mensagem de aviso caso nome, tipo ou descricao do remédio sejam nulos
+                        Log.d("Inicio1", "Nome, tipo ou descricao do remédio está nulo")
+                    }
+                } else {
+                    // Loga uma mensagem de erro caso o documento do remédio não seja encontrado
+                    Log.d("Inicio1", "Documento do remédio não encontrado")
+                }
+            }
+            .addOnFailureListener { e ->
+                // Loga uma mensagem de erro em caso de falha ao obter o documento do remédio
+                Log.w("Inicio1", "Erro ao obter documento do remédio", e)
+            }
+    }
+
+    // Método atualizarListaRemedios para adicionar o remédio à lista e notificar o adapter
+    private fun atualizarListaRemedios(remedio: Tipo_Remedios) {
+        // Adiciona o remédio à lista de remédios
+        listaInicio.add(remedio)
+
+        // Notifica o adapter que os dados mudaram para atualizar a RecyclerView
+        adapterListanova.notifyDataSetChanged()
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    private fun setupDiabetesInfo(view: View) {
         val doencaRef = db.collection("doenca").document("diabetes")
         doencaRef.get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
-                    // Documentos encontrados no BD
                     val nome = document.getString("nome") ?: ""
                     val imageUrl = document.getString("Url") ?: ""
-                    // Atualizando os campos da UI
                     val nomeTextView: TextView = view.findViewById(R.id.nome_widget)
                     val imageView1: ImageView = view.findViewById(R.id.image_widget)
                     nomeTextView.text = nome
-                    // Carregando a imagem em uma imageView utilizando Picasso
                     if (imageUrl.isNotEmpty()) {
                         Picasso.get().load(imageUrl).into(imageView1)
                     } else {
@@ -151,88 +229,9 @@ class Inicio1 : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-
-        // Encontra o botão de imagem
-        val cardDiabete = view.findViewById<View>(R.id.card_diabete)
-        cardDiabete.setOnClickListener {
-            // Chama o método para mostrar o popup quando o botão é clicado
-            mostrarPopup()
-        }
-
-        return view
-    }
-
-    // Método para mostrar os dados no popup
-    private fun mostrarPopup() {
-        // Referência ao documento "diabetes" na coleção "doenca"
-        val docRef = db.collection("doenca").document("diabetes")
-        docRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null && document.exists()) {
-                    // Obtém dados do documento Firestore
-                    val nome = document.getString("nome")
-                    val descricao = document.getString("descricao")
-                    val imageUrl1 = document.getString("Url")
-                    val imageUrl2 = document.getString("Url2")
-                    // Infla o layout do popup
-                    val inflater = LayoutInflater.from(requireContext())
-                    val popupView = inflater.inflate(R.layout.popup_descricao, null)
-
-                    // Encontra elementos no layout
-                    val nomeTextView: TextView = popupView.findViewById(R.id.diabetes)
-                    val descricaoTextView: TextView = popupView.findViewById(R.id.descricao)
-                    val imageView1: ImageView = popupView.findViewById(R.id.foto_diabete1)
-                    val imageView2: ImageView = popupView.findViewById(R.id.foto_diabete2)
-                    val textViewAviso: TextView = popupView.findViewById(R.id.textViewAviso)
-
-                    // Aplica cor vermelha na primeira letra do aviso
-                    val avisoText = textViewAviso.text.toString()
-                    val spannableAviso = SpannableString(avisoText)
-                    val redColor = ContextCompat.getColor(requireContext(), R.color.vermelho_alerta)
-                    spannableAviso.setSpan(
-                        ForegroundColorSpan(redColor),
-                        0,
-                        6,
-                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                    )
-                    textViewAviso.text = spannableAviso
-
-                    // Define dados nos TextViews
-                    nomeTextView.text = nome
-                    descricaoTextView.text = descricao
-
-
-                    Picasso.get().load(imageUrl1).into(imageView1)
-
-                    if (!imageUrl2.isNullOrEmpty()) {
-                        Picasso.get().load(imageUrl2).into(imageView2)
-                    }
-
-                    // Mostra o popup
-                    val popupWindow = AlertDialog.Builder(requireContext())
-                        .setView(popupView)
-                        .create()
-                    popupWindow.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    popupWindow.show()
-
-                    val btnClose: AppCompatImageButton = popupView.findViewById(R.id.close_button)
-                    btnClose.setOnClickListener {
-                        // Fecha o alertDialog
-                        popupWindow.dismiss()
-                    }
-                } else {
-                    // Trata documento não encontrado
-                    Log.d("Inicio1", "Documento não encontrado")
-                }
-            }
-            .addOnFailureListener { exception ->
-                // Trata falhas
-                Log.e("Inicio1", "Erro ao obter documento", exception)
-            }
     }
 
     private fun requestPermissions(vararg permissions: String) {
-        // Verifica se o app não tem as permissões
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 permissions[0]
@@ -246,11 +245,8 @@ class Inicio1 : Fragment() {
                 permissions[2]
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // Pedindo permissão
             ActivityCompat.requestPermissions(requireActivity(), permissions, 0)
         } else {
-            // Temos a permissão
-            // Obter a localização
             fusedLocationClient.lastLocation.addOnSuccessListener { location ->
 
                 if (location != null) {
@@ -292,6 +288,6 @@ class Inicio1 : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+            }
         }
-    }
 }

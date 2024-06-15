@@ -21,6 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+
             <TextView
                 style="@style/titulo_inicio"
                 android:layout_width="0dp"
@@ -140,8 +141,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/Recyclerview_remedioAdicionado"
-            android:layout_width="195dp"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:layout_marginBottom="70dp"
+            android:layout_marginEnd="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
