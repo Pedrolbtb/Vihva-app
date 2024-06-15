@@ -9,9 +9,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.SEND_SMS" /> <!--PErmissão de SMS -->
+    <uses-permission android:name="android.permission.SEND_SMS" /> <!-- PErmissão de SMS -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Permissão de internet -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /><!-- Permissões de localização -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Permissões de localização -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -26,7 +26,8 @@
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31" >
 
-        <activity
+
+    <activity
             android:name=".Alarme.ConfigEstoque"
             android:exported="false" />
         <activity
@@ -60,11 +61,10 @@
         <activity
             android:name=".Inicio.Inicio"
             android:exported="false" />
-
-        <activity android:name=".Configurações.Config_DeletarPerfil"
+        <activity
+            android:name=".Configurações.Config_DeletarPerfil"
             android:exported="false"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".CriarPerfil.CriaPerfil2"
             android:exported="false"
@@ -87,10 +87,27 @@
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <!-- API DE ACCESSIBILITY -->
+                <action android:name="android.accessibilityservice.AccessibilityService" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".MyAccessibilityService"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:label="@string/accessibility_service_label"
+            android:description="@string/accessibility_service_description"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
     </application>
 
 </manifest>
