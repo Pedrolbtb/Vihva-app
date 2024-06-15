@@ -64,6 +64,7 @@
         android:fontFamily="@font/cloudsoft_bold_700"
         android:textColor="#2B8B46"
         android:textSize="15sp"
+        android:gravity="end"
         android:layout_marginBottom="5dp"
         app:layout_constraintStart_toStartOf="@+id/card_fotoitem"
         app:layout_constraintBottom_toBottomOf="parent"
