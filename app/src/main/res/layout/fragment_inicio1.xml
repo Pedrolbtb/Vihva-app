@@ -118,13 +118,13 @@
 
             <ImageButton
                 android:id="@+id/image_lixeira_global"
-                android:layout_width="wrap_content"
+                android:layout_width="16dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|bottom"
                 android:layout_marginStart="80dp"
                 android:layout_marginBottom="8dp"
                 android:background="#00FFFFFF"
-                android:contentDescription="adicione remedios"
+                android:contentDescription="delete a lista de remédios"
                 android:src="@drawable/delete_lista" />
         </LinearLayout>
 
