@@ -203,6 +203,8 @@
 
     <string name="text_restaurar">Restaurar</string>
 
+    <string name="text_titulo_add_doenca">Adicionar tratamentos</string>
+
     <array name="ddi">
         <item>DDD 11</item>
         <item>DDD 12</item>
@@ -224,6 +226,8 @@
 
     <string name="delet_cont">Deletar conta</string>
 
+    <string name="text_criaperfil">Criação de perfil</string>
+
     <string name="text_btn_loguot">Logout</string>
 
     <string name="text_aviso">AVISO</string>
@@ -240,11 +244,13 @@
 
     <string name="text_explicacaoLogout">Caso queira sair da sua conta do Vihva, clique no botão abaixo</string>
 
+    <string name="text_naotemremedios">Você ainda não tem remédios cadastrados</string>
+
 
     //Strings termos
 
     <string name="text_recomendacao_um">AVISO: Recomendamos a busca de um médico para ter certeza sobre seu estado, o Vihva não substitui profissionais da saúde</string>
-    
+
     //Strings da acessibilidade
     <string name="accessibility_service_label">Meu serviço de acessibilidade</string>
     <string name="accessibility_service_description">Serviço para melhorar a acessibilidade do aplicativo</string>

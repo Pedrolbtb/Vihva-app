@@ -17,17 +17,18 @@
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:enableOnBackInvokedCallback="true"
         android:theme="@style/Theme.Vihva"
-        tools:targetApi="31" >
-
-
-    <activity
+        tools:targetApi="31">
+        <activity
+            android:name=".com.companyvihva.vihva.AdicionarDoenca.AdicionarDoenca"
+            android:exported="false" />
+        <activity
             android:name=".Alarme.ConfigEstoque"
             android:exported="false" />
         <activity
@@ -96,18 +97,18 @@
 
         <service
             android:name=".MyAccessibilityService"
-            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
-            android:label="@string/accessibility_service_label"
             android:description="@string/accessibility_service_description"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/accessibility_service_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>
+
             <meta-data
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility_service_config" />
         </service>
-
     </application>
 
 </manifest>

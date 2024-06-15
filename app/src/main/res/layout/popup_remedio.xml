@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="330dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/background_widget_remedio">
+
+    <TextView
+        android:id="@+id/titulo_login"
+        style="@style/titulo_inicio"
+        android:layout_marginEnd="200dp"
+        android:layout_marginBottom="590dp"
+        android:padding="15dp"
+        android:text="@string/titulo_login"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/close_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="275dp"
+        android:layout_marginBottom="580dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/close_button_description"
+        android:padding="15dp"
+        android:src="@drawable/buttom_exit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/titulo_login" />
+
+
+    <TextView
+        android:id="@+id/nomere"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:background="@drawable/container_foto_widget"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginBottom="395dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nomere"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_fotodiabete1"
+        android:layout_width="105dp"
+        android:layout_height="105dp"
+        android:layout_marginBottom="395dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nomere">
+
+        <ImageView
+            android:id="@+id/foto_Remedio"
+            android:layout_width="105dp"
+            android:elevation="2dp"
+            android:layout_height="105dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/diabetes" />
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:id="@+id/descricao1"
+        android:layout_width="270dp"
+        android:layout_height="230dp"
+        android:layout_marginBottom="80dp"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewAviso"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_fotodiabete1" />
+
+    <TextView
+        android:id="@+id/textViewAviso"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="@string/text_recomendacao_um"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.0" />
+
+</android.support.constraint.ConstraintLayout>
