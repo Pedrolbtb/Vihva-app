@@ -185,6 +185,7 @@ class Inicio1 : Fragment(), AdapterListanova.OnItemClickListener {
                         if (!remedios.isNullOrEmpty()) {
                             // Procura o remédio pelo ID
                             val remedio = remedios.find { (it as? Map<String, Any>)?.get("nome") == remedioId } as? Map<String,Any>
+                            Log.d ("remedio", remedios.toString())
                             if (remedio != null) {
                                 val nome = remedio["nome"]
                                 val descricao = remedio["descricao"]
@@ -215,7 +216,7 @@ class Inicio1 : Fragment(), AdapterListanova.OnItemClickListener {
                                 textViewAviso.text = spannableAviso
 
                                 // Define dados nos TextViews
-                                nomeTextView.text = nome as? String
+                                nomeTextView.text = "samuel"
                                 descricaoTextView.text = descricao as? String
 
                                 // Carrega imagem usando Picasso, se a URL não estiver vazia
