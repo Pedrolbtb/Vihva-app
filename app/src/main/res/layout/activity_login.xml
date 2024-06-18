@@ -129,6 +129,7 @@
     <TextView
         android:id="@+id/titulo_login"
         style="@style/Titulo"
+        android:layout_width="150dp"
         android:layout_marginTop="100dp"
         android:text="@string/titulo_login"
         app:layout_constraintBottom_toTopOf="@+id/containerComponents"

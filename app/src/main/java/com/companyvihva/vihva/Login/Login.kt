@@ -1,6 +1,5 @@
 package com.companyvihva.vihva.Login
 
-import com.companyvihva.vihva.Inicio.Inicio1
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.Drawable

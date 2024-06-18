@@ -6,5 +6,4 @@ data class Tipo_Remedios(
     val nome: String,
     val tipo: String,
     val documentId: String
-
 )
