@@ -31,6 +31,8 @@
         <activity
             android:name=".Alarme.ConfigEstoque"
             android:exported="false" />
+
+
         <activity
             android:name=".Alarme.ConfigDuracao"
             android:exported="false" />
