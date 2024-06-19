@@ -27,7 +27,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.companyvihva.vihva.Alarme.CriaAlarme
+import com.companyvihva.vihva.Alarme.ConfigFrequencia
 import com.companyvihva.vihva.Configurações.Configuracoes
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.AdicionarDoenca.AdicionarDoenca
@@ -40,8 +40,7 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 
-class Inicio1 : Fragment(), AdapterListanova.OnItemClickListener {
-
+class Inicio1 : Fragment() {
 
     private lateinit var db: FirebaseFirestore
     private lateinit var adapterListanova: AdapterListanova
@@ -59,7 +58,6 @@ class Inicio1 : Fragment(), AdapterListanova.OnItemClickListener {
         textview_naotemremedio = view.findViewById(R.id.textview_naotemremedio)
         recyclerViewRemedioAdicionado = view.findViewById(R.id.Recyclerview_remedioAdicionado)
 
-
         db = FirebaseFirestore.getInstance()
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
         btnSOS = view.findViewById(R.id.sos)
@@ -73,8 +71,8 @@ class Inicio1 : Fragment(), AdapterListanova.OnItemClickListener {
 
         val btnAddDoenca: ImageButton = view.findViewById(R.id.image_adddoenca)
         btnAddDoenca.setOnClickListener {
-            val telaAddDoenca = Intent(requireContext(), AdicionarDoenca::class.java)
-            startActivity(telaAddDoenca)
+            val intent = Intent(requireContext(), AdicionarDoenca::class.java)
+            startActivity(intent)
         }
 
         setupRecyclerView(view)
@@ -93,14 +91,13 @@ class Inicio1 : Fragment(), AdapterListanova.OnItemClickListener {
         return view
     }
 
-
     private fun setupRecyclerView(view: View) {
         recyclerViewRemedioAdicionado = view.findViewById(R.id.Recyclerview_remedioAdicionado)
         recyclerViewRemedioAdicionado.layoutManager = LinearLayoutManager(requireContext())
         recyclerViewRemedioAdicionado.setHasFixedSize(true)
 
         listaInicio = mutableListOf()
-        adapterListanova = AdapterListanova(requireContext(), listaInicio, this)
+        adapterListanova = AdapterListanova(requireContext(), listaInicio)
         recyclerViewRemedioAdicionado.adapter = adapterListanova
     }
 
@@ -142,6 +139,7 @@ class Inicio1 : Fragment(), AdapterListanova.OnItemClickListener {
                     nomeTextView.text = nome
                     descricaoTextView.text = descricao
 
+
                     Picasso.get().load(imageUrl1).into(imageView1)
 
                     if (!imageUrl2.isNullOrEmpty()) {
@@ -171,92 +169,72 @@ class Inicio1 : Fragment(), AdapterListanova.OnItemClickListener {
             }
     }
 
-    fun mostrarPopupRemedio(remedioId: String) {
-        val user = FirebaseAuth.getInstance().currentUser
-        val uid = user?.uid
+    private fun mostrarPopupRemedio() {
+        // Referência ao documento "diabetes" na coleção "doenca"
+        val docRef = db.collection("doenca").document("diabetes")
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    // Obtém dados do documento Firestore
+                    val nome = document.getString("nome")
+                    val descricao = document.getString("descricao")
+                    val imageUrl1 = document.getString("Url")
+                    val imageUrl2 = document.getString("Url2")
+                    // Infla o layout do popup
+                    val inflater = LayoutInflater.from(requireContext())
+                    val popupView = inflater.inflate(R.layout.popup_descricao, null)
 
-        if (uid != null) {
-            val clientRef = db.collection("clientes").document(uid)
-            clientRef.get()
-                .addOnSuccessListener { document ->
-                    if (document != null && document.exists()) {
-                        // Obtém a lista de remédios como uma List<Map<String, Any>>
-                        val remedios = document.get("remedios") as? List<*>
-                        if (!remedios.isNullOrEmpty()) {
-                            // Procura o remédio pelo ID
-                            val remedio = remedios.find { (it as? Map<String, Any>)?.get("nome") == remedioId } as? Map<String,Any>
-                            Log.d ("remedio", remedios.toString())
-                            if (remedio != null) {
-                                val nome = remedio["nome"]
-                                val descricao = remedio["descricao"]
-                                val imageUrl1 = remedio["Url"] as? String
+                    // Encontra elementos no layout
+                    val nomeTextView: TextView = popupView.findViewById(R.id.diabetes)
+                    val descricaoTextView: TextView = popupView.findViewById(R.id.descricao)
+                    val imageView1: ImageView = popupView.findViewById(R.id.foto_diabete1)
+                    val imageView2: ImageView = popupView.findViewById(R.id.foto_diabete2)
+                    val textViewAviso: TextView = popupView.findViewById(R.id.textViewAviso)
 
-                                Log.d("PopupRemedio", "Nome: $nome, Descrição: $descricao, URL: $imageUrl1")
+                    // Aplica cor vermelha na primeira letra do aviso
+                    val avisoText = textViewAviso.text.toString()
+                    val spannableAviso = SpannableString(avisoText)
+                    val redColor = ContextCompat.getColor(requireContext(), R.color.vermelho_alerta)
+                    spannableAviso.setSpan(
+                        ForegroundColorSpan(redColor),
+                        0,
+                        6,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    textViewAviso.text = spannableAviso
 
-                                // Infla o layout do popup
-                                val inflater = LayoutInflater.from(requireContext())
-                                val popupView = inflater.inflate(R.layout.popup_remedio, null)
+                    // Define dados nos TextViews
+                    nomeTextView.text = nome
+                    descricaoTextView.text = descricao
 
-                                // Encontra elementos no layout do popup
-                                val nomeTextView: TextView = popupView.findViewById(R.id.nomere)
-                                val descricaoTextView: TextView = popupView.findViewById(R.id.descricao1)
-                                val imageView1: ImageView = popupView.findViewById(R.id.foto_Remedio)
-                                val textViewAviso: TextView = popupView.findViewById(R.id.textViewAviso)
 
-                                // Aplica cor vermelha na primeira letra do aviso
-                                val avisoText = textViewAviso.text.toString()
-                                val spannableAviso = SpannableString(avisoText)
-                                val redColor = ContextCompat.getColor(requireContext(), R.color.vermelho_alerta)
-                                spannableAviso.setSpan(
-                                    ForegroundColorSpan(redColor),
-                                    0,
-                                    6,
-                                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                                )
-                                textViewAviso.text = spannableAviso
+                    Picasso.get().load(imageUrl1).into(imageView1)
 
-                                // Define dados nos TextViews
-                                nomeTextView.text = "samuel"
-                                descricaoTextView.text = descricao as? String
-
-                                // Carrega imagem usando Picasso, se a URL não estiver vazia
-                                if (!imageUrl1.isNullOrEmpty()) {
-                                    Picasso.get().load(imageUrl1).into(imageView1)
-                                }
-
-                                // Mostra o popup utilizando AlertDialog
-                                val popupWindow = AlertDialog.Builder(requireContext())
-                                    .setView(popupView)
-                                    .create()
-
-                                // Define o fundo do AlertDialog como transparente
-                                popupWindow.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-                                // Mostra o popup
-                                popupWindow.show()
-
-                                // Configura o botão de fechar
-                                val btnClose: AppCompatImageButton = popupView.findViewById(R.id.close_button)
-                                btnClose.setOnClickListener {
-                                    // Fecha o alertDialog
-                                    popupWindow.dismiss()
-                                }
-                            } else {
-                                Log.d("Inicio1", "Remédio com ID '$remedioId' não encontrado")
-                            }
-                        } else {
-                            Log.d("Inicio1", "Lista de remédios está vazia ou não encontrada")
-                        }
-                    } else {
-                        Log.d("Inicio1", "Documento do cliente não encontrado")
+                    if (!imageUrl2.isNullOrEmpty()) {
+                        Picasso.get().load(imageUrl2).into(imageView2)
                     }
+
+                    // Mostra o popup
+                    val popupWindow = AlertDialog.Builder(requireContext())
+                        .setView(popupView)
+                        .create()
+                    popupWindow.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    popupWindow.show()
+
+                    val btnClose: AppCompatImageButton = popupView.findViewById(R.id.close_button)
+                    btnClose.setOnClickListener {
+                        // Fecha o alertDialog
+                        popupWindow.dismiss()
+                    }
+                } else {
+                    // Trata documento não encontrado
+                    Log.d("Inicio1", "Documento não encontrado")
                 }
-                .addOnFailureListener { exception ->
-                    Log.e("Inicio1", "Erro ao obter documento do cliente", exception)
-                }
-        } else {
-            Log.d("Inicio1", "Usuário não autenticado")
-        }
+            }
+            .addOnFailureListener { exception ->
+                // Trata falhas
+                Log.e("Inicio1", "Erro ao obter documento", exception)
+            }
     }
 
     private fun fetchRemediosDoUsuario() {
@@ -321,10 +299,6 @@ class Inicio1 : Fragment(), AdapterListanova.OnItemClickListener {
         adapterListanova.notifyDataSetChanged()
     }
 
-    override fun onItemClick(remedioId: String) {
-        mostrarPopupRemedio(remedioId)
-    }
-
     private fun setupDiabetesInfo(view: View) {
         val doencaRef = db.collection("doenca").document("diabetes")
         doencaRef.get()
@@ -375,8 +349,7 @@ class Inicio1 : Fragment(), AdapterListanova.OnItemClickListener {
             Toast.makeText(requireContext(), "Erro: UID do usuário não encontrado", Toast.LENGTH_SHORT).show()
         }
     }
-
-
+    // Método requestPermissions
     private fun requestPermissions(vararg permissions: String) {
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),

@@ -52,7 +52,7 @@ class AdicionarDoenca : AppCompatActivity() {
             firestore.collection("doenca").document(docId).get()
                 .addOnSuccessListener { document ->
                     if (document != null) {
-                        // Obtendo os detalhes do remédio do documento Firestore
+                        // Obtendo os detalhes da doença do documento Firestore
                         val nome = document.getString("nome")
                         val url = document.getString("Url")
                         val tipo = document.getString("tipo")
