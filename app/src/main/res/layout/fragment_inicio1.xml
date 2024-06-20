@@ -58,18 +58,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
 
-        <include
-            android:id="@+id/card_diabete"
-            layout="@layout/widget_doenca"
-            android:layout_width="319dp"
-            android:layout_height="147dp"
-            android:layout_marginTop="170dp"
-            android:layout_marginBottom="430dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <LinearLayout
             android:id="@+id/layout_medicamentos"
             android:layout_width="match_parent"
