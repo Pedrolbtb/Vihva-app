@@ -62,6 +62,10 @@
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
+            android:name=".model.PopupRemedio.DescriçãoDoença"
+            android:exported="false"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".Inicio.Inicio"
             android:exported="false" />
         <activity

@@ -107,14 +107,14 @@ class DescriçãoDoença: AppCompatActivity() {
             clientRef.update("doenca",FieldValue.arrayUnion(doencaId))
                 .addOnSuccessListener {
                     // Exibe uma mensagem de sucesso
-                    Toast.makeText(this, "Remédio adicionado com sucesso", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Doença adicionada com sucesso", Toast.LENGTH_SHORT).show()
                     // Fecha a Activity de popup
                     finish()
                 }
                 .addOnFailureListener { e ->
                     // Trata falhas na atualização do banco de dados
-                    Log.w("DescriçãoRemedio", "Erro ao adicionar remédio", e)
-                    Toast.makeText(this, "Erro ao adicionar remédio: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Log.w("DescriçãoDoença", "Erro ao adicionar doença", e)
+                    Toast.makeText(this, "Erro ao adicionar doença: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
         } else {
             // Se não conseguir obter o UID do usuário logado

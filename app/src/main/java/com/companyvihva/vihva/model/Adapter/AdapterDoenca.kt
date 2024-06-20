@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.R
+import com.companyvihva.vihva.model.PopupRemedio.DescriçãoDoença
 import com.companyvihva.vihva.model.PopupRemedio.DescriçãoRemedio
 import com.companyvihva.vihva.model.Tipo_Remedios
 import com.squareup.picasso.Picasso
@@ -45,8 +46,8 @@ class AdapterDoenca(private val context: Context, private val listas: MutableLis
             // Define o clique no item da lista
             itemView.setOnClickListener {
                 // Ao clicar em um item da lista, abra a Activity de pop-up correspondente
-                val intent = Intent(context, DescriçãoRemedio::class.java).apply {
-                    putExtra("remedioId", listas[adapterPosition].documentId) // Alterado para acessar o ID do documento
+                val intent = Intent(context, DescriçãoDoença::class.java).apply {
+                    putExtra("doencaId", listas[adapterPosition].documentId) // Alterado para acessar o ID do documento
                 }
                 context.startActivity(intent)
             }
