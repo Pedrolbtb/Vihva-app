@@ -26,13 +26,14 @@
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
         <activity
+            android:name=".Calendario.Calendario"
+            android:exported="false" />
+        <activity
             android:name=".com.companyvihva.vihva.AdicionarDoenca.AdicionarDoenca"
             android:exported="false" />
         <activity
             android:name=".Alarme.ConfigEstoque"
             android:exported="false" />
-
-
         <activity
             android:name=".Alarme.ConfigDuracao"
             android:exported="false" />
@@ -66,7 +67,8 @@
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Inicio.Inicio"
+            android:name=".Login.Login"
+
             android:exported="false" />
         <activity
             android:name=".Configurações.Config_DeletarPerfil"
@@ -89,7 +91,7 @@
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Login.Login"
+            android:name=".Inicio.Inicio"
             android:exported="true"
             android:theme="@style/AppTheme">
             <intent-filter>
