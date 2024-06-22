@@ -9,14 +9,16 @@
 
     <ImageButton
         android:id="@+id/btn_voltarpop"
-        android:layout_width="53dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="357dp"
         android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        android:src="@drawable/arrow_voltar"
+        android:contentDescription="@string/button_back"
+        android:padding="15dp"
+        android:src="@drawable/arrow_voltar_vermelho"
+        android:text="@string/button_back"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,39 +60,39 @@
         android:id="@+id/descricao1"
         android:layout_width="255dp"
         android:layout_height="225dp"
-        android:layout_marginBottom="80dp"
         android:elevation="2dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:gravity="center"
         android:textColor="@color/black"
         android:textSize="17sp"
+        android:layout_marginTop="130dp"
         app:layout_constraintBottom_toBottomOf="@id/view_descRemedio"
         app:layout_constraintEnd_toEndOf="@id/view_descRemedio"
-
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="@id/view_descRemedio" />
+        app:layout_constraintStart_toStartOf="@id/view_descRemedio"
+        app:layout_constraintTop_toTopOf="@+id/view_descRemedio" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_add_doenca"
         android:layout_width="155dp"
         android:layout_height="52dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/button_editar"
+        android:layout_marginTop="470dp"
+        android:background="@drawable/button"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="@string/text_adc_doenca"
         android:textColor="@color/off_white"
         app:layout_constraintBottom_toBottomOf="@id/view_descRemedio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descricao1"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="@+id/view_descRemedio"
+         />
 
     <View
+        android:id="@+id/view2"
         android:layout_width="130dp"
         android:layout_height="126dp"
         android:layout_marginBottom="255dp"
+        android:background="@drawable/doenca_foto_widget"
         android:elevation="2dp"
-        android:background="@drawable/remedio_foto_widget"
         app:layout_constraintBottom_toBottomOf="@id/view_descRemedio"
         app:layout_constraintEnd_toEndOf="@id/view_descRemedio"
         app:layout_constraintStart_toStartOf="@id/view_descRemedio"
@@ -112,7 +114,7 @@
             android:id="@+id/foto_Doenca"
             android:layout_width="126dp"
             android:layout_height="122dp"
-            android:background="@drawable/doenca_foto_widget"
+            android:scaleType="centerCrop"
             />
 
 
