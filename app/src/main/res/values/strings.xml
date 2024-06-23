@@ -19,6 +19,8 @@
     <!--texto do Button entrar-->
     <string name="title_button_login">Entrar</string>
 
+    <string name="desc_alarme">Insira observações sobre a medicação</string>
+
     <!--texto do text para cadastro-->
     <string name="text_ncadastro">Não possui uma conta? <u>clique aqui!</u></string>
 

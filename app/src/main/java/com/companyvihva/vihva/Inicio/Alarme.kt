@@ -11,6 +11,7 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.Alarme.CriaAlarme
+import com.companyvihva.vihva.Alarme.EscolhaRemedio
 import com.companyvihva.vihva.R
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -57,11 +58,8 @@ class Alarme : Fragment() {
 
                 parentLayout.addView(layoutToAdd)*/
 
-                irParaCriaAlarme()
+                irParaEscolheRemedio()
             }
-
-
-
 
         loadPreference()
 
@@ -90,8 +88,8 @@ class Alarme : Fragment() {
         // Use esses valores conforme necessário
     }
 
-    private fun irParaCriaAlarme() {
-        val telaCriaAlarme = Intent(requireActivity(), CriaAlarme::class.java)
+    private fun irParaEscolheRemedio() {
+        val telaCriaAlarme = Intent(requireActivity(), EscolhaRemedio::class.java)
         startActivity(telaCriaAlarme)
 
     }

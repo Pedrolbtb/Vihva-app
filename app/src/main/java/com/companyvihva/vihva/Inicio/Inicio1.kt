@@ -78,6 +78,7 @@ class Inicio1 : Fragment() {
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(recyclerview_doenca)
 
+
         val btnAddDoenca: ImageButton = view.findViewById(R.id.image_adddoenca)
         btnAddDoenca.setOnClickListener {
             val intent = Intent(requireContext(), AdicionarDoenca::class.java)
@@ -195,11 +196,7 @@ class Inicio1 : Fragment() {
                     if (document != null && document.exists()) {
                         val doencaIds = document.get("doenca") as? List<String>
                         if (doencaIds.isNullOrEmpty()) {
-                            textview_naotemremedio.visibility = View.VISIBLE
-                            recyclerview_doenca.visibility = View.GONE
                         } else {
-                            textview_naotemremedio.visibility = View.GONE
-                            recyclerview_doenca.visibility = View.VISIBLE
                             for (doencaId in doencaIds) {
                                 fetchDadosDoFirebase2(doencaId)
                             }
