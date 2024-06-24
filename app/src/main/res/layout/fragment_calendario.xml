@@ -63,23 +63,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lembrete de Consulta"
-            android:textSize="25sp"
-            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textColor="@color/Letras"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"/>
+            />
 
         <CalendarView
             android:id="@+id/calendario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="100dp"
+            android:layout_marginTop="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ListaCalendario"
+            android:layout_width="360dp"
+            android:layout_height="153dp"
+            android:layout_marginTop="21dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calendario"
+            app:layout_constraintVertical_bias="0.152" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
