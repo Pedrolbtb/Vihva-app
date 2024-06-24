@@ -54,7 +54,7 @@ class EscolhaFrequencia : AppCompatActivity() {
 
             if(frequencia == "Somente em certos dias"){
                 val layoutToAdd = LayoutInflater.from(this)
-                    .inflate(R.layout.dias_opcoes, null)
+                    .inflate(R.layout.dias_opcoes_desativado, null)
 
                 val params = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
