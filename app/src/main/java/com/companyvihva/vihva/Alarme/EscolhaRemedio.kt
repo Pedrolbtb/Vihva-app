@@ -3,6 +3,7 @@ package com.companyvihva.vihva.Alarme
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.R
@@ -27,6 +28,12 @@ class EscolhaRemedio : AppCompatActivity() {
 
         db = FirebaseFirestore.getInstance()
         fetchRemediosDoUsuario()
+
+        val btnVoltar = findViewById<ImageButton>(R.id.btnVoltarAddDoenca)
+        btnVoltar.setOnClickListener {
+            finish()
+        }
+
     }
 
     private fun setupRecyclerView() {
@@ -67,12 +74,14 @@ class EscolhaRemedio : AppCompatActivity() {
             docRef.get()
                 .addOnSuccessListener { document ->
                     if (document != null && document.exists()) {
+                        val url = document.getString("Url")
                         val nome = document.getString("nome")
                         val tipo = document.getString("tipo")
-                        val url = document.getString("Url")
+
 
                         if (nome != null && tipo != null) {
-                            val remedio = Remedios_alarme(nome, tipo, url ?: "", remedioId)
+                            val remedio = Remedios_alarme(url ?:"",nome,tipo, remedioId)
+
                             atualizarListaRemedios(remedio)
                         } else {
                             Log.d("EscolhaRemedio", "Nome, tipo ou url do remédio está nulo")
