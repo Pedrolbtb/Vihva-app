@@ -5,6 +5,22 @@
 
     <string name="text_alcolismo">Você faz consumo de bebidas alcoólicas? </string>
 
+    <string name="text_horas">horas</string>
+
+    <string name="text_seg">Seg</string>
+
+    <string name="text_terca">Ter</string>
+
+    <string name="text_quarta">Qua</string>
+
+    <string name="text_quinta">Qui</string>
+
+    <string name="text_sexta">Sex</string>
+
+    <string name="text_sabado">Sáb</string>
+
+    <string name="text_domingo">Dom</string>
+
     <!--titulo na tela de login-->
     <string name="titulo_login">Vihva</string>
 

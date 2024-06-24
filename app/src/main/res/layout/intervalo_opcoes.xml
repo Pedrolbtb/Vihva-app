@@ -21,12 +21,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-    <NumberPicker
-        android:id="@+id/numberPicker"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_altura"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        style="@style/layout_campos"
+        android:elevation="4dp"
+        app:suffixText="@string/text_horas"
+        android:layout_marginBottom="25dp"
+        android:textColor="@color/Letras"
+        app:expandedHintEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:suffixTextColor="@color/hint">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editTextPhone"
+        style="@style/Edit_Text_Login"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:autofillHints="aa"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="16sp"
+        />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

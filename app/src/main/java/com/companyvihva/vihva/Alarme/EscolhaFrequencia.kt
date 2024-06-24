@@ -51,6 +51,22 @@ class EscolhaFrequencia : AppCompatActivity() {
             } else {
                 parentLayout.removeAllViews()
             }
+
+            if(frequencia == "Somente em certos dias"){
+                val layoutToAdd = LayoutInflater.from(this)
+                    .inflate(R.layout.dias_opcoes, null)
+
+                val params = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+
+                layoutToAdd.layoutParams = params
+
+                params.setMargins(0, 0, 20, 0)
+
+                parentLayout.addView(layoutToAdd)
+            }
         }
     }
 }
