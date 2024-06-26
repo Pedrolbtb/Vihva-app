@@ -1,42 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_home"
+    tools:context=".Inicio.Calendario">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:paddingBottom="8dp"
         android:text="Selecione a Data"
-        android:textSize="16sp"
-        android:paddingBottom="8dp" />
+        android:textColor="@color/Letras"
+        android:textSize="25sp" />
 
     <DatePicker
         android:id="@+id/datePicker"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:calendarViewShown="true"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:calendarViewShown="false"
         android:datePickerMode="spinner" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Descrição do Evento"
-        android:textSize="16sp"
-        android:paddingTop="16dp"
-        android:paddingBottom="8dp" />
+        android:layout_marginTop="350dp"
+        android:gravity="center"
+        android:paddingBottom="8dp"
+        android:text="Descrição do evento"
+        android:textColor="@color/Letras"
+        android:textSize="25sp" />
 
     <EditText
         android:id="@+id/eventEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Digite o evento" />
+        android:layout_marginTop="400dp"
+        android:gravity="center"
+        android:hint="Digite o evento"
+        android:paddingBottom="8dp"
+        android:textColor="@color/Letras"
+        android:textSize="25sp" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="600dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:gravity="center"
         android:text="Salvar"
-        android:layout_marginTop="16dp" />
-</LinearLayout>
+        android:textColor="@color/off_white"
+        android:textSize="25dp" />
+
+
+</FrameLayout>
