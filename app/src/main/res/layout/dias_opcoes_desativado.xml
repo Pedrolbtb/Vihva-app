@@ -4,99 +4,104 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="90dp"
-    android:background="@drawable/container_linha"
+    android:id="@+id/checkbox_DesativadaAlarme"
     android:elevation="2dp"
-    >
+    tools:context=".Alarme.EscolhaFrequencia">
 
     <CheckBox
+        android:id="@+id/checkbox_domingo"
         android:layout_width="wrap_content"
         android:background="@drawable/checkbox_dias_desativado"
         android:layout_height="70dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:textColor="@color/off_white"
         android:text="@string/text_domingo"
-        android:button="@drawable/button_editar"
+        android:button="@drawable/checkbox_selector"
         android:paddingStart="10dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <CheckBox
+        android:id="@+id/checkbox_segunda"
         android:layout_width="wrap_content"
         android:background="@drawable/checkbox_dias_desativado"
         android:layout_height="70dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:textColor="@color/off_white"
         android:text="@string/text_seg"
-        android:button="@drawable/button_editar"
+        android:button="@drawable/checkbox_selector"
         android:paddingStart="10dp"
         android:layout_marginStart="50dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <CheckBox
+        android:id="@+id/checkbox_terca"
         android:layout_width="wrap_content"
         android:background="@drawable/checkbox_dias_desativado"
         android:layout_height="70dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:textColor="@color/off_white"
-        android:button="@drawable/button_editar"
+        android:button="@drawable/checkbox_selector"
         android:paddingStart="15dp"
         android:text="@string/text_terca"
         android:layout_marginStart="100dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <CheckBox
+        android:id="@+id/checkbox_quarta"
         android:layout_width="wrap_content"
         android:background="@drawable/checkbox_dias_desativado"
         android:layout_height="70dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:textColor="@color/off_white"
-        android:button="@drawable/button_editar"
+        android:button="@drawable/checkbox_selector"
         android:paddingStart="10dp"
         android:text="@string/text_quarta"
         android:layout_marginStart="150dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <CheckBox
+        android:id="@+id/checkbox_quinta"
         android:layout_width="wrap_content"
         android:background="@drawable/checkbox_dias_desativado"
         android:layout_height="70dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:textColor="@color/off_white"
-        android:button="@drawable/button_editar"
+        android:button="@drawable/checkbox_selector"
         android:paddingStart="10dp"
         android:layout_marginStart="200dp"
         android:text="@string/text_quinta"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <CheckBox
+        android:id="@+id/checkbox_sexta"
         android:layout_width="wrap_content"
         android:background="@drawable/checkbox_dias_desativado"
         android:layout_height="70dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:textColor="@color/off_white"
-        android:button="@drawable/button_editar"
+        android:button="@drawable/checkbox_selector"
         android:paddingStart="10dp"
         android:layout_marginStart="250dp"
         android:text="@string/text_sexta"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <CheckBox
+        android:id="@+id/checkbox_sabado"
         android:layout_width="wrap_content"
         android:background="@drawable/checkbox_dias_desativado"
         android:layout_height="70dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:textColor="@color/off_white"
         android:layout_marginStart="300dp"
-        android:button="@drawable/button_editar"
+        android:button="@drawable/checkbox_selector"
         android:paddingStart="10dp"
         android:text="@string/text_sabado"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

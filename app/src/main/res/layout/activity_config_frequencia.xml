@@ -73,6 +73,7 @@
         app:layout_constraintTop_toTopOf="@+id/container_Frequencia" />
 
     <TextView
+        android:id="@+id/descFrequencia"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"

@@ -74,7 +74,7 @@
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Login.Login"
+            android:name=".Inicio.Inicio"
             android:exported="false" />
         <activity
             android:name=".Configurações.Config_DeletarPerfil"
@@ -97,7 +97,7 @@
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Inicio.Inicio"
+            android:name=".Login.Login"
             android:exported="true"
             android:theme="@style/AppTheme">
             <intent-filter>

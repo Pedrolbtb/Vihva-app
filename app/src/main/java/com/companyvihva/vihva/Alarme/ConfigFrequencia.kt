@@ -10,14 +10,18 @@ import android.widget.TextView
 import com.companyvihva.vihva.R
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-
-
         private lateinit var horaApartirTextView: TextView
+
 class ConfigFrequencia : AppCompatActivity() {
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config_frequencia)
+
+        val frequencia = intent.getStringExtra("frequencia")
 
         var container_duraacao = findViewById<View>(R.id.container_DuracaoAlarme).setOnClickListener {
             irParaDuracao()
@@ -55,6 +59,12 @@ class ConfigFrequencia : AppCompatActivity() {
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
             finish() // Fecha a atividade atual e retorna para a anterior
+        }
+
+        var descfrequencia = findViewById<TextView>(R.id.descFrequencia)
+
+        if (frequencia != null) {
+            descfrequencia.setText(frequencia)
         }
         }
 

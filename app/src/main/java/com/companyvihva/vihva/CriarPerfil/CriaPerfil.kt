@@ -86,14 +86,7 @@ class CriaPerfil : AppCompatActivity() {
         }
     }
 
-    // Função para navegar para a tela CriaPerfil2
-    private fun irParaTelaCriaPerfil2(nome: String, sobrenome: String, idade: Int) {
-        val intent = Intent(this, CriaPerfil2::class.java)
-        intent.putExtra("nome", nome)
-        intent.putExtra("sobrenome", sobrenome)
-        intent.putExtra("idade", idade)
-        startActivity(intent)
-    }
+
 
     // Função para exibir um Toast personalizado
     private fun showToast(message: String) {
