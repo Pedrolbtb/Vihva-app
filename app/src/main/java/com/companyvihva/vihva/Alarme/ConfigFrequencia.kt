@@ -1,5 +1,6 @@
 package com.companyvihva.vihva.Alarme
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -15,13 +16,15 @@ import com.google.android.material.timepicker.TimeFormat
 class ConfigFrequencia : AppCompatActivity() {
 
 
-
-
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config_frequencia)
 
         val frequencia = intent.getStringExtra("frequencia")
+        val horas = intent.getStringExtra("horaemhora")
+        val duracao = intent.getStringExtra("duracao")
+        val data = intent.getStringExtra("data")
 
         var container_duraacao = findViewById<View>(R.id.container_DuracaoAlarme).setOnClickListener {
             irParaDuracao()
@@ -62,9 +65,13 @@ class ConfigFrequencia : AppCompatActivity() {
         }
 
         var descfrequencia = findViewById<TextView>(R.id.descFrequencia)
+        var descduracao = findViewById<TextView>(R.id.descduracao)
 
         if (frequencia != null) {
             descfrequencia.setText(frequencia)
+        }
+        if (duracao != null){
+            descduracao.setText(duracao + " " + data)
         }
         }
 

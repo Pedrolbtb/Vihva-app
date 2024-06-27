@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.RadioGroup
 import android.widget.CheckBox
+import android.widget.EditText
 import androidx.core.content.ContextCompat
 import com.companyvihva.vihva.R
 
@@ -27,6 +28,7 @@ class EscolhaFrequencia : AppCompatActivity() {
         btnVoltar.setOnClickListener {
             finish()
         }
+
 
         val radioGroup: RadioGroup = findViewById(R.id.radioGroup_frequencia)
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
@@ -96,10 +98,19 @@ class EscolhaFrequencia : AppCompatActivity() {
             val dados = prepararDadosParaEnvio()
             val frequenciaSelecionada = frequencia
 
+            val horaemhora: String? = if (frequencia == "Intervalo"){
+                val layoutIntervalo = parentLayout.findViewById<LinearLayout>(R.id.layout_intervalo)
+                val editTextHora = layoutIntervalo.findViewById<EditText>(R.id.editTextHoraemHora)
+                editTextHora.text.toString()
+            }else{
+                null
+            }
+
             // Cria um Intent para iniciar a próxima atividade
             val intent = Intent(this, ConfigFrequencia::class.java)
             intent.putExtra("dados", dados)
             intent.putExtra("frequencia", frequenciaSelecionada)
+            intent.putExtra("hora", horaemhora)
 
             // Inicia a próxima atividade
             startActivity(intent)

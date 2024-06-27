@@ -21,6 +21,8 @@
 
     <string name="text_domingo">Dom</string>
 
+    <string name="text_lembreme">Lembre-me até</string>
+
     <!--titulo na tela de login-->
     <string name="titulo_login">Vihva</string>
 
@@ -193,7 +195,7 @@
 
     <string name="vibration">Vibração</string>
 
-    <string name="text_pausar_lembrete">Pausar lembretes</string>
+    <string name="text_pausar_lembrete">Deletar lembrete</string>
 
     <string name="diariamente">Diariamente</string>
 
