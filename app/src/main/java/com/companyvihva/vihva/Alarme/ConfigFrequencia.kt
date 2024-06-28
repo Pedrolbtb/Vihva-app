@@ -11,36 +11,44 @@ import android.widget.TextView
 import com.companyvihva.vihva.R
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-        private lateinit var horaApartirTextView: TextView
 
 class ConfigFrequencia : AppCompatActivity() {
 
+    private lateinit var horaApartirTextView: TextView
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config_frequencia)
 
         val frequencia = intent.getStringExtra("frequencia")
-        val horas = intent.getStringExtra("horaemhora")
+        val horas = intent.getIntExtra("horaemhora", 0)
         val duracao = intent.getStringExtra("duracao")
         val data = intent.getStringExtra("data")
 
-        var container_duraacao = findViewById<View>(R.id.container_DuracaoAlarme).setOnClickListener {
-            irParaDuracao()
+        val container_duracao = findViewById<View>(R.id.container_DuracaoAlarme).setOnClickListener {
+            val telaDuracao = Intent(this, ConfigDuracao::class.java)
+            telaDuracao.putExtra("data", data)
+            telaDuracao.putExtra("duracao", duracao)
+            telaDuracao.putExtra("frequencia", frequencia)
+            telaDuracao.putExtra("horaemhora", horas)
+            startActivity(telaDuracao)
         }
 
         val container_frequencia = findViewById<View>(R.id.container_Frequencia).setOnClickListener {
-            irParaFrequencia()
+            val telaDuracao = Intent(this, EscolhaFrequencia::class.java)
+            telaDuracao.putExtra("data", data)
+            telaDuracao.putExtra("duracao", duracao)
+            telaDuracao.putExtra("frequencia", frequencia)
+            telaDuracao.putExtra("horaemhora", horas)
+            startActivity(telaDuracao)
         }
 
         val container_apartir = findViewById<View>(R.id.container_apartir).setOnClickListener {
-            val picker =
-                MaterialTimePicker.Builder()
-                    .setTimeFormat(TimeFormat.CLOCK_24H)
-                    .setHour(12)
-                    .setMinute(10)
-                    .build()
+            val picker = MaterialTimePicker.Builder()
+                .setTimeFormat(TimeFormat.CLOCK_24H)
+                .setHour(12)
+                .setMinute(10)
+                .build()
 
             horaApartirTextView = findViewById(R.id.hora_apartir)
 
@@ -55,7 +63,7 @@ class ConfigFrequencia : AppCompatActivity() {
                 displayStoredTime()
             }
 
-                     picker.show(supportFragmentManager, "MaterialTimePicker")
+            picker.show(supportFragmentManager, "MaterialTimePicker")
         }
 
         // Configurando o listener para o botão de voltar
@@ -64,28 +72,17 @@ class ConfigFrequencia : AppCompatActivity() {
             finish() // Fecha a atividade atual e retorna para a anterior
         }
 
-        var descfrequencia = findViewById<TextView>(R.id.descFrequencia)
-        var descduracao = findViewById<TextView>(R.id.descduracao)
+        val descFrequencia = findViewById<TextView>(R.id.descFrequencia)
+        val descDuracao = findViewById<TextView>(R.id.descduracao)
 
         if (frequencia != null) {
-            descfrequencia.setText(frequencia)
+            descFrequencia.text = frequencia
         }
-        if (duracao != null){
-            descduracao.setText(duracao + " " + data)
+        if (duracao != null && data != null) {
+            descDuracao.text = "$duracao $data"
         }
-        }
-
-
-
-    private fun irParaFrequencia() {
-        val telaFrequencia = Intent(this, EscolhaFrequencia::class.java)
-        startActivity(telaFrequencia)
     }
 
-    private fun irParaDuracao() {
-        val telaDuracao = Intent(this, ConfigDuracao::class.java)
-        startActivity(telaDuracao)
-    }
 
     private fun displayStoredTime() {
         val sharedPref = getSharedPreferences("TimePickerPrefs", Context.MODE_PRIVATE)

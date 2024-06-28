@@ -10,7 +10,6 @@ import android.widget.LinearLayout
 import android.widget.RadioGroup
 import android.widget.CheckBox
 import android.widget.EditText
-import androidx.core.content.ContextCompat
 import com.companyvihva.vihva.R
 
 class EscolhaFrequencia : AppCompatActivity() {
@@ -22,6 +21,11 @@ class EscolhaFrequencia : AppCompatActivity() {
         setContentView(R.layout.activity_escolha_frequencia)
 
         val parentLayout = findViewById<LinearLayout>(R.id.layout_Opcoes)
+        val duracao = intent.getStringExtra("duracao")
+        val data = intent.getStringExtra("data")
+        var frequencia = intent.getStringExtra("frequencia")
+        val horas = intent.getIntExtra("horaemhora", 0)
+        val radioGroup: RadioGroup = findViewById(R.id.radioGroup_frequencia)
 
         // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
@@ -29,8 +33,18 @@ class EscolhaFrequencia : AppCompatActivity() {
             finish()
         }
 
+        if (frequencia != null){
+            when(frequencia){
+                "Diariamente" -> radioGroup.check(R.id.radio_diariamente)
+                "Sem Alarme" -> radioGroup.check(R.id.radio_nada)
+                "Intervalo" -> radioGroup.check(R.id.radio_intervalo)
+                "Somente em certos dias" -> radioGroup.check(R.id.radio_dias)
+            }
+            if (frequencia == "Intervalo"){
 
-        val radioGroup: RadioGroup = findViewById(R.id.radioGroup_frequencia)
+            }
+        }
+
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             frequencia = when (checkedId) {
                 R.id.radio_diariamente -> "Diariamente"
@@ -83,26 +97,24 @@ class EscolhaFrequencia : AppCompatActivity() {
                 checkBoxIds.forEach { checkBoxId ->
                     val checkBox = findViewById<CheckBox>(checkBoxId)
                     checkBox?.setOnCheckedChangeListener { buttonView, isChecked ->
-                        // Aqui você pode responder à CheckBox sendo marcada ou desmarcada
                         if (isChecked) {
-                            checkBox?.setBackgroundResource(R.drawable.checkbox_dias)
+                            checkBox.setBackgroundResource(R.drawable.checkbox_dias)
                         } else {
-                            checkBox?.setBackgroundResource(R.drawable.checkbox_dias_desativado)
+                            checkBox.setBackgroundResource(R.drawable.checkbox_dias_desativado)
                         }
                     }
                 }
             }
         }
 
-        var btnSalvar = findViewById<Button>(R.id.btn_salvarFrequencia).setOnClickListener {
+        findViewById<Button>(R.id.btn_salvarFrequencia).setOnClickListener {
             val dados = prepararDadosParaEnvio()
             val frequenciaSelecionada = frequencia
-
             val horaemhora: String? = if (frequencia == "Intervalo"){
                 val layoutIntervalo = parentLayout.findViewById<LinearLayout>(R.id.layout_intervalo)
                 val editTextHora = layoutIntervalo.findViewById<EditText>(R.id.editTextHoraemHora)
                 editTextHora.text.toString()
-            }else{
+            } else {
                 null
             }
 
@@ -110,7 +122,9 @@ class EscolhaFrequencia : AppCompatActivity() {
             val intent = Intent(this, ConfigFrequencia::class.java)
             intent.putExtra("dados", dados)
             intent.putExtra("frequencia", frequenciaSelecionada)
-            intent.putExtra("hora", horaemhora)
+            intent.putExtra("horaemhora", horaemhora)
+            intent.putExtra("data", data)
+            intent.putExtra("duracao", duracao)
 
             // Inicia a próxima atividade
             startActivity(intent)
