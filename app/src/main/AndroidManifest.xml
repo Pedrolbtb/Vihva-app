@@ -44,7 +44,7 @@
             android:name=".Alarme.EscolhaFrequencia"
             android:exported="false" />
         <activity
-            android:name=".Alarme.ConfigFrequencia"
+            android:name=".Login.Login"
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
@@ -97,7 +97,7 @@
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Login.Login"
+            android:name=".Alarme.ConfigFrequencia"
             android:exported="true"
             android:theme="@style/AppTheme">
             <intent-filter>
