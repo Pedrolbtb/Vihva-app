@@ -33,6 +33,7 @@ import com.companyvihva.vihva.Configurações.Configuracoes
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.AdicionarDoenca.AdicionarDoenca
 import com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter.AdapterDoenca
+import com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter.AdapterDoenca_inicio1
 import com.companyvihva.vihva.model.Adapter.AdapterListanova
 import com.companyvihva.vihva.model.Adapter.AdapterRemedio_inicio1
 import com.companyvihva.vihva.model.Tipo_Remedios
@@ -47,7 +48,7 @@ class Inicio1 : Fragment() {
 
     private lateinit var db: FirebaseFirestore
     private lateinit var adapterListanova: AdapterRemedio_inicio1
-    private lateinit var adapterDoenca: AdapterDoenca
+    private lateinit var adapterDoenca: AdapterDoenca_inicio1
     private lateinit var listaInicio: MutableList<Tipo_Remedios>
     private lateinit var listadoenca: MutableList<Tipo_Remedios>
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -89,6 +90,8 @@ class Inicio1 : Fragment() {
         setupRecyclerView(view)
         setupRecyclerView2(view)
 
+
+
         // Busca dos dados dos usuários
         fetchRemediosDoUsuario()
         fetchRemediosDoUsuario2()
@@ -96,9 +99,11 @@ class Inicio1 : Fragment() {
         val imageLixeiraGlobal: ImageView = view.findViewById(R.id.image_lixeira_global)
         imageLixeiraGlobal.setOnClickListener {
             deletarArrayRemedios()
+
         }
 
         return view
+
     }
 
     // Configuração da RecyclerView para remédios
@@ -121,14 +126,14 @@ class Inicio1 : Fragment() {
             clientRef.get()
                 .addOnSuccessListener { document ->
                     if (document != null && document.exists()) {
-                        val remediosIds = document.get("remedios") as? List<String>
-                        if (remediosIds.isNullOrEmpty()) {
+                        val remediosId = document.get("remedios") as? List<String>
+                        if (remediosId.isNullOrEmpty()) {
                             textview_naotemremedio.visibility = View.VISIBLE
                             recyclerViewRemedioAdicionado.visibility = View.GONE
                         } else {
                             textview_naotemremedio.visibility = View.GONE
                             recyclerViewRemedioAdicionado.visibility = View.VISIBLE
-                            for (remedioId in remediosIds) {
+                            for (remedioId in remediosId) {
                                 fetchDadosDoFirebase(remedioId)
                             }
                         }
@@ -150,14 +155,18 @@ class Inicio1 : Fragment() {
                 if (document != null && document.exists()) {
                     val nome = document.getString("nome")
                     val tipo = document.getString("tipo")
-                    val descricao = document.getString("descricao")
                     val url = document.getString("Url")
 
-                    if (nome != null && tipo != null && descricao != null) {
-                        val remedio = Tipo_Remedios(url ?: "", nome, tipo, descricao)
+                    if (nome != null && tipo != null) {
+                        val remedio = Tipo_Remedios(
+                            foto = url ?: "",
+                            nome = nome,
+                            tipo = tipo,
+                            documentId = remedioId // Adiciona o ID do documento aqui
+                        )
                         atualizarListaRemedios(remedio)
                     } else {
-                        Log.d("Inicio1", "Nome, tipo ou descricao do remédio está nulo")
+                        Log.d("Inicio1", "Nome ou tipo do remédio está nulo")
                     }
                 } else {
                     Log.d("Inicio1", "Documento do remédio não encontrado")
@@ -173,19 +182,19 @@ class Inicio1 : Fragment() {
         listaInicio.add(remedio)
         adapterListanova.notifyDataSetChanged()
     }
-
+/////////////////////////////////////////////////////////////
     // Configuração da RecyclerView para doenças
-    private fun setupRecyclerView2(view: View) {
-        recyclerview_doenca.layoutManager = LinearLayoutManager(requireContext())
-        recyclerview_doenca.setHasFixedSize(true)
+private fun setupRecyclerView2(view: View) {
+    recyclerview_doenca.layoutManager = LinearLayoutManager(requireContext())
+    recyclerview_doenca.setHasFixedSize(true)
 
-        listadoenca = mutableListOf()
-        adapterDoenca = AdapterDoenca(requireContext(), listadoenca)
-        recyclerview_doenca.adapter = adapterDoenca
-    }
+    listadoenca = mutableListOf()
+    adapterDoenca = AdapterDoenca_inicio1(requireContext(), listadoenca)
+    recyclerview_doenca.adapter = adapterDoenca
+}
 
     // Busca das doenças do usuário
-    private fun fetchRemediosDoUsuario2() {
+    private fun  fetchRemediosDoUsuario2() {
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user?.uid
 
@@ -196,6 +205,7 @@ class Inicio1 : Fragment() {
                     if (document != null && document.exists()) {
                         val doencaIds = document.get("doenca") as? List<String>
                         if (doencaIds.isNullOrEmpty()) {
+                            Log.d("Inicio1", "Nenhuma doença encontrada")
                         } else {
                             for (doencaId in doencaIds) {
                                 fetchDadosDoFirebase2(doencaId)
@@ -219,14 +229,18 @@ class Inicio1 : Fragment() {
                 if (document != null && document.exists()) {
                     val nome = document.getString("nome")
                     val tipo = document.getString("tipo")
-                    val descricao = document.getString("descricao")
                     val url = document.getString("Url")
 
-                    if (nome != null && tipo != null && descricao != null) {
-                        val doenca = Tipo_Remedios(url ?: "", nome, tipo, descricao)
+                    if (nome != null && tipo != null) {
+                        val doenca = Tipo_Remedios(
+                            foto = url ?: "",
+                            nome = nome,
+                            tipo = tipo,
+                            documentId = doencaId
+                        )
                         atualizarListaDoencas(doenca)
                     } else {
-                        Log.d("Inicio1", "Nome, tipo ou descricao da doença está nulo")
+                        Log.d("Inicio1", "Nome ou tipo da doença está nulo")
                     }
                 } else {
                     Log.d("Inicio1", "Documento da doença não encontrado")

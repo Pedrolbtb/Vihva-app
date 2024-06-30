@@ -26,6 +26,7 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
     private lateinit var descricaoTextView: TextView
     private lateinit var urlImageView: ImageView
     private var remedioId: String? = null
+    private var remedioNome: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,76 +35,53 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
         // Inicializa o Firestore
         firestore = FirebaseFirestore.getInstance()
 
-        // Obtém o ID do remédio do Intent
+        // Obtém o ID e o nome do remédio passados pelo Intent
         remedioId = intent.getStringExtra("remedioId")
+
+
+        // Inicializa as views
+        nomeTextView = findViewById(R.id.nomere)
+        descricaoTextView = findViewById(R.id.descricao1)
+        urlImageView = findViewById(R.id.foto_Remedio)
+
+        // Exibe o nome do remédio
+
+
+        // Busca os dados do remédio no Firebase usando o ID
+        remedioId?.let { id ->
+            fetchDadosDoFirebase(id)
+        }
 
         // Configura o botão de voltar
         val btnVoltar = findViewById<ImageButton>(R.id.btn_voltarpop)
         btnVoltar.setOnClickListener {
             onBackPressed()
         }
-
-        // Referências para os TextViews que exibirão o nome e a descrição do remédio
-        nomeTextView = findViewById(R.id.nomere)
-        descricaoTextView = findViewById(R.id.descricao1)
-        urlImageView = findViewById(R.id.foto_Remedio)
-
-        // Busca os dados do Firebase usando o ID do remédio
-        remedioId?.let { id ->
-            fetchDadosDoFirebase(id)
-        }
     }
 
     // Método para buscar os dados do remédio no Firebase
     private fun fetchDadosDoFirebase(docId: String) {
-        val user = FirebaseAuth.getInstance().currentUser
-        val uid = user?.uid
-
-        if (uid != null) {
-            // Primeiro, obtemos os IDs dos remédios associados ao usuário
-            val clientRef = firestore.collection("clientes").document(uid)
-            clientRef.get()
-                .addOnSuccessListener { document ->
-                    if (document != null && document.exists()) {
-                        val remediosIds = document.get("remedios") as? List<String>
-                        remediosIds?.let { ids ->
-                            // Verifica se o ID do remédio buscado está presente na lista de remédios do usuário
-                            if (ids.contains(docId)) {
-                                // Busca os detalhes do remédio na coleção "remedios"
-                                val docRef = firestore.collection("remedios").document(docId)
-                                docRef.get()
-                                    .addOnSuccessListener { document ->
-                                        if (document != null && document.exists()) {
-                                            val nome = document.getString("nome")
-                                            val descricao = document.getString("descricao")
-                                            val url = document.getString("Url")
-
-                                            // Carrega a imagem usando o Picasso se a URL estiver disponível
-                                            url?.let {
-                                                Picasso.get().load(it).into(urlImageView)
-                                            }
-
-                                            // Atualiza os TextViews com o nome e a descrição do remédio
-                                            nomeTextView.text = nome
-                                            descricaoTextView.text = descricao
-                                        } else {
-                                            Log.d("DescriçãoRemedio_inicio1", "Documento do remédio não encontrado")
-                                        }
-                                    }
-                                    .addOnFailureListener { e ->
-                                        Log.w("DescriçãoRemedio_inicio1", "Erro ao obter documento do remédio", e)
-                                    }
-                            } else {
-                                Log.d("DescriçãoRemedio_inicio1", "O remédio com ID $docId não está associado ao usuário")
-                            }
-                        }
-                    } else {
-                        Log.d("DescriçãoRemedio_inicio1", "Documento do usuário não encontrado")
+        val docRef = firestore.collection("remedios").document(docId)
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    val descricao = document.getString("descricao")
+                    val url = document.getString("Url")
+                    val nome = document.getString("nome")
+                    // Carrega a imagem usando o Picasso se a URL estiver disponível
+                    url?.let {
+                        Picasso.get().load(it).into(urlImageView)
                     }
-                }
-                .addOnFailureListener { e ->
-                    Log.w("DescriçãoRemedio_inicio1", "Erro ao obter documento do usuário", e)
+                    //nome
+                    nomeTextView.text = nome
+                    // Atualiza o TextView com a descrição do remédio
+                    descricaoTextView.text = descricao
+                } else {
+                    Log.d("DescriçãoRemedio_inicio1", "Documento não encontrado")
                 }
             }
-        }
+            .addOnFailureListener { e ->
+                Log.w("DescriçãoRemedio_inicio1", "Erro ao obter documento", e)
+            }
+    }
 }

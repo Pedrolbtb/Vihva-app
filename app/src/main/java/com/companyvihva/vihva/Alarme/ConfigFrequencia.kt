@@ -43,33 +43,16 @@ class ConfigFrequencia : AppCompatActivity() {
             startActivity(telaDuracao)
         }
 
-        val container_apartir = findViewById<View>(R.id.container_apartir).setOnClickListener {
-            val picker = MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_24H)
-                .setHour(12)
-                .setMinute(10)
-                .build()
-
-            horaApartirTextView = findViewById(R.id.hora_apartir)
-
-            picker.addOnPositiveButtonClickListener {
-                // Armazena a hora e minuto selecionados em SharedPreferences
-                val sharedPref = getSharedPreferences("TimePickerPrefs", Context.MODE_PRIVATE)
-                with(sharedPref.edit()) {
-                    putInt("selected_hour", picker.hour)
-                    putInt("selected_minute", picker.minute)
-                    apply()
-                }
-                displayStoredTime()
-            }
-
-            picker.show(supportFragmentManager, "MaterialTimePicker")
-        }
 
         // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
-            finish() // Fecha a atividade atual e retorna para a anterior
+            val telaDuracao = Intent(this, CriaAlarme::class.java)
+            telaDuracao.putExtra("data", data)
+            telaDuracao.putExtra("duracao", duracao)
+            telaDuracao.putExtra("frequencia", frequencia)
+            telaDuracao.putExtra("horaemhora", horas)
+            startActivity(telaDuracao)
         }
 
         val descFrequencia = findViewById<TextView>(R.id.descFrequencia)
@@ -81,13 +64,5 @@ class ConfigFrequencia : AppCompatActivity() {
         if (duracao != null && data != null) {
             descDuracao.text = "$duracao $data"
         }
-    }
-
-
-    private fun displayStoredTime() {
-        val sharedPref = getSharedPreferences("TimePickerPrefs", Context.MODE_PRIVATE)
-        val hour = sharedPref.getInt("selected_hour", 0)
-        val minute = sharedPref.getInt("selected_minute", 0)
-        horaApartirTextView.text = String.format("%02d:%02d", hour, minute)
     }
 }

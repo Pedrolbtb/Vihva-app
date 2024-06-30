@@ -21,7 +21,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
             <TextView
                 style="@style/titulo_inicio"
                 android:layout_width="0dp"

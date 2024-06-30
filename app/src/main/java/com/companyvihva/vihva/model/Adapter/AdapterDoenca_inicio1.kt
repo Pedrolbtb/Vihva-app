@@ -1,5 +1,4 @@
-package com.companyvihva.vihva.model.Adapter
-
+package com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -9,17 +8,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.R
-import com.companyvihva.vihva.com.companyvihva.vihva.model.DescriçãoRemedio_inicio1
-import com.companyvihva.vihva.model.Tipo_Remedios
+import com.companyvihva.vihva.com.companyvihva.vihva.model.DescriçãoDoença_inicio1
+import com.companyvihva.vihva.model.PopupRemedio.DescriçãoDoença
 import com.companyvihva.vihva.model.PopupRemedio.DescriçãoRemedio
+import com.companyvihva.vihva.model.Tipo_Remedios
 import com.squareup.picasso.Picasso
 
-class AdapterRemedio_inicio1(private val context: Context, private val listas: MutableList<Tipo_Remedios>) :
-    RecyclerView.Adapter<AdapterRemedio_inicio1.ListaViewHolder>() {
+class AdapterDoenca_inicio1(private val context: Context, private val listas: MutableList<Tipo_Remedios>) :
+    RecyclerView.Adapter<AdapterDoenca_inicio1.ListaViewHolder>() {
 
     // Método onCreateViewHolder é responsável por inflar o layout de cada item da lista e criar um novo ListaViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListaViewHolder {
-        val itemView = LayoutInflater.from(context).inflate(R.layout.hadreeeee, parent, false)
+        val itemView = LayoutInflater.from(context).inflate(R.layout.adicionar_doenca, parent, false)
         return ListaViewHolder(itemView)
     }
 
@@ -45,10 +45,9 @@ class AdapterRemedio_inicio1(private val context: Context, private val listas: M
         init {
             // Define o clique no item da lista
             itemView.setOnClickListener {
-                // Ao clicar em um item da lista, abra a Activity de descrição correspondente
-                val intent = Intent(context, DescriçãoRemedio_inicio1::class.java).apply {
-                    // Aqui você passa o ID do remédio usando o mesmo nome de extra
-                    putExtra("remedioId", listas[adapterPosition].documentId)
+                // Ao clicar em um item da lista, abra a Activity de pop-up correspondente
+                val intent = Intent(context, DescriçãoDoença_inicio1::class.java).apply {
+                    putExtra("doencaId", listas[adapterPosition].documentId) // Alterado para acessar o ID do documento
                 }
                 context.startActivity(intent)
             }

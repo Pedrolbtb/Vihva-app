@@ -163,7 +163,7 @@
 
     <string name="estoq_atual">Estoque atual</string>
 
-    <string name="lembre_me_em">Lembre me em</string>
+    <string name="lembre_me_em">Lembre-me em</string>
 
     <string name="prog_do_alarme">Programação do alarme</string>
 
@@ -240,7 +240,14 @@
         <item>DDD 17</item>
         <item>DDD 18</item>
         <item>DDD 19</item>
+    </array>
 
+    <array name="TipoMed">
+        <item>Cápsula</item>
+        <item>Gotas</item>
+        <item>Comprimidos</item>
+        <item>Injetável</item>
+        <item>Inalação</item>
     </array>
 
     <string name="Toast_configuracoes_sucesso">Configurações salvas</string>
