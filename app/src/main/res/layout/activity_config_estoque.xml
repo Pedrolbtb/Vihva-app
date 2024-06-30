@@ -64,6 +64,7 @@
         android:id="@+id/tipodemedicacao"
         style="@style/text_botoesAlarme"
         android:layout_marginEnd="150dp"
+        android:layout_marginBottom="3dp"
         android:elevation="1dp"
         android:text="@string/tip_medicação"
         app:layout_constraintBottom_toBottomOf="@+id/container_tipo"
@@ -71,20 +72,24 @@
         app:layout_constraintStart_toStartOf="@id/container_tipo"
         app:layout_constraintTop_toTopOf="@+id/container_tipo" />
 
-    <TextView
-        android:id="@+id/hora_apartir"
-        style="@style/text_botoesAlarme"
-        android:layout_marginStart="240dp"
+    <Spinner
+        android:id="@+id/spinnerTipoMed"
+        android:layout_width="150dp"
+        android:layout_height="62dp"
+        android:background="@drawable/spinner_estoque"
+        android:entries="@array/ddi"
+        android:textColor="@color/Letras"
+        android:layout_marginStart="210dp"
         android:elevation="1dp"
-        android:text="@string/capsula"
-        android:textColor="@color/hint"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/container_tipo"
         app:layout_constraintEnd_toEndOf="@id/container_tipo"
         app:layout_constraintStart_toStartOf="@id/container_tipo"
-        app:layout_constraintTop_toTopOf="@+id/container_tipo" />
+        app:layout_constraintTop_toTopOf="@+id/container_tipo"
+        />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_salvarAlarme"
+        android:id="@+id/btn_salvarEstoque"
         style="@style/Button_salvar"
         android:layout_width="300dp"
         android:layout_marginTop="430dp"
@@ -136,6 +141,7 @@
         app:layout_constraintTop_toTopOf="@+id/container_lembreounao" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switchEstoque"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="236dp"
@@ -146,21 +152,6 @@
         app:layout_constraintEnd_toEndOf="@id/container_lembreounao"
         app:thumbTint="@color/Letras"
         app:trackTint="@color/letras_remedios" />
-
-    <View
-        android:id="@+id/container_estoque"
-        style="@style/container_linha"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="95dp"
-        android:background="@drawable/container_linha"
-        android:elevation="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
-        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
-        app:layout_constraintStart_toStartOf="@id/View_Programacao"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_estoque" />
 
     <TextView
         android:layout_width="300dp"
@@ -175,24 +166,51 @@
         app:layout_constraintStart_toStartOf="@+id/View_Programacao"
         app:layout_constraintTop_toBottomOf="@+id/titulo_estoque" />
 
+
+    <View
+        android:id="@+id/container_estoque"
+        style="@style/container_linha"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="65dp"
+        android:visibility="gone"
+        android:background="@drawable/container_linha"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_estoque" />
+
+
     <TextView
         android:id="@+id/textview_qtdestoque"
         style="@style/text_botoesAlarme"
         android:layout_marginEnd="200dp"
         android:elevation="1dp"
         android:text="@string/estoq_atual"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/container_estoque"
         app:layout_constraintEnd_toEndOf="@id/container_estoque"
         app:layout_constraintStart_toStartOf="@id/container_estoque"
         app:layout_constraintTop_toTopOf="@+id/container_estoque" />
 
-    <TextView
-        android:id="@+id/qtd_estoque"
-        style="@style/text_botoesAlarme"
-        android:layout_marginStart="240dp"
-        android:elevation="1dp"
-        android:text="30"
-        android:textColor="@color/hint"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editTextEstoqueAtual"
+        style="@style/Edit_Text_Estoque"
+        android:layout_width="81dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="260dp"
+        android:layout_marginBottom="5dp"
+        android:autofillHints="Número de medicamentos restantes"
+        android:background="@drawable/edit_text"
+        android:elevation="2dp"
+        android:visibility="gone"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="2"
         app:layout_constraintBottom_toBottomOf="@+id/container_estoque"
         app:layout_constraintEnd_toEndOf="@id/container_estoque"
         app:layout_constraintStart_toStartOf="@id/container_estoque"
@@ -202,10 +220,11 @@
         android:id="@+id/container_estoqueAtual"
         style="@style/container_linha"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="90dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="40dp"
+        android:visibility="gone"
+        android:layout_marginTop="120dp"
         android:background="@drawable/container_linha"
         android:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
@@ -218,19 +237,28 @@
         style="@style/text_botoesAlarme"
         android:layout_marginEnd="190dp"
         android:elevation="1dp"
+        android:visibility="gone"
         android:text="@string/lembre_me_em"
         app:layout_constraintBottom_toBottomOf="@+id/container_estoqueAtual"
         app:layout_constraintEnd_toEndOf="@id/container_estoqueAtual"
         app:layout_constraintStart_toStartOf="@id/container_estoqueAtual"
         app:layout_constraintTop_toTopOf="@+id/container_estoqueAtual" />
 
-    <TextView
-        android:id="@+id/qtd_estoqueAlarme"
-        style="@style/text_botoesAlarme"
-        android:layout_marginStart="240dp"
-        android:elevation="1dp"
-        android:text="10"
-        android:textColor="@color/hint"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editTextLembreme"
+        style="@style/Edit_Text_Estoque"
+        android:layout_width="81dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text"
+        android:layout_marginStart="260dp"
+        android:autofillHints="Número de medicamentos restantes"
+        android:elevation="2dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:ems="10"
+        android:visibility="gone"
+        android:inputType="number"
+        android:maxLength="2"
         app:layout_constraintBottom_toBottomOf="@+id/container_estoqueAtual"
         app:layout_constraintEnd_toEndOf="@id/container_estoqueAtual"
         app:layout_constraintStart_toStartOf="@id/container_estoqueAtual"

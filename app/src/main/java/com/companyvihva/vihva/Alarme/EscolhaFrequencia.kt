@@ -108,9 +108,13 @@ class EscolhaFrequencia : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btn_salvarFrequencia).setOnClickListener {
-            val dados = prepararDadosParaEnvio()
+            val dados = if (frequencia == "Somente em certos dias") {
+                prepararDadosParaEnvio()
+            } else {
+                Bundle()
+            }
             val frequenciaSelecionada = frequencia
-            val horaemhora: String? = if (frequencia == "Intervalo"){
+            val horaemhora: String? = if (frequencia == "Intervalo") {
                 val layoutIntervalo = parentLayout.findViewById<LinearLayout>(R.id.layout_intervalo)
                 val editTextHora = layoutIntervalo.findViewById<EditText>(R.id.editTextHoraemHora)
                 editTextHora.text.toString()
@@ -120,7 +124,7 @@ class EscolhaFrequencia : AppCompatActivity() {
 
             // Cria um Intent para iniciar a próxima atividade
             val intent = Intent(this, ConfigFrequencia::class.java)
-            intent.putExtra("dados", dados)
+            intent.putExtras(dados)
             intent.putExtra("frequencia", frequenciaSelecionada)
             intent.putExtra("horaemhora", horaemhora)
             intent.putExtra("data", data)

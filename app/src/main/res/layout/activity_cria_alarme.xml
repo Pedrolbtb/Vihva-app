@@ -117,6 +117,7 @@
         app:layout_constraintTop_toTopOf="@+id/container_programacaoRemedio" />
 
     <TextView
+        android:id="@+id/descprogramacao"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
@@ -154,11 +155,12 @@
         app:layout_constraintTop_toTopOf="@id/container_estoque" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/descEstoque"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="170dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/trinta_caps"
+        android:layout_marginEnd="140dp"
+        android:layout_marginBottom="10dp"
+        android:text="Cápsulas"
         app:layout_constraintBottom_toBottomOf="@+id/container_estoque"
         app:layout_constraintEnd_toEndOf="@+id/container_estoque"
         app:layout_constraintStart_toStartOf="parent"

@@ -110,8 +110,6 @@ class Configuracoes : AppCompatActivity() {
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerDDI.adapter = adapter
-
-
         // Obter um conjunto de preferências do aplicativo
         val preferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE)
 
