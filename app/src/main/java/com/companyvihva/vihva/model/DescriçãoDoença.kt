@@ -13,7 +13,6 @@ import com.companyvihva.vihva.model.Tipo_Classe
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirestoreRegistrar
 import com.squareup.picasso.Picasso
 
 class DescriçãoDoença: AppCompatActivity() {

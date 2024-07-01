@@ -6,8 +6,9 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.TableRow
 import androidx.appcompat.app.AppCompatActivity
-import com.companyvihva.vihva.Inicio.Inicio
+import com.companyvihva.vihva.Configuracoes.ConfigNotificacoes
 import com.companyvihva.vihva.R
+
 
 class Config_List : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +33,12 @@ class Config_List : AppCompatActivity() {
         findViewById<TableRow>(R.id.button_configList_deleteconta).setOnClickListener {
             val telaDelete = Intent(this, Config_DeletarPerfil::class.java)
             startActivity(telaDelete)
+            finish()
+        }
+
+        findViewById<TableRow>(R.id.button_configList_notificações).setOnClickListener{
+            val telaNotificacoes = Intent ( this, ConfigNotificacoes::class.java )
+            startActivity(telaNotificacoes)
             finish()
         }
     }

@@ -25,9 +25,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
+
         <activity
-            android:name=".Inicio.Evento"
+            android:name=".Configuracoes.ConfigNotificacoes"
             android:exported="false" />
+       <!--<activity
+            android:name=".Inicio.Evento"
+            android:exported="false" /> -->
         <activity
             android:name=".Alarme.EscolhaRemedio"
             android:exported="false"
@@ -111,10 +115,6 @@
             android:exported="true"
             android:theme="@style/AppTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <!-- API DE ACCESSIBILITY -->
-                <action android:name="android.accessibilityservice.AccessibilityService" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -126,6 +126,9 @@
             android:label="@string/accessibility_service_label"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <!-- API DE ACCESSIBILIDADE -->
+                <action android:name="android.accessibilityservice.AccessibilityService" />
                 <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>
 

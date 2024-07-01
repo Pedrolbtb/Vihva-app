@@ -287,6 +287,10 @@
     <string name="accessibility_service_label">Meu serviço de acessibilidade</string>
     <string name="accessibility_service_description">Serviço para melhorar a acessibilidade do aplicativo</string>
 
+    //sistema de amizade e notificações
+    <string name="text_rejeitar">Rejeitar</string>
+    <string name="text_aceitar">Aceitar</string>
+
 
 </resources>
 

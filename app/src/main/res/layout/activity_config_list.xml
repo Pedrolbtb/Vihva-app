@@ -84,6 +84,32 @@
                 app:srcCompat="@drawable/seta_direita" />
         </TableRow>
 
+        <TableRow
+            android:id="@+id/button_configList_notificações"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/container_linha">
+
+            <TextView
+                style="@style/text_doenca_e_remedio"
+                android:layout_width="330dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="30dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="notificações"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="30dp"
+                app:srcCompat="@drawable/seta_direita" />
+        </TableRow>
+
+
+
     </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

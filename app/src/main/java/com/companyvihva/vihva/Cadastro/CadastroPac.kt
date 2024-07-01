@@ -141,7 +141,8 @@ class CadastroPac : AppCompatActivity() {
                         if (uid != null) {
                             // Criando um mapa de dados do cliente
                             val dadosCliente = hashMapOf(
-                                "email" to email
+                                "email" to email,
+                                "uid" to uid
                                 // Adicione outros dados do cliente aqui
                             )
                             // Salvando os dados do cliente no Firestore na coleção "clientes"
