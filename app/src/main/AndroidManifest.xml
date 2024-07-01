@@ -30,21 +30,27 @@
             android:exported="false" />
         <activity
             android:name=".Alarme.EscolhaRemedio"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
+
         <activity
             android:name=".com.companyvihva.vihva.AdicionarDoenca.AdicionarDoenca"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
-            android:name=".Alarme.ConfigEstoque"
-            android:exported="false" />
+            android:name=".Alarme.ConfigFrequencia"
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Alarme.ConfigDuracao"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Alarme.EscolhaFrequencia"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
-            android:name=".Login.Login"
+            android:name=".Alarme.ConfigEstoque"
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
@@ -97,7 +103,7 @@
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Alarme.ConfigFrequencia"
+            android:name=".Login.Login"
             android:exported="true"
             android:theme="@style/AppTheme">
             <intent-filter>
