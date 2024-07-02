@@ -36,8 +36,16 @@ class ConfigDuracao : AppCompatActivity() {
         // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
-            finish()
+            val intent = Intent(this, CriaAlarme::class.java).apply {
+                putExtra("data", formattedDate) // Atualizado para usar formattedDate se necessário
+                putExtra("duracao", duracao)
+                putExtra("frequencia", frequencia)
+                putExtra("horaemhora", horas)
+            }
+            startActivity(intent)
+            finish() // Finaliza a atividade atual para retornar à tela anterior
         }
+
 
         // Referência para o RadioGroup de seleção de frequência
         val radioGroup: RadioGroup = findViewById(R.id.radioGroup_frequencia)
@@ -134,8 +142,10 @@ class ConfigDuracao : AppCompatActivity() {
             intent.putExtra("duracao", duracaoSelecionada)
             intent.putExtra("frequencia", frequencia)
             intent.putExtra("horaemhora", horas)
-            startActivity(intent)
+
         }
+        startActivity(intent)
+        finish()
     }
 
     // Método para exibir um Toast personalizado

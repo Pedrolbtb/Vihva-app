@@ -47,13 +47,16 @@ class ConfigFrequencia : AppCompatActivity() {
         // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
-            val telaDuracao = Intent(this, CriaAlarme::class.java)
-            telaDuracao.putExtra("data", data)
-            telaDuracao.putExtra("duracao", duracao)
-            telaDuracao.putExtra("frequencia", frequencia)
-            telaDuracao.putExtra("horaemhora", horas)
-            startActivity(telaDuracao)
+            val intent = Intent(this, CriaAlarme::class.java).apply {
+                putExtra("data", data)
+                putExtra("duracao", duracao)
+                putExtra("frequencia", frequencia)
+                putExtra("horaemhora", horas)
+            }
+            startActivity(intent)
+            finish() // Finaliza a atividade atual para retornar à tela anterior
         }
+
 
         val descFrequencia = findViewById<TextView>(R.id.descFrequencia)
         val descDuracao = findViewById<TextView>(R.id.descduracao)

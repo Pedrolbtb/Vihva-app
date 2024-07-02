@@ -28,10 +28,19 @@ class EscolhaFrequencia : AppCompatActivity() {
         val radioGroup: RadioGroup = findViewById(R.id.radioGroup_frequencia)
 
         // Configurando o listener para o botão de voltar
+        // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
-            finish()
+            val intent = Intent(this, CriaAlarme::class.java).apply {
+                putExtra("data", data)
+                putExtra("duracao", duracao)
+                putExtra("frequencia", frequencia)
+                putExtra("horaemhora", horas)
+            }
+            startActivity(intent)
+            finish() // Finaliza a atividade atual para retornar à tela anterior
         }
+
 
         if (frequencia != null){
             when(frequencia){
@@ -132,6 +141,7 @@ class EscolhaFrequencia : AppCompatActivity() {
 
             // Inicia a próxima atividade
             startActivity(intent)
+            finish()
         }
     }
 
