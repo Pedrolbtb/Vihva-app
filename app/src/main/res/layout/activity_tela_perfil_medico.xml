@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Inicio.Alarme"
+    android:background="@drawable/background_home">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_save_perfil"
+            style="@style/foto"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginEnd="190dp"
+            android:layout_marginBottom="480dp"
+            android:scaleType="centerCrop"
+            app:civ_border_color="@color/Letras"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_nome"
+            style="@style/text"
+            android:layout_marginBottom="550dp"
+            android:textSize="20sp"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/text_genero"
+            style="@style/text"
+            android:layout_marginStart="65dp"
+            android:textSize="15sp"
+            android:layout_marginBottom="465dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_idade"
+            style="@style/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_marginBottom="465dp"
+            android:layout_marginStart="255dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_altura"
+            style="@style/text"
+            android:layout_marginBottom="390dp"
+            android:layout_marginStart="65dp"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_peso"
+            style="@style/text"
+            android:textSize="15sp"
+            android:layout_marginBottom="390dp"
+            android:layout_marginStart="255dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <View
+            android:id="@+id/container_bio"
+            style="@style/Edit_Text_Perfil"
+            android:layout_width="match_parent"
+            android:layout_marginTop="150dp"
+            android:layout_height="350dp"
+            android:gravity="top"
+            android:textColor="@color/Letras"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/View_biografia"
+            android:layout_width="match_parent"
+            android:layout_height="330dp"
+            android:layout_marginTop="150dp"
+            android:gravity="top"
+            android:textSize="20sp"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            android:layout_marginEnd="55dp"
+            android:layout_marginStart="52dp"
+            android:textColor="@color/Letras"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="213dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.83" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

@@ -9,7 +9,7 @@
     tools:context=".Inicio.Inicio">
 
     <View
-        android:background="@drawable/container_foto_widget"
+        android:background="@drawable/container_foto_widget_redondo"
         android:layout_width="95dp"
         android:layout_height="105dp"
         android:layout_marginBottom="5dp"
@@ -24,13 +24,14 @@
         android:layout_marginTop="5dp"
         android:layout_marginStart="29dp"
         android:layout_marginBottom="10dp"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/foto_amigo"
+            style="@style/foto"
             android:layout_width="91dp"
             android:layout_height="101dp"
             android:scaleType="centerCrop"
