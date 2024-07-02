@@ -51,7 +51,7 @@ class Lista_amizades : AppCompatActivity() {
             clientRef.get()
                 .addOnSuccessListener { document ->
                     if (document != null && document.exists()) {
-                        val amigosIds = document.get("amigos") as? List<String>
+                        val amigosIds = document.get("medicos") as? List<String>
                         amigosIds?.forEach { amigoId ->
                             fetchDadosDoFirebase(amigoId)
                         }

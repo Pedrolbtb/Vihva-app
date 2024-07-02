@@ -154,7 +154,7 @@
             android:layout_marginStart="170dp"
             android:elevation="2dp"
             android:width="180dp"
-            android:background="@drawable/button_verde"
+            android:background="@drawable/button_roxo"
             android:text="@string/text_listaAmigos"
             android:textColor="@color/off_white"
             android:textSize="13sp"

@@ -3,38 +3,37 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="16dp"
-    android:background="@drawable/background_widget">
-
-
+    android:background="@drawable/background_notifiq">
     <TextView
         android:id="@+id/tvNomeSolicitante"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textColor="@color/off_white"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:textStyle="bold"
         android:text="Nome do Solicitante"
         android:textSize="16sp"
         />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAceitar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@drawable/button_notifiq"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:textColor="@color/off_white"
         android:text="@string/text_aceitar"
-        android:fontFamily="@font/cloudsoft_light_300"
-
-
+        android:fontFamily="@font/cloudsoft_bold_700"
         />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRejeitar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@drawable/button_voltar_notifiq"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
         android:textColor="@color/off_white"
         android:text="@string/text_rejeitar"
-        android:fontFamily="@font/cloudsoft_light_300"
-
+        android:fontFamily="@font/cloudsoft_bold_700"
         />
 </LinearLayout>

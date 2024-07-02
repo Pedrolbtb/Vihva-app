@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--codigo do degrade da tela inicial-->
+    <gradient
+            android:startColor="@color/off_white"
+            android:endColor="#6F7BB5"
+            android:centerColor="@color/off_white"
+            android:angle="190"/>
+</shape>
