@@ -51,7 +51,7 @@ class Lista_amizades : AppCompatActivity() {
             clientRef.get()
                 .addOnSuccessListener { document ->
                     if (document != null && document.exists()) {
-                        val amigosIds = document.get("amigos") as? List<String>
+                        val amigosIds = document.get("medicos") as? List<String>
                         amigosIds?.forEach { amigoId ->
                             fetchDadosDoFirebase(amigoId)
                         }
@@ -67,7 +67,7 @@ class Lista_amizades : AppCompatActivity() {
 
     private fun fetchDadosDoFirebase(amigoId: String) {
         if (amigoId.isNotEmpty()) {
-            val docRef = db.collection("clientes").document(amigoId)
+            val docRef = db.collection("medicos").document(amigoId)
             docRef.get()
                 .addOnSuccessListener { document ->
                     if (document != null && document.exists()) {
