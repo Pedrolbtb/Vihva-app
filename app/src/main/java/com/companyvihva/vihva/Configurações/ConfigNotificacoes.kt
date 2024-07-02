@@ -6,9 +6,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.companyvihva.vihva.Configurações.SolicitacaoAmizade
-import com.companyvihva.vihva.Configurações.SolicitacaoAmizadeAdapter
 import com.companyvihva.vihva.R
+import com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter.SolicitacaoAmizade
+import com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter.SolicitacaoAmizadeAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -45,6 +45,7 @@ class ConfigNotificacoes : AppCompatActivity() {
                     val solicitacao = it.toObject(SolicitacaoAmizade::class.java)
                     solicitacao.id = it.id
                     solicitacao.medicoId = it.getString(FIELD_MEDICO_ID) ?: ""
+                    solicitacao.nomeSolicitante = it.getString("nome") ?: ""
                     Log.d("CarregarSolicitacoes", "ID: ${solicitacao.id}, Médico ID: ${solicitacao.medicoId}, Para: ${solicitacao.para}")
                     solicitacao
                 }

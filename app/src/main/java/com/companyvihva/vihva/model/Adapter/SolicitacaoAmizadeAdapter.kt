@@ -1,4 +1,4 @@
-package com.companyvihva.vihva.Configurações
+package com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,7 +14,7 @@ data class SolicitacaoAmizade(
     var medicoId: String = "", // ID do médico
     val para: String = "", // ID do paciente
     val status: String = "",
-    var nomeSolicitante: String? = "" // Nome do solicitante, se necessário
+    var nomeSolicitante: String? = "" // Nome do solicitante
 )
 
 
@@ -47,7 +47,7 @@ class SolicitacaoAmizadeAdapter(
         private val btnRejeitar: Button = itemView.findViewById(R.id.btnRejeitar)
 
         fun bind(solicitacao: SolicitacaoAmizade) {
-            tvNomeSolicitante.text = solicitacao.nomeSolicitante ?: "Desconhecido"
+            tvNomeSolicitante.text = solicitacao.nomeSolicitante // Exibe o nome do solicitante
             Log.d("SolicitacaoAmizadeAdapter", "Nome do solicitante: ${solicitacao.nomeSolicitante}, Médico ID: ${solicitacao.medicoId}")
             btnAceitar.setOnClickListener {
                 onActionClicked(solicitacao, true)

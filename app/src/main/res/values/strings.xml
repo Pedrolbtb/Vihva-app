@@ -290,6 +290,7 @@
     //sistema de amizade e notificações
     <string name="text_rejeitar">Rejeitar</string>
     <string name="text_aceitar">Aceitar</string>
+    <string name="text_list_amizade">Meus amigos</string>
 
 
 </resources>

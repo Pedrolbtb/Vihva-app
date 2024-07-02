@@ -15,6 +15,7 @@ import android.widget.ImageView
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.CriarPerfil.FotoBio
@@ -83,6 +84,13 @@ class Perfil : Fragment() {
         btn_editar.setOnClickListener {
             // Abrir o popup para editar o perfil
             showEditPerfilPopup()
+        }
+
+        // Encontrar o botão btn_Amizade e configurar OnClickListener
+        val btnAmizade = view.findViewById<AppCompatButton>(R.id.btn_Amizade)
+        btnAmizade.setOnClickListener {
+            val intent = Intent(requireContext(), Lista_amizades::class.java)
+            startActivity(intent)
         }
     }
 
