@@ -35,10 +35,22 @@ class ConfigEstoque : AppCompatActivity() {
         val textviewQtdEstoqueAlarme = findViewById<View>(R.id.textview_qtdestoqueAlarme)
         val editTextLembreme = findViewById<EditText>(R.id.editTextLembreme)
 
+        // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
-            finish()
+            val intent = Intent(this, CriaAlarme::class.java).apply {
+                putExtra("data", data)
+                putExtra("duracao", duracao)
+                putExtra("frequencia", frequencia)
+                putExtra("horaemhora", horas)
+                putExtra("lembreme", lembreme)
+                putExtra("tipomed", tipomed)
+                putExtra("estoque", estoque)
+            }
+            startActivity(intent)
+            finish() // Finaliza a atividade atual para retornar à tela anterior
         }
+
 
         val spinnerTipoMed = findViewById<Spinner>(R.id.spinnerTipoMed)
 
@@ -92,9 +104,11 @@ class ConfigEstoque : AppCompatActivity() {
                 val lembreme = editTextLembreme.text.toString()
                 intent.putExtra("estoque", estoque)
                 intent.putExtra("lembreme", lembreme)
-            }
 
+            }
             startActivity(intent)
+            finish()
+
         }
     }
 }

@@ -56,5 +56,6 @@ class SolicitacaoAmizadeAdapter(
                 onActionClicked(solicitacao, false)
             }
         }
+
     }
 }
