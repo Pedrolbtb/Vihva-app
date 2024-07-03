@@ -54,18 +54,34 @@
 
     </LinearLayout>
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/SearchRemedio"
+        android:layout_width="358dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="28dp"
+
+        app:iconifiedByDefault="false"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView_remedios"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:queryBackground="@android:color/transparent"
+        app:queryHint="Buscar Remedio" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_remedios"
-        android:layout_width="360dp"
-        android:paddingStart="5dp"
-        android:layout_height="500dp"
+        android:layout_width="344dp"
+        android:layout_height="419dp"
         android:layout_marginTop="85dp"
         android:elevation="2dp"
+        android:paddingStart="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.712" />
 
     <TextView
         android:id="@+id/textView"
