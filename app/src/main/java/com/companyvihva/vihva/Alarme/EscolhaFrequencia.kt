@@ -10,35 +10,47 @@ import android.widget.LinearLayout
 import android.widget.RadioGroup
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.TextView
 import com.companyvihva.vihva.R
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
+import org.w3c.dom.Text
 
 class EscolhaFrequencia : AppCompatActivity() {
 
     private var frequencia: String? = null
+    private var horasSelecionadas: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_escolha_frequencia)
 
         val parentLayout = findViewById<LinearLayout>(R.id.layout_Opcoes)
-        val duracao = intent.getStringExtra("duracao")
-        val data = intent.getStringExtra("data")
-        var frequencia = intent.getStringExtra("frequencia")
-        val horas = intent.getIntExtra("horaemhora", 0)
-        val radioGroup: RadioGroup = findViewById(R.id.radioGroup_frequencia)
+        frequencia = intent?.getStringExtra("frequencia")
+        val horas = intent?.getIntExtra("horaemhora", 0)
+        val duracao = intent?.getStringExtra("duracao")
+        val data = intent?.getStringExtra("data")
+        val estoque = intent?.getStringExtra("estoque")
+        val lembreme = intent?.getStringExtra("lembreme")
+        val tipomed = intent?.getStringExtra("tipomed")
+        val switchEstoqueChecked = intent?.getBooleanExtra("switchEstoque", false) ?: false
+        val nome = intent.getStringExtra("remedioId")
 
-        // Configurando o listener para o botão de voltar
-        // Configurando o listener para o botão de voltar
+
+
+        val radioGroup: RadioGroup = findViewById(R.id.radioGroup_frequencia)
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
-            val intent = Intent(this, CriaAlarme::class.java).apply {
-                putExtra("data", data)
+            val intent = Intent(this, ConfigFrequencia::class.java).apply {
                 putExtra("duracao", duracao)
-                putExtra("frequencia", frequencia)
-                putExtra("horaemhora", horas)
+                putExtra("data", data)
+                putExtra("estoque", estoque)
+                putExtra("lembreme", lembreme)
+                putExtra("tipomed", tipomed)
+                putExtra("remedioId", nome)
+                putExtra("switchEstoque", switchEstoqueChecked)
             }
             startActivity(intent)
-            finish() // Finaliza a atividade atual para retornar à tela anterior
         }
 
 
@@ -65,6 +77,40 @@ class EscolhaFrequencia : AppCompatActivity() {
 
             // Remove todas as views antes de adicionar novas
             parentLayout.removeAllViews()
+
+            if(frequencia == "Diariamente"){
+                val layoutToAdd = LayoutInflater.from(this)
+                    .inflate(R.layout.diariamente_opcoes, null)
+
+                val params = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+                params.setMargins(0, 0, 20, 0)
+                layoutToAdd.layoutParams = params
+                parentLayout.addView(layoutToAdd)
+
+                var textViewDiariamente = findViewById<TextView>(R.id.textView_diariamenteAlarme).setOnClickListener {
+                    val picker =
+                        MaterialTimePicker.Builder()
+                            .setTimeFormat(TimeFormat.CLOCK_24H)
+                            .setHour(12)
+                            .setMinute(10)
+                            .setTitleText("Selecione uma hora para tocar")
+                            .build()
+
+                    picker.addOnPositiveButtonClickListener {
+                        var textViewDiariamente = findViewById<TextView>(R.id.textView_diariamenteAlarme)
+                        horasSelecionadas = picker.hour // Captura a hora selecionada
+                        val formattedHour = String.format("%02d", picker.hour)
+                        val formattedMinute = String.format("%02d", picker.minute)
+                        val selectedTime = "$formattedHour:$formattedMinute"
+                        textViewDiariamente.text = selectedTime
+                    }
+
+                    picker.show(supportFragmentManager, "TAG_TIME_PICKER")
+                }
+            }
 
             if (frequencia == "Intervalo") {
                 // Adiciona layout de intervalo
@@ -134,10 +180,15 @@ class EscolhaFrequencia : AppCompatActivity() {
             // Cria um Intent para iniciar a próxima atividade
             val intent = Intent(this, ConfigFrequencia::class.java)
             intent.putExtras(dados)
-            intent.putExtra("frequencia", frequenciaSelecionada)
-            intent.putExtra("horaemhora", horaemhora)
             intent.putExtra("data", data)
             intent.putExtra("duracao", duracao)
+            intent.putExtra("frequencia", frequenciaSelecionada)
+            intent.putExtra("horaemhora", horaemhora)
+            intent.putExtra("lembreme", lembreme)
+            intent.putExtra("tipomed", tipomed)
+            intent.putExtra("estoque", estoque)
+            intent.putExtra("remedioId", nome)
+            intent.putExtra("switchEstoque", switchEstoqueChecked)
 
             // Inicia a próxima atividade
             startActivity(intent)

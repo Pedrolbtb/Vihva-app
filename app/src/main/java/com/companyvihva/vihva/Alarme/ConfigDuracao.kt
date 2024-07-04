@@ -8,7 +8,6 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.RadioGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.R
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -29,6 +28,11 @@ class ConfigDuracao : AppCompatActivity() {
         val horas = intent.getIntExtra("horaemhora", 0)
         duracao = intent.getStringExtra("duracao")
         val data = intent.getStringExtra("data")
+        val estoque = intent.getStringExtra("estoque")
+        val lembreme = intent.getStringExtra("lembreme")
+        val tipomed = intent.getStringExtra("tipomed")
+        val switchEstoqueChecked = intent.getBooleanExtra("switchEstoque", false)
+        val nome = intent.getStringExtra("remedioId")
 
         // Referência para o layout pai onde os novos layouts serão adicionados dinamicamente
         val parentLayout = findViewById<LinearLayout>(R.id.layout_Duracao)
@@ -36,16 +40,9 @@ class ConfigDuracao : AppCompatActivity() {
         // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
-            val intent = Intent(this, CriaAlarme::class.java).apply {
-                putExtra("data", formattedDate) // Atualizado para usar formattedDate se necessário
-                putExtra("duracao", duracao)
-                putExtra("frequencia", frequencia)
-                putExtra("horaemhora", horas)
-            }
+            val intent = Intent(this, ConfigFrequencia::class.java)
             startActivity(intent)
-            finish() // Finaliza a atividade atual para retornar à tela anterior
         }
-
 
         // Referência para o RadioGroup de seleção de frequência
         val radioGroup: RadioGroup = findViewById(R.id.radioGroup_frequencia)
@@ -56,7 +53,7 @@ class ConfigDuracao : AppCompatActivity() {
                 "Sem data para acabar" -> radioGroup.check(R.id.radio_intervalo)
                 "Até" -> radioGroup.check(R.id.radio_dias)
             }
-            if (duracao == "Até"){
+            if (duracao == "Até") {
                 parentLayout.removeAllViews()
                 val layoutToAdd = LayoutInflater.from(this)
                     .inflate(R.layout.duracao_opcoes, parentLayout, false)
@@ -71,24 +68,41 @@ class ConfigDuracao : AppCompatActivity() {
 
                 // Adicionando o layout ao parentLayout
                 parentLayout.addView(layoutToAdd)
-                val textViewCalendario =
-                    layoutToAdd.findViewById<TextView>(R.id.textView_calendarioAlarme)
+
+                // Configurando a TextView para mostrar a data selecionada
+                val textViewCalendario = layoutToAdd.findViewById<TextView>(R.id.textView_calendarioAlarme)
                 textViewCalendario.text = data
+
+                // Configurando clique para abrir o DatePicker
+                textViewCalendario.setOnClickListener {
+                    val datePicker = MaterialDatePicker.Builder.datePicker()
+                        .setTitleText("Select date")
+                        .build()
+
+                    datePicker.addOnPositiveButtonClickListener { selectedDate ->
+                        // Formatando a data selecionada
+                        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                        formattedDate = sdf.format(Date(selectedDate))
+
+                        // Definindo a data formatada na TextView
+                        textViewCalendario.text = formattedDate
+                    }
+
+                    datePicker.show(supportFragmentManager, "DatePicker")
+                }
             }
         }
 
         // Configurando o listener para mudanças no RadioGroup
-        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+        radioGroup.setOnCheckedChangeListener { _, checkedId ->
             duracao = when (checkedId) {
                 R.id.radio_intervalo -> "Sem data para acabar"
                 R.id.radio_dias -> "Até"
                 else -> null
             }
 
-            // Remove todas as views antes de adicionar novas
             parentLayout.removeAllViews()
 
-            // Verifica se a opção selecionada é "Até" para adicionar o layout de opções
             if (duracao == "Até") {
                 val layoutToAdd = LayoutInflater.from(this)
                     .inflate(R.layout.duracao_opcoes, parentLayout, false)
@@ -104,12 +118,14 @@ class ConfigDuracao : AppCompatActivity() {
                 // Adicionando o layout ao parentLayout
                 parentLayout.addView(layoutToAdd)
 
+                // Configurando a TextView para mostrar a data selecionada
+                val textViewCalendario = layoutToAdd.findViewById<TextView>(R.id.textView_calendarioAlarme)
+                textViewCalendario.text = data
+
                 // Configurando clique para abrir o DatePicker
-                val textViewCalendario =
-                    layoutToAdd.findViewById<TextView>(R.id.textView_calendarioAlarme)
                 textViewCalendario.setOnClickListener {
                     val datePicker = MaterialDatePicker.Builder.datePicker()
-                        .setTitleText("Selecione até quando vão os avisos")
+                        .setTitleText("Select date")
                         .build()
 
                     datePicker.addOnPositiveButtonClickListener { selectedDate ->
@@ -123,11 +139,6 @@ class ConfigDuracao : AppCompatActivity() {
 
                     datePicker.show(supportFragmentManager, "DatePicker")
                 }
-
-                // Se data foi passada pelo Intent, mostrar no campo
-                if (data != null) {
-                    textViewCalendario.text = data
-                }
             }
         }
 
@@ -137,32 +148,19 @@ class ConfigDuracao : AppCompatActivity() {
             val duracaoSelecionada = duracao
 
             // Criando intent para retornar os dados para a activity ConfigFrequencia
-            val intent = Intent(this, ConfigFrequencia::class.java)
-            intent.putExtra("data", atexdata)
-            intent.putExtra("duracao", duracaoSelecionada)
-            intent.putExtra("frequencia", frequencia)
-            intent.putExtra("horaemhora", horas)
-
-        }
-        startActivity(intent)
-        finish()
-    }
-
-    // Método para exibir um Toast personalizado
-    private fun showToast(message: String) {
-        // Inflando o layout do Toast
-        val inflater = layoutInflater
-        val layout = inflater.inflate(R.layout.toast, findViewById(R.id.toast))
-
-        // Configurando o texto do Toast
-        val text = layout.findViewById<TextView>(R.id.toast)
-        text.text = message
-
-        // Exibindo o Toast personalizado
-        with(Toast(applicationContext)) {
-            duration = Toast.LENGTH_SHORT
-            view = layout
-            show()
+            val intent = Intent(this, ConfigFrequencia::class.java).apply {
+                putExtra("data", atexdata)
+                putExtra("duracao", duracaoSelecionada)
+                putExtra("frequencia", frequencia)
+                putExtra("horaemhora", horas)
+                putExtra("lembreme", lembreme)
+                putExtra("tipomed", tipomed)
+                putExtra("estoque", estoque)
+                putExtra("remedioId", nome)
+                putExtra("switchEstoque", switchEstoqueChecked)
+            }
+            startActivity(intent)
+            finish() // Finaliza a atividade atual após salvar
         }
     }
 }

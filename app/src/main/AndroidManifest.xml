@@ -53,13 +53,11 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Alarme.ConfigDuracao"
-            android:exported="false"
-            android:theme="@style/AppTheme" />
+            android:exported="false" />
         <activity
             android:name=".com.companyvihva.vihva.model.DescriçãoDoença_inicio1"
             android:exported="false"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".Alarme.EscolhaFrequencia"
             android:exported="false"

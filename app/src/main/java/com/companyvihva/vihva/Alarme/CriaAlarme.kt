@@ -16,7 +16,7 @@ class CriaAlarme : AppCompatActivity() {
 
     private var nome: String? = null
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cria_alarme)
@@ -29,7 +29,7 @@ class CriaAlarme : AppCompatActivity() {
         val estoque = intent?.getStringExtra("estoque")
         val lembreme = intent?.getStringExtra("lembreme")
         val tipomed = intent?.getStringExtra("tipomed")
-
+        val switchEstoqueChecked = intent?.getBooleanExtra("switchEstoque", false) ?: false
         nome = intent.getStringExtra("remedioId")
 
         val editnomeAlarme = findViewById<TextView>(R.id.layout_nome_alarme)
@@ -43,40 +43,46 @@ class CriaAlarme : AppCompatActivity() {
         }
 
         val descEstoque = findViewById<TextView>(R.id.descEstoque)
-        if (estoque != null && tipomed != null) {
+        if (estoque != null || tipomed != null) {
             descEstoque.text = "$estoque $tipomed"
         }
 
         findViewById<View>(R.id.container_programacaoRemedio).setOnClickListener {
-            irParaConfigFrequencia()
+            val telaConfigFrequencia = Intent(this, ConfigFrequencia::class.java)
+
+               telaConfigFrequencia.putExtra("data", data)
+               telaConfigFrequencia.putExtra("duracao", duracao)
+               telaConfigFrequencia.putExtra("frequencia", frequencia)
+               telaConfigFrequencia.putExtra("horaemhora", horas)
+               telaConfigFrequencia.putExtra("lembreme", lembreme)
+               telaConfigFrequencia.putExtra("tipomed", tipomed)
+               telaConfigFrequencia.putExtra("estoque", estoque)
+               telaConfigFrequencia.putExtra("remedioId", nome)
+               telaConfigFrequencia.putExtra("switchEstoque", switchEstoqueChecked)
+
+            startActivity(telaConfigFrequencia)
         }
 
         findViewById<View>(R.id.container_estoque).setOnClickListener {
-            irParaConfigEstoque(data, duracao, frequencia, horas, lembreme, tipomed, estoque)
-        }
+            val telaConfigEstoque = Intent(this, ConfigEstoque::class.java)
+               telaConfigEstoque.putExtra("data", data)
+               telaConfigEstoque.putExtra("duracao", duracao)
+               telaConfigEstoque.putExtra("frequencia", frequencia)
+               telaConfigEstoque.putExtra("horaemhora", horas)
+               telaConfigEstoque.putExtra("lembreme", lembreme)
+               telaConfigEstoque.putExtra("tipomed", tipomed)
+               telaConfigEstoque.putExtra("estoque", estoque)
+               telaConfigEstoque.putExtra("remedioId", nome)
+               telaConfigEstoque.putExtra("switchEstoque", switchEstoqueChecked)
+            startActivity(telaConfigEstoque)
+            }
 
         // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
-            finish()
+            val telaEscolhaRemedio = Intent(this, EscolhaRemedio::class.java).apply {
+            }
+            startActivity(telaEscolhaRemedio)
         }
-    }
-
-    private fun irParaConfigFrequencia() {
-        val telaConfigFrequencia = Intent(this, ConfigFrequencia::class.java)
-        startActivity(telaConfigFrequencia)
-    }
-
-    private fun irParaConfigEstoque(data: String?, duracao: String?, frequencia: String?, horas: Int?, lembreme: String?, tipomed: String?, estoque: String?) {
-        val telaConfigEstoque = Intent(this, ConfigEstoque::class.java).apply {
-            putExtra("data", data)
-            putExtra("duracao", duracao)
-            putExtra("frequencia", frequencia)
-            putExtra("horaemhora", horas)
-            putExtra("lembreme", lembreme)
-            putExtra("tipomed", tipomed)
-            putExtra("estoque", estoque)
-        }
-        startActivity(telaConfigEstoque)
     }
 }

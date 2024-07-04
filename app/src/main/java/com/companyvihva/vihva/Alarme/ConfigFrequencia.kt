@@ -1,7 +1,5 @@
 package com.companyvihva.vihva.Alarme
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,61 +7,77 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
 import com.companyvihva.vihva.R
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
 
 class ConfigFrequencia : AppCompatActivity() {
-
-    private lateinit var horaApartirTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config_frequencia)
 
+        // Recuperando dados da intent
         val frequencia = intent.getStringExtra("frequencia")
         val horas = intent.getIntExtra("horaemhora", 0)
         val duracao = intent.getStringExtra("duracao")
         val data = intent.getStringExtra("data")
+        val estoque = intent.getStringExtra("estoque")
+        val lembreme = intent.getStringExtra("lembreme")
+        val tipomed = intent.getStringExtra("tipomed")
+        val switchEstoqueChecked = intent.getBooleanExtra("switchEstoque", false)
+        val nome = intent.getStringExtra("remedioId")
 
-        val container_duracao = findViewById<View>(R.id.container_DuracaoAlarme).setOnClickListener {
-            val telaDuracao = Intent(this, ConfigDuracao::class.java)
-            telaDuracao.putExtra("data", data)
-            telaDuracao.putExtra("duracao", duracao)
-            telaDuracao.putExtra("frequencia", frequencia)
-            telaDuracao.putExtra("horaemhora", horas)
-            startActivity(telaDuracao)
-        }
-
-        val container_frequencia = findViewById<View>(R.id.container_Frequencia).setOnClickListener {
-            val telaDuracao = Intent(this, EscolhaFrequencia::class.java)
-            telaDuracao.putExtra("data", data)
-            telaDuracao.putExtra("duracao", duracao)
-            telaDuracao.putExtra("frequencia", frequencia)
-            telaDuracao.putExtra("horaemhora", horas)
-            startActivity(telaDuracao)
-        }
-
-
-        // Configurando o listener para o botão de voltar
-        val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
-        btnVoltar.setOnClickListener {
-            val intent = Intent(this, CriaAlarme::class.java).apply {
-                putExtra("data", data)
-                putExtra("duracao", duracao)
+        // Configurando listener para abrir ConfigDuracao
+        findViewById<View>(R.id.container_DuracaoAlarme).setOnClickListener {
+            val intent = Intent(this, ConfigDuracao::class.java).apply {
                 putExtra("frequencia", frequencia)
                 putExtra("horaemhora", horas)
+                putExtra("duracao", duracao)
+                putExtra("data", data)
+                putExtra("estoque", estoque)
+                putExtra("lembreme", lembreme)
+                putExtra("tipomed", tipomed)
+                putExtra("remedioId", nome)
+                putExtra("switchEstoque", switchEstoqueChecked)
             }
             startActivity(intent)
-            finish() // Finaliza a atividade atual para retornar à tela anterior
         }
 
+        // Configurando listener para abrir EscolhaFrequencia
+        findViewById<View>(R.id.container_Frequencia).setOnClickListener {
+            val intent = Intent(this, EscolhaFrequencia::class.java).apply {
+                putExtra("frequencia", frequencia)
+                putExtra("horaemhora", horas)
+                putExtra("duracao", duracao)
+                putExtra("data", data)
+                putExtra("estoque", estoque)
+                putExtra("lembreme", lembreme)
+                putExtra("tipomed", tipomed)
+                putExtra("remedioId", nome)
+                putExtra("switchEstoque", switchEstoqueChecked)
+            }
+            startActivity(intent)
+        }
 
+        // Configurando listener para o botão de voltar
+        val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
+        btnVoltar.setOnClickListener {
+            val intent = Intent(this, CriaAlarme::class.java)
+            intent.putExtra("frequencia", frequencia)
+            intent.putExtra("horaemhora", horas)
+            intent.putExtra("duracao", duracao)
+            intent.putExtra("data", data)
+            intent.putExtra("estoque", estoque)
+            intent.putExtra("lembreme", lembreme)
+            intent.putExtra("tipomed", tipomed)
+            intent.putExtra("remedioId", nome)
+            intent.putExtra("switchEstoque", switchEstoqueChecked)
+            startActivity(intent)
+        }
+
+        // Atualizando as descrições na UI, se os dados estiverem disponíveis
         val descFrequencia = findViewById<TextView>(R.id.descFrequencia)
         val descDuracao = findViewById<TextView>(R.id.descduracao)
 
-        if (frequencia != null) {
-            descFrequencia.text = frequencia
-        }
+        frequencia?.let { descFrequencia.text = it }
         if (duracao != null && data != null) {
             descDuracao.text = "$duracao $data"
         }

@@ -26,6 +26,8 @@ class ConfigEstoque : AppCompatActivity() {
         val estoque = intent?.getStringExtra("estoque")
         val lembreme = intent?.getStringExtra("lembreme")
         val tipomed = intent?.getStringExtra("tipomed")
+        val nome = intent.getStringExtra("remedioId")
+        val switchEstoqueChecked = intent?.getBooleanExtra("switchEstoque", false) ?: false
 
         val switchEstoque = findViewById<SwitchMaterial>(R.id.switchEstoque)
         val containerEstoque = findViewById<View>(R.id.container_estoque)
@@ -46,11 +48,10 @@ class ConfigEstoque : AppCompatActivity() {
                 putExtra("lembreme", lembreme)
                 putExtra("tipomed", tipomed)
                 putExtra("estoque", estoque)
+                putExtra("remedioId", nome)
             }
             startActivity(intent)
-            finish() // Finaliza a atividade atual para retornar à tela anterior
         }
-
 
         val spinnerTipoMed = findViewById<Spinner>(R.id.spinnerTipoMed)
 
@@ -69,6 +70,16 @@ class ConfigEstoque : AppCompatActivity() {
             spinnerTipoMed.setSelection(position)
         }
 
+        // Configurar o estado do switch com base na intent recebida
+        switchEstoque.isChecked = switchEstoqueChecked
+        val visibility = if (switchEstoqueChecked) View.VISIBLE else View.GONE
+        containerEstoque.visibility = visibility
+        textviewQtdEstoque.visibility = visibility
+        editTextEstoqueAtual.visibility = visibility
+        containerEstoqueAtual.visibility = visibility
+        textviewQtdEstoqueAlarme.visibility = visibility
+        editTextLembreme.visibility = visibility
+
         // Configurar o comportamento do switch
         switchEstoque.setOnCheckedChangeListener { _, isChecked ->
             val visibility = if (isChecked) View.VISIBLE else View.GONE
@@ -78,16 +89,11 @@ class ConfigEstoque : AppCompatActivity() {
             containerEstoqueAtual.visibility = visibility
             textviewQtdEstoqueAlarme.visibility = visibility
             editTextLembreme.visibility = visibility
-        }
 
-        // Definir todos como visíveis se o switch estiver marcado
-        if (switchEstoque.isChecked) {
-            containerEstoque.visibility = View.VISIBLE
-            textviewQtdEstoque.visibility = View.VISIBLE
-            editTextEstoqueAtual.visibility = View.VISIBLE
-            containerEstoqueAtual.visibility = View.VISIBLE
-            textviewQtdEstoqueAlarme.visibility = View.VISIBLE
-            editTextLembreme.visibility = View.VISIBLE
+            if (estoque != null) {
+                editTextEstoqueAtual.setText(estoque)
+                editTextLembreme.setText(lembreme)
+            }
         }
 
         findViewById<Button>(R.id.btn_salvarEstoque).setOnClickListener {
@@ -96,6 +102,8 @@ class ConfigEstoque : AppCompatActivity() {
             intent.putExtra("horaemhora", horas)
             intent.putExtra("duracao", duracao)
             intent.putExtra("data", data)
+            intent.putExtra("remedioId", nome)
+            intent.putExtra("switchEstoque", switchEstoque.isChecked)
 
             val tipoMed = spinnerTipoMed.selectedItem.toString()
             intent.putExtra("tipomed", tipoMed)
@@ -104,11 +112,9 @@ class ConfigEstoque : AppCompatActivity() {
                 val lembreme = editTextLembreme.text.toString()
                 intent.putExtra("estoque", estoque)
                 intent.putExtra("lembreme", lembreme)
-
             }
             startActivity(intent)
             finish()
-
         }
     }
 }
