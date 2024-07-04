@@ -30,7 +30,8 @@
             android:exported="false" />
         <activity
             android:name=".Inicio.Lista_amizades"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Configuracoes.ConfigNotificacoes"
             android:exported="false" />
@@ -76,7 +77,8 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Lista_Remedios"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".model.PopupRemedio.DescriçãoRemedio"
             android:exported="false" />
@@ -94,7 +96,8 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Inicio.Inicio"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".Configurações.Config_DeletarPerfil"
             android:exported="false"
