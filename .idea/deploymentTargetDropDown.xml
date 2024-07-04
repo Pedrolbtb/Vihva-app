@@ -2,7 +2,11 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+<<<<<<<<< Temporary merge branch 1
+      <entry key="Vihva">
+=========
       <entry key="app">
+>>>>>>>>> Temporary merge branch 2
         <State />
       </entry>
     </value>
