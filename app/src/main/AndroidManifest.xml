@@ -26,7 +26,7 @@
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
         <activity
-            android:name=".Inicio.Perfil_medico.Perfil_medico"
+            android:name=".Inicio.Perfil_medico"
             android:exported="false" />
         <activity
             android:name=".Inicio.Lista_amizades"
@@ -35,12 +35,11 @@
         <activity
             android:name=".Configuracoes.ConfigNotificacoes"
             android:exported="false" />
-
-        <activity
+        <!--
+<activity
             android:name=".Inicio.Evento"
             android:exported="false" />
-
-
+        -->
         <activity
             android:name=".Alarme.EscolhaRemedio"
             android:exported="false"
@@ -48,9 +47,7 @@
         <activity
             android:name=".com.companyvihva.vihva.AdicionarDoenca.AdicionarDoenca"
             android:exported="false"
-            android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan"
-            />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Alarme.ConfigFrequencia"
             android:exported="false"
@@ -61,8 +58,7 @@
         <activity
             android:name=".com.companyvihva.vihva.model.DescriçãoDoença_inicio1"
             android:exported="false"
-            android:theme="@style/AppTheme"
-           />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Alarme.EscolhaFrequencia"
             android:exported="false" />
