@@ -7,6 +7,23 @@
     tools:context=".com.companyvihva.vihva.AdicionarDoenca.AdicionarDoenca"
     android:background="@drawable/background_home">
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/SearchDoenca"
+        android:layout_width="358dp"
+        android:layout_height="53dp"
+
+        android:layout_marginTop="31dp"
+        app:iconifiedByDefault="false"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerview_adicionar"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintVertical_bias="0.0"
+        app:queryBackground="@android:color/transparent"
+        app:queryHint="Buscar Doença" />
+
     <ImageButton
         android:id="@+id/btnVoltarAddDoenca"
         android:layout_width="65dp"
@@ -23,15 +40,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView8"
         style="@style/text_doenca_e_remedio"
-        android:text="@string/text_titulo_add_doenca"
-        android:layout_marginBottom="580dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="580dp"
+        android:text="@string/text_titulo_add_doenca"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_adicionar"
@@ -40,7 +57,8 @@
         android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

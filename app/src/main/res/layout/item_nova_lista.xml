@@ -21,6 +21,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.186" />
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/SearchRemedio2"
+        android:layout_width="358dp"
+        android:layout_height="53dp"
+
+        app:iconifiedByDefault="false"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerview_nova_lista"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.781"
+        app:queryBackground="@android:color/transparent"
+        app:queryHint="Buscar Remedio" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_nova_lista"
         android:layout_width="360dp"
@@ -28,8 +44,10 @@
         android:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.685" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

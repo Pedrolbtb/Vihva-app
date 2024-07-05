@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.Toast
-
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import androidx.appcompat.widget.SearchView
 import androidx.core.text.isDigitsOnly
+import java.util.Locale
 
 class Lista_amizades : AppCompatActivity() {
 
@@ -138,8 +138,6 @@ class Lista_amizades : AppCompatActivity() {
     }
 
     private fun searchAmigo(query: String) {
-        val searchResult = mutableListOf<Amigos>()
-
         // Verifica se o texto digitado é numérico (considerando CRM)
         if (query.isDigitsOnly()) {
             searchAmigoPorCrm(query)
@@ -171,10 +169,8 @@ class Lista_amizades : AppCompatActivity() {
     }
 
     private fun searchAmigoPorNome(nome: String) {
+        val lowerCaseNome = nome.toLowerCase(Locale.ROOT)
         db.collection("medicos")
-            .orderBy("nome")
-            .startAt(nome)
-            .endAt(nome + "\uf8ff")
             .get()
             .addOnSuccessListener { documents ->
                 val amigos = mutableListOf<Amigos>()
@@ -183,8 +179,12 @@ class Lista_amizades : AppCompatActivity() {
                     val amigoNome = document.getString("nome") ?: "Nome não disponível"
                     val amigoId = document.id
                     val crm = document.getString("crm") ?: "CRM não disponível"
-                    val amigo = Amigos(url, amigoNome, amigoId, crm)
-                    amigos.add(amigo)
+
+                    // Compare os nomes em minúsculas
+                    if (amigoNome.toLowerCase(Locale.ROOT).contains(lowerCaseNome)) {
+                        val amigo = Amigos(url, amigoNome, amigoId, crm)
+                        amigos.add(amigo)
+                    }
                 }
                 atualizarListaAmigos(amigos)
             }

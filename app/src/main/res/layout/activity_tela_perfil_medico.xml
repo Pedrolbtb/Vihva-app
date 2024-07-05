@@ -27,6 +27,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <ImageButton
+            android:id="@+id/exclui_medico"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="84dp"
+            android:layout_marginTop="20dp"
+            android:background="#00FFFFFF"
+            android:src="@drawable/delete_lista"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_save_perfil" />
+
         <ImageButton
             android:id="@+id/close"
             android:layout_width="wrap_content"

@@ -1,17 +1,17 @@
 package com.companyvihva.vihva
 
-import com.companyvihva.vihva.model.Adapter.AdapterListanova
 import android.os.Bundle
+import android.util.Log
+import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.widget.SearchView
+import com.companyvihva.vihva.model.Adapter.AdapterListanova
 import com.companyvihva.vihva.model.Tipo_Remedios
 import com.google.firebase.firestore.FirebaseFirestore
-import android.util.Log
-import android.view.View
-import android.widget.ImageButton
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlin.collections.emptyList
+import java.util.Locale
 
 class Lista_Remedios : AppCompatActivity() {
 
@@ -19,7 +19,7 @@ class Lista_Remedios : AppCompatActivity() {
     private lateinit var firestore: FirebaseFirestore
     private lateinit var adapterListanovaNova: AdapterListanova
     private val dadosListaNova: MutableList<Tipo_Remedios> = mutableListOf()
-
+    private val dadosListaNovaOriginal: MutableList<Tipo_Remedios> = mutableListOf() // Lista original sem filtro
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +46,10 @@ class Lista_Remedios : AppCompatActivity() {
         adapterListanovaNova = AdapterListanova(this, dadosListaNova)
         recyclerViewListaNova.adapter = adapterListanovaNova
 
+        // Configurando o SearchView
+        val searchView = findViewById<SearchView>(R.id.SearchRemedio2)
+        setupSearchView(searchView)
+
         // Busca todos os dados e organiza conforme necessário
         remedioId?.let {
             fetchSubList(it)
@@ -54,7 +58,6 @@ class Lista_Remedios : AppCompatActivity() {
 
     // Método para buscar sublistas de remédios com base no ID do remédio fornecido
     private fun fetchSubList(remedioId: String) {
-
         // Mapeamento do ID do remédio para seus subdocumentos correspondentes
         val subDocumentos = when (remedioId) {
             "Insulina" -> listOf("humalog", "novolog", "lantus", "levemir1")
@@ -84,11 +87,12 @@ class Lista_Remedios : AppCompatActivity() {
                     val url = document.getString("Url")
                     val tipo = document.getString("tipo")
 
-                    // Criando um objeto Listanew com os detalhes do remédio
+                    // Criando um objeto Tipo_Remedios com os detalhes do remédio
                     val tipoRemedios = Tipo_Remedios(url ?: "", nome ?: "", tipo ?: "", docId)
 
                     // Adicionando o remédio à lista e notificando o Adapter sobre a mudança
                     dadosListaNova.add(tipoRemedios)
+                    dadosListaNovaOriginal.add(tipoRemedios) // Adiciona à lista original também
                     adapterListanovaNova.notifyDataSetChanged()
 
                     // Log para verificar se os dados estão sendo recebidos corretamente
@@ -99,5 +103,48 @@ class Lista_Remedios : AppCompatActivity() {
                 // Tratamento de falha na obtenção do documento Firestore
                 Log.w("Firestore", "Error getting document", e)
             }
+    }
+
+    // Método para configurar o SearchView
+    private fun setupSearchView(searchView: SearchView) {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != null) {
+                    if (newText.isEmpty()) {
+                        // Restaurar lista original quando o texto é apagado
+                        atualizarListaRemedios(dadosListaNovaOriginal)
+                    } else {
+                        searchRemedios(newText)
+                    }
+                }
+                return true
+            }
+        })
+
+        searchView.setOnCloseListener {
+            // Restaurar lista original quando o texto é fechado
+            atualizarListaRemedios(dadosListaNovaOriginal)
+            true
+        }
+    }
+
+    // Método para filtrar os remédios com base na consulta do SearchView
+    private fun searchRemedios(query: String) {
+        val lowerCaseQuery = query.toLowerCase(Locale.ROOT)
+        val filteredList = dadosListaNovaOriginal.filter {
+            it.nome.toLowerCase(Locale.ROOT).contains(lowerCaseQuery)
+        }
+        atualizarListaRemedios(filteredList)
+    }
+
+    // Método para atualizar a lista de remédios no Adapter
+    private fun atualizarListaRemedios(lista: List<Tipo_Remedios>) {
+        dadosListaNova.clear()
+        dadosListaNova.addAll(lista)
+        adapterListanovaNova.notifyDataSetChanged()
     }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.R
@@ -14,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 class AdicionarDoenca : AppCompatActivity() {
     private lateinit var adapterAdicionar: AdapterDoenca
     private val listaAdicionarRemedio: MutableList<Tipo_Remedios> = mutableListOf()
+    private val listaOriginalRemedio: MutableList<Tipo_Remedios> = mutableListOf()
     private lateinit var firestore: FirebaseFirestore
     private val documentos = listOf(
         "diabetes",
@@ -42,6 +44,21 @@ class AdicionarDoenca : AppCompatActivity() {
             finish()
         }
 
+        // Configurando o SearchView
+        val searchView = findViewById<SearchView>(R.id.SearchDoenca)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    filter(newText)
+                }
+                return true
+            }
+        })
+
         // Chamando a função para buscar os remédios
         fetchRemedio(0)
     }
@@ -60,7 +77,8 @@ class AdicionarDoenca : AppCompatActivity() {
                         // Criando um objeto Tipo_Remedios com os detalhes do remédio
                         val tipoRemedios = Tipo_Remedios(url ?: "", nome ?: "", tipo ?: "", docId)
 
-                        // Adicionando o remédio à lista e notificando o Adapter sobre a mudança
+                        // Adicionando o remédio à lista original e à lista exibida
+                        listaOriginalRemedio.add(tipoRemedios)
                         listaAdicionarRemedio.add(tipoRemedios)
                         adapterAdicionar.notifyDataSetChanged()
 
@@ -77,5 +95,15 @@ class AdicionarDoenca : AppCompatActivity() {
                     fetchRemedio(index + 1)
                 }
         }
+    }
+
+    private fun filter(text: String) {
+        listaAdicionarRemedio.clear()
+        listaOriginalRemedio.forEach {
+            if (it.nome.toLowerCase().contains(text.toLowerCase())) {
+                listaAdicionarRemedio.add(it)
+            }
+        }
+        adapterAdicionar.notifyDataSetChanged()
     }
 }
