@@ -14,12 +14,10 @@ import android.widget.TextView
 import com.companyvihva.vihva.R
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import org.w3c.dom.Text
 
 class EscolhaFrequencia : AppCompatActivity() {
 
     private var frequencia: String? = null
-    private var horasSelecionadas: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,16 +25,14 @@ class EscolhaFrequencia : AppCompatActivity() {
 
         val parentLayout = findViewById<LinearLayout>(R.id.layout_Opcoes)
         frequencia = intent?.getStringExtra("frequencia")
-        val horas = intent?.getIntExtra("horaemhora", 0)
         val duracao = intent?.getStringExtra("duracao")
         val data = intent?.getStringExtra("data")
         val estoque = intent?.getStringExtra("estoque")
         val lembreme = intent?.getStringExtra("lembreme")
         val tipomed = intent?.getStringExtra("tipomed")
         val switchEstoqueChecked = intent?.getBooleanExtra("switchEstoque", false) ?: false
-        val nome = intent.getStringExtra("remedioId")
-
-
+        val nome = intent?.getStringExtra("remedioId")
+        var horaDiariamente = intent?.getStringExtra("horaDiariamente")
 
         val radioGroup: RadioGroup = findViewById(R.id.radioGroup_frequencia)
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
@@ -53,32 +49,25 @@ class EscolhaFrequencia : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-        if (frequencia != null){
-            when(frequencia){
+        if (frequencia != null) {
+            when (frequencia) {
                 "Diariamente" -> radioGroup.check(R.id.radio_diariamente)
                 "Sem Alarme" -> radioGroup.check(R.id.radio_nada)
                 "Intervalo" -> radioGroup.check(R.id.radio_intervalo)
                 "Somente em certos dias" -> radioGroup.check(R.id.radio_dias)
             }
-            if (frequencia == "Intervalo"){
+            if (frequencia == "Intervalo") {
+                val layoutToAdd = LayoutInflater.from(this)
+                    .inflate(R.layout.intervalo_opcoes, null)
 
-            }
-        }
-
-        radioGroup.setOnCheckedChangeListener { group, checkedId ->
-            frequencia = when (checkedId) {
-                R.id.radio_diariamente -> "Diariamente"
-                R.id.radio_nada -> "Sem Alarme"
-                R.id.radio_intervalo -> "Intervalo"
-                R.id.radio_dias -> "Somente em certos dias"
-                else -> null
-            }
-
-            // Remove todas as views antes de adicionar novas
-            parentLayout.removeAllViews()
-
-            if(frequencia == "Diariamente"){
+                val params = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+                params.setMargins(0, 0, 20, 0)
+                layoutToAdd.layoutParams = params
+                parentLayout.addView(layoutToAdd)
+            } else if (frequencia == "Diariamente") {
                 val layoutToAdd = LayoutInflater.from(this)
                     .inflate(R.layout.diariamente_opcoes, null)
 
@@ -90,77 +79,127 @@ class EscolhaFrequencia : AppCompatActivity() {
                 layoutToAdd.layoutParams = params
                 parentLayout.addView(layoutToAdd)
 
-                var textViewDiariamente = findViewById<TextView>(R.id.textView_diariamenteAlarme).setOnClickListener {
-                    val picker =
-                        MaterialTimePicker.Builder()
+                layoutToAdd.findViewById<TextView>(R.id.textView_calendarioAlarme)
+                    .setOnClickListener {
+                        val picker = MaterialTimePicker.Builder()
                             .setTimeFormat(TimeFormat.CLOCK_24H)
                             .setHour(12)
                             .setMinute(10)
                             .setTitleText("Selecione uma hora para tocar")
                             .build()
 
-                    picker.addOnPositiveButtonClickListener {
-                        var textViewDiariamente = findViewById<TextView>(R.id.textView_diariamenteAlarme)
-                        horasSelecionadas = picker.hour // Captura a hora selecionada
-                        val formattedHour = String.format("%02d", picker.hour)
-                        val formattedMinute = String.format("%02d", picker.minute)
-                        val selectedTime = "$formattedHour:$formattedMinute"
-                        textViewDiariamente.text = selectedTime
-                    }
+                        picker.addOnPositiveButtonClickListener {
+                            val formattedHour = String.format("%02d", picker.hour)
+                            val formattedMinute = String.format("%02d", picker.minute)
+                            val selectedTime = "$formattedHour:$formattedMinute"
+                            layoutToAdd.findViewById<TextView>(R.id.textView_calendarioAlarme).text =
+                                selectedTime
+                            horaDiariamente = selectedTime
+                        }
 
-                    picker.show(supportFragmentManager, "TAG_TIME_PICKER")
-                }
+                        picker.show(supportFragmentManager, "TAG_TIME_PICKER")
+                    }
+            }
+        }
+
+        radioGroup.setOnCheckedChangeListener { _, checkedId ->
+            frequencia = when (checkedId) {
+                R.id.radio_diariamente -> "Diariamente"
+                R.id.radio_nada -> "Sem Alarme"
+                R.id.radio_intervalo -> "Intervalo"
+                R.id.radio_dias -> "Somente em certos dias"
+                else -> null
             }
 
-            if (frequencia == "Intervalo") {
-                // Adiciona layout de intervalo
-                val layoutToAdd = LayoutInflater.from(this)
-                    .inflate(R.layout.intervalo_opcoes, null)
+            // Remove todas as views antes de adicionar novas
+            parentLayout.removeAllViews()
 
-                val params = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                )
-                params.setMargins(0, 0, 20, 0)
-                layoutToAdd.layoutParams = params
-                parentLayout.addView(layoutToAdd)
+            when (frequencia) {
+                "Diariamente" -> {
+                    val layoutToAdd = LayoutInflater.from(this)
+                        .inflate(R.layout.diariamente_opcoes, null)
 
-            } else if (frequencia == "Somente em certos dias") {
-                // Adiciona layout de dias opções desativado
-                val layoutToAdd = LayoutInflater.from(this)
-                    .inflate(R.layout.dias_opcoes_desativado, null)
+                    val params = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
+                    params.setMargins(0, 0, 20, 0)
+                    layoutToAdd.layoutParams = params
+                    parentLayout.addView(layoutToAdd)
 
-                val params = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                )
-                params.setMargins(23, 0, 0, 0)
-                layoutToAdd.layoutParams = params
-                parentLayout.addView(layoutToAdd)
+                    layoutToAdd.findViewById<TextView>(R.id.textView_calendarioAlarme)
+                        .setOnClickListener {
+                            val picker = MaterialTimePicker.Builder()
+                                .setTimeFormat(TimeFormat.CLOCK_24H)
+                                .setHour(12)
+                                .setMinute(10)
+                                .setTitleText("Selecione uma hora para tocar")
+                                .build()
 
-                // Configura estilo das CheckBox baseado no estado
-                val checkBoxIds = listOf(
-                    R.id.checkbox_domingo,
-                    R.id.checkbox_segunda,
-                    R.id.checkbox_terca,
-                    R.id.checkbox_quarta,
-                    R.id.checkbox_quinta,
-                    R.id.checkbox_sexta,
-                    R.id.checkbox_sabado
-                )
+                            picker.addOnPositiveButtonClickListener {
+                                val formattedHour = String.format("%02d", picker.hour)
+                                val formattedMinute = String.format("%02d", picker.minute)
+                                val selectedTime = "$formattedHour:$formattedMinute"
+                                layoutToAdd.findViewById<TextView>(R.id.textView_calendarioAlarme).text =
+                                    selectedTime
+                                horaDiariamente = selectedTime
+                            }
 
-                checkBoxIds.forEach { checkBoxId ->
-                    val checkBox = findViewById<CheckBox>(checkBoxId)
-                    checkBox?.setOnCheckedChangeListener { buttonView, isChecked ->
-                        if (isChecked) {
-                            checkBox.setBackgroundResource(R.drawable.checkbox_dias)
-                        } else {
-                            checkBox.setBackgroundResource(R.drawable.checkbox_dias_desativado)
+                            picker.show(supportFragmentManager, "TAG_TIME_PICKER")
+                        }
+                }
+
+                "Intervalo" -> {
+                    val layoutToAdd = LayoutInflater.from(this)
+                        .inflate(R.layout.intervalo_opcoes, null)
+
+                    val params = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
+                    params.setMargins(0, 0, 20, 0)
+                    layoutToAdd.layoutParams = params
+                    parentLayout.addView(layoutToAdd)
+                }
+
+                "Somente em certos dias" -> {
+                    val layoutToAdd = LayoutInflater.from(this)
+                        .inflate(R.layout.dias_opcoes_desativado, null)
+
+                    val params = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
+                    params.setMargins(23, 0, 0, 0)
+                    layoutToAdd.layoutParams = params
+                    parentLayout.addView(layoutToAdd)
+
+                    // Configura estilo das CheckBox baseado no estado
+                    val checkBoxIds = listOf(
+                        R.id.checkbox_domingo,
+                        R.id.checkbox_segunda,
+                        R.id.checkbox_terca,
+                        R.id.checkbox_quarta,
+                        R.id.checkbox_quinta,
+                        R.id.checkbox_sexta,
+                        R.id.checkbox_sabado
+                    )
+
+                    checkBoxIds.forEach { checkBoxId ->
+                        val checkBox = layoutToAdd.findViewById<CheckBox>(checkBoxId)
+                        checkBox?.setOnCheckedChangeListener { _, isChecked ->
+                            if (isChecked) {
+                                checkBox.setBackgroundResource(R.drawable.checkbox_dias)
+                            } else {
+                                checkBox.setBackgroundResource(R.drawable.checkbox_dias_desativado)
+                            }
                         }
                     }
                 }
             }
         }
+
+        // No arquivo EscolhaFrequencia.kt
 
         findViewById<Button>(R.id.btn_salvarFrequencia).setOnClickListener {
             val dados = if (frequencia == "Somente em certos dias") {
@@ -169,10 +208,9 @@ class EscolhaFrequencia : AppCompatActivity() {
                 Bundle()
             }
             val frequenciaSelecionada = frequencia
-            val horaemhora: String? = if (frequencia == "Intervalo") {
-                val layoutIntervalo = parentLayout.findViewById<LinearLayout>(R.id.layout_intervalo)
-                val editTextHora = layoutIntervalo.findViewById<EditText>(R.id.editTextHoraemHora)
-                editTextHora.text.toString()
+            val horaEmHora: String? = if (frequencia == "Intervalo") {
+                val editTextHora = parentLayout.findViewById<EditText>(R.id.editTextHoraemHora)
+                editTextHora?.text?.toString() ?: "" // Captura o texto do EditText para horaEmHora
             } else {
                 null
             }
@@ -183,14 +221,13 @@ class EscolhaFrequencia : AppCompatActivity() {
             intent.putExtra("data", data)
             intent.putExtra("duracao", duracao)
             intent.putExtra("frequencia", frequenciaSelecionada)
-            intent.putExtra("horaemhora", horaemhora)
+            intent.putExtra("horaemhora", horaEmHora)
             intent.putExtra("lembreme", lembreme)
             intent.putExtra("tipomed", tipomed)
             intent.putExtra("estoque", estoque)
             intent.putExtra("remedioId", nome)
             intent.putExtra("switchEstoque", switchEstoqueChecked)
-
-            // Inicia a próxima atividade
+            intent.putExtra("horaDiariamente", horaDiariamente)
             startActivity(intent)
             finish()
         }

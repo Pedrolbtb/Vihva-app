@@ -25,9 +25,10 @@ class ConfigDuracao : AppCompatActivity() {
 
         // Recuperando dados da intent
         val frequencia = intent.getStringExtra("frequencia")
-        val horas = intent.getIntExtra("horaemhora", 0)
+        val horas = intent.getStringExtra("horaemhora") // Alterado para String, não Int
         duracao = intent.getStringExtra("duracao")
         val data = intent.getStringExtra("data")
+        var horaDiariamente = intent.getStringExtra("horaDiariamente")
         val estoque = intent.getStringExtra("estoque")
         val lembreme = intent.getStringExtra("lembreme")
         val tipomed = intent.getStringExtra("tipomed")
@@ -40,7 +41,18 @@ class ConfigDuracao : AppCompatActivity() {
         // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
-            val intent = Intent(this, ConfigFrequencia::class.java)
+            val intent = Intent(this, ConfigFrequencia::class.java).apply {
+                putExtra("frequencia", frequencia)
+                putExtra("horaemhora", horas)
+                putExtra("duracao", duracao)
+                putExtra("data", data)
+                putExtra("horaDiariamente", horaDiariamente)
+                putExtra("estoque", estoque)
+                putExtra("lembreme", lembreme)
+                putExtra("tipomed", tipomed)
+                putExtra("switchEstoque", switchEstoqueChecked)
+                putExtra("remedioId", nome)
+            }
             startActivity(intent)
         }
 
@@ -68,28 +80,8 @@ class ConfigDuracao : AppCompatActivity() {
 
                 // Adicionando o layout ao parentLayout
                 parentLayout.addView(layoutToAdd)
-
-                // Configurando a TextView para mostrar a data selecionada
-                val textViewCalendario = layoutToAdd.findViewById<TextView>(R.id.textView_calendarioAlarme)
+                val textViewCalendario = layoutToAdd.findViewById<TextView>(R.id.textView_diariamenteAlarme)
                 textViewCalendario.text = data
-
-                // Configurando clique para abrir o DatePicker
-                textViewCalendario.setOnClickListener {
-                    val datePicker = MaterialDatePicker.Builder.datePicker()
-                        .setTitleText("Select date")
-                        .build()
-
-                    datePicker.addOnPositiveButtonClickListener { selectedDate ->
-                        // Formatando a data selecionada
-                        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                        formattedDate = sdf.format(Date(selectedDate))
-
-                        // Definindo a data formatada na TextView
-                        textViewCalendario.text = formattedDate
-                    }
-
-                    datePicker.show(supportFragmentManager, "DatePicker")
-                }
             }
         }
 
@@ -101,8 +93,10 @@ class ConfigDuracao : AppCompatActivity() {
                 else -> null
             }
 
+            // Remove todas as views antes de adicionar novas
             parentLayout.removeAllViews()
 
+            // Verifica se a opção selecionada é "Até" para adicionar o layout de opções
             if (duracao == "Até") {
                 val layoutToAdd = LayoutInflater.from(this)
                     .inflate(R.layout.duracao_opcoes, parentLayout, false)
@@ -118,14 +112,11 @@ class ConfigDuracao : AppCompatActivity() {
                 // Adicionando o layout ao parentLayout
                 parentLayout.addView(layoutToAdd)
 
-                // Configurando a TextView para mostrar a data selecionada
-                val textViewCalendario = layoutToAdd.findViewById<TextView>(R.id.textView_calendarioAlarme)
-                textViewCalendario.text = data
-
                 // Configurando clique para abrir o DatePicker
+                val textViewCalendario = layoutToAdd.findViewById<TextView>(R.id.textView_diariamenteAlarme)
                 textViewCalendario.setOnClickListener {
                     val datePicker = MaterialDatePicker.Builder.datePicker()
-                        .setTitleText("Select date")
+                        .setTitleText("Selecione até quando vão os avisos")
                         .build()
 
                     datePicker.addOnPositiveButtonClickListener { selectedDate ->
@@ -138,6 +129,11 @@ class ConfigDuracao : AppCompatActivity() {
                     }
 
                     datePicker.show(supportFragmentManager, "DatePicker")
+                }
+
+                // Se data foi passada pelo Intent, mostrar no campo
+                if (data != null) {
+                    textViewCalendario.text = data
                 }
             }
         }
@@ -158,9 +154,10 @@ class ConfigDuracao : AppCompatActivity() {
                 putExtra("estoque", estoque)
                 putExtra("remedioId", nome)
                 putExtra("switchEstoque", switchEstoqueChecked)
+                putExtra("horaDiariamente", horaDiariamente)
             }
             startActivity(intent)
-            finish() // Finaliza a atividade atual após salvar
+            finish()
         }
     }
 }

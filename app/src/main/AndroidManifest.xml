@@ -61,8 +61,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Alarme.EscolhaFrequencia"
-            android:exported="false"
-            android:theme="@style/AppTheme" />
+            android:exported="false" />
         <activity
             android:name=".Alarme.ConfigEstoque"
             android:exported="false"

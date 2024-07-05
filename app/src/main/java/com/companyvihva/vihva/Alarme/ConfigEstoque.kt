@@ -1,6 +1,5 @@
 package com.companyvihva.vihva.Alarme
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -14,48 +13,43 @@ import com.companyvihva.vihva.R
 import com.google.android.material.switchmaterial.SwitchMaterial
 
 class ConfigEstoque : AppCompatActivity() {
-    @SuppressLint("UseSwitchCompatOrMaterialCode")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config_estoque)
 
-        val frequencia = intent?.getStringExtra("frequencia")
-        val horas = intent?.getIntExtra("horaemhora", 0)
-        val duracao = intent?.getStringExtra("duracao")
-        val data = intent?.getStringExtra("data")
-        val estoque = intent?.getStringExtra("estoque")
-        val lembreme = intent?.getStringExtra("lembreme")
-        val tipomed = intent?.getStringExtra("tipomed")
+        // Recuperando dados da intent
+        val frequencia = intent.getStringExtra("frequencia")
+        val horas = intent.getStringExtra("horaemhora") // Alterado para String, não Int
+        val duracao = intent.getStringExtra("duracao")
+        val data = intent.getStringExtra("data")
+        val estoque = intent.getStringExtra("estoque")
+        val lembreme = intent.getStringExtra("lembreme")
+        var horaDiariamente = intent.getStringExtra("horaDiariamente")
+        val tipomed = intent.getStringExtra("tipomed")
         val nome = intent.getStringExtra("remedioId")
-        val switchEstoqueChecked = intent?.getBooleanExtra("switchEstoque", false) ?: false
-
-        val switchEstoque = findViewById<SwitchMaterial>(R.id.switchEstoque)
-        val containerEstoque = findViewById<View>(R.id.container_estoque)
-        val textviewQtdEstoque = findViewById<View>(R.id.textview_qtdestoque)
-        val editTextEstoqueAtual = findViewById<EditText>(R.id.editTextEstoqueAtual)
-        val containerEstoqueAtual = findViewById<View>(R.id.container_estoqueAtual)
-        val textviewQtdEstoqueAlarme = findViewById<View>(R.id.textview_qtdestoqueAlarme)
-        val editTextLembreme = findViewById<EditText>(R.id.editTextLembreme)
+        val switchEstoqueChecked = intent.getBooleanExtra("switchEstoque", false)
 
         // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
             val intent = Intent(this, CriaAlarme::class.java).apply {
-                putExtra("data", data)
-                putExtra("duracao", duracao)
                 putExtra("frequencia", frequencia)
                 putExtra("horaemhora", horas)
+                putExtra("duracao", duracao)
+                putExtra("data", data)
                 putExtra("lembreme", lembreme)
                 putExtra("tipomed", tipomed)
                 putExtra("estoque", estoque)
                 putExtra("remedioId", nome)
+                putExtra("horaDiariamente", horaDiariamente)
+                putExtra("switchEstoque", switchEstoqueChecked)
             }
             startActivity(intent)
         }
 
+        // Configuração do Spinner TipoMed
         val spinnerTipoMed = findViewById<Spinner>(R.id.spinnerTipoMed)
-
-        // Deixar spinner bonito
         val adapter = ArrayAdapter.createFromResource(
             this,
             R.array.TipoMed,
@@ -70,8 +64,17 @@ class ConfigEstoque : AppCompatActivity() {
             spinnerTipoMed.setSelection(position)
         }
 
-        // Configurar o estado do switch com base na intent recebida
+        // Configurando o SwitchMaterial
+        val switchEstoque = findViewById<SwitchMaterial>(R.id.switchEstoque)
         switchEstoque.isChecked = switchEstoqueChecked
+        val containerEstoque = findViewById<View>(R.id.container_estoque)
+        val textviewQtdEstoque = findViewById<View>(R.id.textview_qtdestoque)
+        val editTextEstoqueAtual = findViewById<EditText>(R.id.editTextEstoqueAtual)
+        val containerEstoqueAtual = findViewById<View>(R.id.container_estoqueAtual)
+        val textviewQtdEstoqueAlarme = findViewById<View>(R.id.textview_qtdestoqueAlarme)
+        val editTextLembreme = findViewById<EditText>(R.id.editTextLembreme)
+
+        // Configurando o estado inicial do Switch e a visibilidade dos elementos relacionados ao estoque
         val visibility = if (switchEstoqueChecked) View.VISIBLE else View.GONE
         containerEstoque.visibility = visibility
         textviewQtdEstoque.visibility = visibility
@@ -80,7 +83,7 @@ class ConfigEstoque : AppCompatActivity() {
         textviewQtdEstoqueAlarme.visibility = visibility
         editTextLembreme.visibility = visibility
 
-        // Configurar o comportamento do switch
+        // Configurando o listener para o SwitchMaterial
         switchEstoque.setOnCheckedChangeListener { _, isChecked ->
             val visibility = if (isChecked) View.VISIBLE else View.GONE
             containerEstoque.visibility = visibility
@@ -90,31 +93,34 @@ class ConfigEstoque : AppCompatActivity() {
             textviewQtdEstoqueAlarme.visibility = visibility
             editTextLembreme.visibility = visibility
 
-            if (estoque != null) {
+            if (isChecked) {
                 editTextEstoqueAtual.setText(estoque)
                 editTextLembreme.setText(lembreme)
             }
         }
 
+        // Configurando o listener para o botão de salvar
         findViewById<Button>(R.id.btn_salvarEstoque).setOnClickListener {
-            val intent = Intent(this, CriaAlarme::class.java)
-            intent.putExtra("frequencia", frequencia)
-            intent.putExtra("horaemhora", horas)
-            intent.putExtra("duracao", duracao)
-            intent.putExtra("data", data)
-            intent.putExtra("remedioId", nome)
-            intent.putExtra("switchEstoque", switchEstoque.isChecked)
+            val intent = Intent(this, CriaAlarme::class.java).apply {
+                putExtra("frequencia", frequencia)
+                putExtra("horaemhora", horas)
+                putExtra("duracao", duracao)
+                putExtra("data", data)
+                putExtra("remedioId", nome)
+                putExtra("switchEstoque", switchEstoque.isChecked)
 
-            val tipoMed = spinnerTipoMed.selectedItem.toString()
-            intent.putExtra("tipomed", tipoMed)
-            if (switchEstoque.isChecked) {
-                val estoque = editTextEstoqueAtual.text.toString()
-                val lembreme = editTextLembreme.text.toString()
-                intent.putExtra("estoque", estoque)
-                intent.putExtra("lembreme", lembreme)
+                val tipoMed = spinnerTipoMed.selectedItem.toString()
+                putExtra("tipomed", tipoMed)
+
+                if (switchEstoque.isChecked) {
+                    val estoqueAtual = editTextEstoqueAtual.text.toString()
+                    val lembremeAtual = editTextLembreme.text.toString()
+                    putExtra("estoque", estoqueAtual)
+                    putExtra("lembreme", lembremeAtual)
+                }
             }
             startActivity(intent)
-            finish()
+            finish() // Finaliza a activity para voltar à anterior
         }
     }
 }
