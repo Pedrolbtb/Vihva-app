@@ -23,6 +23,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <ImageButton
+        android:id="@+id/lixeira_doencas"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="316dp"
+        android:layout_marginTop="12dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/delete_lista"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.235"
+        app:layout_constraintStart_toStartOf="@+id/btn_voltarDO"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <View
         android:id="@+id/view_descRemedio"
         android:layout_width="360dp"

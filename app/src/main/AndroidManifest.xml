@@ -26,7 +26,7 @@
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
         <activity
-            android:name=".Inicio.tela_perfil_medico"
+            android:name=".Inicio.Perfil_medico"
             android:exported="false" />
         <activity
             android:name=".Inicio.Lista_amizades"
