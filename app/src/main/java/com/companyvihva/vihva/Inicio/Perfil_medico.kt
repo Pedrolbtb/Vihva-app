@@ -1,19 +1,17 @@
-package com.companyvihva.vihva.Inicio
+package com.companyvihva.vihva.Inicio.Perfil_medico
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.R
-import com.companyvihva.vihva.com.companyvihva.vihva.model.Amigos
 import com.companyvihva.vihva.com.companyvihva.vihva.model.tipo_amigo_descrição
-import com.companyvihva.vihva.model.Tipo_Classe
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 
-class tela_perfil_medico: AppCompatActivity() {
+class Perfil_medico: AppCompatActivity() {
 
 
     private lateinit var firestore: FirebaseFirestore

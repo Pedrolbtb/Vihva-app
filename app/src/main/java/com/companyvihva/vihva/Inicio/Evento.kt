@@ -11,7 +11,7 @@ import androidx.fragment.app.DialogFragment
 import com.companyvihva.vihva.R
 
 // Define uma classe DialogFragment para exibir um diálogo de evento
-class EventDialogFragment : DialogFragment() {
+class Evento : DialogFragment() {
 
     // Interface para comunicar o evento salvo ao fragmento pai ou atividade
     interface OnEventSaveListener {

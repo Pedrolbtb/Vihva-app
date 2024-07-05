@@ -1,15 +1,14 @@
 package com.companyvihva.vihva.Inicio
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.companyvihva.vihva.R
+import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.databinding.FragmentCalendarioBinding
 import java.util.Locale
 
-class Calendario : Fragment(), EventDialogFragment.OnEventSaveListener {
+class Calendario : Fragment(), Evento.OnEventSaveListener {
 
     // Variável para o binding do layout do fragmento
     private lateinit var binding: FragmentCalendarioBinding
@@ -45,7 +44,7 @@ class Calendario : Fragment(), EventDialogFragment.OnEventSaveListener {
             val selectedDate = "$dayOfMonth/${month + 1}/$year"
 
             // Exibir o DialogFragment para adicionar um evento
-            val eventDialog = EventDialogFragment()
+            val eventDialog = Evento()
             eventDialog.setOnEventSaveListener(this)
             eventDialog.show(childFragmentManager, "EventDialogFragment")
         }

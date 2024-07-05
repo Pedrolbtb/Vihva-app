@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.companyvihva.vihva.Inicio.tela_perfil_medico
+import com.companyvihva.vihva.Inicio.Perfil_medico.Perfil_medico
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.model.Amigos
-import com.companyvihva.vihva.com.companyvihva.vihva.model.DescriçãoRemedio_inicio1
 import com.squareup.picasso.Picasso
 
 class AdapterListaAmigos(
@@ -42,7 +41,7 @@ class AdapterListaAmigos(
             // Define o clique no item da lista
             itemView.setOnClickListener {
                 // Ao clicar em um item da lista, abra a Activity de descrição correspondente
-                val intent = Intent(context, tela_perfil_medico::class.java).apply {
+                val intent = Intent(context, Perfil_medico::class.java).apply {
                     // Aqui você passa o ID do remédio usando o mesmo nome de extra
                     putExtra("amigoId",listaAmizades[adapterPosition].documentId)
                 }
