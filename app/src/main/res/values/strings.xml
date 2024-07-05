@@ -295,6 +295,7 @@
     <string name="text_rejeitar">Rejeitar</string>
     <string name="text_aceitar">Aceitar</string>
     <string name="text_list_amizade">Meus amigos</string>
+    <string name="text_desfaz_amizade">Desfazer Amizade</string>
 
 
 </resources>

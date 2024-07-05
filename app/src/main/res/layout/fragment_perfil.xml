@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Inicio.Alarme"
     android:background="@drawable/background_home">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <ImageButton
             android:id="@+id/btn_medicos"
@@ -23,7 +22,6 @@
             android:src="@drawable/ic_medicos"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_save_perfil"
@@ -51,7 +49,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <TextView
             android:id="@+id/text_genero"
@@ -99,7 +96,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <View
             android:id="@+id/container_bio"
             style="@style/Edit_Text_Perfil"
@@ -136,7 +132,6 @@
             android:layout_height="40dp"
             android:layout_marginEnd="170dp"
             android:elevation="2dp"
-            android:width="180dp"
             android:background="@drawable/button_editar"
             android:text="@string/string_editar"
             android:textColor="@color/off_white"
@@ -147,13 +142,12 @@
             app:layout_constraintTop_toBottomOf="@+id/img_save_perfil" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_Amizade"
+            android:id="@+id/btn_cod_amizade"
             style="@style/Button_salvar"
-            android:layout_height="40dp"
             android:layout_width="160dp"
+            android:layout_height="40dp"
             android:layout_marginStart="170dp"
             android:elevation="2dp"
-            android:width="180dp"
             android:background="@drawable/button_roxo"
             android:text="@string/text_listaAmigos"
             android:textColor="@color/off_white"
@@ -162,7 +156,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_save_perfil" />
-
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -177,7 +170,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.83" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

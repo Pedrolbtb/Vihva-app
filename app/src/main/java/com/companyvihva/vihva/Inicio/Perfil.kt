@@ -86,11 +86,16 @@ class Perfil : Fragment() {
             showEditPerfilPopup()
         }
 
-        // Encontrar o botão btn_Amizade e configurar OnClickListener
-        val btnAmizade = view.findViewById<AppCompatButton>(R.id.btn_Amizade)
-        btnAmizade.setOnClickListener {
+        // Encontrar o botão btn_medicos
+        val btnMedicos = view.findViewById<AppCompatButton>(R.id.btn_medicos)
+        btnMedicos.setOnClickListener {
             val intent = Intent(requireContext(), Lista_amizades::class.java)
             startActivity(intent)
+        }
+
+        val btnCodigo = view.findViewById<AppCompatButton>(R.id.btn_cod_usuario)
+        btnCodigo.setOnClickListener{
+
         }
     }
 
