@@ -2,6 +2,9 @@
 package com.companyvihva.vihva.Inicio
 
 import android.app.AlertDialog
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,9 +14,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RadioGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
@@ -87,7 +92,7 @@ class Perfil : Fragment() {
         }
 
         // Encontrar o botão btn_medicos
-        val btnMedicos = view.findViewById<AppCompatButton>(R.id.btn_medicos)
+        val btnMedicos = view.findViewById<ImageButton>(R.id.btn_medicos)
         btnMedicos.setOnClickListener {
             val intent = Intent(requireContext(), Lista_amizades::class.java)
             startActivity(intent)
@@ -95,6 +100,12 @@ class Perfil : Fragment() {
 
         val btnCodigo = view.findViewById<AppCompatButton>(R.id.btn_cod_usuario)
         btnCodigo.setOnClickListener{
+            currentUserUid.let { uid ->
+                val clipboard = context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                val clip = ClipData.newPlainText("UID",uid)
+                clipboard.setPrimaryClip(clip)
+                Toast.makeText(requireContext(), "Código do usuário copiado para área de transferencia", Toast.LENGTH_SHORT).show()
+            }
 
         }
     }

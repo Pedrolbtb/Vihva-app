@@ -142,7 +142,7 @@
             app:layout_constraintTop_toBottomOf="@+id/img_save_perfil" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_cod_amizade"
+            android:id="@+id/btn_cod_usuario"
             style="@style/Button_salvar"
             android:layout_width="160dp"
             android:layout_height="40dp"
