@@ -14,7 +14,7 @@
         android:layout_height="65dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="357dp"
-        android:background="#00FFFFFF"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/button_back"
         android:padding="15dp"
         android:src="@drawable/arrow_voltar_vermelho"
