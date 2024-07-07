@@ -11,7 +11,7 @@
         android:id="@+id/btn_voltarListaRe"
         android:layout_width="50dp"
         android:layout_height="40dp"
-        android:background="#00FFFFFF"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:scaleType="fitCenter"
         android:src="@drawable/arrow_voltar_verde"
         app:layout_constraintBottom_toTopOf="@+id/recyclerview_nova_lista"
