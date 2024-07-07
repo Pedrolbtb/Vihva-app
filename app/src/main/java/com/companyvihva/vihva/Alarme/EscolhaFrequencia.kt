@@ -210,7 +210,7 @@ class EscolhaFrequencia : AppCompatActivity() {
             val frequenciaSelecionada = frequencia
             val horaEmHora: String? = if (frequencia == "Intervalo") {
                 val editTextHora = parentLayout.findViewById<EditText>(R.id.editTextHoraemHora)
-                editTextHora?.text?.toString() ?: "" // Captura o texto do EditText para horaEmHora
+                editTextHora?.text?.toString() ?: ""
             } else {
                 null
             }
