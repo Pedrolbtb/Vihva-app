@@ -65,6 +65,7 @@ dependencies {
     implementation ("com.google.android.material:material:<version>")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation ("com.google.android.material:material:1.4.0")
+    implementation ("androidx.work:work-runtime-ktx:2.7.1")
 
 
     //dependencias do Firebase

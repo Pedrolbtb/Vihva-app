@@ -1,11 +1,14 @@
 package com.companyvihva.vihva.Alarme
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.companyvihva.vihva.Configurações.Config_DeletarPerfil
+import com.companyvihva.vihva.Inicio.Inicio
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter.AdapterRemedio_Alarme
 import com.companyvihva.vihva.com.companyvihva.vihva.model.Remedios_alarme
@@ -31,6 +34,8 @@ class EscolhaRemedio : AppCompatActivity() {
 
         val btnVoltar = findViewById<ImageButton>(R.id.btnVoltarAddDoenca)
         btnVoltar.setOnClickListener {
+            val telaInicio = Intent(this, Inicio::class.java)
+            startActivity(telaInicio)
             finish()
         }
 

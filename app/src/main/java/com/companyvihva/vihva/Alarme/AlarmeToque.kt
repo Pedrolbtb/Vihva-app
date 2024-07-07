@@ -8,6 +8,9 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.media.Ringtone
+import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Build
 import android.util.Log
 import androidx.core.app.ActivityCompat
@@ -33,7 +36,6 @@ class AlarmeToque : BroadcastReceiver() {
             notificationManager.createNotificationChannel(channel)
         }
 
-        // Intent para abrir a tela de criação de alarme (CriaAlarme)
         val notificationIntent = Intent(context, CriaAlarme::class.java)
         val notificationPendingIntent = PendingIntent.getActivity(
             context,
@@ -62,5 +64,18 @@ class AlarmeToque : BroadcastReceiver() {
 
         // Exibir a notificação
         notificationManager.notify(1, notificationBuilder)
+
+        // Tocar som de alarme
+        tocarSomDeAlarme(context)
+    }
+
+    private fun tocarSomDeAlarme(context: Context) {
+        try {
+            val notification: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+            val ringtone: Ringtone = RingtoneManager.getRingtone(context, notification)
+            ringtone.play()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }
