@@ -199,8 +199,6 @@ class EscolhaFrequencia : AppCompatActivity() {
             }
         }
 
-        // No arquivo EscolhaFrequencia.kt
-
         findViewById<Button>(R.id.btn_salvarFrequencia).setOnClickListener {
             val dados = if (frequencia == "Somente em certos dias") {
                 prepararDadosParaEnvio()
