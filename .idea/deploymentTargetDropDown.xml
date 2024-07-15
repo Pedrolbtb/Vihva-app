@@ -2,24 +2,8 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="App">
+      <entry key="app">
         <State />
-      </entry>
-      <entry key="Vihva">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\pedro\.android\avd\Pixel_7_Pro_API_34.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-07-07T21:53:28.766436900Z" />
-        </State>
       </entry>
     </value>
   </component>

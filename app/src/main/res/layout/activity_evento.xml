@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,56 +7,124 @@
     android:background="@drawable/background_home"
     tools:context=".Inicio.Calendario">
 
+    <ImageButton
+        android:id="@+id/btnVoltar"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="357dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/button_back"
+        android:padding="15dp"
+        android:src="@drawable/arrow_voltar_vermelho"
+        android:text="@string/button_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
+        android:id="@+id/text_alarme"
+        style="@style/text_doenca_e_remedio"
+        android:layout_marginBottom="540dp"
+        android:text="Marcar consulta"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/View_Programacao"
+        style="@style/Container_Alarme"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:gravity="center"
-        android:paddingBottom="8dp"
-        android:text="Selecione a Data"
-        android:textColor="@color/Letras"
-        android:textSize="25sp" />
+        android:layout_height="550dp"
+        android:layout_marginTop="100dp"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.493" />
+
+    <View
+        android:id="@+id/container_tipo"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="470dp"
+        android:background="@drawable/container_linha"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao"
+        app:layout_constraintTop_toTopOf="@+id/View_Programacao" />
+
+    <TextView
+        android:id="@+id/dataconsulta"
+        style="@style/text_botoesAlarme"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="3dp"
+        android:elevation="1dp"
+        android:text="Selecione a data"
+        app:layout_constraintBottom_toBottomOf="@+id/container_tipo"
+        app:layout_constraintEnd_toEndOf="@id/container_tipo"
+        app:layout_constraintStart_toStartOf="@id/container_tipo"
+        app:layout_constraintTop_toTopOf="@+id/container_tipo" />
 
     <DatePicker
         android:id="@+id/datePicker"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
+        style="@style/text_botoesAlarme"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="200dp"
+        android:elevation="1dp"
         android:calendarViewShown="false"
-        android:datePickerMode="spinner" />
+        android:datePickerMode="spinner"
+        app:layout_constraintBottom_toBottomOf="@+id/container_tipo"
+        app:layout_constraintEnd_toEndOf="@id/container_tipo"
+        app:layout_constraintStart_toStartOf="@id/container_tipo"
+        app:layout_constraintTop_toTopOf="@+id/container_tipo"/>
+
+    <View
+        android:id="@+id/container_lembreounao"
+        style="@style/container_linha"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="230dp"
+        android:background="@drawable/container_linha"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="350dp"
-        android:gravity="center"
-        android:paddingBottom="8dp"
+        android:id="@+id/descricao_evento"
+        style="@style/text_botoesAlarme"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="270dp"
+        android:elevation="1dp"
         android:text="Descrição do evento"
-        android:textColor="@color/Letras"
-        android:textSize="25sp" />
-
-    <EditText
-        android:id="@+id/eventEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:gravity="center"
-        android:hint="Digite o evento"
-        android:paddingBottom="8dp"
-        android:textColor="@color/Letras"
-        android:textSize="25sp" />
+        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/saveButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="600dp"
-        android:background="@drawable/button"
-        android:fontFamily="@font/cloudsoft_bold_700"
-        android:gravity="center"
-        android:text="Salvar"
-        android:textColor="@color/off_white"
-        android:textSize="25dp" />
+        style="@style/Button_salvar"
+        android:layout_width="300dp"
+        android:layout_marginTop="430dp"
+        android:text="@string/text_salvar"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao"
+        app:layout_constraintTop_toTopOf="@id/View_Programacao" />
 
 
-</FrameLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
