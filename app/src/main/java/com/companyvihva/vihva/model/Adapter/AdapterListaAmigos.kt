@@ -13,6 +13,7 @@ import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.model.Amigos
 import com.squareup.picasso.Picasso
 
+
 class AdapterListaAmigos(
     private val context: Context,
     private val listaAmizades: MutableList<Amigos>
@@ -27,8 +28,13 @@ class AdapterListaAmigos(
 
     override fun onBindViewHolder(holder: AmigosViewHolder, position: Int) {
         val currentItem = listaAmizades[position]
-        // Carrega a imagem do item usando Picasso
-        Picasso.get().load(currentItem.fotoAmigo).into(holder.fotoAmigo)
+        // Verifica se a URL da imagem não está vazia antes de carregá-la
+        if (!currentItem.fotoAmigo.isNullOrEmpty()) {
+            Picasso.get().load(currentItem.fotoAmigo).into(holder.fotoAmigo)
+        } else {
+            // Define uma imagem padrão se a URL estiver vazia
+            holder.fotoAmigo.setImageResource(R.drawable.adicionarfoto)
+        }
         // Define o nome do item
         holder.nome.text = currentItem.nome
     }
@@ -42,8 +48,8 @@ class AdapterListaAmigos(
             itemView.setOnClickListener {
                 // Ao clicar em um item da lista, abra a Activity de descrição correspondente
                 val intent = Intent(context, Perfil_medico::class.java).apply {
-                    // Aqui você passa o ID do remédio usando o mesmo nome de extra
-                    putExtra("amigoId",listaAmizades[adapterPosition].documentId)
+                    // Aqui você passa o ID do amigo usando o mesmo nome de extra
+                    putExtra("amigoId", listaAmizades[adapterPosition].documentId)
                 }
                 context.startActivity(intent)
             }

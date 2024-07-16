@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.model.tipo_amigo_descrição
 import com.google.firebase.auth.FirebaseAuth
@@ -26,6 +27,7 @@ class Perfil_medico : AppCompatActivity() {
     private var amigoid: String? = null
     private lateinit var centroMedicoView: TextView
     private lateinit var crmView: TextView
+    private lateinit var sobrenomeView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,7 @@ class Perfil_medico : AppCompatActivity() {
         urlImageView = findViewById(R.id.img_save_perfil)
         centroMedicoView = findViewById(R.id.centro_medico)
         crmView = findViewById(R.id.crm)
+        sobrenomeView = findViewById(R.id.sobrenome)
 
         // Configura o botão de voltar
         val btnVoltar = findViewById<ImageButton>(R.id.close)
@@ -52,7 +55,7 @@ class Perfil_medico : AppCompatActivity() {
         }
 
         // Configura o botão de excluir amigo
-        val btnExcluir = findViewById<ImageButton>(R.id.exclui_medico)
+        val btnExcluir = findViewById<AppCompatButton>(R.id.exclui_medico)  // Corrigido para AppCompatButton
         btnExcluir.setOnClickListener {
             amigoid?.let { id ->
                 showConfirmDeleteDialog(id)
@@ -75,6 +78,7 @@ class Perfil_medico : AppCompatActivity() {
                     val imageUrl = document.getString("imageUrl")
                     val centroMedico = document.getString("centroMedico")
                     val crm = document.getString("crm")
+                    val sobrenome = document.getString("sobrenome")
                     // Carrega a URL de imagem usando o Picasso
                     imageUrl?.let {
                         Picasso.get().load(it).into(urlImageView)
@@ -87,6 +91,7 @@ class Perfil_medico : AppCompatActivity() {
                         especializacao ?: "",
                         centroMedico ?: "",
                         crm ?: "",
+                        sobrenome?:"",
                         ""
                     )
 
@@ -95,6 +100,7 @@ class Perfil_medico : AppCompatActivity() {
                     descricaoTextView.text = especializacao
                     centroMedicoView.text = centroMedico
                     crmView.text = crm
+                    sobrenomeView.text = sobrenome
                 } else {
                     Log.d("Perfil_medico", "Documento não encontrado")
                 }

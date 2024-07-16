@@ -3,26 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="147dp"
+    android:layout_marginStart="1dp"
+    android:layout_height="140dp"
+    android:elevation="4dp"
+    android:layout_marginBottom="20dp"
     android:background="@drawable/background_widget"
-    android:elevation="3dp"
+
     tools:context=".Inicio.Inicio">
 
     <View
-        android:background="@drawable/container_foto_widget_redondo"
-        android:layout_width="95dp"
-        android:layout_height="105dp"
-        android:layout_marginBottom="5dp"
+        android:layout_width="107dp"
+        android:layout_height="104dp"
         android:layout_marginStart="27dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/container_foto_widget_redondo"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="91dp"
+        android:layout_width="104dp"
         android:layout_height="101dp"
-        android:layout_marginTop="5dp"
         android:layout_marginStart="29dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
         app:cardCornerRadius="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,8 +35,8 @@
         <ImageView
             android:id="@+id/foto_amigo"
             style="@style/foto"
-            android:layout_width="91dp"
-            android:layout_height="101dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/avatars" />
 
