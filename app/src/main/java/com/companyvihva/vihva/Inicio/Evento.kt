@@ -40,9 +40,9 @@ class Evento : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Obtém referências para os elementos de UI
-        //val eventEditText = view.findViewById<EditText>(R.id.eventEditText)
         val saveButton = view.findViewById<Button>(R.id.saveButton)
         val datePicker = view.findViewById<DatePicker>(R.id.datePicker)
+        val backButton = view.findViewById<View>(R.id.btnVoltar) // Obtém referência ao botão de voltar
 
         // Define um listener para o botão de salvar
         saveButton.setOnClickListener {
@@ -50,6 +50,12 @@ class Evento : DialogFragment() {
             //val event = eventEditText.text.toString()
             // Chama o método onEventSave do listener com o texto do evento
             //listener?.onEventSave(event)
+            // Fecha o diálogo
+            dismiss()
+        }
+
+        // Define um listener para o botão de voltar
+        backButton.setOnClickListener {
             // Fecha o diálogo
             dismiss()
         }
