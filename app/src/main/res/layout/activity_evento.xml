@@ -11,10 +11,11 @@
         android:id="@+id/btnVoltar"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="360dp"
+        android:layout_marginEnd="330dp"
         android:layout_marginBottom="650dp"
-        android:padding="15dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/button_back"
+        android:padding="0dp"
         android:src="@drawable/arrow_voltar_vermelho"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,15 +26,15 @@
         android:id="@+id/text_alarme"
         style="@style/text_doenca_e_remedio"
         android:layout_marginBottom="540dp"
-        android:text="Marcar consulta"
+        android:text="Marcar lembrete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/View_Programacao"
-        style="@style/Container_Alarme"
+        android:id="@+id/View_Consulta"
+        style="@style/Container_Evento"
         android:layout_width="match_parent"
         android:layout_height="550dp"
         android:layout_marginTop="100dp"
@@ -45,91 +46,92 @@
         app:layout_constraintVertical_bias="0.493" />
 
     <View
-        android:id="@+id/container_tipo"
+        android:id="@+id/container_data"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="180dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="470dp"
+        android:layout_marginBottom="150dp"
         android:background="@drawable/container_linha"
         android:elevation="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
-        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
-        app:layout_constraintStart_toStartOf="@id/View_Programacao"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
+        app:layout_constraintEnd_toEndOf="@id/View_Consulta"
+        app:layout_constraintStart_toStartOf="@id/View_Consulta"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/dataconsulta"
         style="@style/text_botoesAlarme"
-        android:layout_marginEnd="150dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="500dp"
         android:elevation="1dp"
         android:text="Selecione a data"
-        app:layout_constraintBottom_toBottomOf="@+id/container_tipo"
-        app:layout_constraintEnd_toEndOf="@id/container_tipo"
-        app:layout_constraintHorizontal_bias="0.242"
-        app:layout_constraintStart_toStartOf="@id/container_tipo"
-        app:layout_constraintTop_toTopOf="@+id/container_tipo"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
+        app:layout_constraintEnd_toEndOf="@+id/container_data"
+        app:layout_constraintStart_toStartOf="@+id/container_data"
+        app:layout_constraintTop_toTopOf="@+id/View_Consulta"
         app:layout_constraintVertical_bias="1.0" />
 
     <DatePicker
         android:id="@+id/datePicker"
         style="@style/text_botoesAlarme"
+        android:layout_marginStart="30dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="160dp"
         android:calendarViewShown="false"
         android:datePickerMode="spinner"
         android:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/container_tipo"
+        app:layout_constraintEnd_toEndOf="@id/container_data"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/container_lembreounao"
+        android:id="@+id/container_consulta"
         style="@style/container_linha"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="210dp"
+        android:layout_marginBottom="190dp"
         android:background="@drawable/container_linha"
         android:elevation="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
-        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
-        app:layout_constraintStart_toStartOf="@id/View_Programacao" />
+        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
+        app:layout_constraintEnd_toEndOf="@id/View_Consulta"
+        app:layout_constraintStart_toStartOf="@id/View_Consulta" />
 
     <TextView
         android:id="@+id/descricao_evento"
         style="@style/text_botoesAlarme"
+        android:layout_width="194dp"
+        android:layout_height="21dp"
         android:layout_marginTop="400dp"
-        android:layout_marginBottom="270dp"
+        android:layout_marginBottom="280dp"
         android:elevation="1dp"
-        android:layout_marginEnd="150dp"
         android:text="Descrição do evento"
-        app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
+        app:layout_constraintEnd_toEndOf="@+id/View_Consulta"
+        app:layout_constraintStart_toStartOf="@+id/View_Consulta"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/eventEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="190dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/edit_text"
+        android:elevation="1dp"
         android:hint="Digite o evento"
         android:padding="8dp"
-        android:elevation="1dp"
         android:textColor="@color/Letras"
         android:textSize="18sp"
-        android:layout_marginTop="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/saveButton"
@@ -138,13 +140,9 @@
         android:layout_marginTop="430dp"
         android:text="@string/text_salvar"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@id/View_Programacao"
-        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
-        app:layout_constraintStart_toStartOf="@id/View_Programacao"
-        app:layout_constraintTop_toTopOf="@id/View_Programacao" />
-
-
-
-
+        app:layout_constraintBottom_toBottomOf="@id/View_Consulta"
+        app:layout_constraintEnd_toEndOf="@id/View_Consulta"
+        app:layout_constraintStart_toStartOf="@id/View_Consulta"
+        app:layout_constraintTop_toTopOf="@id/View_Consulta" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
