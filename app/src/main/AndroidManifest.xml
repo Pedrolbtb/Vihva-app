@@ -32,7 +32,7 @@
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
         <activity
-            android:name=".Inicio.Chat"
+            android:name="Chat"
             android:exported="false" />
 
         <receiver
