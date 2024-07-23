@@ -8,14 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.R
-
-data class SolicitacaoAmizade(
-    var id: String = "",
-    var medicoId: String = "", // ID do médico
-    val para: String = "", // ID do paciente
-    val status: String = "",
-    var nomeSolicitante: String? = "" // Nome do solicitante
-)
+import com.companyvihva.vihva.com.companyvihva.vihva.model.SolicitacaoAmizade
 
 
 class SolicitacaoAmizadeAdapter(
