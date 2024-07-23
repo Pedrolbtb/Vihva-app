@@ -1,6 +1,6 @@
 package com.companyvihva.vihva.Inicio.Perfil_medico
 
-import Chat
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import com.companyvihva.vihva.Inicio.chat.Chat
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.model.tipo_amigo_descrição
 import com.google.firebase.auth.FirebaseAuth

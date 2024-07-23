@@ -1,4 +1,5 @@
-// ChatActivity.kt
+package com.companyvihva.vihva.Inicio.chat
+
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
