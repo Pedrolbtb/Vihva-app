@@ -35,11 +35,12 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             style="@style/foto"
+            android:background="@drawable/circular"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="16dp"
             android:contentDescription="foto de perfil"
             android:scaleType="centerCrop"
-            android:src="@drawable/circular" />
+            />
 
         <TextView
             android:id="@+id/user_name"
@@ -50,7 +51,6 @@
             android:textSize="18sp" />
     </LinearLayout>
 
-    <!-- Espaço para mensagens -->
 
     <!-- Container para entrada de mensagem -->
     <androidx.recyclerview.widget.RecyclerView
@@ -84,7 +84,9 @@
             android:background="@drawable/background_edit_text_enviar"
             android:maxHeight="48dp"
             android:minHeight="48dp"
+            android:textColor="@color/white"
             android:hint="Mensagem"
+            android:textColorHint="@color/white"
             android:padding="8dp" />
 
         <ImageButton
