@@ -14,7 +14,7 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Permissão de internet -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Permissões de localização -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
@@ -31,14 +31,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
+        <activity
+            android:name=".Inicio.Chat"
+            android:exported="false" />
 
-        <receiver android:name=".Alarme.AlarmeToque"
+        <receiver
+            android:name=".Alarme.AlarmeToque"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
 
         <activity
             android:name=".Inicio.Perfil_medico.Perfil_medico"
@@ -67,7 +70,6 @@
             android:name=".Alarme.ConfigFrequencia"
             android:exported="false"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".Alarme.ConfigDuracao"
             android:exported="false" />
@@ -75,7 +77,6 @@
             android:name=".com.companyvihva.vihva.model.DescriçãoDoença_inicio1"
             android:exported="false"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".Alarme.EscolhaFrequencia"
             android:exported="false" />
@@ -94,7 +95,7 @@
         <activity
             android:name=".Lista_Remedios"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".model.PopupRemedio.DescriçãoRemedio"
             android:exported="false" />
@@ -111,10 +112,9 @@
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Login.Login"
-
+            android:name=".Inicio.Inicio"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Configurações.Config_DeletarPerfil"
             android:exported="false"
@@ -123,7 +123,6 @@
             android:name=".CriarPerfil.CriaPerfil2"
             android:exported="false"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".Alarme.CriaAlarme"
             android:exported="true"
@@ -137,11 +136,12 @@
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Inicio.Inicio"
+            android:name=".Login.Login"
             android:exported="true"
             android:theme="@style/AppTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -152,9 +152,7 @@
             android:exported="true"
             android:label="@string/accessibility_service_label"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
-
             <intent-filter>
-
                 <action android:name="android.intent.action.MAIN" />
                 <!-- API DE ACCESSIBILIDADE -->
                 <action android:name="android.accessibilityservice.AccessibilityService" />

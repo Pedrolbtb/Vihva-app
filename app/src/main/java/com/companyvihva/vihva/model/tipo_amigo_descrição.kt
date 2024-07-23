@@ -9,3 +9,4 @@ data class tipo_amigo_descrição(
     val sobrenome: String,
     val documentId: String
 )
+
