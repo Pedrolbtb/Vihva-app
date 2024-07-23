@@ -49,6 +49,7 @@
             app:layout_constraintTop_toBottomOf="@+id/img_save_perfil"
             app:layout_constraintVertical_bias="0.078" />
 
+
         <ImageButton
             android:id="@+id/close"
             android:layout_width="65dp"
@@ -59,10 +60,25 @@
             android:src="@drawable/arrow_voltar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.044"
+            app:layout_constraintHorizontal_bias="0.08"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.036" />
+            app:layout_constraintVertical_bias="0.044" />
+
+        <ImageButton
+            android:id="@+id/chat"
+            android:layout_width="65dp"
+            android:layout_height="59dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/close_button_description"
+            android:padding="15dp"
+            android:src="@drawable/ic_chat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.881"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.044" />
 
         <TextView
             android:id="@+id/text_nome"
@@ -106,11 +122,11 @@
                     android:text="Especialização"
                     android:textSize="19sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.11"
+                    app:layout_constraintEnd_toStartOf="@+id/text_genero"
+                    app:layout_constraintHorizontal_bias="0.454"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.393"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5"
+                    app:layout_constraintVertical_bias="0.224"
                     app:layout_constraintVertical_chainStyle="spread" />
 
                 <TextView
@@ -121,11 +137,11 @@
                     android:text="Centro Médico"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.073"
+                    app:layout_constraintEnd_toStartOf="@+id/centro_medico"
+                    app:layout_constraintHorizontal_bias="0.571"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.145"
+                    app:layout_constraintVertical_bias="0.148"
                     app:layout_constraintVertical_chainStyle="spread" />
 
                 <TextView
@@ -152,11 +168,11 @@
                     android:textSize="21sp"
 
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.202"
+                    app:layout_constraintEnd_toStartOf="@+id/crm"
+                    app:layout_constraintHorizontal_bias="0.154"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.649" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView4"
+                    app:layout_constraintVertical_bias="0.321" />
 
                 <TextView
                     android:id="@+id/centro_medico"
@@ -196,14 +212,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="254dp" />
+            app:layout_constraintGuide_begin="239dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.83" />
+            app:layout_constraintGuide_percent="1.0" />
 
         <TextView
             android:id="@+id/textView10"
@@ -227,10 +243,10 @@
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/cardView2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.125"
             app:layout_constraintStart_toEndOf="@+id/text_nome"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.727" />
+            app:layout_constraintVertical_bias="0.729" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

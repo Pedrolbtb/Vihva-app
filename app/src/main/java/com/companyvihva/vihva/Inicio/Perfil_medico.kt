@@ -1,5 +1,6 @@
 package com.companyvihva.vihva.Inicio.Perfil_medico
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import com.companyvihva.vihva.Inicio.Chat
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.model.tipo_amigo_descrição
 import com.google.firebase.auth.FirebaseAuth
@@ -24,7 +26,7 @@ class Perfil_medico : AppCompatActivity() {
     private lateinit var descricaoTextView: TextView
     private lateinit var urlImageView: ImageView
     private var doenca: tipo_amigo_descrição? = null
-    private var amigoid: String? = null
+    private var amigoId: String? = null
     private lateinit var centroMedicoView: TextView
     private lateinit var crmView: TextView
     private lateinit var sobrenomeView: TextView
@@ -38,7 +40,7 @@ class Perfil_medico : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         // Obtém o ID do amigo passado pelo Intent
-        amigoid = intent.getStringExtra("amigoId")
+        amigoId = intent.getStringExtra("amigoId")
 
         // Inicializa as views
         nomeTextView = findViewById(R.id.text_nome)
@@ -54,16 +56,24 @@ class Perfil_medico : AppCompatActivity() {
             onBackPressed()
         }
 
+        // Configura a passagem de tela para o chat
+        val btnChat = findViewById<ImageButton>(R.id.chat)
+        btnChat.setOnClickListener {
+            amigoId?.let { id ->
+                openChatActivity(id)
+            }
+        }
+
         // Configura o botão de excluir amigo
-        val btnExcluir = findViewById<AppCompatButton>(R.id.exclui_medico)  // Corrigido para AppCompatButton
+        val btnExcluir = findViewById<AppCompatButton>(R.id.exclui_medico)
         btnExcluir.setOnClickListener {
-            amigoid?.let { id ->
+            amigoId?.let { id ->
                 showConfirmDeleteDialog(id)
             }
         }
 
         // Busca os dados do Firebase usando o ID do amigo
-        amigoid?.let { id ->
+        amigoId?.let { id ->
             fetchDadosDoFirebase(id)
         }
     }
@@ -91,7 +101,7 @@ class Perfil_medico : AppCompatActivity() {
                         especializacao ?: "",
                         centroMedico ?: "",
                         crm ?: "",
-                        sobrenome?:"",
+                        sobrenome ?: "",
                         ""
                     )
 
@@ -131,7 +141,8 @@ class Perfil_medico : AppCompatActivity() {
             val userDocRef = firestore.collection("clientes").document(it.uid)
             userDocRef.update("medicos", FieldValue.arrayRemove(amigoId))
                 .addOnSuccessListener {
-                    Toast.makeText(this, "Profissional excluído com sucesso", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Profissional excluído com sucesso", Toast.LENGTH_SHORT)
+                        .show()
                     Log.d("Perfil_medico", "Profissional excluído com sucesso")
                     onBackPressed()
                 }
@@ -140,4 +151,25 @@ class Perfil_medico : AppCompatActivity() {
                 }
         }
     }
+
+    // Método para iniciar a atividade de chat
+    private fun openChatActivity(medicoId: String) {
+        doenca?.let {
+            val intent = Intent(this, Chat::class.java).apply {
+                putExtra("medicoId", medicoId) // Passa o ID do médico para a atividade de chat
+                putExtra("EXTRA_IMAGE_URL", it.fotoAmigo) // Passa a URL da imagem do médico
+                putExtra("EXTRA_NOME", it.nome) // Passa o nome do médico
+            }
+            startActivity(intent)
+        } ?: run {
+            // Você pode adicionar uma mensagem de erro ou realizar alguma ação caso `doenca` seja null
+            Toast.makeText(
+                this,
+                "Dados do médico não carregados. Tente novamente.",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
 }
+
+

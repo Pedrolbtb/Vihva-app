@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.R
-import com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter.SolicitacaoAmizade
 import com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter.SolicitacaoAmizadeAdapter
+import com.companyvihva.vihva.com.companyvihva.vihva.model.SolicitacaoAmizade
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
