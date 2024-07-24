@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import com.companyvihva.vihva.R
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 class CriaAlarme : AppCompatActivity() {
@@ -37,7 +38,7 @@ class CriaAlarme : AppCompatActivity() {
 
         // Inicializando as variáveis de intent dentro do onCreate
         val frequencia = intent.getStringExtra("frequencia")
-        val horas = intent.getStringExtra("horaemhora")
+        val horaemhora = intent.getStringExtra("horaemhora")
         val duracao = intent.getStringExtra("duracao")
         val data = intent.getStringExtra("data")
         val horaDiariamente = intent.getStringExtra("horaDiariamente")
@@ -46,7 +47,7 @@ class CriaAlarme : AppCompatActivity() {
         val tipomed = intent.getStringExtra("tipomed")
         val switchEstoqueChecked = intent.getBooleanExtra("switchEstoque", false)
         val obsAlarme = intent.getStringExtra("OBS")
-        nome = intent.getStringExtra("remedioId")
+        val nome = intent.getStringExtra("remedioId")
 
         val editnomeAlarme = findViewById<TextView>(R.id.layout_nome_alarme)
         nome?.let {
@@ -56,8 +57,8 @@ class CriaAlarme : AppCompatActivity() {
         val editDescAlarme = findViewById<EditText>(R.id.edit_descAlarme)
 
         val descProgramacao = findViewById<TextView>(R.id.descprogramacao)
-        if (frequencia != null && horas != null && duracao != null && data != null) {
-            descProgramacao.text = "$frequencia - $horas - $duracao - $data"
+        if (frequencia != null && horaemhora != null && duracao != null && data != null) {
+            descProgramacao.text = "$frequencia - $horaemhora - $duracao - $data"
         }
 
         val descEstoque = findViewById<TextView>(R.id.descEstoque)
@@ -71,7 +72,7 @@ class CriaAlarme : AppCompatActivity() {
                 putExtra("data", data)
                 putExtra("duracao", duracao)
                 putExtra("frequencia", frequencia)
-                putExtra("horaemhora", horas)
+                putExtra("horaemhora", horaemhora)
                 putExtra("lembreme", lembreme)
                 putExtra("tipomed", tipomed)
                 putExtra("estoque", estoque)
@@ -87,7 +88,7 @@ class CriaAlarme : AppCompatActivity() {
                 putExtra("data", data)
                 putExtra("duracao", duracao)
                 putExtra("frequencia", frequencia)
-                putExtra("horaemhora", horas)
+                putExtra("horaemhora", horaemhora)
                 putExtra("lembreme", lembreme)
                 putExtra("tipomed", tipomed)
                 putExtra("estoque", estoque)
@@ -142,7 +143,9 @@ class CriaAlarme : AppCompatActivity() {
     private fun agendarAlarme() {
         Log.d("AgendarAlarme", "Iniciando agendamento de alarme")
 
-        val segundos = 5 // Definir o intervalo em segundos
+        val horaDiariamente = intent.getStringExtra("horaDiariamente")
+        val horas = intent.getStringExtra("horaemhora")
+        val hora = 24 // Definir o intervalo em horas
 
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val alarmIntent = Intent(this, AlarmeToque::class.java)
@@ -157,7 +160,7 @@ class CriaAlarme : AppCompatActivity() {
             // Configurar o horário inicial do alarme
             val calendar = Calendar.getInstance()
             calendar.timeInMillis = System.currentTimeMillis()
-            calendar.add(Calendar.SECOND, segundos)
+            calendar.add(Calendar.HOUR, hora)
 
             // Agendar o alarme que se repete
             alarmManager.setExact(
@@ -192,3 +195,4 @@ class CriaAlarme : AppCompatActivity() {
         }
     }
 }
+

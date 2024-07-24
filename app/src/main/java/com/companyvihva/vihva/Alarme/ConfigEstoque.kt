@@ -20,33 +20,16 @@ class ConfigEstoque : AppCompatActivity() {
 
         // Recuperando dados da intent
         val frequencia = intent.getStringExtra("frequencia")
-        val horas = intent.getStringExtra("horaemhora") // Alterado para String, não Int
+        val horaemhora = intent.getStringExtra("horaemhora") // Alterado para String, não Int
         val duracao = intent.getStringExtra("duracao")
         val data = intent.getStringExtra("data")
         val estoque = intent.getStringExtra("estoque")
         val lembreme = intent.getStringExtra("lembreme")
-        var horaDiariamente = intent.getStringExtra("horaDiariamente")
+        val horaDiariamente = intent.getStringExtra("horaDiariamente")
         val tipomed = intent.getStringExtra("tipomed")
         val nome = intent.getStringExtra("remedioId")
         val switchEstoqueChecked = intent.getBooleanExtra("switchEstoque", false)
 
-        // Configurando o listener para o botão de voltar
-        val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
-        btnVoltar.setOnClickListener {
-            val intent = Intent(this, CriaAlarme::class.java).apply {
-                putExtra("frequencia", frequencia)
-                putExtra("horaemhora", horas)
-                putExtra("duracao", duracao)
-                putExtra("data", data)
-                putExtra("lembreme", lembreme)
-                putExtra("tipomed", tipomed)
-                putExtra("estoque", estoque)
-                putExtra("remedioId", nome)
-                putExtra("horaDiariamente", horaDiariamente)
-                putExtra("switchEstoque", switchEstoqueChecked)
-            }
-            startActivity(intent)
-        }
 
         // Configuração do Spinner TipoMed
         val spinnerTipoMed = findViewById<Spinner>(R.id.spinnerTipoMed)
@@ -98,16 +81,21 @@ class ConfigEstoque : AppCompatActivity() {
                 editTextLembreme.setText(lembreme)
             }
         }
-
-        // Configurando o listener para o botão de salvar
-        findViewById<Button>(R.id.btn_salvarEstoque).setOnClickListener {
+        // Configurando o listener para o botão de voltar
+        // Configurando o listener para o botão de voltar
+        val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
+        btnVoltar.setOnClickListener {
             val intent = Intent(this, CriaAlarme::class.java).apply {
                 putExtra("frequencia", frequencia)
-                putExtra("horaemhora", horas)
+                putExtra("horaemhora", horaemhora)
                 putExtra("duracao", duracao)
                 putExtra("data", data)
+                putExtra("lembreme", lembreme)
+                putExtra("tipomed", tipomed)
+                putExtra("estoque", estoque)
                 putExtra("remedioId", nome)
-                putExtra("switchEstoque", switchEstoque.isChecked)
+                putExtra("horaDiariamente", horaDiariamente)
+                putExtra("switchEstoque", switchEstoqueChecked)
 
                 val tipoMed = spinnerTipoMed.selectedItem.toString()
                 putExtra("tipomed", tipoMed)
@@ -120,7 +108,33 @@ class ConfigEstoque : AppCompatActivity() {
                 }
             }
             startActivity(intent)
-            finish() // Finaliza a activity para voltar à anterior
+        }
+
+        // Configurando o listener para o botão de salvar
+            // findViewById<Button>(R.id.btn_salvarEstoque).setOnClickListener {
+            //  val intent = Intent(this, CriaAlarme::class.java).apply {
+            //    putExtra("frequencia", frequencia)
+            //   putExtra("horaemhora", horaemhora)
+            //  putExtra("duracao", duracao)
+            //  putExtra("data", data)
+            //  putExtra("remedioId", nome)
+            // putExtra("switchEstoque", switchEstoque.isChecked)
+
+            //   val tipoMed = spinnerTipoMed.selectedItem.toString()
+            //  putExtra("tipomed", tipoMed)
+
+            //if (switchEstoque.isChecked) {
+            //  val estoqueAtual = editTextEstoqueAtual.text.toString()
+            //   val lembremeAtual = editTextLembreme.text.toString()
+            //  putExtra("estoque", estoqueAtual)
+            //    putExtra("lembreme", lembremeAtual)
+            //   }
+            //   }
+            //  startActivity(intent)
+            //   finish() // Finaliza a activity para voltar à anterior
+            //   }
         }
     }
-}
+
+
+
