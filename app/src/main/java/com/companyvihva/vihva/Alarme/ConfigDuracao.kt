@@ -3,7 +3,6 @@ package com.companyvihva.vihva.Alarme
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.RadioGroup
@@ -19,42 +18,35 @@ class ConfigDuracao : AppCompatActivity() {
     private var duracao: String? = null
     private var formattedDate: String? = null
 
+    // Variáveis para armazenar dados da intent
+    private lateinit var frequencia: String
+    private lateinit var horaemhora: String
+    private lateinit var data: String
+    private lateinit var horaDiariamente: String
+    private lateinit var estoque: String
+    private lateinit var lembreme: String
+    private lateinit var tipomed: String
+    private var switchEstoqueChecked: Boolean = false
+    private lateinit var nome: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config_duracao)
 
         // Recuperando dados da intent
-        val frequencia = intent.getStringExtra("frequencia")
-        val horas = intent.getStringExtra("horaemhora") // Alterado para String, não Int
+        frequencia = intent.getStringExtra("frequencia") ?: ""
+        horaemhora = intent.getStringExtra("horaemhora") ?: ""
         duracao = intent.getStringExtra("duracao")
-        val data = intent.getStringExtra("data")
-        var horaDiariamente = intent.getStringExtra("horaDiariamente")
-        val estoque = intent.getStringExtra("estoque")
-        val lembreme = intent.getStringExtra("lembreme")
-        val tipomed = intent.getStringExtra("tipomed")
-        val switchEstoqueChecked = intent.getBooleanExtra("switchEstoque", false)
-        val nome = intent.getStringExtra("remedioId")
+        data = intent.getStringExtra("data") ?: ""
+        horaDiariamente = intent.getStringExtra("horaDiariamente") ?: ""
+        estoque = intent.getStringExtra("estoque") ?: ""
+        lembreme = intent.getStringExtra("lembreme") ?: ""
+        tipomed = intent.getStringExtra("tipomed") ?: ""
+        switchEstoqueChecked = intent.getBooleanExtra("switchEstoque", false)
+        nome = intent.getStringExtra("remedioId") ?: ""
 
         // Referência para o layout pai onde os novos layouts serão adicionados dinamicamente
         val parentLayout = findViewById<LinearLayout>(R.id.layout_Duracao)
-
-        // Configurando o listener para o botão de voltar
-        val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
-        btnVoltar.setOnClickListener {
-            val intent = Intent(this, ConfigFrequencia::class.java).apply {
-                putExtra("frequencia", frequencia)
-                putExtra("horaemhora", horas)
-                putExtra("duracao", duracao)
-                putExtra("data", data)
-                putExtra("horaDiariamente", horaDiariamente)
-                putExtra("estoque", estoque)
-                putExtra("lembreme", lembreme)
-                putExtra("tipomed", tipomed)
-                putExtra("switchEstoque", switchEstoqueChecked)
-                putExtra("remedioId", nome)
-            }
-            startActivity(intent)
-        }
 
         // Referência para o RadioGroup de seleção de frequência
         val radioGroup: RadioGroup = findViewById(R.id.radioGroup_frequencia)
@@ -132,32 +124,34 @@ class ConfigDuracao : AppCompatActivity() {
                 }
 
                 // Se data foi passada pelo Intent, mostrar no campo
-                if (data != null) {
+                if (data.isNotEmpty()) {
                     textViewCalendario.text = data
                 }
             }
         }
 
-        // Configurando o listener para o botão de salvar frequência
-        findViewById<Button>(R.id.btn_salvarFrequencia).setOnClickListener {
-            val atexdata = formattedDate
-            val duracaoSelecionada = duracao
-
-            // Criando intent para retornar os dados para a activity ConfigFrequencia
-            val intent = Intent(this, ConfigFrequencia::class.java).apply {
-                putExtra("data", atexdata)
-                putExtra("duracao", duracaoSelecionada)
-                putExtra("frequencia", frequencia)
-                putExtra("horaemhora", horas)
-                putExtra("lembreme", lembreme)
-                putExtra("tipomed", tipomed)
-                putExtra("estoque", estoque)
-                putExtra("remedioId", nome)
-                putExtra("switchEstoque", switchEstoqueChecked)
-                putExtra("horaDiariamente", horaDiariamente)
-            }
-            startActivity(intent)
-            finish()
+        // Configurando o listener para o botão de voltar
+        val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
+        btnVoltar.setOnClickListener {
+            onBackPressed()
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // Criando intent para retornar os dados para a activity ConfigFrequencia
+        val intent = Intent(this, ConfigFrequencia::class.java).apply {
+            putExtra("data", formattedDate)
+            putExtra("duracao", duracao)
+            putExtra("frequencia", frequencia)
+            putExtra("horaemhora", horaemhora)
+            putExtra("horaDiariamente", horaDiariamente)
+            putExtra("estoque", estoque)
+            putExtra("lembreme", lembreme)
+            putExtra("tipomed", tipomed)
+            putExtra("switchEstoque", switchEstoqueChecked)
+            putExtra("remedioId", nome)
+        }
+        startActivity(intent)
     }
 }

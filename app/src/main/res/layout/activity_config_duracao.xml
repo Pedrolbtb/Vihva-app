@@ -96,17 +96,5 @@
         app:layout_constraintTop_toTopOf="@+id/View_Frequencia">
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_salvarFrequencia"
-        style="@style/Button_salvar"
-        android:layout_width="300dp"
-        android:layout_marginTop="200dp"
-        android:text="@string/text_salvar"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@id/View_Frequencia"
-        app:layout_constraintEnd_toEndOf="@id/View_Frequencia"
-        app:layout_constraintStart_toStartOf="@id/View_Frequencia"
-        app:layout_constraintTop_toTopOf="@id/View_Frequencia"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

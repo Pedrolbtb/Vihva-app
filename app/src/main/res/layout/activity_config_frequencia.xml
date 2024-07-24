@@ -39,11 +39,14 @@
         android:layout_width="match_parent"
         android:layout_height="550dp"
         android:layout_marginTop="100dp"
+        android:background="@drawable/container_components"
         android:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.506" />
 
     <View
         android:id="@+id/container_Frequencia"
@@ -129,20 +132,20 @@
         android:id="@+id/detalhesdolembrete"
         style="@style/text_botoesAlarme"
         android:layout_marginEnd="130dp"
-        android:layout_marginBottom="350dp"
+        android:layout_marginBottom="370dp"
         android:elevation="1dp"
         android:text="@string/det_lembre"
         app:layout_constraintBottom_toBottomOf="@+id/View_Programacao"
         app:layout_constraintEnd_toEndOf="@id/View_Programacao"
         app:layout_constraintStart_toStartOf="@id/View_Programacao"
         app:layout_constraintTop_toBottomOf="@id/container_DuracaoAlarme" />
-    
+
 
     <View
         android:id="@+id/container_apartir"
         style="@style/container_linha"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="170dp"
@@ -160,22 +163,40 @@
         android:text="@string/apart_de"
         app:layout_constraintBottom_toBottomOf="@+id/container_apartir"
         app:layout_constraintEnd_toEndOf="@id/container_apartir"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="@id/container_apartir"
-        app:layout_constraintTop_toTopOf="@+id/container_apartir" />
+        app:layout_constraintTop_toTopOf="@+id/container_apartir"
+        app:layout_constraintVertical_bias="0.192" />
+
 
     <TextView
         android:id="@+id/hora_apartir"
         style="@style/text_botoesAlarme"
         android:layout_marginStart="240dp"
         android:elevation="1dp"
-        android:text="12:10"
+        android:text="00:00"
         android:textColor="@color/hint"
         app:layout_constraintBottom_toBottomOf="@+id/container_apartir"
         app:layout_constraintEnd_toEndOf="@id/container_apartir"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="@id/container_apartir"
-        app:layout_constraintTop_toTopOf="@+id/container_apartir" />
+        app:layout_constraintTop_toTopOf="@+id/container_apartir"
+        app:layout_constraintVertical_bias="0.192" />
 
-
+    <Button
+        android:id="@+id/select_hora"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/Letras"
+        android:text="Selecione a hora"
+        android:textColor="@color/ic_launcher_vihva_background"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/container_apartir"
+        app:layout_constraintEnd_toEndOf="@+id/container_apartir"
+        app:layout_constraintHorizontal_bias="0.932"
+        app:layout_constraintStart_toStartOf="@+id/container_apartir"
+        app:layout_constraintTop_toBottomOf="@+id/hora_apartir"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
