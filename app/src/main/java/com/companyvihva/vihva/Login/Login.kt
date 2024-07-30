@@ -3,7 +3,6 @@ package com.companyvihva.vihva.Login
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.Drawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.Cadastro.CadastroPac
 import com.companyvihva.vihva.CriarPerfil.CriaPerfil
 import com.companyvihva.vihva.Inicio.Inicio
@@ -20,7 +20,9 @@ import com.companyvihva.vihva.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+
 class Login : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val auth = FirebaseAuth.getInstance()
@@ -29,69 +31,74 @@ class Login : AppCompatActivity() {
     // Variáveis para armazenar os drawables originais dos campos de e-mail e senha
     private lateinit var originalEmailDrawable: Drawable
     private lateinit var originalSenhaDrawable: Drawable
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-// Inicializa os drawables originais dos campos de e-mail e senha
+
+        // Inicializa os drawables originais dos campos de e-mail e senha
         originalEmailDrawable = binding.editEmail.background
         originalSenhaDrawable = binding.editSenha.background
-// Adiciona o textWatcher para restaurar o drawable original do campo de e-mail
+
+        // Adiciona o TextWatcher para restaurar o drawable original do campo de e-mail
         binding.editEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-// Não é necessário implementar neste caso
+                // Não é necessário implementar neste caso
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-// Não é necessário implementar neste caso
+                // Não é necessário implementar neste caso
             }
             override fun afterTextChanged(s: Editable?) {
-// Restaura o drawable original do campo de e-mail
+                // Restaura o drawable original do campo de e-mail
                 binding.editEmail.background = originalEmailDrawable
             }
         })
-// Adiciona o TextWatcher para restaurar o drawable original do campo de senha
+
+        // Adiciona o TextWatcher para restaurar o drawable original do campo de senha
         binding.editSenha.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-// Não é necessário implementar neste caso
+                // Não é necessário implementar neste caso
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-// Não é necessário implementar neste caso
+                // Não é necessário implementar neste caso
             }
             override fun afterTextChanged(s: Editable?) {
-// Restaura o drawable original do campo de senha
+                // Restaura o drawable original do campo de senha
                 binding.editSenha.background = originalSenhaDrawable
             }
         })
-// Configurando clique no botão de login
+
+        // Configurando clique no botão de login
         binding.btnEntar.setOnClickListener {
             val email = binding.editEmail.text.toString()
             val senha = binding.editSenha.text.toString()
             if (email.isEmpty() || senha.isEmpty()) {
                 showToast("Preencha todos os campos!")
-// Configura o background dos campos de e-mail e senha para vermelho
+                // Configura o background dos campos de e-mail e senha para vermelho
                 binding.editEmail.background = resources.getDrawable(R.drawable.edit_text_error)
                 binding.editSenha.background = resources.getDrawable(R.drawable.edit_text_error)
             } else {
                 auth.signInWithEmailAndPassword(email, senha)
                     .addOnCompleteListener { login ->
                         if (login.isSuccessful) {
-// Se o login for bem-sucedido, verifique se o documento do usuário existe no banco de dados
+                            // Se o login for bem-sucedido, verifique se o documento do usuário existe no banco de dados
                             verificarDocumentoUsuario()
                         } else {
-// Se o login falhar, trate os erros e mostre uma mensagem ao usuário
+                            // Se o login falhar, trate os erros e mostre uma mensagem ao usuário
                             val exception = login.exception
                             if (exception is FirebaseAuthInvalidCredentialsException) {
-// Se o erro for de credenciais inválidas, apenas o campo de senha deve ficar vermelho
+                                // Se o erro for de credenciais inválidas, apenas o campo de senha deve ficar vermelho
                                 binding.editSenha.background = resources.getDrawable(R.drawable.edit_text_error)
                             } else if (exception is FirebaseAuthInvalidUserException) {
-// Se o erro for de usuário inválido, apenas o campo de e-mail deve ficar vermelho
+                                // Se o erro for de usuário inválido, apenas o campo de e-mail deve ficar vermelho
                                 binding.editEmail.background = resources.getDrawable(R.drawable.edit_text_error)
                             } else {
-// Se for qualquer outro erro, ambos os campos ficarão vermelhos
+                                // Se for qualquer outro erro, ambos os campos ficarão vermelhos
                                 binding.editEmail.background = resources.getDrawable(R.drawable.edit_text_error)
                                 binding.editSenha.background = resources.getDrawable(R.drawable.edit_text_error)
                             }
-// Exiba uma mensagem de erro para o usuário
+                            // Exiba uma mensagem de erro para o usuário
                             val mensagemErro = when (exception) {
                                 is FirebaseAuthInvalidCredentialsException -> "Credenciais inválidas. Verifique seu e-mail ou senha."
                                 is FirebaseAuthInvalidUserException -> "Usuário não encontrado. Verifique seu e-mail."
@@ -102,15 +109,18 @@ class Login : AppCompatActivity() {
                     }
             }
         }
-// Configurando clique no texto "Cadastre-se"
+
+        // Configurando clique no texto "Cadastre-se"
         binding.textTelaCadastro.setOnClickListener {
             irParaTelaCadastro()
         }
-// Configurando clique no texto "Esqueci minha senha"
+
+        // Configurando clique no texto "Esqueci minha senha"
         binding.esqueciSenha.setOnClickListener {
             mostrarDialogRedefinirSenha()
         }
     }
+
     // Função para verificar se o documento do usuário existe no banco de dados
     private fun verificarDocumentoUsuario() {
         val uid = auth.currentUser?.uid
@@ -118,23 +128,13 @@ class Login : AppCompatActivity() {
             db.collection("clientes").document(uid).get()
                 .addOnSuccessListener { document ->
                     if (document.exists()) {
-// Se o documento existir, verifique se contém as informações necessárias do perfil
-                        val nome = document.getString("nome")
-                        val sobrenome = document.getString("sobrenome")
-                        val biografia = document.getString("biografia")
-                        val genero = document.getString("genero")
-                        val peso = document.getLong("peso")
-                        val altura = document.getLong("altura")
-                        val idade = document.getLong("idade")
-                        if (nome != null && sobrenome != null && biografia != null && genero != null && peso != null && altura != null && idade != null) {
-// Se o documento contiver todas as informações do perfil, vá para a tela principal
-                            irParaTelaPrincipal()
+                        val termosAceitos = document.getBoolean("termosAceitos") ?: false
+                        if (termosAceitos) {
+                            verificarInformacoesPerfil(document)
                         } else {
-// Caso contrário, redirecione o usuário para a tela de criação de perfil
-                            irParaTelaCriacaoPerfil()
+                            irParaTelaTermos()
                         }
                     } else {
-// Se o documento não existir, redirecione o usuário para a tela de criação de perfil
                         irParaTelaCriacaoPerfil()
                     }
                 }
@@ -145,26 +145,54 @@ class Login : AppCompatActivity() {
             showToast("Usuário não autenticado")
         }
     }
+
+    private fun verificarInformacoesPerfil(document: DocumentSnapshot) {
+        val nome = document.getString("nome")
+        val sobrenome = document.getString("sobrenome")
+        val biografia = document.getString("biografia")
+        val genero = document.getString("genero")
+        val peso = document.getLong("peso")
+        val altura = document.getLong("altura")
+        val idade = document.getLong("idade")
+        val termos = document.getBoolean("termosAceitos")
+        if (nome != null && sobrenome != null && biografia != null && genero != null && peso != null && altura != null && idade != null && termos != null) {
+            irParaTelaPrincipal()
+        } else {
+            irParaTelaCriacaoPerfil()
+        }
+    }
+
+    private fun irParaTelaTermos() {
+        val telaTermos = Intent(this, Termos::class.java)
+        startActivity(telaTermos)
+        finish()
+    }
+
     // Função para redirecionar o usuário para a tela principal
     private fun irParaTelaPrincipal() {
-        val telaPrincipal = Intent(this, Inicio::class.java) // Substitua TelaPrincipal pela sua atividade principal
+        val telaPrincipal = Intent(this, Inicio::class.java)
         startActivity(telaPrincipal)
         finish()
     }
+
     // Função para redirecionar o usuário para a tela de criação de perfil
     private fun irParaTelaCriacaoPerfil() {
         val telaCriacaoPerfil = Intent(this, CriaPerfil::class.java)
         startActivity(telaCriacaoPerfil)
+        finish()
     }
+
     // Função para exibir uma mensagem Toast
     private fun showToast(mensagem: String) {
         Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show()
     }
+
     // Função para redirecionar o usuário para a tela de cadastro
     private fun irParaTelaCadastro() {
         val telaCadastro = Intent(this, CadastroPac::class.java)
         startActivity(telaCadastro)
     }
+
     // Função para exibir o diálogo de redefinição de senha
     @SuppressLint("MissingInflatedId")
     private fun mostrarDialogRedefinirSenha() {

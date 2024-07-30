@@ -31,7 +31,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
-
+        <activity
+            android:name=".Login.Termos_detalhes"
+            android:exported="false" />
+        <activity
+            android:name=".Login.Termos"
+            android:exported="false" />
         <activity
             android:name=".Inicio.chat.Chat"
             android:exported="false" />
@@ -163,6 +168,11 @@
             <meta-data
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility_service_config" />
+
+            <!-- alguma coisa relacionada ao realtime database -->
+            <meta-data
+                android:name="com.google.firebase.database.Database"
+                android:value="true" />
         </service>
     </application>
 

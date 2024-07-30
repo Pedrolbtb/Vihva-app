@@ -1,6 +1,5 @@
 package com.companyvihva.vihva.Inicio.Perfil_medico
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +10,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import com.companyvihva.vihva.Inicio.chat.Chat
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.model.tipo_amigo_descrição
 import com.google.firebase.auth.FirebaseAuth
@@ -55,14 +53,6 @@ class Perfil_medico : AppCompatActivity() {
         val btnVoltar = findViewById<ImageButton>(R.id.close)
         btnVoltar.setOnClickListener {
             onBackPressed()
-        }
-
-        // Configura a passagem de tela para o chat
-        val btnChat = findViewById<ImageButton>(R.id.chat)
-        btnChat.setOnClickListener {
-            amigoId?.let { id ->
-                openChatActivity(id)
-            }
         }
 
         // Configura o botão de excluir amigo
@@ -152,25 +142,4 @@ class Perfil_medico : AppCompatActivity() {
                 }
         }
     }
-
-    // Método para iniciar a atividade de chat
-    private fun openChatActivity(medicoId: String) {
-        doenca?.let {
-            val intent = Intent(this, Chat::class.java).apply {
-                putExtra("medicoId", medicoId) // Passa o ID do médico para a atividade de chat
-                putExtra("EXTRA_IMAGE_URL", it.fotoAmigo) // Passa a URL da imagem do médico
-                putExtra("EXTRA_NOME", it.nome) // Passa o nome do médico
-            }
-            startActivity(intent)
-        } ?: run {
-            // Você pode adicionar uma mensagem de erro ou realizar alguma ação caso `doenca` seja null
-            Toast.makeText(
-                this,
-                "Dados do médico não carregados. Tente novamente.",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-    }
 }
-
-
