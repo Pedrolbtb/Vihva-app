@@ -65,7 +65,7 @@ dependencies {
     implementation("com.android.support.constraint:constraint-layout:1.1.3")
     implementation ("com.google.android.material:material:<version>")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
-    implementation ("com.google.android.material:material:1.4.0")
+    implementation ("com.google.android.material:material:1.5.0")
     implementation ("androidx.work:work-runtime-ktx:2.7.1")
 
 
@@ -94,6 +94,8 @@ dependencies {
 
     //Firebase Storage
     implementation ("com.google.firebase:firebase-storage:20.0.0")
+
+
 
 
 }

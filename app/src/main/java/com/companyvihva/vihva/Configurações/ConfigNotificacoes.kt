@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.R
-
 import com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter.SolicitacaoAmizadeAdapter
 import com.companyvihva.vihva.com.companyvihva.vihva.model.SolicitacaoAmizade
 import com.google.firebase.auth.FirebaseAuth
@@ -42,12 +41,23 @@ class ConfigNotificacoes : AppCompatActivity() {
             .whereEqualTo(FIELD_STATUS, STATUS_PENDENTE)
             .get()
             .addOnSuccessListener { documents ->
-                val solicitacoes = documents.map {
-                    val solicitacao = it.toObject(SolicitacaoAmizade::class.java)
-                    solicitacao.id = it.id
-                    solicitacao.medicoId = it.getString(FIELD_MEDICO_ID) ?: ""
-                    solicitacao.nomeSolicitante = it.getString("nome") ?: ""
-                    Log.d("CarregarSolicitacoes", "ID: ${solicitacao.id}, Médico ID: ${solicitacao.medicoId}, Para: ${solicitacao.para}")
+                val solicitacoes = documents.map { document ->
+                    val solicitacao = document.toObject(SolicitacaoAmizade::class.java)
+                    solicitacao.id = document.id
+                    solicitacao.medicoId = document.getString(FIELD_MEDICO_ID) ?: ""
+
+                    // Obter nome, sobrenome e foto do solicitante (médico)
+                    val medicoId = solicitacao.medicoId
+                    db.collection("medicos").document(medicoId).get()
+                        .addOnSuccessListener { medicoDoc ->
+                            solicitacao.nomeSolicitante = medicoDoc.getString("nome") ?: ""
+                            solicitacao.sobrenomeSolicitante = medicoDoc.getString("sobrenome") ?: "" // Adicione isto
+                            solicitacao.fotoSolicitante = medicoDoc.getString("imageUrl") ?: ""
+                            adapter.notifyDataSetChanged()
+                        }
+                        .addOnFailureListener { e ->
+                            Log.e("FirebaseError", "Error loading medico info", e)
+                        }
                     solicitacao
                 }
                 adapter.submitList(solicitacoes)

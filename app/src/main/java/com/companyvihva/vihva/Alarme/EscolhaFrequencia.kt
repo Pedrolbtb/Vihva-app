@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.RadioGroup
@@ -37,7 +36,23 @@ class EscolhaFrequencia : AppCompatActivity() {
         val radioGroup: RadioGroup = findViewById(R.id.radioGroup_frequencia)
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
+            val dados = if (frequencia == "Somente em certos dias") {
+                prepararDadosParaEnvio()
+            } else {
+                Bundle()
+            }
+            val frequenciaSelecionada = frequencia
+            val horaEmHora: String? = if (frequencia == "Intervalo") {
+                val editTextHora = parentLayout.findViewById<EditText>(R.id.editTextHoraemHora)
+                editTextHora?.text?.toString() ?: ""
+            } else {
+                null
+            }
+
             val intent = Intent(this, ConfigFrequencia::class.java).apply {
+                putExtras(dados)
+                putExtra("frequencia", frequenciaSelecionada)
+                putExtra("horaemhora", horaEmHora)
                 putExtra("duracao", duracao)
                 putExtra("data", data)
                 putExtra("estoque", estoque)
@@ -45,6 +60,7 @@ class EscolhaFrequencia : AppCompatActivity() {
                 putExtra("tipomed", tipomed)
                 putExtra("remedioId", nome)
                 putExtra("switchEstoque", switchEstoqueChecked)
+                putExtra("horaDiariamente", horaDiariamente)
             }
             startActivity(intent)
         }
@@ -197,37 +213,6 @@ class EscolhaFrequencia : AppCompatActivity() {
                     }
                 }
             }
-        }
-
-        findViewById<Button>(R.id.btn_salvarFrequencia).setOnClickListener {
-            val dados = if (frequencia == "Somente em certos dias") {
-                prepararDadosParaEnvio()
-            } else {
-                Bundle()
-            }
-            val frequenciaSelecionada = frequencia
-            val horaEmHora: String? = if (frequencia == "Intervalo") {
-                val editTextHora = parentLayout.findViewById<EditText>(R.id.editTextHoraemHora)
-                editTextHora?.text?.toString() ?: ""
-            } else {
-                null
-            }
-
-            // Cria um Intent para iniciar a próxima atividade
-            val intent = Intent(this, ConfigFrequencia::class.java)
-            intent.putExtras(dados)
-            intent.putExtra("data", data)
-            intent.putExtra("duracao", duracao)
-            intent.putExtra("frequencia", frequenciaSelecionada)
-            intent.putExtra("horaemhora", horaEmHora)
-            intent.putExtra("lembreme", lembreme)
-            intent.putExtra("tipomed", tipomed)
-            intent.putExtra("estoque", estoque)
-            intent.putExtra("remedioId", nome)
-            intent.putExtra("switchEstoque", switchEstoqueChecked)
-            intent.putExtra("horaDiariamente", horaDiariamente)
-            startActivity(intent)
-            finish()
         }
     }
 

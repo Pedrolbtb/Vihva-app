@@ -89,18 +89,6 @@
         app:layout_constraintTop_toTopOf="@+id/container_tipo"
         />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_salvarEstoque"
-        style="@style/Button_salvar"
-        android:layout_width="300dp"
-        android:layout_marginTop="430dp"
-        android:text="@string/text_salvar"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@id/View_Programacao"
-        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
-        app:layout_constraintStart_toStartOf="@id/View_Programacao"
-        app:layout_constraintTop_toTopOf="@id/View_Programacao" />
-
     <TextView
         android:id="@+id/titulo_estoque"
         style="@style/text_botoesAlarme"
