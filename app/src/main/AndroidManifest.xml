@@ -59,6 +59,10 @@
         <activity
             android:name=".Configuracoes.ConfigNotificacoes"
             android:exported="false" />
+        <activity
+            android:name=".Inicio.Evento"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <!--
 <activity
             android:name=".Inicio.Evento"
@@ -118,7 +122,8 @@
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Inicio.Inicio"
+
+            android:name=".Login.Login"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
@@ -142,7 +147,8 @@
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Login.Login"
+            android:name=".Inicio.Inicio"
+
             android:exported="true"
             android:theme="@style/AppTheme">
             <intent-filter>

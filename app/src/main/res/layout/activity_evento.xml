@@ -9,25 +9,25 @@
 
     <ImageButton
         android:id="@+id/btnVoltar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="330dp"
-        android:layout_marginBottom="650dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/button_back"
-        android:padding="0dp"
+        android:layout_marginEnd="330dp"
         android:src="@drawable/arrow_voltar_vermelho"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/text_alarme"
-        style="@style/text_doenca_e_remedio"
-        android:layout_marginBottom="540dp"
         android:text="Marcar lembrete"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="500dp"
+        style="@style/text_doenca_e_remedio"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,7 @@
         style="@style/Container_Evento"
         android:layout_width="match_parent"
         android:layout_height="550dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="10dp"
         android:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,15 +50,14 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginBottom="110dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="150dp"
         android:background="@drawable/container_linha"
         android:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
         app:layout_constraintEnd_toEndOf="@id/View_Consulta"
         app:layout_constraintStart_toStartOf="@id/View_Consulta"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/View_Consulta" />
 
     <TextView
         android:id="@+id/dataconsulta"
@@ -76,15 +75,16 @@
         android:id="@+id/datePicker"
         style="@style/text_botoesAlarme"
         android:layout_marginStart="30dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="160dp"
         android:calendarViewShown="false"
         android:datePickerMode="spinner"
         android:elevation="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="300dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
         app:layout_constraintEnd_toEndOf="@id/container_data"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="@+id/container_data"
+        app:layout_constraintTop_toTopOf="@+id/View_Consulta"
+        app:layout_constraintVertical_bias="1.0" />
 
     <View
         android:id="@+id/container_consulta"
@@ -93,7 +93,7 @@
         android:layout_height="70dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="190dp"
+        android:layout_marginBottom="155dp"
         android:background="@drawable/container_linha"
         android:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
@@ -105,44 +105,44 @@
         style="@style/text_botoesAlarme"
         android:layout_width="194dp"
         android:layout_height="21dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginBottom="280dp"
         android:elevation="1dp"
         android:text="Descrição do evento"
-        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/container_consulta"
         app:layout_constraintEnd_toEndOf="@+id/View_Consulta"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/View_Consulta"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/container_data"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/eventEditText"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="190dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="20dp"
         android:background="@drawable/edit_text"
         android:elevation="1dp"
         android:hint="Digite o evento"
-        android:padding="8dp"
+        android:padding="12dp"
         android:textColor="@color/Letras"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/container_consulta"
+        app:layout_constraintEnd_toEndOf="@+id/container_consulta"
+        app:layout_constraintHorizontal_bias="0.121"
+        app:layout_constraintStart_toStartOf="@+id/container_consulta"
+        app:layout_constraintTop_toBottomOf="@+id/container_data"
+        app:layout_constraintVertical_bias="0.609" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/saveButton"
         style="@style/Button_salvar"
         android:layout_width="300dp"
-        android:layout_marginTop="430dp"
+        android:layout_marginTop="500dp"
         android:text="@string/text_salvar"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@id/View_Consulta"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
         app:layout_constraintEnd_toEndOf="@id/View_Consulta"
         app:layout_constraintStart_toStartOf="@id/View_Consulta"
-        app:layout_constraintTop_toTopOf="@id/View_Consulta" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

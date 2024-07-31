@@ -1,19 +1,17 @@
 package com.companyvihva.vihva.Inicio
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
-import androidx.fragment.app.DialogFragment
+import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.R
 
-// Define uma classe DialogFragment para exibir um diálogo de evento
-class Evento : DialogFragment() {
+// Define a classe Evento como uma AppCompatActivity
+class Evento : AppCompatActivity() {
 
-    // Interface para comunicar o evento salvo ao fragmento pai ou atividade
+    // Interface para comunicar o evento salvo à atividade pai ou fragmento
     interface OnEventSaveListener {
         fun onEventSave(event: String)
     }
@@ -26,39 +24,33 @@ class Evento : DialogFragment() {
         this.listener = listener
     }
 
-    // Método para inflar o layout do fragmento
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Infla o layout activity_evento para este fragmento
-        return inflater.inflate(R.layout.activity_evento, container, false)
-    }
-
-    // Método chamado após o layout ser criado
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    // Método chamado ao criar a atividade
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Define o layout da atividade
+        setContentView(R.layout.activity_evento)
 
         // Obtém referências para os elementos de UI
-        val saveButton = view.findViewById<Button>(R.id.saveButton)
-        val datePicker = view.findViewById<DatePicker>(R.id.datePicker)
-        val eventEditText = view.findViewById<EditText>(R.id.eventEditText)
-        val backButton = view.findViewById<View>(R.id.btnVoltar) // Obtém referência ao botão de voltar
+        val saveButton = findViewById<Button>(R.id.saveButton)
+        val datePicker = findViewById<DatePicker>(R.id.datePicker)
+        val eventEditText = findViewById<EditText>(R.id.eventEditText)
+        val backButton = findViewById<View>(R.id.btnVoltar) // Obtém referência ao botão de voltar
 
         // Define um listener para o botão de salvar
         saveButton.setOnClickListener {
             // Obtém o texto do EditText
             val event = eventEditText.text.toString()
-            // Chama o método onEventSave do listener com o texto do evento
+            // Chama o método onEventSave do listener com o texto do evento, se o listener não for nulo
             listener?.onEventSave(event)
-            // Fecha o diálogo
-            dismiss()
+            // Fecha a atividade
+            finish()
         }
 
         // Define um listener para o botão de voltar
         backButton.setOnClickListener {
-            // Fecha o diálogo
-            dismiss()
+            // Fecha a atividade
+            finish()
         }
     }
 }
+
