@@ -37,12 +37,17 @@
         <activity
             android:name=".Login.Termos"
             android:exported="false" />
-        <activity
-            android:name=".Inicio.chat.Chat"
-            android:exported="false" />
 
         <receiver
             android:name=".Alarme.AlarmeToque"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".Configuracoes.NotifiqConfig"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

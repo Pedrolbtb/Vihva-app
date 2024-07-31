@@ -81,6 +81,7 @@ class Configuracoes : AppCompatActivity() {
             "cuzão",
             "Cuzão",
             "cuzona",
+            "napa",
             "Cuzona",
             "vai tomar no rabo",
             "Vai tomar no rabo"

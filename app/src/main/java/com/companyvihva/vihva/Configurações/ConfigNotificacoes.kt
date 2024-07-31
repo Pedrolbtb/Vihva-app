@@ -1,9 +1,20 @@
 package com.companyvihva.vihva.Configuracoes
 
+import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.R
@@ -32,6 +43,39 @@ class ConfigNotificacoes : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         carregarSolicitacoesAmizade()
+
+        // Solicitar permissão de notificação se necessário
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                    PERMISSION_REQUEST_CODE
+                )
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                Log.d("Permissão","Chegou")
+                // Permissão concedida
+                notificacaoAmizade()
+            } else {
+                // Permissão negada
+                Toast.makeText(this, "Permissão de notificação negada", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun carregarSolicitacoesAmizade() {
@@ -51,7 +95,7 @@ class ConfigNotificacoes : AppCompatActivity() {
                     db.collection("medicos").document(medicoId).get()
                         .addOnSuccessListener { medicoDoc ->
                             solicitacao.nomeSolicitante = medicoDoc.getString("nome") ?: ""
-                            solicitacao.sobrenomeSolicitante = medicoDoc.getString("sobrenome") ?: "" // Adicione isto
+                            solicitacao.sobrenomeSolicitante = medicoDoc.getString("sobrenome") ?: ""
                             solicitacao.fotoSolicitante = medicoDoc.getString("imageUrl") ?: ""
                             adapter.notifyDataSetChanged()
                         }
@@ -66,6 +110,56 @@ class ConfigNotificacoes : AppCompatActivity() {
                 Log.e("FirebaseError", "Error loading solicitations", e)
                 Toast.makeText(this, "Erro ao carregar solicitações", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun notificacaoAmizade() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                // Permissão não concedida, não faça nada ou log um erro
+                return
+            }
+        }
+
+        val notificationManager = NotificationManagerCompat.from(this)
+        val channelId = "channel_id"
+
+        // Criar o canal de notificação para Android 8.0 e superior
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                "Solicitações de Amizade",
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                description = "Notificações para solicitações de amizade"
+                enableLights(true)
+                enableVibration(true)
+            }
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Intent para abrir a Activity quando a notificação for clicada
+        val notificationIntent = Intent(this, ConfigNotificacoes::class.java)
+        val notificationPendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            notificationIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        // Construção da notificação
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.drawable.sininho)
+            .setContentTitle("Nova Solicitação de Amizade")
+            .setContentText("Você recebeu uma solicitação de amizade")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setContentIntent(notificationPendingIntent)
+            .setAutoCancel(true)
+
+        notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
     }
 
     private fun gerenciarSolicitacaoAmizade(solicitacao: SolicitacaoAmizade, aceito: Boolean) {
@@ -126,5 +220,7 @@ class ConfigNotificacoes : AppCompatActivity() {
         const val STATUS_PENDENTE = "pendente"
         const val STATUS_ACEITA = "aceita"
         const val STATUS_REJEITADA = "rejeitada"
+        private const val NOTIFICATION_ID = 1
+        private const val PERMISSION_REQUEST_CODE = 1001
     }
 }
