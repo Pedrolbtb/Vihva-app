@@ -23,11 +23,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import com.companyvihva.vihva.R
+import com.companyvihva.vihva.model.Tipo_Remedios
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 class CriaAlarme : AppCompatActivity() {
-
+    private lateinit var firestore: FirebaseFirestore
     private var nome: String? = null
 
     @RequiresApi(Build.VERSION_CODES.S)
@@ -113,6 +114,24 @@ class CriaAlarme : AppCompatActivity() {
     private val PERMISSION_REQUEST_CODE = 100
     private val NOTIFICATION_ID = 1
 
+    private fun Bdsave(index: Int){
+        // Inicializando o Firestore
+        firestore = FirebaseFirestore.getInstance()
+        if (index < documentos.size) {
+            val docId = documentos[index]
+            firestore.collection("doenca").document(docId).get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        // Obtendo os detalhes da doença do documento Firestore
+                        val nome = document.getString("nome")
+                        val url = document.getString("Url")
+                        val tipo = document.getString("tipo")
+
+                        // Criando um objeto Tipo_Remedios com os detalhes do remédio
+                        val tipoRemedios = Tipo_Remedios(url ?: "", nome ?: "", tipo ?: "", docId)
+
+                    }
+
     @RequiresApi(Build.VERSION_CODES.S)
     private fun requestAlarmPermissionsAndSchedule() {
         val permissions = arrayOf(
@@ -138,6 +157,7 @@ class CriaAlarme : AppCompatActivity() {
             agendarAlarme()
         }
     }
+
 
     @RequiresApi(Build.VERSION_CODES.S)
     private fun agendarAlarme() {
