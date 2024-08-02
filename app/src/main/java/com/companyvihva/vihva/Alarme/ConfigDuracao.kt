@@ -140,7 +140,7 @@ class ConfigDuracao : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // Criando intent para retornar os dados para a activity ConfigFrequencia
-        val intent = Intent(this, ConfigFrequencia::class.java).apply {
+        val intent = Intent(this, EscolhaFrequencia::class.java).apply {
             putExtra("data", formattedDate)
             putExtra("duracao", duracao)
             putExtra("frequencia", frequencia)
@@ -151,7 +151,11 @@ class ConfigDuracao : AppCompatActivity() {
             putExtra("tipomed", tipomed)
             putExtra("switchEstoque", switchEstoqueChecked)
             putExtra("remedioId", nome)
+
+
         }
         startActivity(intent)
+    }
+    fun avancar (){
     }
 }

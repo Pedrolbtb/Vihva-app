@@ -115,7 +115,20 @@
         app:layout_constraintEnd_toEndOf="@+id/View_Frequencia"
         app:layout_constraintStart_toStartOf="@+id/View_Frequencia"
         app:layout_constraintTop_toTopOf="@+id/View_Frequencia">
+
+
     </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_proximo"
+        app:layout_constraintTop_toTopOf="@id/View_Frequencia"
+        android:layout_marginTop="325dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Frequencia"
+        app:layout_constraintEnd_toEndOf="@+id/View_Frequencia"
+        app:layout_constraintStart_toStartOf="@id/View_Frequencia"
+        style="@style/Button"
+        android:text="@string/text_prox"
+        android:textColor="@color/off_white"
+        android:textSize="20sp"
 
-
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

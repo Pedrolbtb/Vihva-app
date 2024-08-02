@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.Alarme.CriaAlarme
+import com.companyvihva.vihva.Alarme.EscolhaFrequencia
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.model.Remedios_alarme
 import com.companyvihva.vihva.model.PopupRemedio.DescriçãoDoença
@@ -44,7 +45,7 @@ class AdapterRemedio_Alarme(
             // Define o clique no item da lista
             itemView.setOnClickListener {
                 // Ao clicar em um item da lista, abra a Activity de pop-up correspondente
-                val intent = Intent(context, CriaAlarme::class.java).apply {
+                val intent = Intent(context, EscolhaFrequencia::class.java).apply {
                     putExtra("remedioId", listasRemedioAlarme[adapterPosition].documentId)
                 }
                 context.startActivity(intent)

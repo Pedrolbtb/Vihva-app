@@ -4,12 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.RadioGroup
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
+import com.companyvihva.vihva.Inicio.Inicio
 import com.companyvihva.vihva.R
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -17,7 +19,9 @@ import com.google.android.material.timepicker.TimeFormat
 class EscolhaFrequencia : AppCompatActivity() {
 
     private var frequencia: String? = null
-
+    private var horaDiariamente: String? = null
+    private var intervalo: String? = null
+    private var dias: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_escolha_frequencia)
@@ -35,6 +39,11 @@ class EscolhaFrequencia : AppCompatActivity() {
 
         val radioGroup: RadioGroup = findViewById(R.id.radioGroup_frequencia)
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
+        val btnProx: Button = findViewById(R.id.btn_proximo)
+
+        btnProx.setOnClickListener {
+            avanc()
+        }
         btnVoltar.setOnClickListener {
             val dados = if (frequencia == "Somente em certos dias") {
                 prepararDadosParaEnvio()
@@ -49,7 +58,7 @@ class EscolhaFrequencia : AppCompatActivity() {
                 null
             }
 
-            val intent = Intent(this, ConfigFrequencia::class.java).apply {
+            val intent = Intent(this, EscolhaRemedio::class.java).apply {
                 putExtras(dados)
                 putExtra("frequencia", frequenciaSelecionada)
                 putExtra("horaemhora", horaEmHora)
@@ -237,4 +246,18 @@ class EscolhaFrequencia : AppCompatActivity() {
         }
         return dias
     }
+
+    fun avanc() {
+        val intent = Intent(this, ConfigDuracao::class.java).apply {
+            putExtra("frequencia", frequencia)
+            when (frequencia) {
+                "Diariamente" -> putExtra("horaDiariamente", horaDiariamente)
+                "Intervalo" -> putExtra("intervalo", intervalo)
+                "Somente em certos dias" -> putExtra("dias", dias)
+            }
+        }
+        startActivity(intent)
+    }
+
 }
+
