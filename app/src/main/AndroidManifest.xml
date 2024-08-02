@@ -31,13 +31,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
-
         <activity
-            android:name=".Inicio.chat.Chat"
+            android:name=".Login.Termos_detalhes"
+            android:exported="false" />
+        <activity
+            android:name=".Login.Termos"
             android:exported="false" />
 
         <receiver
             android:name=".Alarme.AlarmeToque"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".Configuracoes.NotifiqConfig"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -54,6 +64,10 @@
         <activity
             android:name=".Configuracoes.ConfigNotificacoes"
             android:exported="false" />
+        <activity
+            android:name=".Inicio.Evento"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <!--
 <activity
             android:name=".Inicio.Evento"
@@ -113,6 +127,7 @@
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
+
             android:name=".Inicio.Inicio"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
@@ -138,6 +153,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Login.Login"
+
             android:exported="true"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -163,6 +179,11 @@
             <meta-data
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility_service_config" />
+
+            <!-- alguma coisa relacionada ao realtime database -->
+            <meta-data
+                android:name="com.google.firebase.database.Database"
+                android:value="true" />
         </service>
     </application>
 

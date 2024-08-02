@@ -286,6 +286,40 @@
     //Strings termos
 
     <string name="text_recomendacao_um">AVISO: Recomendamos a busca de um médico para ter certeza sobre seu estado, o Vihva não substitui profissionais da saúde</string>
+    <string name="text_titulo_termos">A privacidade é essencial para sua saúde</string>
+    <string name="text_termos_uso">Usamos seus dados para gerar estatísticas anônimas. Seus dados são compartilhados apenas com um profissional de confiança de sua escolha.</string>
+    <string name="text_termos_uso_dois">Ao dar seu acordo, o utilizador confirma que concorda com os termos do aplicativo</string>
+    <string name="termos_tudo_bem">Tudo bem para você?</string>
+    <string name="text_termos_confirmacao">Sim, podemos seguir em frente</string>
+    <string name="como_usamos_dados">Como usamos seus dados</string>
+    <string name="text_termos">Termos</string>
+
+    <string name="text_termos_dois">Geral
+O documento esclarece os termos de uso e o tratamento de dados pessoais dos usuários da plataforma Vihva, ressaltando que a empresa não se responsabiliza por uso indevido de informações e possíveis danos causados pelo aplicativo.
+
+Introdução
+Ao iniciar o aplicativo, os termos são exibidos em um pop-up. Ao aceitá-los, o usuário declara estar ciente e de acordo. Recomenda-se revisão periódica dos termos, pois podem ser modificados.
+
+Uso de Dados Pessoais
+A plataforma utiliza o Firebase para armazenamento de dados. Informações como e-mail, senha, nome, idade, entre outras, são armazenadas e acessadas apenas pela Vihva Company e Google. Dados pessoais são protegidos, e a empresa não se responsabiliza por vazamentos causados por falhas no software ou compartilhamento de dados pelos usuários.
+
+Funcionalidades da Plataforma
+
+SOS: Obtém dados de contato e localização, armazenados no dispositivo do usuário.
+Problemas de Saúde: Informações sobre problemas de saúde comuns são acessíveis aos usuários, mas a empresa não se responsabiliza pelo uso inadequado.
+Medicamentos: Informações sobre medicamentos são fornecidas, mas a empresa recomenda consulta médica antes do uso.
+Alarme: Lembra os usuários de tomar medicamentos, sem armazenar dados.
+Calendário: Permite criar alertas de consultas médicas, sem armazenar dados.
+Recomendações e Dicas
+Usuários devem inserir dados pessoais corretamente e verificar informações médicas com profissionais de confiança. A plataforma segue a Lei de Proteção de Dados Pessoais (LGPD).
+
+Leis e Garantias
+A plataforma cumpre a LGPD, que regula o tratamento de dados pessoais, e as leis de falsa identidade e propriedade intelectual. Sanções são aplicáveis em casos de descumprimento.
+
+Contato
+Dúvidas podem ser esclarecidas através do e-mail: vivahproject475@gmail.com.
+
+</string>
 
     //Strings da acessibilidade
     <string name="accessibility_service_label">Meu serviço de acessibilidade</string>

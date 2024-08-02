@@ -1,14 +1,16 @@
 package com.companyvihva.vihva.Inicio
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.databinding.FragmentCalendarioBinding
 import java.util.Locale
 
-class Calendario : Fragment(), Evento.OnEventSaveListener {
+class Calendario : Fragment() {
 
     // Variável para o binding do layout do fragmento
     private lateinit var binding: FragmentCalendarioBinding
@@ -39,21 +41,31 @@ class Calendario : Fragment(), Evento.OnEventSaveListener {
         val calendarView = binding.calendario
 
         // Configurando um listener para responder a mudanças de data
-        calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+        calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             // Formatar a data selecionada em uma string
             val selectedDate = "$dayOfMonth/${month + 1}/$year"
 
-            // Exibir o DialogFragment para adicionar um evento
-            val eventDialog = Evento()
-            eventDialog.setOnEventSaveListener(this)
-            eventDialog.show(childFragmentManager, "EventDialogFragment")
+            // Iniciar a atividade para adicionar um evento
+            val intent = Intent(activity, Evento::class.java).apply {
+                putExtra("selectedDate", selectedDate)
+            }
+            startActivityForResult(intent, REQUEST_CODE_EVENTO)
         }
     }
 
-    override fun onEventSave(event: String) {
-        // Aqui você pode salvar o evento para a data selecionada
-        // Você pode usar um banco de dados, SharedPreferences ou outro método de armazenamento
-        // Para simplificar, vamos apenas exibir um log
-        println("Evento salvo: $event")
+    // Receber o resultado da atividade Evento
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_EVENTO && resultCode == AppCompatActivity.RESULT_OK) {
+            val event = data?.getStringExtra("event")
+            // Aqui você pode tratar o evento salvo, como exibir uma mensagem ou salvar em um banco de dados
+            event?.let {
+                println("Evento salvo: $it")
+            }
+        }
+    }
+
+    companion object {
+        private const val REQUEST_CODE_EVENTO = 1
     }
 }
