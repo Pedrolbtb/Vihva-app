@@ -32,6 +32,9 @@
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
         <activity
+            android:name=".Inicio.Editar_perfil"
+            android:exported="false" />
+        <activity
             android:name=".Login.Termos_detalhes"
             android:exported="false" />
         <activity
@@ -45,7 +48,6 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
         <receiver
             android:name=".Configuracoes.NotifiqConfig"
             android:exported="true">
@@ -127,7 +129,6 @@
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
-
             android:name=".Inicio.Inicio"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
@@ -153,7 +154,6 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Login.Login"
-
             android:exported="true"
             android:theme="@style/AppTheme">
             <intent-filter>

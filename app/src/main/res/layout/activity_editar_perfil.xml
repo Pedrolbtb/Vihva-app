@@ -19,7 +19,7 @@
             android:layout_marginTop="330dp"
             android:layout_marginEnd="40dp"
             android:background="#00FFFFFF"
-            android:src="@drawable/buttom_exit"
+            android:src="@drawable/arrow_voltar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -142,19 +142,19 @@
             app:layout_constraintTop_toBottomOf="@+id/layout_idade"
             app:suffixTextColor="@color/hint">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_altura_V2"
-            style="@style/Edit_Text_Login"
-            android:drawableTint="@color/Letras"
-            android:hint="@string/text_caltura"
-            android:layout_marginTop="15dp"
-            android:inputType="number"
-            android:maxLength="3"
-            android:textColor="@color/Letras"
-            android:textColorHint="@color/hint"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_idade" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_altura_V2"
+                style="@style/Edit_Text_Login"
+                android:drawableTint="@color/Letras"
+                android:hint="@string/text_caltura"
+                android:layout_marginTop="15dp"
+                android:inputType="number"
+                android:maxLength="3"
+                android:textColor="@color/Letras"
+                android:textColorHint="@color/hint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_idade" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -170,19 +170,19 @@
             app:layout_constraintTop_toBottomOf="@+id/layout_altura"
             app:suffixTextColor="@color/hint">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_peso_V2"
-            style="@style/Edit_Text_Login"
-            android:drawableTint="@color/Letras"
-            android:hint="@string/text_cpeso"
-            android:inputType="number"
-            android:maxLength="2"
-            android:layout_marginTop="15dp"
-            android:textColor="@color/Letras"
-            android:textColorHint="@color/hint"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_idade" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_peso_V2"
+                style="@style/Edit_Text_Login"
+                android:drawableTint="@color/Letras"
+                android:hint="@string/text_cpeso"
+                android:inputType="number"
+                android:maxLength="2"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/Letras"
+                android:textColorHint="@color/hint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_idade" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -252,21 +252,21 @@
             app:layout_constraintStart_toStartOf="parent"
             >
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_biografia_V2"
-            style="@style/Edit_Text_Perfil"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="15dp"
-            android:hint="@string/text_biografia"
-            android:gravity="top"
-            android:textColor="@color/Letras"
-            android:textColorHint="@color/hint"
-            android:inputType="textMultiLine"
-            android:maxLength="300"
-             />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_biografia_V2"
+                style="@style/Edit_Text_Perfil"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="15dp"
+                android:hint="@string/text_biografia"
+                android:gravity="top"
+                android:textColor="@color/Letras"
+                android:textColorHint="@color/hint"
+                android:inputType="textMultiLine"
+                android:maxLength="300"
+                />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_salvar_V2"
