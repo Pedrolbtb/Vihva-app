@@ -99,36 +99,36 @@ class CriaAlarme : AppCompatActivity() {
             startActivity(telaConfigEstoque)
         }
 
-        findViewById<Button>(R.id.btn_salvarAlarme).setOnClickListener {
-            requestAlarmPermissionsAndSchedule()
+       // findViewById<Button>(R.id.btn_salvarAlarme).setOnClickListener {
+          ///  requestAlarmPermissionsAndSchedule()
         }
 
         // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
-        btnVoltar.setOnClickListener {
-            val telaEscolhaRemedio = Intent(this, EscolhaRemedio::class.java).apply {}
-            startActivity(telaEscolhaRemedio)
+       // btnVoltar.setOnClickListener {
+         //   val telaEscolhaRemedio = Intent(this, EscolhaRemedio::class.java).apply {}
+           // startActivity(telaEscolhaRemedio)
         }
-    }
+   // }
 
     private val PERMISSION_REQUEST_CODE = 100
     private val NOTIFICATION_ID = 1
 
     private fun Bdsave(index: Int){
         // Inicializando o Firestore
-        firestore = FirebaseFirestore.getInstance()
-        if (index < documentos.size) {
-            val docId = documentos[index]
-            firestore.collection("doenca").document(docId).get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
+       // firestore = FirebaseFirestore.getInstance()
+       // if (index < documentos.size) {
+           // val docId = documentos[index]
+           // firestore.collection("doenca").document(docId).get()
+               // .addOnSuccessListener { document ->
+                  //  if (document != null) {
                         // Obtendo os detalhes da doença do documento Firestore
-                        val nome = document.getString("nome")
-                        val url = document.getString("Url")
-                        val tipo = document.getString("tipo")
+                     //   val nome = document.getString("nome")
+                      //  val url = document.getString("Url")
+                       // val tipo = document.getString("tipo")
 
                         // Criando um objeto Tipo_Remedios com os detalhes do remédio
-                        val tipoRemedios = Tipo_Remedios(url ?: "", nome ?: "", tipo ?: "", docId)
+                     //   val tipoRemedios = Tipo_Remedios(url ?: "", nome ?: "", tipo ?: "", docId)
 
                     }
 
@@ -139,80 +139,80 @@ class CriaAlarme : AppCompatActivity() {
         )
 
         val missingPermissions = permissions.filter {
-            ActivityCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
-        }.toTypedArray()
+           // ActivityCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
+        //}.toTypedArray()
 
-        if (missingPermissions.isNotEmpty()) {
-            ActivityCompat.requestPermissions(this, missingPermissions, PERMISSION_REQUEST_CODE)
-        } else {
+       // if (missingPermissions.isNotEmpty()) {
+          //  ActivityCompat.requestPermissions(this, missingPermissions, PERMISSION_REQUEST_CODE)
+       // } else {
             // Verificar permissões especiais para alarmes
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                if (!getSystemService(AlarmManager::class.java).canScheduleExactAlarms()) {
-                    startActivity(Intent().apply {
-                        action = android.provider.Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM
-                    })
+           // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+             //   if (!getSystemService(AlarmManager::class.java).canScheduleExactAlarms()) {
+                 //   startActivity(Intent().apply {
+                  ////      action = android.provider.Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM
+                  //  })
                     return
                 }
             }
-            agendarAlarme()
-        }
-    }
+        //    agendarAlarme()
+      //  }
+   /// }
 
 
-    @RequiresApi(Build.VERSION_CODES.S)
-    private fun agendarAlarme() {
-        Log.d("AgendarAlarme", "Iniciando agendamento de alarme")
+   // @RequiresApi(Build.VERSION_CODES.S)
+   // private fun agendarAlarme() {
+       // Log.d("AgendarAlarme", "Iniciando agendamento de alarme")
 
-        val horaDiariamente = intent.getStringExtra("horaDiariamente")
-        val horas = intent.getStringExtra("horaemhora")
-        val hora = 24 // Definir o intervalo em horas
+       // val horaDiariamente = intent.getStringExtra("horaDiariamente")
+        //val horas = intent.getStringExtra("horaemhora")
+      //  val hora = 24 // Definir o intervalo em horas
 
-        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val alarmIntent = Intent(this, AlarmeToque::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(
-            this,
-            0,
-            alarmIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
+        //val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+       // val alarmIntent = Intent(this, AlarmeToque::class.java)
+       // val pendingIntent = PendingIntent.getBroadcast(
+         //   this,
+          //  0,
+          //  alarmIntent,
+        //    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+       // )
 
-        try {
+       // try {
             // Configurar o horário inicial do alarme
-            val calendar = Calendar.getInstance()
-            calendar.timeInMillis = System.currentTimeMillis()
-            calendar.add(Calendar.HOUR, hora)
+         //   val calendar = Calendar.getInstance()
+           // calendar.timeInMillis = System.currentTimeMillis()
+          //  calendar.add(Calendar.HOUR, hora)
 
             // Agendar o alarme que se repete
-            alarmManager.setExact(
-                AlarmManager.RTC_WAKEUP,
-                calendar.timeInMillis,
-                pendingIntent
-            )
+           // alarmManager.setExact(
+            //    AlarmManager.RTC_WAKEUP,
+           //     calendar.timeInMillis,
+            //    pendingIntent
+          //  )
 
-            Toast.makeText(this, "Alarme agendado para tocar em 5 segundos.", Toast.LENGTH_SHORT).show()
-            Log.d("AgendarAlarme", "Alarme agendado com sucesso!")
-        } catch (e: SecurityException) {
-            // Handle SecurityException when trying to schedule exact alarms
-            Log.e("AgendarAlarme", "SecurityException: ${e.message}")
-            Toast.makeText(this, "Erro ao agendar o alarme: ${e.message}", Toast.LENGTH_SHORT).show()
-        }
-    }
+          //  Toast.makeText(this, "Alarme agendado para tocar em 5 segundos.", Toast.LENGTH_SHORT).show()
+         ///   Log.d("AgendarAlarme", "Alarme agendado com sucesso!")
+     //  // } catch (e: SecurityException) {
+        //    // Handle SecurityException when trying to schedule exact alarms
+         //   Log.e("AgendarAlarme", "SecurityException: ${e.message}")
+         //   Toast.makeText(this, "Erro ao agendar o alarme: ${e.message}", Toast.LENGTH_SHORT).show()
+      // }
+  //  }
 
-    @RequiresApi(Build.VERSION_CODES.S)
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
+   // @RequiresApi(Build.VERSION_CODES.S)
+    //override fun onRequestPermissionsResult(
+      //  requestCode: Int,
+       // permissions: Array<out String>,
+       // grantResults: IntArray
+   // ) {
+      ///  super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+       // if (requestCode == PERMISSION_REQUEST_CODE) {
+        //    if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
                 // Todas as permissões foram concedidas, agendar o alarme
-                agendarAlarme()
-            } else {
-                Toast.makeText(this, "Permissões necessárias não foram concedidas.", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-}
+           //     agendarAlarme()
+          //  } else {
+           //     Toast.makeText(this, "Permissões necessárias não foram concedidas.", Toast.LENGTH_SHORT).show()
+           // }
+      //  }
+   // }
+//}
 
