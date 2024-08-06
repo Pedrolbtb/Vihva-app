@@ -1,6 +1,7 @@
 
 package com.companyvihva.vihva.Inicio
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -49,6 +50,7 @@ class Perfil : Fragment() {
         return inflater.inflate(R.layout.fragment_perfil, container, false)
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid

@@ -100,7 +100,7 @@ class CriaAlarme : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btn_salvarAlarme).setOnClickListener {
-            requestAlarmPermissionsAndSchedule()
+            //requestAlarmPermissionsAndSchedule()
         }
 
         // Configurando o listener para o botão de voltar
@@ -109,12 +109,13 @@ class CriaAlarme : AppCompatActivity() {
             val telaEscolhaRemedio = Intent(this, EscolhaRemedio::class.java).apply {}
             startActivity(telaEscolhaRemedio)
         }
-    }
+    }/*
 
     private val PERMISSION_REQUEST_CODE = 100
     private val NOTIFICATION_ID = 1
 
     private fun Bdsave(index: Int){
+    }
         // Inicializando o Firestore
         firestore = FirebaseFirestore.getInstance()
         if (index < documentos.size) {
@@ -214,5 +215,7 @@ class CriaAlarme : AppCompatActivity() {
             }
         }
     }
+}
+*/
 }
 

@@ -247,6 +247,7 @@ class EscolhaFrequencia : AppCompatActivity() {
         return dias
     }
 
+    //botão para passagem de tela
     fun avanc() {
         val intent = Intent(this, ConfigDuracao::class.java).apply {
             putExtra("frequencia", frequencia)
