@@ -100,7 +100,7 @@ class CriaAlarme : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btn_salvarAlarme).setOnClickListener {
-            requestAlarmPermissionsAndSchedule()
+         ///   requestAlarmPermissionsAndSchedule()
         }
 
         // Configurando o listener para o botão de voltar
@@ -117,18 +117,18 @@ class CriaAlarme : AppCompatActivity() {
     private fun Bdsave(index: Int){
         // Inicializando o Firestore
         firestore = FirebaseFirestore.getInstance()
-        if (index < documentos.size) {
-            val docId = documentos[index]
-            firestore.collection("doenca").document(docId).get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
+     //   if (index < documentos.size) {
+          //  val docId = documentos[index]
+         //   firestore.collection("doenca").document(docId).get()
+               // .addOnSuccessListener { document ->
+                  ///  if (document != null) {
                         // Obtendo os detalhes da doença do documento Firestore
-                        val nome = document.getString("nome")
-                        val url = document.getString("Url")
-                        val tipo = document.getString("tipo")
+                    //    val nome = document.getString("nome")
+                     //   val url = document.getString("Url")
+                     //   val tipo = document.getString("tipo")
 
                         // Criando um objeto Tipo_Remedios com os detalhes do remédio
-                        val tipoRemedios = Tipo_Remedios(url ?: "", nome ?: "", tipo ?: "", docId)
+                     //   val tipoRemedios = Tipo_Remedios(url ?: "", nome ?: "", tipo ?: "", docId)
 
                     }
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- EditText para o título do evento -->
+    <EditText
+        android:id="@+id/ev"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Título do Evento"
+        android:inputType="text" />
+
+    <!-- EditText para a descrição do evento -->
+    <EditText
+        android:id="@+id/eventDescriptionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descrição do Evento"
+        android:inputType="textMultiLine"
+        android:lines="4"
+        android:minLines="4" />
+
+    <!-- Botão para salvar o evento -->
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salvar" />
+
+    <!-- Botão para voltar -->
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Voltar" />
+
+</LinearLayout>

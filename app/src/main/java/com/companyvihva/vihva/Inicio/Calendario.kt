@@ -10,7 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.companyvihva.vihva.databinding.FragmentCalendarioBinding
 import com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter.Adapter_lembrete
-import com.companyvihva.vihva.com.companyvihva.vihva.model.tipo_lembrete
+import com.companyvihva.vihva.com.companyvihva.vihva.model.Tipo_lembrete
+
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Locale
@@ -69,7 +70,7 @@ class Calendario : Fragment() {
         db.collection("clientes") // Coleção de usuários
             .get()
             .addOnSuccessListener { result ->
-                val eventos = mutableListOf<tipo_lembrete>()
+                val eventos = mutableListOf<Tipo_lembrete>()
 
                 // Para cada usuário, busque eventos
                 val tasks = result.documents.map { document ->
@@ -84,7 +85,7 @@ class Calendario : Fragment() {
                                     val data = eventDoc.getString("data") ?: ""
 
                                     if (titulo != null) {
-                                        val evento = tipo_lembrete(titulo, data)
+                                        val evento = Tipo_lembrete(titulo, data)
                                         eventos.add(evento)
                                     }
                                 }
