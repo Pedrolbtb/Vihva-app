@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.databinding.ItemLembreteBinding
-import com.companyvihva.vihva.com.companyvihva.vihva.model.Tipo_lembrete
+import com.companyvihva.vihva.com.companyvihva.vihva.model.tipo_lembrete
 
-class Adapter_lembrete(private var eventos: List<Tipo_lembrete>) :
+class Adapter_lembrete(private var eventos: List<tipo_lembrete>) :
     RecyclerView.Adapter<Adapter_lembrete.ViewHolder>() {
 
     inner class ViewHolder(val binding: ItemLembreteBinding) : RecyclerView.ViewHolder(binding.root)
@@ -24,7 +24,7 @@ class Adapter_lembrete(private var eventos: List<Tipo_lembrete>) :
 
     override fun getItemCount(): Int = eventos.size
 
-    fun updateEventos(novosEventos: List<Tipo_lembrete>) {
+    fun updateEventos(novosEventos: List<tipo_lembrete>) {
         eventos = novosEventos
         notifyDataSetChanged()
     }

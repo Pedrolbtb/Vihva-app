@@ -1,287 +1,244 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/off_white"
-    android:layout_height="wrap_content"
-    android:fillViewport="true">
+    android:layout_height="match_parent"
+    android:background="@color/off_white">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        >
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/btnClose"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="wrap_content"
-            android:layout_marginTop="330dp"
-            android:layout_marginEnd="40dp"
-            android:background="#00FFFFFF"
-            android:src="@drawable/arrow_voltar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView_topo_popup_edit_bio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="330dp"
-            android:layout_marginStart="40dp"
-            android:fontFamily="@font/cloudsoft_bold_700"
-            android:text="@string/string_editar"
-            android:textColor="@color/Letras"
-            android:textSize="30sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/img_perfil_popup"
-            style="@style/foto"
-            android:layout_width="130dp"
-            app:civ_border_width="2dp"
-            app:civ_border_color="@color/Letras"
-            android:layout_height="130dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintTop_toBottomOf="@+id/textView_topo_popup_edit_bio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_nome"
-            style="@style/layout_campos"
-            android:layout_marginTop="150dp"
-            app:endIconMode="clear_text"
-            app:endIconTint="@color/Letras"
-            app:hintTextColor="@color/Letras"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_topo_popup_edit_bio">
-
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_nome_V2"
-                style="@style/Edit_Text_Login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:drawableTint="@color/Letras"
-                android:hint="@string/text_breadNome"
-                android:inputType="text"
-                android:maxLength="100"
-                android:textColor="@color/Letras"
-                android:textColorHint="@color/hint"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/gen" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_sobrenome"
-            style="@style/layout_campos"
-            app:endIconTint="@color/Letras"
-            app:endIconMode="clear_text"
-            app:hintTextColor="@color/Letras"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_nome">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_sobrenome_V2"
-                style="@style/Edit_Text_Login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:drawableTint="@color/Letras"
-                android:hint="@string/text_csobrenome"
-                android:inputType="text"
-                android:maxLength="100"
-                android:textColor="@color/Letras"
-                android:textColorHint="@color/hint" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_idade"
-            style="@style/layout_campos"
-            app:endIconTint="@color/Letras"
-            app:endIconMode="clear_text"
-            app:hintTextColor="@color/Letras"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_sobrenome">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_idade_V2"
-                style="@style/Edit_Text_Login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:drawableTint="@color/Letras"
-                android:hint="@string/text_idade"
-                android:inputType="number"
-                android:maxLength="3"
-                android:textColor="@color/Letras"
-                android:textColorHint="@color/hint"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_sobrenome" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_altura"
-            style="@style/layout_campos"
-            app:suffixText="cm"
-            android:textColor="@color/Letras"
-            app:expandedHintEnabled="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_idade"
-            app:suffixTextColor="@color/hint">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_altura_V2"
-                style="@style/Edit_Text_Login"
-                android:drawableTint="@color/Letras"
-                android:hint="@string/text_caltura"
-                android:layout_marginTop="15dp"
-                android:inputType="number"
-                android:maxLength="3"
-                android:textColor="@color/Letras"
-                android:textColorHint="@color/hint"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_idade" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_peso"
-            style="@style/layout_campos"
-            app:suffixText="kg"
-            android:textColor="@color/Letras"
-            app:expandedHintEnabled="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_altura"
-            app:suffixTextColor="@color/hint">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_peso_V2"
-                style="@style/Edit_Text_Login"
-                android:drawableTint="@color/Letras"
-                android:hint="@string/text_cpeso"
-                android:inputType="number"
-                android:maxLength="2"
-                android:layout_marginTop="15dp"
-                android:textColor="@color/Letras"
-                android:textColorHint="@color/hint"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_idade" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/txt_genero"
-            style="@style/text"
-            android:text="@string/text_genero"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_peso" />
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_genero">
-
-            <!-- radio de feminino -->
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/radio_fem_V2"
-                style="@style/Radio_Button"
+            <ImageButton
+                android:id="@+id/btnClose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text_cfem"
-                android:textColor="@color/Letras"
-                android:textSize="14sp" />
+                android:layout_marginStart="10dp"
+                android:layout_gravity="start"
+                android:layout_marginTop="10dp"
+                android:background="#00FFFFFF"
+                android:src="@drawable/arrow_voltar"/>
 
-            <!-- radio de masculino -->
-
-            <!-- radio de sem genero -->
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/radio_masc_V2"
-                style="@style/Radio_Button"
+            <TextView
+                android:id="@+id/textView_topo_popup_edit_bio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text_cmasc"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/cloudsoft_bold_700"
+                android:text="@string/string_editar"
                 android:textColor="@color/Letras"
-                android:textSize="14sp" />
+                android:textSize="30sp" />
 
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/radio_Semgen_V2"
-                style="@style/Radio_Button"
-                android:layout_marginBottom="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/text_cnao"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_perfil_popup"
+                style="@style/foto"
+
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/Letras"
+                android:layout_marginTop="10dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_nome"
+                style="@style/layout_campos"
+                android:layout_marginTop="20dp"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/Letras"
+                app:hintTextColor="@color/Letras">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_nome_V2"
+                    style="@style/Edit_Text_Login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableTint="@color/Letras"
+                    android:hint="@string/text_breadNome"
+                    android:inputType="text"
+                    android:maxLength="100"
+                    android:textColor="@color/Letras"
+                    android:textColorHint="@color/hint"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_sobrenome"
+                style="@style/layout_campos"
+                app:endIconTint="@color/Letras"
+                app:endIconMode="clear_text"
+                app:hintTextColor="@color/Letras"
+                android:layout_marginTop="15dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_sobrenome_V2"
+                    style="@style/Edit_Text_Login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableTint="@color/Letras"
+                    android:hint="@string/text_csobrenome"
+                    android:inputType="text"
+                    android:maxLength="100"
+                    android:textColor="@color/Letras"
+                    android:textColorHint="@color/hint"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_idade"
+                style="@style/layout_campos"
+                app:endIconTint="@color/Letras"
+                app:endIconMode="clear_text"
+                app:hintTextColor="@color/Letras"
+                android:layout_marginTop="15dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_idade_V2"
+                    style="@style/Edit_Text_Login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableTint="@color/Letras"
+                    android:hint="@string/text_idade"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:textColor="@color/Letras"
+                    android:textColorHint="@color/hint"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_altura"
+                style="@style/layout_campos"
+                app:suffixText="cm"
                 android:textColor="@color/Letras"
-                android:textSize="14sp" />
-
-        </RadioGroup>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_bio"
-            style="@style/layout_campos"
-            app:counterEnabled="true"
-            app:counterMaxLength="300"
-            android:textColor="@color/Letras"
-            app:expandedHintEnabled="false"
-            app:layout_constraintTop_toBottomOf="@id/radioGroup"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_biografia_V2"
-                style="@style/Edit_Text_Perfil"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
+                app:expandedHintEnabled="false"
                 android:layout_marginTop="15dp"
-                android:hint="@string/text_biografia"
-                android:gravity="top"
+                app:suffixTextColor="@color/hint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_altura_V2"
+                    style="@style/Edit_Text_Login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableTint="@color/Letras"
+                    android:hint="@string/text_caltura"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:textColor="@color/Letras"
+                    android:textColorHint="@color/hint"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_peso"
+                style="@style/layout_campos"
+                app:suffixText="kg"
                 android:textColor="@color/Letras"
-                android:textColorHint="@color/hint"
-                android:inputType="textMultiLine"
-                android:maxLength="300"
-                />
+                app:expandedHintEnabled="false"
+                android:layout_marginTop="15dp"
+                app:suffixTextColor="@color/hint">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_peso_V2"
+                    style="@style/Edit_Text_Login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableTint="@color/Letras"
+                    android:hint="@string/text_cpeso"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/Letras"
+                    android:textColorHint="@color/hint"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_salvar_V2"
-            style="@style/Button_salvar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/text_salvar"
-            android:textColor="@color/off_white"
-            android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@+id/layout_bio"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
+            <TextView
+                android:id="@+id/txt_genero"
+                style="@style/text"
+                android:text="@string/text_genero"
+                android:layout_marginTop="8dp"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/radio_fem_V2"
+                    style="@style/Radio_Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_cfem"
+                    android:textColor="@color/Letras"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/radio_masc_V2"
+                    style="@style/Radio_Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_cmasc"
+                    android:textColor="@color/Letras"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/radio_Semgen_V2"
+                    style="@style/Radio_Button"
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_cnao"
+                    android:textColor="@color/Letras"
+                    android:textSize="14sp" />
+            </RadioGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_bio"
+                style="@style/layout_campos"
+                app:counterEnabled="true"
+                app:counterMaxLength="300"
+                android:textColor="@color/Letras"
+                app:expandedHintEnabled="false"
+                android:layout_marginTop="15dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_biografia_V2"
+                    style="@style/Edit_Text_Perfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/text_biografia"
+                    android:gravity="top"
+                    android:textColor="@color/Letras"
+                    android:textColorHint="@color/hint"
+                    android:inputType="textMultiLine"
+                    android:maxLength="300" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_salvar_V2"
+                style="@style/Button_salvar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="60dp"
+                android:text="@string/text_salvar"
+                android:textColor="@color/off_white"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

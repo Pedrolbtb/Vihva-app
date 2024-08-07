@@ -12,6 +12,8 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RadioGroup
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.companyvihva.vihva.CriarPerfil.FotoBio
 import com.companyvihva.vihva.R
 import com.google.firebase.auth.FirebaseAuth
@@ -102,6 +104,8 @@ class Editar_perfil : AppCompatActivity() {
                     }
                 }
             }
+            Toast.makeText(this, "Perfil atualizado com sucesso", Toast.LENGTH_SHORT).show()
+            finish()
         }
 
         btnClose.setOnClickListener {

@@ -170,7 +170,7 @@ class ConfigDuracao : AppCompatActivity() {
         }
         startActivity(intent)
     }
-
+ /*
     fun SalvaeAgenda() {
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user?.uid
@@ -214,5 +214,7 @@ class ConfigDuracao : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+  */
 }
 

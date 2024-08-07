@@ -1,40 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
     <!-- EditText para o título do evento -->
-    <EditText
-        android:id="@+id/ev"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Título do Evento"
-        android:inputType="text" />
 
     <!-- EditText para a descrição do evento -->
-    <EditText
-        android:id="@+id/eventDescriptionEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Descrição do Evento"
-        android:inputType="textMultiLine"
-        android:lines="4"
-        android:minLines="4" />
 
     <!-- Botão para salvar o evento -->
+
+    <!-- Botão para voltar -->
+
+    <EditText
+        android:id="@+id/ev"
+
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="232dp"
+        android:background="@drawable/edit_text"
+        android:elevation="1dp"
+        android:hint="Digite o evento"
+        android:padding="12dp"
+        android:textColor="@color/Letras"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/eventDescriptionEditText"
+
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edit_text"
+        android:elevation="1dp"
+        android:hint=" descrição  do evento"
+        android:padding="12dp"
+        android:textColor="@color/Letras"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.591" />
+
+    <TextView
+        android:id="@+id/text_alarme"
+        style="@style/text_doenca_e_remedio"
+        android:text="Marcar lembrete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19" />
+
     <Button
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Salvar" />
+        android:text="Salvar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.772" />
 
-    <!-- Botão para voltar -->
     <Button
         android:id="@+id/btnVoltar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Voltar" />
+        android:layout_marginBottom="148dp"
+        android:text="Voltar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
