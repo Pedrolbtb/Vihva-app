@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class Evento : AppCompatActivity() {
+    /*
 
     private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
@@ -77,4 +78,6 @@ class Evento : AppCompatActivity() {
             Date()
         }
     }
+
+     */
 }

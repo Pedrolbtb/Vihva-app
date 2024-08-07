@@ -321,6 +321,10 @@ Dúvidas podem ser esclarecidas através do e-mail: vivahproject475@gmail.com.
 
 </string>
 
+    /////////HABITOS//////////
+
+    <string name="text_habitos">Conte nos seus hábitos</string>
+
     //Strings da acessibilidade
     <string name="accessibility_service_label">Meu serviço de acessibilidade</string>
     <string name="accessibility_service_description">Serviço para melhorar a acessibilidade do aplicativo</string>
