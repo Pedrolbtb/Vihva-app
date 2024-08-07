@@ -1,6 +1,8 @@
 package com.companyvihva.vihva.Inicio
 
+import android.app.ActivityOptions
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +10,10 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.companyvihva.vihva.R
 import com.companyvihva.vihva.databinding.FragmentCalendarioBinding
 import com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter.Adapter_lembrete
 import com.companyvihva.vihva.com.companyvihva.vihva.model.Tipo_lembrete
-
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Locale
@@ -62,7 +64,16 @@ class Calendario : Fragment() {
             val intent = Intent(activity, Evento::class.java).apply {
                 putExtra("selectedDate", selectedDate)
             }
-            startActivityForResult(intent, REQUEST_CODE_EVENTO)
+
+            // Adicione animações para a transição
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                val options = ActivityOptions.makeCustomAnimation(
+                    requireActivity(), R.anim.fade_in, R.anim.fade_out
+                )
+                startActivity(intent, options.toBundle())
+            } else {
+                startActivity(intent)
+            }
         }
     }
 
@@ -84,7 +95,7 @@ class Calendario : Fragment() {
                                     val titulo = eventDoc.getString("title") ?: ""
                                     val data = eventDoc.getString("data") ?: ""
 
-                                    if (titulo != null) {
+                                    if (titulo.isNotEmpty()) {
                                         val evento = Tipo_lembrete(titulo, data)
                                         eventos.add(evento)
                                     }

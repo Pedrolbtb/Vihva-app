@@ -1,6 +1,8 @@
 package com.companyvihva.vihva.Configurações
 
+import android.app.ActivityOptions
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -100,7 +102,15 @@ class Configuracoes : AppCompatActivity() {
 
         val btnVoltar = findViewById<ImageButton>(R.id.btnVoltarConfigsos)
         btnVoltar.setOnClickListener {
-            finish()
+            // Adiciona animação ao voltar para a tela anterior
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                val options = ActivityOptions.makeCustomAnimation(
+                    this, R.anim.fade_in, R.anim.fade_out
+                )
+                finishAfterTransition()
+            } else {
+                finish()
+            }
         }
 
         //deixar spinner bonito
