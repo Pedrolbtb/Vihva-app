@@ -1,69 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="390dp"
-    android:layout_height="140dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/widget_alarme">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="147dp"
+    android:background="@drawable/background_widget"
+    android:elevation="3dp"
+    tools:context=".Inicio.Inicio">
+
+    <View
+        android:background="@drawable/container_foto_widget"
+        android:layout_width="95dp"
+        android:layout_height="105dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="27dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="91dp"
+        android:layout_height="101dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_widget"
+            android:layout_width="91dp"
+            android:layout_height="101dp"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/avatars" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/nome_alarme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:text=""
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="30dp"
+        android:textColor="#247894"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/desc_alarme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="aaaaaaaaaa"
-        android:textSize="25sp"
-        android:textColor="@color/off_white"
+        android:layout_marginEnd="40dp"
         android:fontFamily="@font/cloudsoft_bold_700"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:text=""
+        android:layout_marginStart="150dp"
+        android:textColor="#247894"
+        android:textSize="20sp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-    <TextView
-        android:id="@+id/hora"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="45dp"
-        android:fontFamily="@font/cloudsoft_bold_700"
-        android:text="aaaaaa"
-        android:textColor="@color/off_white"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/programado"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/programado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/off_white"
-        android:textSize="15sp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="10dp"
-        android:text="Não programado"
-        android:fontFamily="@font/cloudsoft_bold_700"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/alarm_droparrow" />
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:trackTint="@color/off_white"
-        app:thumbTint="@color/Letras"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/seta_direita" />
 
 
 </android.support.constraint.ConstraintLayout>

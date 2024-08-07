@@ -19,24 +19,22 @@ import com.google.android.material.timepicker.TimeFormat
 class EscolhaFrequencia : AppCompatActivity() {
 
     private var frequencia: String? = null
-    private var horaDiariamente: String? = null
     private var intervalo: String? = null
     private var dias: String? = null
+    private var duracao = intent?.getStringExtra("duracao")
+    private var data = intent?.getStringExtra("data")
+    private var estoque = intent?.getStringExtra("estoque")
+    private var lembreme = intent?.getStringExtra("lembreme")
+    private var tipomed = intent?.getStringExtra("tipomed")
+    private var switchEstoqueChecked = intent?.getBooleanExtra("switchEstoque", false) ?: false
+    private var nome = intent?.getStringExtra("remedioId")
+    private var horaDiariamente = intent?.getStringExtra("horaDiariamente")
+    private var horaemhora= intent?.getStringExtra ("horaemhora")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_escolha_frequencia)
 
         val parentLayout = findViewById<LinearLayout>(R.id.layout_Opcoes)
-        frequencia = intent?.getStringExtra("frequencia")
-        val duracao = intent?.getStringExtra("duracao")
-        val data = intent?.getStringExtra("data")
-        val estoque = intent?.getStringExtra("estoque")
-        val lembreme = intent?.getStringExtra("lembreme")
-        val tipomed = intent?.getStringExtra("tipomed")
-        val switchEstoqueChecked = intent?.getBooleanExtra("switchEstoque", false) ?: false
-        val nome = intent?.getStringExtra("remedioId")
-        var horaDiariamente = intent?.getStringExtra("horaDiariamente")
-
         val radioGroup: RadioGroup = findViewById(R.id.radioGroup_frequencia)
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         val btnProx: Button = findViewById(R.id.btn_proximo)
@@ -249,16 +247,20 @@ class EscolhaFrequencia : AppCompatActivity() {
 
     //botão para passagem de tela
     fun avanc() {
-        val intent = Intent(this, ConfigDuracao::class.java).apply {
+        intent = Intent(this, CriaAlarme::class.java).apply {
+            putExtra("horaDiariamente", horaDiariamente)
+            putExtra("data", data)
+            putExtra("duracao", duracao)
             putExtra("frequencia", frequencia)
-            when (frequencia) {
-                "Diariamente" -> putExtra("horaDiariamente", horaDiariamente)
-                "Intervalo" -> putExtra("intervalo", intervalo)
-                "Somente em certos dias" -> putExtra("dias", dias)
-            }
+            putExtra("horaemhora", horaemhora)
+            putExtra("lembreme", lembreme)
+            putExtra("tipomed", tipomed)
+            putExtra("estoque", estoque)
+            putExtra("remedioId", nome)
+            putExtra("switchEstoque", switchEstoqueChecked)
         }
         startActivity(intent)
-    }
 
 }
+    }
 

@@ -10,13 +10,18 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.R
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.*
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ConfigDuracao : AppCompatActivity() {
 
     private var duracao: String? = null
     private var formattedDate: String? = null
+    private lateinit var db: FirebaseFirestore
+    private lateinit var auth: FirebaseAuth
+
 
     // Variáveis para armazenar dados da intent
     private lateinit var frequencia: String
@@ -28,14 +33,22 @@ class ConfigDuracao : AppCompatActivity() {
     private lateinit var tipomed: String
     private var switchEstoqueChecked: Boolean = false
     private lateinit var nome: String
+    private var intervalo = intent.getStringExtra("intervalo") ?: ""
+    private var dias = intent.getStringExtra("dias") ?: ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config_duracao)
 
+        db = FirebaseFirestore.getInstance()
+        auth = FirebaseAuth.getInstance()
+
+
         // Recuperando dados da intent
         frequencia = intent.getStringExtra("frequencia") ?: ""
         horaemhora = intent.getStringExtra("horaemhora") ?: ""
+        intervalo = intent.getStringExtra("intervalo") ?: ""
+        dias = intent.getStringExtra("dias") ?: ""
         duracao = intent.getStringExtra("duracao")
         data = intent.getStringExtra("data") ?: ""
         horaDiariamente = intent.getStringExtra("horaDiariamente") ?: ""
@@ -72,7 +85,8 @@ class ConfigDuracao : AppCompatActivity() {
 
                 // Adicionando o layout ao parentLayout
                 parentLayout.addView(layoutToAdd)
-                val textViewCalendario = layoutToAdd.findViewById<TextView>(R.id.textView_diariamenteAlarme)
+                val textViewCalendario =
+                    layoutToAdd.findViewById<TextView>(R.id.textView_diariamenteAlarme)
                 textViewCalendario.text = data
             }
         }
@@ -105,7 +119,8 @@ class ConfigDuracao : AppCompatActivity() {
                 parentLayout.addView(layoutToAdd)
 
                 // Configurando clique para abrir o DatePicker
-                val textViewCalendario = layoutToAdd.findViewById<TextView>(R.id.textView_diariamenteAlarme)
+                val textViewCalendario =
+                    layoutToAdd.findViewById<TextView>(R.id.textView_diariamenteAlarme)
                 textViewCalendario.setOnClickListener {
                     val datePicker = MaterialDatePicker.Builder.datePicker()
                         .setTitleText("Selecione até quando vão os avisos")
@@ -139,7 +154,6 @@ class ConfigDuracao : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        // Criando intent para retornar os dados para a activity ConfigFrequencia
         val intent = Intent(this, EscolhaFrequencia::class.java).apply {
             putExtra("data", formattedDate)
             putExtra("duracao", duracao)
@@ -156,6 +170,49 @@ class ConfigDuracao : AppCompatActivity() {
         }
         startActivity(intent)
     }
-    fun avancar (){
+
+    fun SalvaeAgenda() {
+        val user = FirebaseAuth.getInstance().currentUser
+        val uid = user?.uid
+
+        val intent = Intent(this, ConfigDuracao::class.java).apply {
+            putExtra("frequencia", frequencia)
+            when (frequencia) {
+                "Diariamente" -> {
+                    val eventFrequencia = hashMapOf(
+                        "frequencia" to horaDiariamente,
+                        "tipomed" to tipomed,
+                        "lembreme" to lembreme,
+                        "remedioId" to nome,
+                        "data" to formattedDate,
+
+                        when (duracao) {
+                            "Sem data para acabar" -> {
+                                val eventDuracao = hashMapOf(
+
+                                    "duracao" to formattedDate }
+                            "Intervalo" -> {
+                                "frequencia" to horaemhora)
+                            }
+
+                        }
+                }
+
+                "Intervalo" -> {
+                    val eventFrequencia = hashMapOf(
+                    "frequencia" to horaemhora,
+                        "tipomed" to tipomed,
+                        "lembreme" to lembreme,
+                        "remedioId" to nome,
+                        "data" to formattedDate
+                    )
+                }
+            }
+
+
+
+            startActivity(intent)
+        }
     }
 }
+

@@ -102,7 +102,6 @@ class CriaAlarme : AppCompatActivity() {
         findViewById<Button>(R.id.btn_salvarAlarme).setOnClickListener {
          ///   requestAlarmPermissionsAndSchedule()
         }
-
         // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
@@ -111,10 +110,11 @@ class CriaAlarme : AppCompatActivity() {
         }
     }
 
-    private val PERMISSION_REQUEST_CODE = 100
-    private val NOTIFICATION_ID = 1
 
-    private fun Bdsave(index: Int){
+   // private val PERMISSION_REQUEST_CODE = 100
+    //private val NOTIFICATION_ID = 1
+
+   /* private fun Bdsave(index: Int){
         // Inicializando o Firestore
         firestore = FirebaseFirestore.getInstance()
      //   if (index < documentos.size) {
@@ -216,3 +216,4 @@ class CriaAlarme : AppCompatActivity() {
     }
 }
 
+    */
