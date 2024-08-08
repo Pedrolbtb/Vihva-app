@@ -43,7 +43,13 @@
         <activity
             android:name=".Login.Termos"
             android:exported="false" />
-
+        <receiver
+            android:name=".NotificationReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.companyvihva.vihva.NOTIFICATION" />
+            </intent-filter>
+        </receiver>
         <receiver
             android:name=".Alarme.AlarmeToque"
             android:exported="true">
