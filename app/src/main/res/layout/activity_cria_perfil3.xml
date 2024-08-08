@@ -25,7 +25,7 @@
         android:id="@+id/SearchView"
         android:layout_width="330dp"
         android:layout_height="53dp"
-        android:elevation="2dp"
+        android:elevation="4dp"
         android:background="@drawable/background_widget"
         android:layout_marginBottom="520dp"
         app:iconifiedByDefault="false"
@@ -47,17 +47,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Lista_amigos"
-        android:layout_width="332dp"
-        android:layout_height="422dp"
-        android:layout_marginBottom="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.899" />
+
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_proximo"
@@ -68,7 +59,40 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Lista_amigos"
         app:layout_constraintVertical_bias="1.0" />
+
+        <TableRow
+            android:id="@+id/button_configList_sos"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="380dp"
+            android:background="@drawable/container_linha"
+            app:layout_constraintStart_toStartOf="@id/containerComponents"
+            app:layout_constraintEnd_toEndOf="@id/containerComponents"
+            app:layout_constraintTop_toTopOf="@id/containerComponents"
+            app:layout_constraintBottom_toBottomOf="@id/containerComponents">
+
+
+            <CheckBox
+                android:id="@+id/ciclismo"
+                android:layout_width="156dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cloudsoft_bold_700"
+                android:gravity="start"
+                android:text="@string/text_tabagismo"
+                android:textColor="@color/vermelho_alerta"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_cigarro"
+                />
+
+        </TableRow>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

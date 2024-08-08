@@ -1,10 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Vihva</string>
 
-    <string name="text_tabagismo">Você possui hábitos tabagistas?</string>
-
-    <string name="text_alcolismo">Você faz consumo de bebidas alcoólicas? </string>
-
     <string name="text_horas">horas</string>
 
     <string name="text_seg">Seg</string>
@@ -322,8 +318,8 @@ Dúvidas podem ser esclarecidas através do e-mail: vivahproject475@gmail.com.
 </string>
 
     /////////HABITOS//////////
-
     <string name="text_habitos">Conte nos seus hábitos</string>
+    <string name="text_tabagismo">Tabagismo</string>
 
     //Strings da acessibilidade
     <string name="accessibility_service_label">Meu serviço de acessibilidade</string>
