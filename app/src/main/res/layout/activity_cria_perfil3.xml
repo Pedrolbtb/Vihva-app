@@ -21,26 +21,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/SearchView"
-        android:layout_width="330dp"
-        android:layout_height="53dp"
-        android:elevation="4dp"
-        android:background="@drawable/background_widget"
-        android:layout_marginBottom="520dp"
-        app:iconifiedByDefault="false"
-        app:layout_constraintTop_toTopOf="@+id/containerComponents"
-        app:layout_constraintEnd_toEndOf="@id/containerComponents"
-        app:layout_constraintStart_toStartOf="@id/containerComponents"
-        app:layout_constraintBottom_toBottomOf="@+id/containerComponents"
-        app:queryBackground="@android:color/transparent"
-        app:queryHint="Buscar hábito" />
 
     <View
         android:id="@+id/containerComponents"
         style="@style/ContainerComponents"
         android:layout_width="415dp"
-        android:layout_height="620dp"
+        android:layout_height="640dp"
         android:layout_marginTop="110dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,36 +48,115 @@
         app:layout_constraintVertical_bias="1.0" />
 
         <TableRow
-            android:id="@+id/button_configList_sos"
+            android:id="@+id/table_tabagismo"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginBottom="380dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:background="@drawable/container_linha"
             app:layout_constraintStart_toStartOf="@id/containerComponents"
             app:layout_constraintEnd_toEndOf="@id/containerComponents"
             app:layout_constraintTop_toTopOf="@id/containerComponents"
-            app:layout_constraintBottom_toBottomOf="@id/containerComponents">
+            >
 
 
             <CheckBox
-                android:id="@+id/ciclismo"
-                android:layout_width="156dp"
+                android:id="@+id/tabagismo"
+                android:layout_width="340dp"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_cigarro"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cloudsoft_bold_700"
-                android:gravity="start"
+                android:gravity="center_vertical"
                 android:text="@string/text_tabagismo"
                 android:textColor="@color/vermelho_alerta"
-                android:textSize="22sp" />
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_cigarro"
+                android:textSize="20sp"
+                android:buttonTint="@color/vermelho_alerta"
                 />
-
         </TableRow>
 
+    <TableRow
+        android:id="@+id/table_alcolismo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="380dp"
+        android:background="@drawable/container_linha"
+        app:layout_constraintStart_toStartOf="@id/containerComponents"
+        app:layout_constraintEnd_toEndOf="@id/containerComponents"
+        app:layout_constraintTop_toBottomOf="@id/table_tabagismo"
+        >
+
+
+        <CheckBox
+            android:id="@+id/alcolismo"
+            android:layout_width="340dp"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="5dp"
+            android:drawableBottom="5dp"
+            android:drawableStart="@drawable/ic_alcolatra"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            android:gravity="center_vertical"
+            android:text="@string/text_alcolismo"
+            android:textColor="@color/vermelho_alerta"
+            android:textSize="20sp"
+            android:buttonTint="@color/vermelho_alerta"
+            />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/table_ciclismo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="380dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/container_linha"
+        app:layout_constraintStart_toStartOf="@id/containerComponents"
+        app:layout_constraintEnd_toEndOf="@id/containerComponents"
+        app:layout_constraintTop_toBottomOf="@id/table_alcolismo"
+        >
+
+
+        <CheckBox
+            android:id="@+id/ciclismo"
+            android:layout_width="340dp"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_bike"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            android:gravity="center_vertical"
+            android:text="@string/text_ciclismo"
+            android:textColor="@color/Letras"
+            android:textSize="20sp"
+            android:buttonTint="@color/Letras"
+            />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/table_caminhada"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="335dp"
+        android:background="@drawable/container_linha"
+        app:layout_constraintStart_toStartOf="@id/containerComponents"
+        app:layout_constraintEnd_toEndOf="@id/containerComponents"
+        app:layout_constraintTop_toBottomOf="@id/table_ciclismo"
+        >
+
+
+        <CheckBox
+            android:id="@+id/caminhada"
+            android:layout_width="340dp"
+            android:layout_height="match_parent"
+            android:buttonTint="@color/Letras"
+            android:drawableStart="@drawable/ic_caminhada"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            android:gravity="center_vertical"
+            android:text="@string/text_caminhada"
+            android:textColor="@color/Letras"
+            android:textSize="20sp" />
+    </TableRow>
 
 
 
