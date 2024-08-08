@@ -96,7 +96,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="notificações"
+                android:text="Notificações"
                 android:textSize="20sp" />
 
             <ImageView
