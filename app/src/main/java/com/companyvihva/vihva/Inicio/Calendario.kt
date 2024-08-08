@@ -74,11 +74,15 @@ class Calendario : Fragment() {
                 for (document in result) {
                     val titulo = document.getString("titulo") ?: ""
                     val data = document.getDate("data") ?: Date()
-
                     val dataStr = dateFormat.format(data)
-                    val evento = tipo_lembrete(titulo, dataStr)
-                    eventos.add(evento)
+
+                    eventos.add(tipo_lembrete(titulo, dataStr, data))
                 }
+
+                // Ordenar eventos pela data
+                eventos.sortBy { it.dataDate }
+
+                // Atualizar o adaptador com a lista ordenada
                 adapterLembrete.updateEventos(eventos)
             }
             .addOnFailureListener { exception ->
