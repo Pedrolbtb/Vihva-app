@@ -100,9 +100,8 @@ class CriaAlarme : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btn_salvarAlarme).setOnClickListener {
-           // requestAlarmPermissionsAndSchedule()
+         ///   requestAlarmPermissionsAndSchedule()
         }
-
         // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
@@ -111,20 +110,21 @@ class CriaAlarme : AppCompatActivity() {
         }
     }
 
-    private val PERMISSION_REQUEST_CODE = 100
-    private val NOTIFICATION_ID = 1
 
-    private fun Bdsave(index: Int){
+   // private val PERMISSION_REQUEST_CODE = 100
+    //private val NOTIFICATION_ID = 1
+
+   /* private fun Bdsave(index: Int){
         // Inicializando o Firestore
-      //  firestore = FirebaseFirestore.getInstance()
+        firestore = FirebaseFirestore.getInstance()
      //   if (index < documentos.size) {
-         ///   val docId = documentos[index]
+          //  val docId = documentos[index]
          //   firestore.collection("doenca").document(docId).get()
-              //  .addOnSuccessListener { document ->
-                //    if (document != null) {
+               // .addOnSuccessListener { document ->
+                  ///  if (document != null) {
                         // Obtendo os detalhes da doença do documento Firestore
                     //    val nome = document.getString("nome")
-                    //   val url = document.getString("Url")
+                     //   val url = document.getString("Url")
                      //   val tipo = document.getString("tipo")
 
                         // Criando um objeto Tipo_Remedios com os detalhes do remédio
@@ -216,3 +216,4 @@ class CriaAlarme : AppCompatActivity() {
     }
 }
 
+    */

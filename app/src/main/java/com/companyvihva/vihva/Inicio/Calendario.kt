@@ -1,6 +1,8 @@
 package com.companyvihva.vihva.Inicio
 
+import android.app.ActivityOptions
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,16 +10,13 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.companyvihva.vihva.R
 import com.companyvihva.vihva.databinding.FragmentCalendarioBinding
 import com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter.Adapter_lembrete
-import com.companyvihva.vihva.com.companyvihva.vihva.model.tipo_lembrete
+import com.companyvihva.vihva.com.companyvihva.vihva.model.Tipo_lembrete
 import com.google.android.gms.tasks.Tasks
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Locale
-
-import java.text.SimpleDateFormat
-import java.util.Date
 
 class Calendario : Fragment() {
 
@@ -36,11 +35,15 @@ class Calendario : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Inicializar o adapter com uma lista vazia
         adapterLembrete = Adapter_lembrete(emptyList())
+
+        // Encontrar a RecyclerView e configurá-la
         binding.ListaCalendario.layoutManager = LinearLayoutManager(requireContext())
         binding.ListaCalendario.adapter = adapterLembrete
         binding.ListaCalendario.setHasFixedSize(true)
 
+        // Definindo a localidade para português
         val locale = Locale("pt", "BR")
         Locale.setDefault(locale)
 
@@ -48,38 +51,73 @@ class Calendario : Fragment() {
         configuration.setLocale(locale)
         requireContext().createConfigurationContext(configuration)
 
+        // Chamar o método para buscar e atualizar eventos
         fetchEventos()
 
+        // Obtendo a referência ao CalendarView do layout
         val calendarView = binding.calendario
+
+        // Configurando um listener para responder a mudanças de data
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             val selectedDate = "$dayOfMonth/${month + 1}/$year"
 
             val intent = Intent(activity, Evento::class.java).apply {
                 putExtra("selectedDate", selectedDate)
             }
-            startActivityForResult(intent, REQUEST_CODE_EVENTO)
+
+            // Adicione animações para a transição
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                val options = ActivityOptions.makeCustomAnimation(
+                    requireActivity(), R.anim.fade_in, R.anim.fade_out
+                )
+                startActivity(intent, options.toBundle())
+            } else {
+                startActivity(intent)
+            }
         }
     }
 
     private fun fetchEventos() {
-        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        db.collection("clientes")
-            .document(userId)
-            .collection("eventos")
+        db.collection("clientes") // Coleção de usuários
             .get()
             .addOnSuccessListener { result ->
-                val eventos = mutableListOf<tipo_lembrete>()
-                val dateFormat = SimpleDateFormat("d/M/yyyy", Locale.getDefault())
+                val eventos = mutableListOf<Tipo_lembrete>()
 
-                for (document in result) {
-                    val titulo = document.getString("titulo") ?: ""
-                    val data = document.getDate("data") ?: Date()
+                // Para cada usuário, busque eventos
+                val tasks = result.documents.map { document ->
+                    val userUid = document.id
+                    val docRef = db.collection("clientes").document(userUid).collection("events")
 
-                    val dataStr = dateFormat.format(data)
-                    val evento = tipo_lembrete(titulo, dataStr)
-                    eventos.add(evento)
+                    docRef.get()
+                        .addOnSuccessListener { eventResult ->
+                            if (!eventResult.isEmpty) {
+                                for (eventDoc in eventResult.documents) {
+                                    val titulo = eventDoc.getString("title") ?: ""
+                                    val data = eventDoc.getString("data") ?: ""
+
+                                    if (titulo.isNotEmpty()) {
+                                        val evento = Tipo_lembrete(titulo, data)
+                                        eventos.add(evento)
+                                    }
+                                }
+                            }
+
+                            // Atualiza o adapter quando todos os eventos tiverem sido processados
+                            if (eventos.size == result.size()) {
+                                adapterLembrete.updateEventos(eventos)
+                            }
+                        }
+                        .addOnFailureListener { exception ->
+                            exception.printStackTrace()
+                        }
                 }
-                adapterLembrete.updateEventos(eventos)
+
+                // Espera todas as tarefas serem concluídas
+                Tasks.whenAll(tasks).addOnCompleteListener {
+                    if (!it.isSuccessful) {
+                        it.exception?.printStackTrace()
+                    }
+                }
             }
             .addOnFailureListener { exception ->
                 exception.printStackTrace()
@@ -89,7 +127,10 @@ class Calendario : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_EVENTO && resultCode == AppCompatActivity.RESULT_OK) {
-            fetchEventos() // Atualizar eventos após salvar um novo evento
+            val event = data?.getStringExtra("event")
+            event?.let {
+                println("Evento salvo: $it")
+            }
         }
     }
 
