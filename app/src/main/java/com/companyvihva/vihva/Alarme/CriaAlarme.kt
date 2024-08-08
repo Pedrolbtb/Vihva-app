@@ -100,7 +100,7 @@ class CriaAlarme : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btn_salvarAlarme).setOnClickListener {
-         ///   requestAlarmPermissionsAndSchedule()
+            ///   requestAlarmPermissionsAndSchedule()
         }
         // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
@@ -108,7 +108,7 @@ class CriaAlarme : AppCompatActivity() {
             val telaEscolhaRemedio = Intent(this, EscolhaRemedio::class.java).apply {}
             startActivity(telaEscolhaRemedio)
         }
-    }
+    }}
 
 
    // private val PERMISSION_REQUEST_CODE = 100

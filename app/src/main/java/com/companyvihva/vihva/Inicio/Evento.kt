@@ -26,7 +26,6 @@ class Evento : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
-        // Obtenha a data selecionada passada pela Intent
         val dateStr = intent.getStringExtra("selectedDate")
         selectedDate = parseDate(dateStr)
 
@@ -41,20 +40,19 @@ class Evento : AppCompatActivity() {
 
             val userId = auth.currentUser?.uid ?: return@setOnClickListener
 
-            // Cria um mapa com os dados do evento
             val event = hashMapOf(
-                "title" to title,
-                "description" to description,
-                "date" to selectedDate
+                "titulo" to title,
+                "descricao" to description,
+                "data" to selectedDate
             )
 
-            // Salva o evento diretamente no documento do usuário
             db.collection("clientes")
                 .document(userId)
-                .update("events", FieldValue.arrayUnion(event))
+                .collection("eventos")
+                .add(event)
                 .addOnSuccessListener {
                     val resultIntent = Intent().apply {
-                        putExtra("event", "Evento salvo com sucesso!")
+                        putExtra("evento", "Evento salvo com sucesso!")
                     }
                     setResult(RESULT_OK, resultIntent)
                     finish()
