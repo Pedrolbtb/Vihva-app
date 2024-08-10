@@ -34,8 +34,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_proximo"
         style="@style/Button_salvar"
@@ -45,6 +43,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/table_agua"
         app:layout_constraintVertical_bias="1.0" />
 
         <TableRow
@@ -91,7 +90,7 @@
             android:layout_width="340dp"
             android:drawablePadding="10dp"
             android:layout_marginTop="5dp"
-            android:drawableBottom="5dp"
+            android:paddingBottom="5dp"
             android:drawableStart="@drawable/ic_alcolatra"
             android:layout_height="wrap_content"
             android:fontFamily="@font/cloudsoft_bold_700"
@@ -101,6 +100,7 @@
             android:textSize="20sp"
             android:buttonTint="@color/vermelho_alerta"
             />
+
     </TableRow>
 
     <TableRow
@@ -158,6 +158,171 @@
             android:textSize="20sp" />
     </TableRow>
 
+    <TableRow
+        android:id="@+id/table_fast_food"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="380dp"
+        android:background="@drawable/container_linha"
+        app:layout_constraintStart_toStartOf="@id/containerComponents"
+        app:layout_constraintEnd_toEndOf="@id/containerComponents"
+        app:layout_constraintTop_toBottomOf="@id/table_caminhada"
+        >
+
+
+        <CheckBox
+            android:id="@+id/fast_food"
+            android:layout_width="340dp"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="5dp"
+            android:drawableStart="@drawable/ic_fast_food"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            android:gravity="center_vertical"
+            android:text="@string/text_fast_food"
+            android:textColor="@color/vermelho_alerta"
+            android:textSize="20sp"
+            android:buttonTint="@color/vermelho_alerta"
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/table_good_food"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="335dp"
+        android:background="@drawable/container_linha"
+        app:layout_constraintStart_toStartOf="@id/containerComponents"
+        app:layout_constraintEnd_toEndOf="@id/containerComponents"
+        app:layout_constraintTop_toBottomOf="@id/table_fast_food"
+        >
+
+
+        <CheckBox
+            android:id="@+id/good_food"
+            android:layout_width="340dp"
+            android:layout_height="match_parent"
+            android:buttonTint="@color/Letras"
+            android:drawableStart="@drawable/ic_good_food"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            android:gravity="center_vertical"
+            android:text="@string/text_good_food"
+            android:textColor="@color/Letras"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/table_gym"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="335dp"
+        android:background="@drawable/container_linha"
+        app:layout_constraintStart_toStartOf="@id/containerComponents"
+        app:layout_constraintEnd_toEndOf="@id/containerComponents"
+        app:layout_constraintTop_toBottomOf="@id/table_good_food"
+        >
+
+
+        <CheckBox
+            android:id="@+id/gym"
+            android:layout_width="340dp"
+            android:layout_height="match_parent"
+            android:buttonTint="@color/Letras"
+            android:drawableStart="@drawable/ic_gym"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            android:gravity="center_vertical"
+            android:text="@string/text_gym"
+            android:textColor="@color/Letras"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/table_sleep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="335dp"
+        android:background="@drawable/container_linha"
+        app:layout_constraintStart_toStartOf="@id/containerComponents"
+        app:layout_constraintEnd_toEndOf="@id/containerComponents"
+        app:layout_constraintTop_toBottomOf="@id/table_gym"
+        >
+
+
+        <CheckBox
+            android:id="@+id/sleep"
+            android:layout_width="340dp"
+            android:layout_height="match_parent"
+            android:buttonTint="@color/Letras"
+            android:drawableStart="@drawable/ic_dorme_bem"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            android:gravity="center_vertical"
+            android:text="@string/text_bom_sono"
+            android:textColor="@color/Letras"
+            android:textSize="20sp" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/table_sono_ruim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="380dp"
+        android:background="@drawable/container_linha"
+        app:layout_constraintStart_toStartOf="@id/containerComponents"
+        app:layout_constraintEnd_toEndOf="@id/containerComponents"
+        app:layout_constraintTop_toBottomOf="@id/table_sleep"
+        >
+
+        <CheckBox
+            android:id="@+id/sono_ruim"
+            android:layout_width="340dp"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="5dp"
+            android:drawableStart="@drawable/ic_dorme_mal"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            android:gravity="center_vertical"
+            android:text="@string/text_sono_ruim"
+            android:textColor="@color/vermelho_alerta"
+            android:textSize="20sp"
+            android:buttonTint="@color/vermelho_alerta"
+            />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/table_agua"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="335dp"
+        android:background="@drawable/container_linha"
+        app:layout_constraintStart_toStartOf="@id/containerComponents"
+        app:layout_constraintEnd_toEndOf="@id/containerComponents"
+        app:layout_constraintTop_toBottomOf="@id/table_sono_ruim"
+        >
+
+        <CheckBox
+            android:id="@+id/agua"
+            android:layout_width="340dp"
+            android:layout_height="match_parent"
+            android:buttonTint="@color/Letras"
+            android:drawableStart="@drawable/ic_wather"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            android:gravity="center_vertical"
+            android:text="@string/text_wather"
+            android:textColor="@color/Letras"
+            android:textSize="20sp"
+            />
+    </TableRow>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

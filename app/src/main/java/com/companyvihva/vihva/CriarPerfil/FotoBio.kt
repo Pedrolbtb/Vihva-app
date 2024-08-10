@@ -87,7 +87,7 @@ class FotoBio : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btn_proximo).setOnClickListener {
-            val intent = Intent(this, Inicio::class.java)
+            val intent = Intent(this, CriaPerfil3::class.java)
             val biografia = editTextBiografia.text.toString()
             saveData(nome, sobrenome, genero, idade, altura, peso, biografia)
             startActivity(intent)

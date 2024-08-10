@@ -323,6 +323,12 @@ Dúvidas podem ser esclarecidas através do e-mail: vivahproject475@gmail.com.
     <string name="text_ciclismo">Cicilismo</string>
     <string name="text_alcolismo">Alcolismo</string>
     <string name="text_caminhada">Caminhada</string>
+    <string name="text_fast_food">Refeições desbalanceadas</string>
+    <string name="text_good_food">Refeições balanceadas</string>
+    <string name="text_gym">Academia</string>
+    <string name="text_bom_sono">Sono (8 horas por dia)</string>
+    <string name="text_sono_ruim">Sono ruim (-8 horas por dia)</string>
+    <string name="text_wather">Água (Média de 2,1L)</string>
 
     //Strings da acessibilidade
     <string name="accessibility_service_label">Meu serviço de acessibilidade</string>
