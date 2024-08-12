@@ -32,6 +32,9 @@
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
         <activity
+            android:name=".Alarme.DesligarAlarme"
+            android:exported="false" />
+        <activity
             android:name=".CriarPerfil.CriaPerfil3"
             android:exported="false" />
         <activity
@@ -43,6 +46,7 @@
         <activity
             android:name=".Login.Termos"
             android:exported="false" />
+
         <receiver
             android:name=".NotificationReceiver"
             android:exported="true">
