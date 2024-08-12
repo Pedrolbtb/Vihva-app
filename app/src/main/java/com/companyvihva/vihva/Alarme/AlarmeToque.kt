@@ -69,7 +69,7 @@ class AlarmeToque : BroadcastReceiver() {
         tocarSomDeAlarme(context)
     }
 
-    private fun tocarSomDeAlarme(context: Context) {
+     fun tocarSomDeAlarme(context: Context) {
         try {
             val notification: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
             val ringtone: Ringtone = RingtoneManager.getRingtone(context, notification)

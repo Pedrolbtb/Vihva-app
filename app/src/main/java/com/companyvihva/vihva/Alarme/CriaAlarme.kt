@@ -153,12 +153,11 @@ class CriaAlarme : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.S)
-    private fun agendarAlarme() {
+    fun agendarAlarme() {
         Log.d("AgendarAlarme", "Iniciando agendamento de alarme")
 
         val horaDiariamente = intent.getStringExtra("horaDiariamente")
-        val horas = intent.getStringExtra("horaemhora")
-        val hora = 24
+        val horas = intent.getStringExtra("horaemhora")?.toIntOrNull() ?: 24 // Default para 24 horas
 
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
@@ -174,7 +173,10 @@ class CriaAlarme : AppCompatActivity() {
         try {
             val calendar = Calendar.getInstance()
             calendar.timeInMillis = System.currentTimeMillis()
-            calendar.add(Calendar.HOUR, hora)
+
+            // Definindo a hora do alarme baseada na programação passada
+            calendar.set(Calendar.HOUR_OF_DAY, horas)
+            calendar.set(Calendar.MINUTE, 0)  // Configura minutos se necessário
 
             // Agendando o alarme que dispara o toque
             alarmManager.setExact(

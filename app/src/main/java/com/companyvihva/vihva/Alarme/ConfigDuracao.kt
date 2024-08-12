@@ -2,7 +2,6 @@ package com.companyvihva.vihva.Alarme
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
@@ -15,7 +14,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.HashMap
 
 class ConfigDuracao : AppCompatActivity() {
 
@@ -54,10 +52,7 @@ class ConfigDuracao : AppCompatActivity() {
         switchEstoqueChecked = intent.getBooleanExtra("switchEstoque", false)
         nome = intent.getStringExtra("remedioId") ?: ""
 
-        // Referência para o layout pai onde os novos layouts serão adicionados dinamicamente
         val parentLayout = findViewById<LinearLayout>(R.id.layout_Duracao)
-
-        // Referência para o RadioGroup de seleção de duração
         val radioGroup: RadioGroup = findViewById(R.id.radioGroup_frequencia)
 
         // Verificando e marcando a opção correta com base no valor passado pela intent
@@ -68,19 +63,8 @@ class ConfigDuracao : AppCompatActivity() {
             }
             if (it == "Até") {
                 parentLayout.removeAllViews()
-                val layoutToAdd = LayoutInflater.from(this)
+                val layoutToAdd = layoutInflater
                     .inflate(R.layout.duracao_opcoes, parentLayout, false)
-
-                // Configurando parâmetros de layout
-                val params = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                ).apply {
-                    setMargins(0, 25, 0, 0)
-                }
-                layoutToAdd.layoutParams = params
-
-                // Adicionando o layout ao parentLayout
                 parentLayout.addView(layoutToAdd)
                 val textViewCalendario = layoutToAdd.findViewById<TextView>(R.id.textView_diariamenteAlarme)
                 textViewCalendario.text = data
@@ -94,59 +78,36 @@ class ConfigDuracao : AppCompatActivity() {
                 R.id.radio_dias -> "Até"
                 else -> null
             }
-
-            // Remove todas as views antes de adicionar novas
             parentLayout.removeAllViews()
 
-            // Verifica se a opção selecionada é "Até" para adicionar o layout de opções
             if (duracao == "Até") {
-                val layoutToAdd = LayoutInflater.from(this)
+                val layoutToAdd = layoutInflater
                     .inflate(R.layout.duracao_opcoes, parentLayout, false)
-
-                // Configurando parâmetros de layout
-                val params = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                ).apply {
-                    setMargins(0, 25, 0, 0)
-                }
-                layoutToAdd.layoutParams = params
-
-                // Adicionando o layout ao parentLayout
                 parentLayout.addView(layoutToAdd)
-
-                // Configurando clique para abrir o DatePicker
                 val textViewCalendario = layoutToAdd.findViewById<TextView>(R.id.textView_diariamenteAlarme)
                 textViewCalendario.setOnClickListener {
                     val datePicker = MaterialDatePicker.Builder.datePicker()
                         .setTitleText("Selecione até quando vão os avisos")
                         .build()
-
                     datePicker.addOnPositiveButtonClickListener { selectedDate ->
-                        // Formatando a data selecionada
                         val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                         formattedDate = sdf.format(Date(selectedDate))
-
-                        // Definindo a data formatada na TextView
                         textViewCalendario.text = formattedDate
                     }
-
                     datePicker.show(supportFragmentManager, "DatePicker")
                 }
-
-                // Se data foi passada pelo Intent, mostrar no campo
                 if (data.isNotEmpty()) {
                     textViewCalendario.text = data
                 }
             }
         }
 
-        val btnProximo: Unit = findViewById<Button?>(R.id.btn_proximo)
-            .setOnClickListener{
-                SalvaeAgenda()
-            }
+        val btnProximo: Button = findViewById(R.id.btn_proximo)
+        btnProximo.setOnClickListener {
+            SalvaeAgenda()
+            agendarAlarme()
+        }
 
-        // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
             onBackPressed()
@@ -207,18 +168,31 @@ class ConfigDuracao : AppCompatActivity() {
         user?.let {
             val userId = it.uid
 
-            // Criando uma subcoleção "Alarmes" dentro do documento do cliente
             val userDocRef = db.collection("clientes").document(userId)
             userDocRef.collection("Alarmes")
                 .add(eventFrequencia)
                 .addOnSuccessListener {
-                    // Sucesso ao adicionar o alarme
                     println("Alarme adicionado com sucesso.")
                 }
                 .addOnFailureListener { e ->
-                    // Falha ao adicionar o alarme
                     e.printStackTrace()
                 }
         }
+    }
+
+    private fun agendarAlarme() {
+        val intent = Intent(this, CriaAlarme::class.java).apply {
+            putExtra("frequencia", frequencia)
+            putExtra("horaemhora", horaemhora)
+            putExtra("duracao", duracao)
+            putExtra("data", formattedDate)
+            putExtra("horaDiariamente", horaDiariamente)
+            putExtra("estoque", estoque)
+            putExtra("lembreme", lembreme)
+            putExtra("tipomed", tipomed)
+            putExtra("switchEstoque", switchEstoqueChecked)
+            putExtra("remedioId", nome)
+        }
+        startActivity(intent)
     }
 }
