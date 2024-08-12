@@ -1,88 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@drawable/background_home"
+    tools:context=".Inicio.Calendario">
 
-    <!-- EditText para o título do evento -->
-
-    <!-- EditText para a descrição do evento -->
-
-    <!-- Botão para salvar o evento -->
-
-    <!-- Botão para voltar -->
-
-    <EditText
-        android:id="@+id/ev"
-
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="232dp"
-        android:background="@drawable/edit_text"
-        android:elevation="1dp"
-        android:hint="Digite o evento"
-        android:padding="12dp"
-        android:textColor="@color/Letras"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <EditText
-        android:id="@+id/eventDescriptionEditText"
-
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:background="@drawable/edit_text"
-        android:elevation="1dp"
-        android:hint=" descrição  do evento"
-        android:padding="12dp"
-        android:textColor="@color/Letras"
-        android:textSize="18sp"
+    <ImageButton
+        android:id="@+id/btnVoltar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="330dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/button_back"
+        android:src="@drawable/arrow_voltar_vermelho"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.591" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/text_alarme"
         style="@style/text_doenca_e_remedio"
+        android:layout_marginBottom="500dp"
         android:text="Marcar lembrete"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/View_Consulta"
+        style="@style/Container_Evento"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_marginTop="10dp"
+        android:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintVertical_bias="0.493" />
 
-    <Button
+    <View
+        android:id="@+id/container_data"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="160dp"
+        android:background="@drawable/container_linha"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
+        app:layout_constraintEnd_toEndOf="@id/View_Consulta"
+        app:layout_constraintStart_toStartOf="@id/View_Consulta"
+        app:layout_constraintTop_toTopOf="@+id/View_Consulta" />
+
+    <TextView
+        android:id="@+id/TituloConsulta"
+        style="@style/text_botoesAlarme"
+        android:layout_marginBottom="500dp"
+        android:elevation="1dp"
+        android:text="Digite o título do evento"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
+        app:layout_constraintEnd_toEndOf="@+id/container_data"
+        app:layout_constraintStart_toStartOf="@+id/container_data"
+        app:layout_constraintTop_toTopOf="@+id/View_Consulta"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/eventDescriptionEditText"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edit_text"
+        android:elevation="1dp"
+        android:hint="Descrição do evento"
+        android:padding="12dp"
+        android:textColor="@color/Letras"
+        android:textSize="18sp"
+        android:layout_marginLeft="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/container_consulta"
+        app:layout_constraintEnd_toEndOf="@+id/container_consulta"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/container_consulta"
+        app:layout_constraintTop_toBottomOf="@+id/container_data"
+        app:layout_constraintVertical_bias="0.591" />
+
+    <View
+        android:id="@+id/container_consulta"
+        style="@style/container_linha"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="155dp"
+        android:background="@drawable/container_linha"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
+        app:layout_constraintEnd_toEndOf="@id/View_Consulta"
+        app:layout_constraintStart_toStartOf="@id/View_Consulta" />
+
+    <TextView
+        android:id="@+id/descricao_evento"
+        style="@style/text_botoesAlarme"
+        android:layout_width="194dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="15dp"
+        android:elevation="1dp"
+        android:text="Descrição do evento"
+        app:layout_constraintBottom_toBottomOf="@+id/container_consulta"
+        app:layout_constraintEnd_toEndOf="@+id/View_Consulta"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/View_Consulta"
+        app:layout_constraintTop_toBottomOf="@+id/container_data"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/eventEditText"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/edit_text"
+        android:elevation="1dp"
+        android:hint="Digite o título do evento"
+        android:padding="12dp"
+        android:textColor="@color/Letras"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/container_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.308"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_alarme"
+        app:layout_constraintVertical_bias="0.628" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/saveButton"
+        style="@style/Button_salvar"
+        android:layout_width="300dp"
+        android:layout_marginTop="500dp"
+        android:text="@string/text_salvar"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
+        app:layout_constraintEnd_toEndOf="@id/View_Consulta"
+        app:layout_constraintStart_toStartOf="@id/View_Consulta"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Salvar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.91"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="-30dp" />
 
-    <Button
-        android:id="@+id/btnVoltar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="148dp"
-        android:text="Voltar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
-        app:layout_constraintStart_toStartOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

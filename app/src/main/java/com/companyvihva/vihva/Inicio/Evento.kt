@@ -5,9 +5,9 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.NotificationReceiver
 import com.companyvihva.vihva.R
@@ -35,10 +35,10 @@ class Evento : AppCompatActivity() {
         selectedDate = parseDate(dateStr)
 
         // Encontra os componentes da interface do usuário
-        val titleEditText = findViewById<EditText>(R.id.ev)
+        val titleEditText = findViewById<EditText>(R.id.eventEditText)
         val descriptionEditText = findViewById<EditText>(R.id.eventDescriptionEditText)
         val saveButton = findViewById<Button>(R.id.saveButton)
-        val backButton = findViewById<Button>(R.id.btnVoltar)
+        val backButton = findViewById<ImageButton>(R.id.btnVoltar)
 
         // Define o comportamento do botão de salvar
         saveButton.setOnClickListener {
