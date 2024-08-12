@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.SEND_SMS" /> <!-- PErmissão de SMS -->
+    <uses-permission android:name="android.permission.SEND_SMS" /> <!-- Permissão de SMS -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Permissão de internet -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Permissões de localização -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

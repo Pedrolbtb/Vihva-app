@@ -246,8 +246,8 @@ class EscolhaFrequencia : AppCompatActivity() {
     }
 
     //botão para passagem de tela
-    fun avanc() {
-        intent = Intent(this, CriaAlarme::class.java).apply {
+    public fun avanc() {
+        intent = Intent(this, ConfigDuracao::class.java).apply {
             putExtra("horaDiariamente", horaDiariamente)
             putExtra("data", data)
             putExtra("duracao", duracao)

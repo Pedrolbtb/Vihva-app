@@ -3,6 +3,7 @@ package com.companyvihva.vihva.Alarme
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.RadioGroup
@@ -11,9 +12,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.R
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.*
-import com.google.firebase.firestore.FirebaseFirestore
+import kotlin.collections.HashMap
 
 class ConfigDuracao : AppCompatActivity() {
 
@@ -21,7 +23,6 @@ class ConfigDuracao : AppCompatActivity() {
     private var formattedDate: String? = null
     private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
-
 
     // Variáveis para armazenar dados da intent
     private lateinit var frequencia: String
@@ -33,8 +34,6 @@ class ConfigDuracao : AppCompatActivity() {
     private lateinit var tipomed: String
     private var switchEstoqueChecked: Boolean = false
     private lateinit var nome: String
-    private var intervalo = intent.getStringExtra("intervalo") ?: ""
-    private var dias = intent.getStringExtra("dias") ?: ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +42,9 @@ class ConfigDuracao : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
-
         // Recuperando dados da intent
         frequencia = intent.getStringExtra("frequencia") ?: ""
         horaemhora = intent.getStringExtra("horaemhora") ?: ""
-        intervalo = intent.getStringExtra("intervalo") ?: ""
-        dias = intent.getStringExtra("dias") ?: ""
         duracao = intent.getStringExtra("duracao")
         data = intent.getStringExtra("data") ?: ""
         horaDiariamente = intent.getStringExtra("horaDiariamente") ?: ""
@@ -61,16 +57,16 @@ class ConfigDuracao : AppCompatActivity() {
         // Referência para o layout pai onde os novos layouts serão adicionados dinamicamente
         val parentLayout = findViewById<LinearLayout>(R.id.layout_Duracao)
 
-        // Referência para o RadioGroup de seleção de frequência
+        // Referência para o RadioGroup de seleção de duração
         val radioGroup: RadioGroup = findViewById(R.id.radioGroup_frequencia)
 
         // Verificando e marcando a opção correta com base no valor passado pela intent
-        if (duracao != null) {
-            when (duracao) {
+        duracao?.let {
+            when (it) {
                 "Sem data para acabar" -> radioGroup.check(R.id.radio_intervalo)
                 "Até" -> radioGroup.check(R.id.radio_dias)
             }
-            if (duracao == "Até") {
+            if (it == "Até") {
                 parentLayout.removeAllViews()
                 val layoutToAdd = LayoutInflater.from(this)
                     .inflate(R.layout.duracao_opcoes, parentLayout, false)
@@ -79,14 +75,14 @@ class ConfigDuracao : AppCompatActivity() {
                 val params = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
-                )
-                params.setMargins(0, 25, 0, 0)
+                ).apply {
+                    setMargins(0, 25, 0, 0)
+                }
                 layoutToAdd.layoutParams = params
 
                 // Adicionando o layout ao parentLayout
                 parentLayout.addView(layoutToAdd)
-                val textViewCalendario =
-                    layoutToAdd.findViewById<TextView>(R.id.textView_diariamenteAlarme)
+                val textViewCalendario = layoutToAdd.findViewById<TextView>(R.id.textView_diariamenteAlarme)
                 textViewCalendario.text = data
             }
         }
@@ -111,16 +107,16 @@ class ConfigDuracao : AppCompatActivity() {
                 val params = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
-                )
-                params.setMargins(0, 25, 0, 0)
+                ).apply {
+                    setMargins(0, 25, 0, 0)
+                }
                 layoutToAdd.layoutParams = params
 
                 // Adicionando o layout ao parentLayout
                 parentLayout.addView(layoutToAdd)
 
                 // Configurando clique para abrir o DatePicker
-                val textViewCalendario =
-                    layoutToAdd.findViewById<TextView>(R.id.textView_diariamenteAlarme)
+                val textViewCalendario = layoutToAdd.findViewById<TextView>(R.id.textView_diariamenteAlarme)
                 textViewCalendario.setOnClickListener {
                     val datePicker = MaterialDatePicker.Builder.datePicker()
                         .setTitleText("Selecione até quando vão os avisos")
@@ -145,6 +141,11 @@ class ConfigDuracao : AppCompatActivity() {
             }
         }
 
+        val btnProximo: Unit = findViewById<Button?>(R.id.btn_proximo)
+            .setOnClickListener{
+                SalvaeAgenda()
+            }
+
         // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
@@ -165,56 +166,59 @@ class ConfigDuracao : AppCompatActivity() {
             putExtra("tipomed", tipomed)
             putExtra("switchEstoque", switchEstoqueChecked)
             putExtra("remedioId", nome)
-
-
         }
         startActivity(intent)
     }
- /*
-    fun SalvaeAgenda() {
+
+    private fun SalvaeAgenda() {
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user?.uid
 
-        val intent = Intent(this, ConfigDuracao::class.java).apply {
-            putExtra("frequencia", frequencia)
-            when (frequencia) {
-                "Diariamente" -> {
-                    val eventFrequencia = hashMapOf(
-                        "frequencia" to horaDiariamente,
-                        "tipomed" to tipomed,
-                        "lembreme" to lembreme,
-                        "remedioId" to nome,
-                        "data" to formattedDate,
+        val eventFrequencia = hashMapOf(
+            "tipomed" to tipomed,
+            "lembreme" to lembreme,
+            "remedioId" to nome,
+            "data" to (formattedDate ?: "")
+        )
 
-                        when (duracao) {
-                            "Sem data para acabar" -> {
-                                val eventDuracao = hashMapOf(
-
-                                    "duracao" to formattedDate }
-                            "Intervalo" -> {
-                                "frequencia" to horaemhora)
-                            }
-
-                        }
-                }
-
-                "Intervalo" -> {
-                    val eventFrequencia = hashMapOf(
-                    "frequencia" to horaemhora,
-                        "tipomed" to tipomed,
-                        "lembreme" to lembreme,
-                        "remedioId" to nome,
-                        "data" to formattedDate
-                    )
-                }
+        when (frequencia) {
+            "Diariamente" -> {
+                eventFrequencia["frequencia"] = horaDiariamente
             }
-
-
-
-            startActivity(intent)
+            "Intervalo" -> {
+                eventFrequencia["frequencia"] = horaemhora
+            }
         }
+
+        when (duracao) {
+            "Sem data para acabar" -> {
+                eventFrequencia["duracao"] = "Sem data para acabar"
+            }
+            "Intervalo" -> {
+                eventFrequencia["duracao"] = horaemhora
+            }
+        }
+
+        bd(eventFrequencia)
     }
 
-  */
-}
+    private fun bd(eventFrequencia: HashMap<String, String>) {
+        val user = auth.currentUser
+        user?.let {
+            val userId = it.uid
 
+            // Criando uma subcoleção "Alarmes" dentro do documento do cliente
+            val userDocRef = db.collection("clientes").document(userId)
+            userDocRef.collection("Alarmes")
+                .add(eventFrequencia)
+                .addOnSuccessListener {
+                    // Sucesso ao adicionar o alarme
+                    println("Alarme adicionado com sucesso.")
+                }
+                .addOnFailureListener { e ->
+                    // Falha ao adicionar o alarme
+                    e.printStackTrace()
+                }
+        }
+    }
+}
