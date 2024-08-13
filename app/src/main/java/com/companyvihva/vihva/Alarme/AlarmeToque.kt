@@ -1,6 +1,7 @@
 package com.companyvihva.vihva.Alarme
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -20,6 +21,7 @@ import com.companyvihva.vihva.R
 
 class AlarmeToque : BroadcastReceiver() {
 
+    @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context, intent: Intent) {
         Log.d("AlarmeToque", "Alarme tocou!")
 
