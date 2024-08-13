@@ -29,7 +29,6 @@ class CriaAlarme : AppCompatActivity() {
 
     private lateinit var firestore: FirebaseFirestore
     private val PERMISSION_REQUEST_CODE = 100
-    private val NOTIFICATION_ID = 1
 
     @RequiresApi(Build.VERSION_CODES.S)
     @SuppressLint("SetTextI18n")
@@ -116,7 +115,6 @@ class CriaAlarme : AppCompatActivity() {
                         val url = document.getString("Url")
                         val tipo = document.getString("tipo")
                         val tipoRemedios = Tipo_Remedios(url ?: "", nome ?: "", tipo ?: "", docId)
-
                     }
                 }
         }
@@ -150,8 +148,8 @@ class CriaAlarme : AppCompatActivity() {
     private fun agendarAlarme() {
         Log.d("AgendarAlarme", "Iniciando agendamento de alarme")
 
-        val horaDiariamente = intent.getStringExtra("horaDiariamente")
-        val horas = intent.getStringExtra("horaemhora")?.toIntOrNull() ?: 24 // Default para 24 horas
+        // Em vez de pegar o valor das horas do intent, defina diretamente 5 segundos
+        val delayMillis: Long = 5000 // 5 segundos em milissegundos
 
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
@@ -165,17 +163,12 @@ class CriaAlarme : AppCompatActivity() {
         )
 
         try {
-            val calendar = Calendar.getInstance()
-            calendar.timeInMillis = System.currentTimeMillis()
-
-            // Definindo a hora do alarme baseada na programação passada
-            calendar.set(Calendar.HOUR_OF_DAY, horas)
-            calendar.set(Calendar.MINUTE, 0)  // Configura minutos se necessário
+            val triggerTime = System.currentTimeMillis() + delayMillis // Define o tempo para 5 segundos a partir de agora
 
             // Agendando o alarme que dispara o toque
             alarmManager.setExact(
                 AlarmManager.RTC_WAKEUP,
-                calendar.timeInMillis,
+                triggerTime,
                 pendingIntent
             )
 
@@ -191,12 +184,12 @@ class CriaAlarme : AppCompatActivity() {
             // Agendando a Activity que permitirá desligar o alarme
             alarmManager.setExact(
                 AlarmManager.RTC_WAKEUP,
-                calendar.timeInMillis,
+                triggerTime,
                 desligaAlarmePendingIntent
             )
 
-            Toast.makeText(this, "Alarme agendado com sucesso!", Toast.LENGTH_SHORT).show()
-            Log.d("AgendarAlarme", "Alarme agendado com sucesso!")
+            Toast.makeText(this, "Alarme agendado para daqui a 5 segundos!", Toast.LENGTH_SHORT).show()
+            Log.d("AgendarAlarme", "Alarme agendado para daqui a 5 segundos!")
         } catch (e: SecurityException) {
             Log.e("AgendarAlarme", "SecurityException: ${e.message}")
             Toast.makeText(this, "Erro ao agendar o alarme: ${e.message}", Toast.LENGTH_SHORT).show()
