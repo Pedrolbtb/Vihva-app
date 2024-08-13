@@ -1,5 +1,6 @@
 package com.companyvihva.vihva.Alarme
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -14,6 +15,7 @@ import com.google.android.material.switchmaterial.SwitchMaterial
 
 class ConfigEstoque : AppCompatActivity() {
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config_estoque)
@@ -29,7 +31,6 @@ class ConfigEstoque : AppCompatActivity() {
         val tipomed = intent.getStringExtra("tipomed")
         val nome = intent.getStringExtra("remedioId")
         val switchEstoqueChecked = intent.getBooleanExtra("switchEstoque", false)
-
 
         // Configuração do Spinner TipoMed
         val spinnerTipoMed = findViewById<Spinner>(R.id.spinnerTipoMed)
@@ -81,7 +82,7 @@ class ConfigEstoque : AppCompatActivity() {
                 editTextLembreme.setText(lembreme)
             }
         }
-        // Configurando o listener para o botão de voltar
+
         // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
@@ -95,7 +96,21 @@ class ConfigEstoque : AppCompatActivity() {
                 putExtra("estoque", estoque)
                 putExtra("remedioId", nome)
                 putExtra("horaDiariamente", horaDiariamente)
-                putExtra("switchEstoque", switchEstoqueChecked)
+                putExtra("switchEstoque", switchEstoque.isChecked)
+            }
+            startActivity(intent)
+        }
+
+        // Configurando o listener para o botão de salvar
+        findViewById<Button>(R.id.btn_salvarEstoque).setOnClickListener {
+            val intent = Intent(this, CriaAlarme::class.java).apply {
+                putExtra("frequencia", frequencia)
+                putExtra("horaemhora", horaemhora)
+                putExtra("duracao", duracao)
+                putExtra("data", data)
+                putExtra("remedioId", nome)
+                putExtra("horaDiariamente", horaDiariamente)
+                putExtra("switchEstoque", switchEstoque.isChecked)
 
                 val tipoMed = spinnerTipoMed.selectedItem.toString()
                 putExtra("tipomed", tipoMed)
@@ -108,33 +123,7 @@ class ConfigEstoque : AppCompatActivity() {
                 }
             }
             startActivity(intent)
-        }
-
-        // Configurando o listener para o botão de salvar
-            // findViewById<Button>(R.id.btn_salvarEstoque).setOnClickListener {
-            //  val intent = Intent(this, CriaAlarme::class.java).apply {
-            //    putExtra("frequencia", frequencia)
-            //   putExtra("horaemhora", horaemhora)
-            //  putExtra("duracao", duracao)
-            //  putExtra("data", data)
-            //  putExtra("remedioId", nome)
-            // putExtra("switchEstoque", switchEstoque.isChecked)
-
-            //   val tipoMed = spinnerTipoMed.selectedItem.toString()
-            //  putExtra("tipomed", tipoMed)
-
-            //if (switchEstoque.isChecked) {
-            //  val estoqueAtual = editTextEstoqueAtual.text.toString()
-            //   val lembremeAtual = editTextLembreme.text.toString()
-            //  putExtra("estoque", estoqueAtual)
-            //    putExtra("lembreme", lembremeAtual)
-            //   }
-            //   }
-            //  startActivity(intent)
-            //   finish() // Finaliza a activity para voltar à anterior
-            //   }
+            finish() // Finaliza a activity para voltar à anterior
         }
     }
-
-
-
+}

@@ -19,6 +19,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.model.Tipo_Remedios
 import com.google.firebase.firestore.FirebaseFirestore
@@ -46,25 +47,18 @@ class CriaAlarme : AppCompatActivity() {
         val lembreme = intent.getStringExtra("lembreme")
         val tipomed = intent.getStringExtra("tipomed")
         val switchEstoqueChecked = intent.getBooleanExtra("switchEstoque", false)
-        val obsAlarme = intent.getStringExtra("OBS")
         val nome = intent.getStringExtra("remedioId")
 
         val editnomeAlarme = findViewById<TextView>(R.id.layout_nome_alarme)
-        nome?.let {
-            editnomeAlarme.text = it
-        }
+        editnomeAlarme.text = nome ?: "Nome não disponível"
 
         val editDescAlarme = findViewById<EditText>(R.id.edit_descAlarme)
 
         val descProgramacao = findViewById<TextView>(R.id.descprogramacao)
-        if (frequencia != null && horaemhora != null && duracao != null && data != null) {
-            descProgramacao.text = "$frequencia - $horaemhora - $duracao - $data"
-        }
+        descProgramacao.text = "$frequencia - $horaemhora - $duracao - $data"
 
         val descEstoque = findViewById<TextView>(R.id.descEstoque)
-        if (estoque != null || tipomed != null) {
-            descEstoque.text = "$estoque $tipomed"
-        }
+        descEstoque.text = "$estoque $tipomed"
 
         // Configurando os listeners
         findViewById<View>(R.id.container_programacaoRemedio).setOnClickListener {
@@ -122,7 +116,7 @@ class CriaAlarme : AppCompatActivity() {
                         val url = document.getString("Url")
                         val tipo = document.getString("tipo")
                         val tipoRemedios = Tipo_Remedios(url ?: "", nome ?: "", tipo ?: "", docId)
-                        // Faça algo com o objeto tipoRemedios aqui
+
                     }
                 }
         }
@@ -133,7 +127,7 @@ class CriaAlarme : AppCompatActivity() {
         val permissions = arrayOf(Manifest.permission.POST_NOTIFICATIONS)
 
         val missingPermissions = permissions.filter {
-            ActivityCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
+            ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
         }.toTypedArray()
 
         if (missingPermissions.isNotEmpty()) {
@@ -153,7 +147,7 @@ class CriaAlarme : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.S)
-    fun agendarAlarme() {
+    private fun agendarAlarme() {
         Log.d("AgendarAlarme", "Iniciando agendamento de alarme")
 
         val horaDiariamente = intent.getStringExtra("horaDiariamente")
