@@ -14,8 +14,8 @@ import com.companyvihva.vihva.com.companyvihva.vihva.model.tipo_lembrete
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
-import java.util.Locale
 import java.util.Date
+import java.util.Locale
 
 class Calendario : Fragment() {
 
@@ -36,7 +36,7 @@ class Calendario : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Configura o adaptador do RecyclerView com uma lista vazia inicialmente
-        adapterLembrete = Adapter_lembrete(emptyList())
+        adapterLembrete = Adapter_lembrete(emptyList(), requireContext())
         binding.ListaCalendario.layoutManager = LinearLayoutManager(requireContext())
         binding.ListaCalendario.adapter = adapterLembrete
         binding.ListaCalendario.setHasFixedSize(true)
@@ -69,10 +69,8 @@ class Calendario : Fragment() {
     }
 
     private fun fetchEventos() {
-        // Obtém o ID do usuário autenticado
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
-        // Consulta a coleção de eventos do usuário no Firestore
         db.collection("clientes")
             .document(userId)
             .collection("eventos")
@@ -81,23 +79,20 @@ class Calendario : Fragment() {
                 val eventos = mutableListOf<tipo_lembrete>()
                 val dateFormat = SimpleDateFormat("d/M/yyyy", Locale.getDefault())
 
-                // Itera sobre os documentos retornados e cria objetos tipo_lembrete
                 for (document in result) {
+                    val id = document.id // Obtenha o ID do documento
                     val titulo = document.getString("titulo") ?: ""
                     val data = document.getDate("data") ?: Date()
                     val dataStr = dateFormat.format(data)
+                    val descricao = document.getString("descricao") ?: ""
 
-                    eventos.add(tipo_lembrete(titulo, dataStr, data))
+                    eventos.add(tipo_lembrete(id, titulo, dataStr, data, descricao))
                 }
 
-                // Ordena os eventos pela data
                 eventos.sortBy { it.dataDate }
-
-                // Atualiza o adaptador com a lista de eventos ordenada
                 adapterLembrete.updateEventos(eventos)
             }
             .addOnFailureListener { exception ->
-                // Registra a exceção caso a consulta falhe
                 exception.printStackTrace()
             }
     }

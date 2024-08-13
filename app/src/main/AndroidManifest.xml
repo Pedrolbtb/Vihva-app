@@ -41,6 +41,9 @@
             android:name=".Inicio.Editar_perfil"
             android:exported="false" />
         <activity
+            android:name=".model.PopupRemedio.DescriçãoLembrete"
+            android:exported="false" />
+        <activity
             android:name=".Login.Termos_detalhes"
             android:exported="false" />
         <activity

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/background_home">
+
+    <ImageButton
+        android:id="@+id/btn_voltarDO"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="357dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/button_back"
+        android:padding="15dp"
+        android:src="@drawable/arrow_voltar_vermelho"
+        android:text="@string/button_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageButton
+        android:id="@+id/lixeira_doencas"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="316dp"
+        android:layout_marginTop="12dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/delete_lista"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.235"
+        app:layout_constraintStart_toStartOf="@+id/btn_voltarDO"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_descRemedio"
+        android:layout_width="360dp"
+        android:layout_height="590dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_widget"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.458" />
+
+
+    <!-- Ajuste para centralizar verticalmente -->
+
+
+    <TextView
+
+        style="@style/text_doenca_e_remedio"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginBottom="480dp"
+        android:elevation="2dp"
+        android:fontFamily="@font/cloudsoft_bold_700"
+
+        android:text="Descrição do lembrete"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@id/view_descRemedio"
+        app:layout_constraintEnd_toEndOf="@id/view_descRemedio"
+        app:layout_constraintStart_toStartOf="@id/view_descRemedio"
+        app:layout_constraintTop_toTopOf="@id/view_descRemedio"
+        app:layout_constraintVertical_bias="0.629" />
+
+
+    <TextView
+        android:id="@+id/titulo"
+        style="@style/text_doenca_e_remedio"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginBottom="390dp"
+        android:elevation="2dp"
+        android:fontFamily="@font/cloudsoft_bold_700"
+
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@id/view_descRemedio"
+        app:layout_constraintEnd_toEndOf="@id/view_descRemedio"
+        app:layout_constraintStart_toStartOf="@id/view_descRemedio"
+        app:layout_constraintTop_toTopOf="@id/view_descRemedio"
+        app:layout_constraintVertical_bias="0.98" />
+
+    <TextView
+        android:id="@+id/descricao_lembrete"
+        android:layout_width="255dp"
+        android:layout_height="225dp"
+        android:layout_marginTop="130dp"
+        android:elevation="2dp"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@id/view_descRemedio"
+        app:layout_constraintEnd_toEndOf="@id/view_descRemedio"
+        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintStart_toStartOf="@id/view_descRemedio"
+        app:layout_constraintTop_toTopOf="@+id/view_descRemedio"
+        app:layout_constraintVertical_bias="0.91" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.500684" />
+
+
+</android.support.constraint.ConstraintLayout>
