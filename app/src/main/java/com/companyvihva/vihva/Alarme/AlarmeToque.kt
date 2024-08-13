@@ -32,8 +32,12 @@ class AlarmeToque : BroadcastReceiver() {
             val channel = NotificationChannel(
                 "alarm_channel",
                 "Canal de Alarme",
-                NotificationManager.IMPORTANCE_DEFAULT
-            )
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                enableLights(true)
+                enableVibration(true)
+                description = "Canal para alarmes"
+            }
             notificationManager.createNotificationChannel(channel)
         }
 
@@ -51,6 +55,7 @@ class AlarmeToque : BroadcastReceiver() {
             .setSmallIcon(R.drawable.ic_alarme)
             .setContentIntent(notificationPendingIntent)
             .setAutoCancel(true)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
 
         // Verifica a permissão de notificação
         if (ContextCompat.checkSelfPermission(
@@ -72,7 +77,7 @@ class AlarmeToque : BroadcastReceiver() {
             val ringtone: Ringtone = RingtoneManager.getRingtone(context, notification)
             ringtone.play()
         } catch (e: Exception) {
-            e.printStackTrace()
+            Log.e("AlarmeToque", "Erro ao tocar som do alarme: ${e.message}")
         }
     }
 }
