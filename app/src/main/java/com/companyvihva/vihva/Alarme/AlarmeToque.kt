@@ -71,7 +71,7 @@ class AlarmeToque : BroadcastReceiver() {
         tocarSomDeAlarme(context)
     }
 
-    private fun tocarSomDeAlarme(context: Context) {
+     fun tocarSomDeAlarme(context: Context) {
         // Libera o MediaPlayer anterior se estiver em uso
         mediaPlayer?.release()
         mediaPlayer = MediaPlayer.create(context, R.raw.alarme)

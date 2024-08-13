@@ -12,17 +12,26 @@ import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.R
 import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ConfigEstoque : AppCompatActivity() {
+
+    private lateinit var db: FirebaseFirestore
+    private lateinit var auth: FirebaseAuth
+    private lateinit var documentId: String
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config_estoque)
 
+        db = FirebaseFirestore.getInstance()
+        auth = FirebaseAuth.getInstance()
+
         // Recuperando dados da intent
         val frequencia = intent.getStringExtra("frequencia")
-        val horaemhora = intent.getStringExtra("horaemhora") // Alterado para String, não Int
+        val horaemhora = intent.getStringExtra("horaemhora")
         val duracao = intent.getStringExtra("duracao")
         val data = intent.getStringExtra("data")
         val estoque = intent.getStringExtra("estoque")
@@ -31,6 +40,7 @@ class ConfigEstoque : AppCompatActivity() {
         val tipomed = intent.getStringExtra("tipomed")
         val nome = intent.getStringExtra("remedioId")
         val switchEstoqueChecked = intent.getBooleanExtra("switchEstoque", false)
+        documentId = intent.getStringExtra("documentId") ?: ""
 
         // Configuração do Spinner TipoMed
         val spinnerTipoMed = findViewById<Spinner>(R.id.spinnerTipoMed)
@@ -103,6 +113,12 @@ class ConfigEstoque : AppCompatActivity() {
 
         // Configurando o listener para o botão de salvar
         findViewById<Button>(R.id.btn_salvarEstoque).setOnClickListener {
+            val tipoMed = spinnerTipoMed.selectedItem.toString()
+            val estoqueAtual = editTextEstoqueAtual.text.toString()
+            val lembremeAtual = editTextLembreme.text.toString()
+
+            estoque_db(estoqueAtual, lembremeAtual, tipoMed)
+
             val intent = Intent(this, CriaAlarme::class.java).apply {
                 putExtra("frequencia", frequencia)
                 putExtra("horaemhora", horaemhora)
@@ -111,19 +127,35 @@ class ConfigEstoque : AppCompatActivity() {
                 putExtra("remedioId", nome)
                 putExtra("horaDiariamente", horaDiariamente)
                 putExtra("switchEstoque", switchEstoque.isChecked)
-
-                val tipoMed = spinnerTipoMed.selectedItem.toString()
                 putExtra("tipomed", tipoMed)
-
-                if (switchEstoque.isChecked) {
-                    val estoqueAtual = editTextEstoqueAtual.text.toString()
-                    val lembremeAtual = editTextLembreme.text.toString()
-                    putExtra("estoque", estoqueAtual)
-                    putExtra("lembreme", lembremeAtual)
-                }
+                putExtra("estoque", estoqueAtual)
+                putExtra("lembreme", lembremeAtual)
             }
             startActivity(intent)
             finish() // Finaliza a activity para voltar à anterior
+        }
+    }
+
+    private fun estoque_db(estoqueAtual: String, lembremeAtual: String, tipomed: String?) {
+        val user = auth.currentUser
+        user?.let {
+            val userId = it.uid
+            val userDocRef = db.collection("clientes").document(userId)
+            val alarmeDocRef = userDocRef.collection("Alarmes").document(documentId)
+
+            val estoqueData = mapOf(
+                "estoqueAtual" to estoqueAtual,
+                "lembremeAtual" to lembremeAtual,
+                "tipoMed" to tipomed
+            )
+
+            alarmeDocRef.update(estoqueData)
+                .addOnSuccessListener {
+                    println("Informações do estoque atualizadas com sucesso.")
+                }
+                .addOnFailureListener { e ->
+                    e.printStackTrace()
+                }
         }
     }
 }

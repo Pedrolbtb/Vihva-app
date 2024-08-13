@@ -171,8 +171,24 @@ class ConfigDuracao : AppCompatActivity() {
             val userDocRef = db.collection("clientes").document(userId)
             userDocRef.collection("Alarmes")
                 .add(eventFrequencia)
-                .addOnSuccessListener {
+                .addOnSuccessListener { documentReference ->
                     println("Alarme adicionado com sucesso.")
+                    // Passa o ID do documento para a próxima Activity
+                    val intent = Intent(this, ConfigEstoque::class.java).apply {
+                        putExtra("documentId", documentReference.id)
+                        // Passa os outros extras necessários
+                        putExtra("frequencia", frequencia)
+                        putExtra("horaemhora", horaemhora)
+                        putExtra("duracao", duracao)
+                        putExtra("data", formattedDate)
+                        putExtra("horaDiariamente", horaDiariamente)
+                        putExtra("estoque", estoque)
+                        putExtra("lembreme", lembreme)
+                        putExtra("tipomed", tipomed)
+                        putExtra("switchEstoque", switchEstoqueChecked)
+                        putExtra("remedioId", nome)
+                    }
+                    startActivity(intent)
                 }
                 .addOnFailureListener { e ->
                     e.printStackTrace()

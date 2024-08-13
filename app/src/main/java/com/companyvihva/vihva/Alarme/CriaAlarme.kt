@@ -1,4 +1,4 @@
-package com.companyvihva.vihva.Alarme
+/* package com.companyvihva.vihva.Alarme
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -22,12 +22,16 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.model.Tipo_Remedios
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.rpc.context.AttributeContext.Auth
 import java.util.*
 
 class CriaAlarme : AppCompatActivity() {
 
-    private lateinit var firestore: FirebaseFirestore
+    private lateinit var db: FirebaseFirestore
+    private lateinit var auth: FirebaseAuth
+    private lateinit var documentId: String
     private val PERMISSION_REQUEST_CODE = 100
 
     @RequiresApi(Build.VERSION_CODES.S)
@@ -35,6 +39,9 @@ class CriaAlarme : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cria_alarme)
+
+        db = FirebaseFirestore.getInstance()
+        auth = FirebaseAuth.getInstance()
 
         // Inicializando as variáveis de intent
         val frequencia = intent.getStringExtra("frequencia")
@@ -103,22 +110,16 @@ class CriaAlarme : AppCompatActivity() {
         }
     }
 
-    private fun Bdsave(index: Int) {
-        firestore = FirebaseFirestore.getInstance()
-        val documentos = listOf<String>() // Suposição: preencha com seus IDs de documentos
-        if (index < documentos.size) {
-            val docId = documentos[index]
-            firestore.collection("doenca").document(docId).get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
-                        val nome = document.getString("nome")
-                        val url = document.getString("Url")
-                        val tipo = document.getString("tipo")
-                        val tipoRemedios = Tipo_Remedios(url ?: "", nome ?: "", tipo ?: "", docId)
-                    }
-                }
-        }
-    }
+ private fun observação_alarme (){
+     val user = auth.currentUser
+     user?.let {
+         val userId = it.uid
+         val userDocRef = db.collection("clientes").document(userId)
+         val alarmeDocRef = userDocRef.collection("Alarmes").document(documentId)
+
+
+
+ }
 
     @RequiresApi(Build.VERSION_CODES.S)
     private fun requestAlarmPermissionsAndSchedule() {
@@ -212,3 +213,4 @@ class CriaAlarme : AppCompatActivity() {
         }
     }
 }
+    */
