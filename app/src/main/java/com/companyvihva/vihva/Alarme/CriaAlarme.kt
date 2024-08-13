@@ -155,10 +155,19 @@ class CriaAlarme : AppCompatActivity() {
 
         // Alarme que dispara o toque
         val alarmIntent = Intent(this, AlarmeToque::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(
+        val alarmPendingIntent = PendingIntent.getBroadcast(
             this,
-            0,
+            0,  // O mesmo requestCode
             alarmIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        // Adicionando a nova função: Abrir a Activity para desligar o alarme
+        val desligaAlarmeIntent = Intent(this, DesligarAlarme::class.java)
+        val desligaAlarmePendingIntent = PendingIntent.getActivity(
+            this,
+            1,  // Um requestCode diferente para distinguir este PendingIntent
+            desligaAlarmeIntent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
@@ -169,22 +178,13 @@ class CriaAlarme : AppCompatActivity() {
             alarmManager.setExact(
                 AlarmManager.RTC_WAKEUP,
                 triggerTime,
-                pendingIntent
-            )
-
-            // Adicionando a nova função: Abrir a Activity para desligar o alarme
-            val desligaAlarmeIntent = Intent(this, DesligarAlarme::class.java)
-            val desligaAlarmePendingIntent = PendingIntent.getActivity(
-                this,
-                1,  // Um requestCode diferente para distinguir este PendingIntent
-                desligaAlarmeIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                alarmPendingIntent
             )
 
             // Agendando a Activity que permitirá desligar o alarme
             alarmManager.setExact(
                 AlarmManager.RTC_WAKEUP,
-                triggerTime,
+                triggerTime + 10000, // Adiciona 10 segundos para a Activity abrir depois do alarme
                 desligaAlarmePendingIntent
             )
 

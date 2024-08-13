@@ -93,6 +93,19 @@
                 android:background="#00FFFFFF"
                 android:scaleType="center"
                 android:src="@drawable/add_foto" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/Lista_amigos"
+                android:layout_width="match_parent"
+                android:layout_height="422dp"
+                android:layout_marginBottom="60dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.899" />
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

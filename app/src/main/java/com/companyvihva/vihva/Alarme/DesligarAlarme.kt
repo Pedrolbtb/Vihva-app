@@ -33,6 +33,8 @@ class DesligarAlarme : AppCompatActivity() {
     private fun desligarAlarme() {
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val alarmIntent = Intent(this, AlarmeToque::class.java)
+
+        // Criar o PendingIntent para o alarme
         val pendingIntent = PendingIntent.getBroadcast(
             this,
             0,
@@ -40,7 +42,11 @@ class DesligarAlarme : AppCompatActivity() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
+        // Cancelar o alarme
         alarmManager.cancel(pendingIntent)
+
+        // Verificar se o PendingIntent foi cancelado
+        pendingIntent?.cancel()
 
         Toast.makeText(this, "Alarme desligado", Toast.LENGTH_SHORT).show()
         finish()
