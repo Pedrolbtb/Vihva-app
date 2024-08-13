@@ -9,9 +9,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.media.Ringtone
-import android.media.RingtoneManager
-import android.net.Uri
+import android.media.MediaPlayer
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
@@ -20,6 +18,8 @@ import androidx.core.content.ContextCompat
 import com.companyvihva.vihva.R
 
 class AlarmeToque : BroadcastReceiver() {
+
+    private var mediaPlayer: MediaPlayer? = null
 
     @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context, intent: Intent) {
@@ -72,12 +72,23 @@ class AlarmeToque : BroadcastReceiver() {
     }
 
     private fun tocarSomDeAlarme(context: Context) {
-        try {
-            val notification: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-            val ringtone: Ringtone = RingtoneManager.getRingtone(context, notification)
-            ringtone.play()
-        } catch (e: Exception) {
-            Log.e("AlarmeToque", "Erro ao tocar som do alarme: ${e.message}")
+        // Libera o MediaPlayer anterior se estiver em uso
+        mediaPlayer?.release()
+        mediaPlayer = MediaPlayer.create(context, R.raw.alarme)
+        mediaPlayer?.apply {
+            isLooping = true // Reproduz o som em loop
+            start()
         }
+    }
+
+    // Método opcional para parar o som do alarme
+    private fun pararSomDeAlarme() {
+        mediaPlayer?.apply {
+            if (isPlaying) {
+                stop()
+                release()
+            }
+        }
+        mediaPlayer = null
     }
 }
