@@ -11,6 +11,7 @@ import android.widget.ImageButton
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.R
+import com.companyvihva.vihva.alarme.CriaAlarme
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -107,6 +108,7 @@ class ConfigEstoque : AppCompatActivity() {
                 putExtra("remedioId", nome)
                 putExtra("horaDiariamente", horaDiariamente)
                 putExtra("switchEstoque", switchEstoque.isChecked)
+                putExtra("documentId", documentId) // Adicionando o documentId aqui
             }
             startActivity(intent)
         }
@@ -130,6 +132,7 @@ class ConfigEstoque : AppCompatActivity() {
                 putExtra("tipomed", tipoMed)
                 putExtra("estoque", estoqueAtual)
                 putExtra("lembreme", lembremeAtual)
+                putExtra("documentId", documentId) // Adicionando o documentId aqui
             }
             startActivity(intent)
             finish() // Finaliza a activity para voltar à anterior

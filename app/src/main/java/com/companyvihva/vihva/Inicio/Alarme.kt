@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-import com.companyvihva.vihva.Alarme.CriaAlarme
+
 import com.companyvihva.vihva.Alarme.EscolhaRemedio
 import com.companyvihva.vihva.R
 import com.google.firebase.firestore.FirebaseFirestore

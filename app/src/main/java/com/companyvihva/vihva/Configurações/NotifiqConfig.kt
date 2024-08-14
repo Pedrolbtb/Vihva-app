@@ -12,8 +12,8 @@ import android.os.Build
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.companyvihva.vihva.Alarme.CriaAlarme
 import com.companyvihva.vihva.R
+import com.companyvihva.vihva.alarme.CriaAlarme
 
 class NotifiqConfig : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {

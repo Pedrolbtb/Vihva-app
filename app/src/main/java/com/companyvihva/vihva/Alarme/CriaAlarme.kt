@@ -1,4 +1,4 @@
-/* package com.companyvihva.vihva.Alarme
+package com.companyvihva.vihva.alarme
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -20,18 +20,21 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.companyvihva.vihva.Alarme.AlarmeToque
+import com.companyvihva.vihva.Alarme.ConfigEstoque
+import com.companyvihva.vihva.Alarme.ConfigFrequencia
+import com.companyvihva.vihva.Alarme.DesligarAlarme
+import com.companyvihva.vihva.Alarme.EscolhaRemedio
 import com.companyvihva.vihva.R
-import com.companyvihva.vihva.model.Tipo_Remedios
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.rpc.context.AttributeContext.Auth
-import java.util.*
+import com.google.firebase.firestore.SetOptions
 
 class CriaAlarme : AppCompatActivity() {
 
     private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
-    private lateinit var documentId: String
+    private var documentId: String? = null // Alterado para nullable
     private val PERMISSION_REQUEST_CODE = 100
 
     @RequiresApi(Build.VERSION_CODES.S)
@@ -43,7 +46,9 @@ class CriaAlarme : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
-        // Inicializando as variáveis de intent
+        // Recuperando o documentId da Intent
+        documentId = intent.getStringExtra("documentId")
+
         val frequencia = intent.getStringExtra("frequencia")
         val horaemhora = intent.getStringExtra("horaemhora")
         val duracao = intent.getStringExtra("duracao")
@@ -79,6 +84,7 @@ class CriaAlarme : AppCompatActivity() {
                 putExtra("estoque", estoque)
                 putExtra("remedioId", nome)
                 putExtra("switchEstoque", switchEstoqueChecked)
+                putExtra("documentId", documentId) // Passando documentId
             }
             startActivity(telaConfigFrequencia)
         }
@@ -95,36 +101,56 @@ class CriaAlarme : AppCompatActivity() {
                 putExtra("estoque", estoque)
                 putExtra("remedioId", nome)
                 putExtra("switchEstoque", switchEstoqueChecked)
+                putExtra("documentId", documentId) // Passando documentId
             }
             startActivity(telaConfigEstoque)
         }
 
         findViewById<Button>(R.id.btn_salvarAlarme).setOnClickListener {
+            observacao()
+            agendarAlarme()
             requestAlarmPermissionsAndSchedule()
         }
 
-        val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
-        btnVoltar.setOnClickListener {
+        findViewById<ImageButton>(R.id.btnVoltar).setOnClickListener {
             val telaEscolhaRemedio = Intent(this, EscolhaRemedio::class.java)
             startActivity(telaEscolhaRemedio)
         }
     }
 
- private fun observação_alarme (){
-     val user = auth.currentUser
-     user?.let {
-         val userId = it.uid
-         val userDocRef = db.collection("clientes").document(userId)
-         val alarmeDocRef = userDocRef.collection("Alarmes").document(documentId)
+    private fun observacao() {
+        val user = auth.currentUser
+        user?.let {
+            val userId = it.uid
+            val userDocRef = db.collection("clientes").document(userId)
 
+            val alarmeDocRef = userDocRef.collection("Alarmes").document(documentId ?: return)
 
+            // Obtém o texto da EditText
+            val editText = findViewById<EditText>(R.id.edit_descAlarme)
+            val descricaoAlarme = editText.text.toString()
 
- }
+            // Cria um mapa de dados para salvar no Firebase
+            val alarmeData = hashMapOf(
+                "descricao" to descricaoAlarme
+            )
+
+            // Salva os dados no documento
+            alarmeDocRef.set(alarmeData, SetOptions.merge()) // Merge para não substituir outros campos
+                .addOnSuccessListener {
+                    // Sucesso ao salvar os dados
+                    Toast.makeText(this, "Alarme salvo com sucesso!", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { e ->
+                    // Erro ao salvar os dados
+                    Toast.makeText(this, "Erro ao salvar o alarme: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+        }
+    }
 
     @RequiresApi(Build.VERSION_CODES.S)
     private fun requestAlarmPermissionsAndSchedule() {
         val permissions = arrayOf(Manifest.permission.POST_NOTIFICATIONS)
-
         val missingPermissions = permissions.filter {
             ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
         }.toTypedArray()
@@ -149,7 +175,6 @@ class CriaAlarme : AppCompatActivity() {
     private fun agendarAlarme() {
         Log.d("AgendarAlarme", "Iniciando agendamento de alarme")
 
-        // Em vez de pegar o valor das horas do intent, defina diretamente 5 segundos
         val delayMillis: Long = 5000 // 5 segundos em milissegundos
 
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -158,16 +183,16 @@ class CriaAlarme : AppCompatActivity() {
         val alarmIntent = Intent(this, AlarmeToque::class.java)
         val alarmPendingIntent = PendingIntent.getBroadcast(
             this,
-            0,  // O mesmo requestCode
+            0,
             alarmIntent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        // Adicionando a nova função: Abrir a Activity para desligar o alarme
+        // Abrir a Activity para desligar o alarme
         val desligaAlarmeIntent = Intent(this, DesligarAlarme::class.java)
         val desligaAlarmePendingIntent = PendingIntent.getActivity(
             this,
-            1,  // Um requestCode diferente para distinguir este PendingIntent
+            1,
             desligaAlarmeIntent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
@@ -185,7 +210,7 @@ class CriaAlarme : AppCompatActivity() {
             // Agendando a Activity que permitirá desligar o alarme
             alarmManager.setExact(
                 AlarmManager.RTC_WAKEUP,
-                triggerTime + 10000, // Adiciona 10 segundos para a Activity abrir depois do alarme
+                triggerTime + 10000,
                 desligaAlarmePendingIntent
             )
 
@@ -205,12 +230,11 @@ class CriaAlarme : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 agendarAlarme()
             } else {
-                Toast.makeText(this, "Permissões necessárias não foram concedidas.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Permissão para notificações não concedida", Toast.LENGTH_SHORT).show()
             }
         }
     }
 }
-    */

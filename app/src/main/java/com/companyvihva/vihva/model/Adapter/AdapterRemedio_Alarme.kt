@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.companyvihva.vihva.Alarme.CriaAlarme
 import com.companyvihva.vihva.Alarme.EscolhaFrequencia
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.model.Remedios_alarme
