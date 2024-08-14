@@ -7,98 +7,96 @@
     android:background="@color/off_white"
     tools:context=".Login.Termos">
 
-    <ImageView
-        android:id="@+id/escudinho"
-        android:layout_width="60dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="96dp"
-        android:background="@drawable/ic_escudo_verificado"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:contentDescription="@string/text_titulo_termos"
-        android:fontFamily="@font/cloudsoft_bold_700"
-        android:text="@string/text_titulo_termos"
-        android:textColor="@color/Letras"
-        android:textSize="20sp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/escudinho" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:contentDescription="@string/text_termos_uso"
-        android:fontFamily="@font/cloudsoft_light_300"
-        android:text="@string/text_termos_uso"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        <ImageView
+            android:id="@+id/escudinho"
+            android:layout_width="60dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/ic_escudo_verificado" />
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:contentDescription="@string/text_termos_uso_dois"
-        android:fontFamily="@font/cloudsoft_light_300"
-        android:text="@string/text_termos_uso_dois"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="@string/text_titulo_termos"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            android:gravity="center"
+            android:text="@string/text_titulo_termos"
+            android:textColor="@color/Letras"
+            android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/cloudsoft_bold_700"
-        android:text="@string/termos_tudo_bem"
-        android:textColor="@color/Letras"
-        android:textSize="19sp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:contentDescription="@string/text_termos_uso"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            android:gravity="center"
+            android:text="@string/text_termos_uso"
+            android:textColor="@color/sombra"
+            android:textSize="15sp" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_confirmo"
-        style="@style/Button"
-        android:layout_marginTop="24dp"
-        android:elevation="20dp"
-        android:text="@string/text_termos_confirmacao"
-        android:textColor="@color/off_white"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:contentDescription="@string/text_termos_uso_dois"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            android:gravity="center"
+            android:textColor="@color/sombra"
+            android:text="@string/text_termos_uso_dois"
+            android:textSize="15sp" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_dados"
-        style="@style/Button_branco"
-        android:elevation="20dp"
-        android:text="@string/como_usamos_dados"
-        android:textColor="@color/Letras"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_confirmo" />
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            android:gravity="center"
+            android:text="@string/termos_tudo_bem"
+            android:textColor="@color/Letras"
+            android:textSize="22sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_confirmo"
+            style="@style/Button"
+            android:elevation="20dp"
+            android:text="@string/text_termos_confirmacao"
+            android:textColor="@color/off_white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_dados"
+            style="@style/Button_branco"
+            android:elevation="20dp"
+            android:text="@string/como_usamos_dados"
+            android:textColor="@color/Letras"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

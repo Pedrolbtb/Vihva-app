@@ -11,7 +11,6 @@ import android.widget.ImageButton
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.R
-import com.companyvihva.vihva.alarme.CriaAlarme
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

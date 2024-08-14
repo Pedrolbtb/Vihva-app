@@ -14,8 +14,8 @@ import com.companyvihva.vihva.com.companyvihva.vihva.model.tipo_lembrete
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
-import java.util.Date
 import java.util.Locale
+import java.util.Date
 
 class Calendario : Fragment() {
 

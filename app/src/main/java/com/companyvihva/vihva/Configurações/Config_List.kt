@@ -36,10 +36,5 @@ class Config_List : AppCompatActivity() {
             finish()
         }
 
-        findViewById<TableRow>(R.id.button_configList_notificações).setOnClickListener{
-            val telaNotificacoes = Intent ( this, ConfigNotificacoes::class.java )
-            startActivity(telaNotificacoes)
-            finish()
-        }
     }
 }

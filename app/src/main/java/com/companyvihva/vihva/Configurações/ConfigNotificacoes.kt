@@ -69,6 +69,7 @@ class ConfigNotificacoes : AppCompatActivity() {
                 )
             }
         }
+
     }
 
     override fun onResume() {

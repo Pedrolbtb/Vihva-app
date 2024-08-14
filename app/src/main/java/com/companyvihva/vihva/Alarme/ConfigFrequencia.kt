@@ -11,7 +11,6 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.TimePicker
 import com.companyvihva.vihva.R
-import com.companyvihva.vihva.alarme.CriaAlarme
 import com.companyvihva.vihva.databinding.ActivityConfigFrequenciaBinding
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat

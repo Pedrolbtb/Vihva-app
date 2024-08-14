@@ -13,6 +13,7 @@
        android:id="@+id/titulo_login"
        style="@style/titulo_criaperfil"
        android:text="@string/text_criaperfil"
+       android:textSize="30sp"
        app:layout_constraintBottom_toTopOf="@+id/containerComponents"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"

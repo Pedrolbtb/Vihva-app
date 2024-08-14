@@ -1,4 +1,4 @@
-package com.companyvihva.vihva.alarme
+ package com.companyvihva.vihva.Alarme
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -238,3 +238,4 @@ class CriaAlarme : AppCompatActivity() {
         }
     }
 }
+

@@ -11,7 +11,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.companyvihva.vihva.R
 import android.util.Log
+import android.widget.TableRow
 import android.widget.Toast
+import com.companyvihva.vihva.Configuracoes.ConfigNotificacoes
 import com.companyvihva.vihva.Inicio.Inicio
 import com.companyvihva.vihva.databinding.ActivityFotoBioBinding
 import com.google.firebase.auth.FirebaseAuth

@@ -8,24 +8,25 @@
     >
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="69dp"
-        android:orientation="horizontal"
         android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             style="@style/titulo_inicio"
-            android:text="@string/titulo_login"
             android:layout_width="0dp"
-            android:textColor="@color/letras_remedios"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_gravity="center"
             android:layout_marginStart="30dp"
+            android:layout_weight="1"
             android:gravity="center_vertical"
-            android:layout_gravity="center" />
+            android:text="@string/titulo_login"
+            android:textColor="@color/letras_remedios" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/sos"
@@ -56,32 +57,31 @@
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/SearchRemedio"
-        android:layout_width="358dp"
+        android:layout_width="330dp"
         android:layout_height="53dp"
-        android:layout_marginBottom="28dp"
-
+        android:layout_marginBottom="360dp"
+        android:elevation="2dp"
+        android:background="@drawable/background_search_remedio"
         app:iconifiedByDefault="false"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView_remedios"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
         app:queryBackground="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:queryHint="Buscar Remedio" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_remedios"
         android:layout_width="344dp"
         android:layout_height="419dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="155dp"
+        android:layout_marginEnd="5dp"
         android:elevation="2dp"
-        android:paddingStart="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.712" />
+        />
 
     <TextView
         android:id="@+id/textView"

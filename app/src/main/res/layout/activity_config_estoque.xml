@@ -140,7 +140,7 @@
         app:layout_constraintBottom_toBottomOf="@id/container_lembreounao"
         app:layout_constraintEnd_toEndOf="@id/container_lembreounao"
         app:thumbTint="@color/Letras"
-        app:trackTint="@color/letras_remedios" />
+        app:trackTint="@color/roxo" />
 
     <TextView
         android:layout_width="300dp"
@@ -264,14 +264,14 @@
         android:id="@+id/btn_salvarEstoque"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:background="@drawable/button_logout"
+        android:layout_marginTop="450dp"
+        android:background="@drawable/button"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="Salva estoque"
         android:textColor="@color/off_white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao"
+        app:layout_constraintTop_toTopOf="@id/View_Programacao" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

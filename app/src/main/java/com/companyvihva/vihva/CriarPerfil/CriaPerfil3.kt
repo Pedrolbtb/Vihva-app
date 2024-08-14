@@ -55,7 +55,7 @@ class CriaPerfil3 : AppCompatActivity() {
                     Toast.makeText(this, "Sucesso ao salvar seus hábitos", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, Inicio::class.java)
                     startActivity(intent)
-                    finish() // Chama o finish() após a navegação
+                    finish()
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Erro ao salvar seus hábitos", Toast.LENGTH_SHORT).show()

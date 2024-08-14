@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
+import com.companyvihva.vihva.Configuracoes.ConfigNotificacoes
 import com.companyvihva.vihva.CriarPerfil.FotoBio
 import com.companyvihva.vihva.R
 import com.google.firebase.auth.FirebaseAuth
@@ -40,14 +41,18 @@ class Perfil : Fragment() {
         super.onCreate(savedInstanceState)
         // Inicialização do Firestore dentro do onCreate
         db = FirebaseFirestore.getInstance()
+
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflar o layout do fragmento
+
         return inflater.inflate(R.layout.fragment_perfil, container, false)
+
+
     }
 
     @SuppressLint("SuspiciousIndentation")
@@ -99,6 +104,11 @@ class Perfil : Fragment() {
         btnMedicos.setOnClickListener {
             val intent = Intent(requireContext(), Lista_amizades::class.java)
             startActivity(intent)
+        }
+
+        val btnNotific = view.findViewById<ImageButton>(R.id.btn_notific).setOnClickListener{
+            val telaNotificacoes = Intent ( requireContext(), ConfigNotificacoes::class.java )
+            startActivity(telaNotificacoes)
         }
 
         val btnCodigo = view.findViewById<AppCompatButton>(R.id.btn_cod_usuario)
