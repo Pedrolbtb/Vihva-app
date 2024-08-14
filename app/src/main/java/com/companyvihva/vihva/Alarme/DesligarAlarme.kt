@@ -5,6 +5,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -13,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.R
 
 class DesligarAlarme : AppCompatActivity() {
+
+    private var mediaPlayer: MediaPlayer? = null
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +31,10 @@ class DesligarAlarme : AppCompatActivity() {
         btnDesligarAlarme.setOnClickListener {
             desligarAlarme()
         }
+
+        // Inicializar o MediaPlayer com o som do alarme
+        mediaPlayer = MediaPlayer.create(this, R.raw.alarme) //
+        mediaPlayer?.start() // Tocar o som do alarme
     }
 
     private fun desligarAlarme() {
@@ -47,6 +54,11 @@ class DesligarAlarme : AppCompatActivity() {
 
         // Verificar se o PendingIntent foi cancelado
         pendingIntent?.cancel()
+
+        // Parar o som do alarme
+        mediaPlayer?.stop()
+        mediaPlayer?.release()
+        mediaPlayer = null
 
         Toast.makeText(this, "Alarme desligado", Toast.LENGTH_SHORT).show()
         finish()
