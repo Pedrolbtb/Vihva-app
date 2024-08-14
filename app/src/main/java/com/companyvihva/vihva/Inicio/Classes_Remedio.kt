@@ -24,6 +24,7 @@ class Classes_Remedio : Fragment() {
     private val documentos = listOf(
         "insulina",
         "metformina",
+        "Antidepressivos",
         "sulfonilureias",
         "inibidoresdpp4",
         "inibidoresdeSGLT2",

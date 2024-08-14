@@ -82,13 +82,10 @@ class AlarmeToque : BroadcastReceiver() {
     }
 
     // Método opcional para parar o som do alarme
-    private fun pararSomDeAlarme() {
-        mediaPlayer?.apply {
-            if (isPlaying) {
-                stop()
-                release()
+         fun pararSomDeAlarme() {
+            mediaPlayer?.stop()
+            mediaPlayer?.release()
+            mediaPlayer = null
+
             }
         }
-        mediaPlayer = null
-    }
-}
