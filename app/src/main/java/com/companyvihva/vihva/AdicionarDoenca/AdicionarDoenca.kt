@@ -19,7 +19,10 @@ class AdicionarDoenca : AppCompatActivity() {
     private lateinit var firestore: FirebaseFirestore
     private val documentos = listOf(
         "diabetes",
-        "diabetes_tipo_dois"
+        "diabetes_tipo_dois",
+        "hipertensão",
+        "aids",
+        "depressão"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

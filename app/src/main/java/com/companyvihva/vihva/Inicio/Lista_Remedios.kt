@@ -68,6 +68,7 @@ class Lista_Remedios : AppCompatActivity() {
             "Agonistas do GLP1" -> listOf("exenatida", "liraglutida1", "dulaglutida1")
             "Tiazolidinedionas" -> listOf("pioglitazona1", "rosiglitazona1")
             "Inibidores de alfa glicosidase" -> listOf("acarbose1", "miglitol1")
+            "Antidepressivos" -> listOf("flouxetina","sertralina","alprazolam")
             else -> emptyList()
         }
 
