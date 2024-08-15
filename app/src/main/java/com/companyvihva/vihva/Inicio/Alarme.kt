@@ -8,69 +8,72 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.Alarme.EscolhaRemedio
 import com.companyvihva.vihva.R
+import com.companyvihva.vihva.Adapter_alarme
+import com.companyvihva.vihva.com.companyvihva.vihva.model.tipo_alarme
+
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class Alarme : Fragment() {
 
     private lateinit var preferences: SharedPreferences
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: Adapter_alarme
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_alarme, container, false)
-        val parentLayout = rootView.findViewById<LinearLayout>(R.id.layout_alarme)
 
         preferences = requireActivity().getSharedPreferences("vihva", Context.MODE_PRIVATE)
+        recyclerView = rootView.findViewById(R.id.Lista_alarme)
+        recyclerView.layoutManager = LinearLayoutManager(context)
 
-        val add_foto = rootView.findViewById<ImageButton>(R.id.add_foto)
-        add_foto.setOnClickListener {
+        // Passando o contexto para o Adapter
+        adapter = Adapter_alarme(emptyList(), requireContext())
+        recyclerView.adapter = adapter
 
-            /*val telaA = Intent(requireActivity(), CriaAlarme::class.java)
-            startActivity(telaA)
+        fetchAlarmes()
 
-             var hour: Int = -1
-             var minute: Int = -1
-
-                saveData(hour, minute)
-
-                val layoutToAdd = LayoutInflater.from(requireContext())
-                    .inflate(R.layout.widget_alarme, null)
-
-                val textViewHour = layoutToAdd.findViewById<TextView>(R.id.hora)
-                val timeText = "$hour:$minute"
-                textViewHour.text = timeText
-
-                // Definir margem inferior para o novo widget de alarme
-                val params = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                )
-                params.setMargins(0, 0, 0, 16) // Defina a margem inferior aqui (em pixels)
-
-                // Adicionar margem ao layout
-                layoutToAdd.layoutParams = params
-
-                parentLayout.addView(layoutToAdd)*/
-
-                irParaEscolheRemedio()
-            }
+        val addFoto = rootView.findViewById<ImageButton>(R.id.add_foto)
+        addFoto.setOnClickListener {
+            irParaEscolheRemedio()
+        }
 
         loadPreference()
 
         return rootView
     }
 
-    private fun saveData(hour: Int, minute: Int) {
-        val dadosCliente = HashMap<String, Any>()
-        dadosCliente["hora"] = hour
-        dadosCliente["minuto"] = minute
+    private fun fetchAlarmes() {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        val db = FirebaseFirestore.getInstance()
 
+        db.collection("clientes").document(userId).collection("Alarmes")
+            .get()
+            .addOnSuccessListener { result ->
+                val listaAlarmes = mutableListOf<tipo_alarme>()
+                for (document in result) {
+                    val descricao = document.getString("descricao") ?: "Descrição não disponível"
+                    listaAlarmes.add(tipo_alarme(descricao))
+                }
+                // Atualizando o adapter com a lista de alarmes
+                adapter = Adapter_alarme(listaAlarmes, requireContext())
+                recyclerView.adapter = adapter
+            }
+            .addOnFailureListener { e ->
+                // Tratar falha de carregamento
+            }
+    }
+
+    private fun saveData(hour: Int, minute: Int) {
+        val dadosCliente = hashMapOf("hora" to hour, "minuto" to minute)
         val db = FirebaseFirestore.getInstance()
         db.collection("alarme").add(dadosCliente)
             .addOnSuccessListener { documentReference ->
@@ -91,8 +94,5 @@ class Alarme : Fragment() {
     private fun irParaEscolheRemedio() {
         val telaCriaAlarme = Intent(requireActivity(), EscolhaRemedio::class.java)
         startActivity(telaCriaAlarme)
-
     }
-
 }
-
