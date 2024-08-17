@@ -19,7 +19,9 @@ import com.companyvihva.vihva.R
 
 class AlarmeToque : BroadcastReceiver() {
 
-    private var mediaPlayer: MediaPlayer? = null
+    companion object {
+        var mediaPlayer: MediaPlayer? = null
+    }
 
     @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context, intent: Intent) {
@@ -58,31 +60,35 @@ class AlarmeToque : BroadcastReceiver() {
             .setPriority(NotificationCompat.PRIORITY_HIGH)
 
         // Verifica a permissão de notificação
-        if (ContextCompat.checkSelfPermission(
-                context,
-                Manifest.permission.POST_NOTIFICATIONS
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            notificationManager.notify(1, notificationBuilder.build())
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // Android 13 (API 33) e superior
+            if (ContextCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                notificationManager.notify(1, notificationBuilder.build())
+            } else {
+                Log.e("AlarmeToque", "Permissão de notificação não concedida.")
+                // Aqui você pode solicitar a permissão se estiver na Activity ou mostrar uma mensagem
+            }
         } else {
-            Log.e("AlarmeToque", "Permissão de notificação não concedida.")
+            notificationManager.notify(1, notificationBuilder.build())
         }
 
         tocarSomDeAlarme(context)
     }
 
-     fun tocarSomDeAlarme(context: Context) {
+    private fun tocarSomDeAlarme(context: Context) {
         // Libera o MediaPlayer anterior se estiver em uso
         mediaPlayer?.release()
         mediaPlayer = MediaPlayer.create(context, R.raw.alarme)
         mediaPlayer?.apply {
-            isLooping = true // Reproduz o som em loop
+            isLooping = true
             start()
         }
     }
 
-    // Método opcional para parar o som do alarme
-     fun pararSomDeAlarme() {
+    fun pararSomDeAlarme() {
         mediaPlayer?.apply {
             if (isPlaying) {
                 stop()
