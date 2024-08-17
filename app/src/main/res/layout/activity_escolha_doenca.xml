@@ -27,7 +27,7 @@
         android:text="@string/text_remedio_inicio"
         android:layout_marginBottom="580dp"
         android:layout_marginEnd="10dp"
-        android:textColor="@color/letras_remedios"
+        android:textColor="#60AD9C"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:fontFamily="@font/cloudsoft_bold_700"
-        android:textColor="#2B8B46"
+        android:textColor="#60AD9C"
         android:textSize="23sp"
         android:layout_marginBottom="30dp"
         app:layout_constraintStart_toStartOf="@+id/card_fotoitem"

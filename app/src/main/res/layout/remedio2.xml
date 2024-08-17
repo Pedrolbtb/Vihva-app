@@ -26,7 +26,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:text="@string/titulo_login"
-            android:textColor="@color/letras_remedios" />
+            android:textColor="#60AD9C" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/sos"
@@ -59,7 +59,7 @@
         android:id="@+id/SearchRemedio"
         android:layout_width="330dp"
         android:layout_height="53dp"
-        android:layout_marginBottom="360dp"
+        android:layout_marginBottom="460dp"
         android:elevation="2dp"
         android:background="@drawable/background_search_remedio"
         app:iconifiedByDefault="false"
@@ -73,8 +73,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_remedios"
         android:layout_width="344dp"
-        android:layout_height="419dp"
-        android:layout_marginTop="155dp"
+        android:layout_height="489dp"
+        android:layout_marginTop="105dp"
         android:layout_marginEnd="5dp"
         android:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -88,8 +88,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/text_doenca_e_remedio"
-        android:layout_marginBottom="490dp"
-        android:textColor="@color/letras_remedios"
+        android:layout_marginBottom="590dp"
+        android:textColor="#60AD9C"
         android:text="@string/text_adicionarRemedio"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

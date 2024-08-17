@@ -22,7 +22,7 @@
         <item name="android:layout_marginRight">60dp</item>
         <item name="android:layout_marginTop">15dp</item>
         <item name="android:background">@drawable/button</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">18dp</item>
         <item name="android:textColor">@color/Letras</item>
         <item name="fontFamily">@font/cloudsoft_bold_700</item>
     </style>

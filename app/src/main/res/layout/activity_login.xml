@@ -12,6 +12,7 @@
         android:id="@+id/containerComponents"
         style="@style/ContainerComponents"
         android:layout_height="300dp"
+        android:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,11 +86,10 @@
         style="@style/Button"
         android:text="@string/title_button_login"
         android:textColor="@color/off_white"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@id/containerComponents"
         app:layout_constraintStart_toStartOf="@id/containerComponents"
         app:layout_constraintTop_toBottomOf="@+id/layout_senha"
-
         />
 
 
@@ -116,6 +116,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="63dp"
         android:layout_marginTop="20dp"
+        android:elevation="2dp"
         android:layout_marginEnd="64dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="@string/text_Esqminhasenha"

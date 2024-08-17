@@ -21,7 +21,6 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="60dp"
-
         android:layout_height="60dp"
         android:layout_marginStart="30dp"
         app:cardCornerRadius="18dp"
@@ -48,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:fontFamily="@font/cloudsoft_bold_700"
-        android:textColor="#2B8B46"
+        android:textColor="#60AD9C"
         android:textSize="23sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

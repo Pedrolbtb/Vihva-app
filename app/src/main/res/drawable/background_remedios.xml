@@ -4,7 +4,7 @@
     <!--codigo do degrade da tela inicial-->
     <gradient
             android:startColor="@color/off_white"
-            android:endColor="#bcf4cb"
+            android:endColor="#AAE5E1"
             android:centerColor="@color/off_white"
             android:angle="190"/>
 </shape>

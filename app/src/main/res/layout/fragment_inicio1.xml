@@ -112,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|bottom"
                 android:text="@string/text_remedio_inicio"
-                android:textColor="@color/letras_remedios" />
+                android:textColor="#60AD9C" />
 
             <ImageButton
                 android:id="@+id/image_lixeira_global"
