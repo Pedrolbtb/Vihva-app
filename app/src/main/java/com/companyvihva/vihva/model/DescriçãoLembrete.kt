@@ -28,6 +28,12 @@ class DescriçãoLembrete : AppCompatActivity() {
         tituloTextView = findViewById(R.id.titulo)
         descricaoTextView = findViewById(R.id.descricao_lembrete)
 
+        //Botão de voltar
+        val btnVoltar = findViewById<ImageButton>(R.id.btn_voltarDO)
+        btnVoltar.setOnClickListener {
+            finish() // Finaliza a atividade atual e volta para a anterior
+        }
+
         // Recupera o ID do lembrete passado via Intent
         val eventoId = intent.getStringExtra("eventoId")
 
