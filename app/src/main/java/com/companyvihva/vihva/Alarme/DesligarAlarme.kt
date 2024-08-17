@@ -22,6 +22,9 @@ class DesligarAlarme : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_desligar_alarme)
 
+        // Inicializar o MediaPlayer para tocar o som do alarme
+        mediaPlayer = MediaPlayer.create(this, R.raw.alarme)
+
         // Mensagem que informa o usuário que o alarme está tocando
         val textView = findViewById<TextView>(R.id.alarm_message)
         textView.text = "Alarme disparado! Clique no botão abaixo para desligá-lo."
@@ -32,9 +35,8 @@ class DesligarAlarme : AppCompatActivity() {
             desligarAlarme()
         }
 
-        // Inicializar o MediaPlayer com o som do alarme
-        mediaPlayer = MediaPlayer.create(this, R.raw.alarme) //
-        mediaPlayer?.start() // Tocar o som do alarme
+        // Começar a tocar o alarme
+        mediaPlayer?.start()
     }
 
     private fun desligarAlarme() {
@@ -53,14 +55,33 @@ class DesligarAlarme : AppCompatActivity() {
         alarmManager.cancel(pendingIntent)
 
         // Verificar se o PendingIntent foi cancelado
-        pendingIntent?.cancel()
+        pendingIntent.cancel()
 
-        // Parar o som do alarme
-        mediaPlayer?.stop()
-        mediaPlayer?.release()
+        // Parar e liberar o MediaPlayer se estiver tocando
+        mediaPlayer?.apply {
+            if (isPlaying) {
+                stop()
+                release()
+            }
+        }
         mediaPlayer = null
 
+        // Exibir mensagem de alarme desligado
         Toast.makeText(this, "Alarme desligado", Toast.LENGTH_SHORT).show()
+
+        // Fechar a Activity
         finish()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Garantir que o MediaPlayer seja liberado quando a Activity for destruída
+        mediaPlayer?.apply {
+            if (isPlaying) {
+                stop()
+                release()
+            }
+        }
+        mediaPlayer = null
     }
 }

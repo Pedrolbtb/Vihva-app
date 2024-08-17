@@ -61,7 +61,12 @@ class Alarme : Fragment() {
                 val listaAlarmes = mutableListOf<tipo_alarme>()
                 for (document in result) {
                     val descricao = document.getString("descricao") ?: "Descrição não disponível"
-                    listaAlarmes.add(tipo_alarme(descricao))
+                    val nomeRemedio = document.getString("remedioId") ?: "Nome do remédio não disponivel"
+                    val imageRemedio = document.getString("remedioId") ?: "Imagem do remédio não disponivel"
+                    val frequencia = document.getString("frequencia") ?: "frequencia não disponivel"
+                    listaAlarmes.add(tipo_alarme(descricao,nomeRemedio,frequencia ))
+
+
                 }
                 // Atualizando o adapter com a lista de alarmes
                 adapter = Adapter_alarme(listaAlarmes, requireContext())

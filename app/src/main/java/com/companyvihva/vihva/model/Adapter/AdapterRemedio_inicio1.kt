@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.model.DescriçãoRemedio_inicio1
 import com.companyvihva.vihva.model.Tipo_Remedios
-import com.companyvihva.vihva.model.PopupRemedio.DescriçãoRemedio
 import com.squareup.picasso.Picasso
 
 class AdapterRemedio_inicio1(private val context: Context, private val listas: MutableList<Tipo_Remedios>) :

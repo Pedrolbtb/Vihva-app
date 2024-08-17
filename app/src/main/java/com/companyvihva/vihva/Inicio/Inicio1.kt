@@ -257,7 +257,6 @@ private fun setupRecyclerView2(view: View) {
         adapterDoenca.notifyDataSetChanged()
     }
 
-    // Função para deletar remédios (implemente conforme necessário)
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     private fun setupDiabetesInfo(view: View) {

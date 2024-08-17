@@ -5,10 +5,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.com.companyvihva.vihva.model.tipo_alarme
-
 import com.companyvihva.vihva.model.Descrição_alarme
 
 class Adapter_alarme(
@@ -17,7 +17,9 @@ class Adapter_alarme(
 ) : RecyclerView.Adapter<Adapter_alarme.TipoAlarmeViewHolder>() {
 
     inner class TipoAlarmeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textViewDescricao: TextView = itemView.findViewById(R.id.descricao)
+        val imageViewremedioId: ImageView = itemView.findViewById(R.id.fotoitem)
+        val textViewHorario: TextView = itemView.findViewById(R.id.horario)
+        val textViewRemedioId: TextView = itemView.findViewById(R.id.nome_remedio)
 
         init {
             itemView.setOnClickListener {
@@ -37,10 +39,15 @@ class Adapter_alarme(
 
     override fun onBindViewHolder(holder: TipoAlarmeViewHolder, position: Int) {
         val alarme = listaAlarmes[position]
-        holder.textViewDescricao.text = alarme.descricao
+        holder.textViewHorario.text = alarme.frequencia
+        holder.textViewRemedioId.text = alarme.nomeRemedio
+
     }
 
     override fun getItemCount(): Int {
         return listaAlarmes.size
     }
 }
+
+
+
