@@ -95,7 +95,7 @@
                 android:src="@drawable/add_foto" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/Lista_amigos"
+                android:id="@+id/Lista_alarme"
                 android:layout_width="match_parent"
                 android:layout_height="422dp"
                 android:layout_marginBottom="60dp"

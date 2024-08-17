@@ -47,6 +47,9 @@
             android:name=".Login.Termos_detalhes"
             android:exported="false" />
         <activity
+            android:name=".model.Descrição_alarme"
+            android:exported="false" />
+        <activity
             android:name=".Login.Termos"
             android:exported="false" />
 
