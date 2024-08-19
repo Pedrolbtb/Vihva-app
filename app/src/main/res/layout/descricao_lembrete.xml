@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:background="@drawable/background_home">
+    android:background="@drawable/background_home"
+    tools:context=".Inicio.Calendario">
+
 
     <ImageButton
         android:id="@+id/btn_voltarDO"
@@ -13,7 +14,7 @@
         android:layout_height="65dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="330dp"
-        android:layout_marginBottom="665dp"
+        android:layout_marginBottom="670dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/button_back"
         android:padding="15dp"
@@ -24,62 +25,73 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <ImageButton
         android:id="@+id/lixeira_doencas"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="316dp"
-        android:layout_marginBottom="660dp"
+        android:layout_marginBottom="665dp"
         android:background="#00FFFFFF"
-        android:src="@drawable/delete_lista"
         android:contentDescription="Apagar"
+        android:src="@drawable/delete_lista"
+        android:layout_marginLeft="330dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.235"
-        app:layout_constraintStart_toStartOf="@+id/btn_voltarDO"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/view_descLembrete"
-        android:layout_width="365dp"
-        android:layout_height="590dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/background_widget"
-        android:elevation="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.458" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginBottom="480dp"
         android:elevation="2dp"
+        android:layout_marginBottom="590dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="Descrição do lembrete"
         android:textColor="@color/Letras"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@id/view_descLembrete"
-        app:layout_constraintEnd_toEndOf="@+id/view_descLembrete"
-        app:layout_constraintStart_toStartOf="@+id/view_descLembrete"
-        app:layout_constraintTop_toTopOf="@id/view_descLembrete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.629" />
 
+    <View
+        android:id="@+id/view_descLembrete"
+        style="@style/Container_Evento"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_marginTop="60dp"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.493" />
+
+    <View
+        android:id="@+id/container_titulo"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/container_linha"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_descLembrete"
+        app:layout_constraintEnd_toEndOf="@id/view_descLembrete"
+        app:layout_constraintStart_toStartOf="@id/view_descLembrete"
+        app:layout_constraintTop_toTopOf="@+id/view_descLembrete" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginBottom="320dp"
+        android:layout_marginBottom="470dp"
         android:elevation="2dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="Título"
-        android:textColor="@color/off_white"
+        android:textColor="@color/Letras"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@id/view_descLembrete"
         app:layout_constraintEnd_toEndOf="@+id/view_descLembrete"
@@ -93,7 +105,7 @@
         style="@style/text_doenca_e_remedio"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginBottom="320dp"
+        android:layout_marginBottom="390dp"
         android:elevation="2dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text=""
@@ -105,18 +117,6 @@
         app:layout_constraintTop_toTopOf="@id/view_descLembrete"
         app:layout_constraintVertical_bias="0.98" />
 
-    <View
-        android:id="@+id/container_data"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:background="@drawable/container_linha"
-        android:elevation="1dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView16"
-        app:layout_constraintEnd_toEndOf="@+id/view_descLembrete"
-        app:layout_constraintStart_toStartOf="@+id/view_descLembrete"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
-
     <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
@@ -124,8 +124,9 @@
         android:elevation="2dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="Descrição"
-        android:textColor="@color/off_white"
+        android:textColor="@color/Letras"
         android:textSize="24sp"
+        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="@id/view_descLembrete"
         app:layout_constraintEnd_toEndOf="@+id/view_descLembrete"
         app:layout_constraintStart_toStartOf="@+id/view_descLembrete"
@@ -137,7 +138,7 @@
         style="@style/text_doenca_e_remedio"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginBottom="100dp"
+       android:layout_marginBottom="100dp"
         android:elevation="2dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text=""
@@ -150,4 +151,4 @@
         app:layout_constraintVertical_bias="0.98" />
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
