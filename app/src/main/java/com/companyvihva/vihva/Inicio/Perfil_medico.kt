@@ -1,6 +1,5 @@
 package com.companyvihva.vihva.Inicio.Perfil_medico
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
@@ -28,7 +27,7 @@ class Perfil_medico : AppCompatActivity() {
     private var amigoId: String? = null
     private lateinit var centroMedicoView: TextView
     private lateinit var crmView: TextView
-    private lateinit var sobrenomeView: TextView
+    private lateinit var nomeCompletoView: TextView // Atualizado para a TextView que exibirá o nome completo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +46,7 @@ class Perfil_medico : AppCompatActivity() {
         urlImageView = findViewById(R.id.img_save_perfil)
         centroMedicoView = findViewById(R.id.centro_medico)
         crmView = findViewById(R.id.crm)
-        sobrenomeView = findViewById(R.id.sobrenome)
+        nomeCompletoView = findViewById(R.id.text_nome) // Corrigido para a TextView que exibirá o nome completo
 
         // Configura o botão de voltar
         val btnVoltar = findViewById<ImageButton>(R.id.close)
@@ -75,11 +74,12 @@ class Perfil_medico : AppCompatActivity() {
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
                     val nome = document.getString("nome")
+                    val sobrenome = document.getString("sobrenome")
                     val especializacao = document.getString("especializacao")
                     val imageUrl = document.getString("imageUrl")
                     val centroMedico = document.getString("centroMedico")
                     val crm = document.getString("crm")
-                    val sobrenome = document.getString("sobrenome")
+
                     // Carrega a URL de imagem usando o Picasso
                     imageUrl?.let {
                         Picasso.get().load(it).into(urlImageView)
@@ -96,12 +96,12 @@ class Perfil_medico : AppCompatActivity() {
                         ""
                     )
 
-                    // Atualiza as TextViews com os dados de nome e descrição
-                    nomeTextView.text = nome
+                    // Atualiza as TextViews com os dados
+                    val nomeCompleto = "${nome ?: ""} ${sobrenome ?: ""}".trim() // Combina nome e sobrenome
+                    nomeCompletoView.text = nomeCompleto
                     descricaoTextView.text = especializacao
                     centroMedicoView.text = centroMedico
                     crmView.text = crm
-                    sobrenomeView.text = sobrenome
                 } else {
                     Log.d("Perfil_medico", "Documento não encontrado")
                 }
