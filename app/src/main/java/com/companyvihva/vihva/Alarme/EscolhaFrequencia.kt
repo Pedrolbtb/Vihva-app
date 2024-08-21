@@ -27,7 +27,6 @@ class EscolhaFrequencia : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_escolha_frequencia)
 
-        // Recuperando os dados da intent
         intent?.let {
             frequencia = it.getStringExtra("frequencia")
             horaDiariamente = it.getStringExtra("horaDiariamente")
@@ -46,17 +45,14 @@ class EscolhaFrequencia : AppCompatActivity() {
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         val btnProx: Button = findViewById(R.id.btn_proximo)
 
-        // Configurando o botão de próximo
         btnProx.setOnClickListener {
             avancarParaConfigDuracao()
         }
 
-        // Configurando o botão de voltar
         btnVoltar.setOnClickListener {
             avancarParaEscolhaRemedio()
         }
 
-        // Selecionando a frequência previamente escolhida, se existir
         frequencia?.let {
             when (it) {
                 "Diariamente" -> radioGroup.check(R.id.radio_diariamente)
@@ -67,7 +63,6 @@ class EscolhaFrequencia : AppCompatActivity() {
             atualizarLayoutFrequencia(parentLayout)
         }
 
-        // Listener para mudanças na seleção de frequência
         radioGroup.setOnCheckedChangeListener { _, checkedId ->
             frequencia = when (checkedId) {
                 R.id.radio_diariamente -> "Diariamente"
@@ -81,7 +76,6 @@ class EscolhaFrequencia : AppCompatActivity() {
     }
 
     private fun atualizarLayoutFrequencia(parentLayout: LinearLayout) {
-        // Remove todas as views antes de adicionar novas
         parentLayout.removeAllViews()
 
         when (frequencia) {
