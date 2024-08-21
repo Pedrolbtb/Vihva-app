@@ -1,4 +1,4 @@
- package com.companyvihva.vihva.Alarme
+package com.companyvihva.vihva.Alarme
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -20,22 +20,19 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.companyvihva.vihva.Alarme.AlarmeToque
-import com.companyvihva.vihva.Alarme.ConfigEstoque
-import com.companyvihva.vihva.Alarme.ConfigFrequencia
-import com.companyvihva.vihva.Alarme.DesligarAlarme
-import com.companyvihva.vihva.Alarme.EscolhaRemedio
 import com.companyvihva.vihva.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import java.util.Calendar
 
 class CriaAlarme : AppCompatActivity() {
 
     private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
-    private var documentId: String? = null // Alterado para nullable
+    private var documentId: String? = null
     private val PERMISSION_REQUEST_CODE = 100
+    private var horaDiariamente: String? = null // Inicialize como null se não for passado na Intent
 
     @RequiresApi(Build.VERSION_CODES.S)
     @SuppressLint("SetTextI18n")
@@ -46,14 +43,13 @@ class CriaAlarme : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
-        // Recuperando o documentId da Intent
+        // Recuperando o documentId e outros extras da Intent
         documentId = intent.getStringExtra("documentId")
-
+        horaDiariamente = intent.getStringExtra("horaDiariamente")
         val frequencia = intent.getStringExtra("frequencia")
         val horaemhora = intent.getStringExtra("horaemhora")
         val duracao = intent.getStringExtra("duracao")
         val data = intent.getStringExtra("data")
-        val horaDiariamente = intent.getStringExtra("horaDiariamente")
         val estoque = intent.getStringExtra("estoque")
         val lembreme = intent.getStringExtra("lembreme")
         val tipomed = intent.getStringExtra("tipomed")
@@ -84,7 +80,7 @@ class CriaAlarme : AppCompatActivity() {
                 putExtra("estoque", estoque)
                 putExtra("remedioId", nome)
                 putExtra("switchEstoque", switchEstoqueChecked)
-                putExtra("documentId", documentId) // Passando documentId
+                putExtra("documentId", documentId)
             }
             startActivity(telaConfigFrequencia)
         }
@@ -101,14 +97,13 @@ class CriaAlarme : AppCompatActivity() {
                 putExtra("estoque", estoque)
                 putExtra("remedioId", nome)
                 putExtra("switchEstoque", switchEstoqueChecked)
-                putExtra("documentId", documentId) // Passando documentId
+                putExtra("documentId", documentId)
             }
             startActivity(telaConfigEstoque)
         }
 
         findViewById<Button>(R.id.btn_salvarAlarme).setOnClickListener {
             observacao()
-            agendarAlarme()
             requestAlarmPermissionsAndSchedule()
         }
 
@@ -123,7 +118,6 @@ class CriaAlarme : AppCompatActivity() {
         user?.let {
             val userId = it.uid
             val userDocRef = db.collection("clientes").document(userId)
-
             val alarmeDocRef = userDocRef.collection("Alarmes").document(documentId ?: return)
 
             // Obtém o texto da EditText
@@ -136,13 +130,11 @@ class CriaAlarme : AppCompatActivity() {
             )
 
             // Salva os dados no documento
-            alarmeDocRef.set(alarmeData, SetOptions.merge()) // Merge para não substituir outros campos
+            alarmeDocRef.set(alarmeData, SetOptions.merge())
                 .addOnSuccessListener {
-                    // Sucesso ao salvar os dados
                     Toast.makeText(this, "Alarme salvo com sucesso!", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
-                    // Erro ao salvar os dados
                     Toast.makeText(this, "Erro ao salvar o alarme: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
         }
@@ -175,7 +167,29 @@ class CriaAlarme : AppCompatActivity() {
     private fun agendarAlarme() {
         Log.d("AgendarAlarme", "Iniciando agendamento de alarme")
 
-        val delayMillis: Long = 5000 // 5 segundos em milissegundos
+        // Extrai a hora e minuto de 'horaDiariamente'
+        val parts = horaDiariamente?.split(":")
+        val hour = parts?.get(0)?.toIntOrNull() ?: 0
+        val minute = parts?.get(1)?.toIntOrNull() ?: 0
+
+        // Obtem o tempo atual
+        val currentTime = System.currentTimeMillis()
+
+        // Configura o calendário para o próximo horário em que o alarme deve disparar
+        val calendar = Calendar.getInstance().apply {
+            timeInMillis = currentTime
+            set(Calendar.HOUR_OF_DAY, hour)
+            set(Calendar.MINUTE, minute)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+
+            // Se o horário for anterior ao atual, define para o próximo dia
+            if (timeInMillis <= currentTime) {
+                add(Calendar.DAY_OF_YEAR, 1)
+            }
+        }
+
+        val triggerTime = calendar.timeInMillis
 
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
@@ -198,8 +212,6 @@ class CriaAlarme : AppCompatActivity() {
         )
 
         try {
-            val triggerTime = System.currentTimeMillis() + delayMillis // Define o tempo para 5 segundos a partir de agora
-
             // Agendando o alarme que dispara o toque
             alarmManager.setExact(
                 AlarmManager.RTC_WAKEUP,
@@ -210,12 +222,12 @@ class CriaAlarme : AppCompatActivity() {
             // Agendando a Activity que permitirá desligar o alarme
             alarmManager.setExact(
                 AlarmManager.RTC_WAKEUP,
-                triggerTime + 10000,
+                triggerTime + 10000, // 10 segundos depois do alarme tocar
                 desligaAlarmePendingIntent
             )
 
-            Toast.makeText(this, "Alarme agendado para daqui a 5 segundos!", Toast.LENGTH_SHORT).show()
-            Log.d("AgendarAlarme", "Alarme agendado para daqui a 5 segundos!")
+            Toast.makeText(this, "Alarme agendado para $horaDiariamente!", Toast.LENGTH_SHORT).show()
+            Log.d("AgendarAlarme", "Alarme agendado para $horaDiariamente!")
         } catch (e: SecurityException) {
             Log.e("AgendarAlarme", "SecurityException: ${e.message}")
             Toast.makeText(this, "Erro ao agendar o alarme: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -238,4 +250,3 @@ class CriaAlarme : AppCompatActivity() {
         }
     }
 }
-

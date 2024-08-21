@@ -1,9 +1,11 @@
 package com.companyvihva.vihva.Inicio
 
+import android.app.ActivityOptions
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -78,7 +80,15 @@ class Evento : AppCompatActivity() {
 
         // Define o comportamento do botão de voltar
         backButton.setOnClickListener {
-            finish() // Finaliza a atividade atual e volta para a anterior
+            // Adiciona animação ao voltar para a tela anterior
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                val options = ActivityOptions.makeCustomAnimation(
+                    this, R.anim.fade_in, R.anim.fade_out
+                )
+                finishAfterTransition()
+            } else {
+                finish()
+            }
         }
     }
 
