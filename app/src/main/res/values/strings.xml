@@ -262,6 +262,8 @@
 
     <string name="text_aviso">AVISO</string>
 
+    <string name="text_aviso_dois">AVISO: O código acima tem a função de te conectar com seu médico e sua clínica. Por favor, mostre seu código apenas com um médico de confiança (código copiado para área de transferência)</string>
+
     <string name="hint_esqueci_senha">Insira seu email</string>
 
     <string name="text_hintsos">Enviaremos esta mensagem caso você toque no botão sos</string>

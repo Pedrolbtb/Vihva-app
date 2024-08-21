@@ -41,18 +41,13 @@ class Perfil : Fragment() {
         super.onCreate(savedInstanceState)
         // Inicialização do Firestore dentro do onCreate
         db = FirebaseFirestore.getInstance()
-
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return inflater.inflate(R.layout.fragment_perfil, container, false)
-
-
     }
 
     @SuppressLint("SuspiciousIndentation")
@@ -72,12 +67,19 @@ class Perfil : Fragment() {
                         val biografia = document.getString("biografia")
                         val genero = document.getString("genero")
                         val imageUrl = document.getString("imageUrl")
-                        view.findViewById<TextView>(R.id.text_nome).text = "${nome ?: "Nome não fornecido"} ${sobrenome ?: "Sobrenome não fornecido"}"
-                        view.findViewById<TextView>(R.id.text_genero).text = "${genero ?: "Gênero não fornecido"}"
-                        view.findViewById<TextView>(R.id.text_idade).text = "${idade ?: "Idade não fornecida"} anos"
-                        view.findViewById<TextView>(R.id.text_altura).text = "${altura ?: "Altura não fornecida"} cm"
-                        view.findViewById<TextView>(R.id.text_peso).text = "${peso ?: "Peso não fornecido"} kg"
-                        view.findViewById<TextView>(R.id.View_biografia).text = "${biografia ?: "Biografia não fornecida"} "
+                        view.findViewById<TextView>(R.id.text_nome).text =
+                            "${nome ?: "Nome não fornecido"} ${sobrenome ?: "Sobrenome não fornecido"}"
+                        view.findViewById<TextView>(R.id.text_genero).text =
+                            "${genero ?: "Gênero não fornecido"}"
+                        view.findViewById<TextView>(R.id.text_idade).text =
+                            "${idade ?: "Idade não fornecida"} anos"
+                        view.findViewById<TextView>(R.id.text_altura).text =
+                            "${altura ?: "Altura não fornecida"} cm"
+                        view.findViewById<TextView>(R.id.text_peso).text =
+                            "${peso ?: "Peso não fornecido"} kg"
+                        view.findViewById<TextView>(R.id.View_biografia).text =
+                            "${biografia ?: "Biografia não fornecida"} "
+
                         // Carregar a imagem usando Picasso
                         imageUrl?.let {
                             view.findViewById<ImageView>(R.id.img_save_perfil).let { imageView ->
@@ -85,18 +87,17 @@ class Perfil : Fragment() {
                             }
                         }
                     } else {
-                        Log.d("PerfilFragment", "Document does not exist")
+                        Log.d("PerfilFragment", "Documento não existe")
                     }
                 }
                 .addOnFailureListener { exception ->
-                    Log.d("PerfilFragment", "Error getting document", exception)
+                    Log.d("PerfilFragment", "Erro ao pegar o documento", exception)
                 }
         }
         val btn_editar = view.findViewById<Button>(R.id.btn_editar)
         btn_editar.setOnClickListener {
-        val  intent = Intent (requireContext(), Editar_perfil :: class.java)
+            val intent = Intent(requireContext(), Editar_perfil::class.java)
             startActivity(intent)
-
         }
 
         // Encontrar o botão btn_medicos
@@ -106,20 +107,45 @@ class Perfil : Fragment() {
             startActivity(intent)
         }
 
-        val btnNotific = view.findViewById<ImageButton>(R.id.btn_notific).setOnClickListener{
-            val telaNotificacoes = Intent ( requireContext(), ConfigNotificacoes::class.java )
+        val btnNotific = view.findViewById<ImageButton>(R.id.btn_notific).setOnClickListener {
+            val telaNotificacoes = Intent(requireContext(), ConfigNotificacoes::class.java)
             startActivity(telaNotificacoes)
         }
 
         val btnCodigo = view.findViewById<AppCompatButton>(R.id.btn_cod_usuario)
-        btnCodigo.setOnClickListener{
-            currentUserUid.let { uid ->
+        btnCodigo.setOnClickListener {
+            currentUserUid?.let { uid ->
                 val clipboard = context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                val clip = ClipData.newPlainText("UID",uid)
+                val clip = ClipData.newPlainText("UID", uid)
                 clipboard.setPrimaryClip(clip)
-                Toast.makeText(requireContext(), "Código do usuário copiado para área de transferencia", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Código do usuário copiado para área de transferência",
+                    Toast.LENGTH_SHORT
+                ).show()
+                mostrarpopupcodigo(uid)
             }
+        }
+    }
 
+    @SuppressLint("MissingInflatedId")
+    private fun mostrarpopupcodigo(uid: String) {
+        val inflater = LayoutInflater.from(requireContext())
+        val builder = AlertDialog.Builder(requireContext())
+        val popupView = inflater.inflate(R.layout.popup_codigo, null)
+        val btnCancelar = popupView.findViewById<ImageButton>(R.id.btnCancelar)
+        val textViewCodigo = popupView.findViewById<TextView>(R.id.textView_codigo)
+
+        // Definir o UID no TextView do popup
+        textViewCodigo.text = "${uid ?: "UID não fornecido"}"
+
+        builder.setView(popupView)
+        val alertDialog = builder.create()
+        alertDialog.show()
+
+        // Configurar listener para o botão Cancelar
+        btnCancelar.setOnClickListener {
+            alertDialog.dismiss() // Fechar o diálogo ao cancelar
         }
     }
 }

@@ -259,9 +259,6 @@ private fun setupRecyclerView2(view: View) {
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
-    private fun setupDiabetesInfo(view: View) {
-        // Aqui estava o código do card de diabetes que foi removido
-    }
 
     private fun deletarArrayRemedios() {
         val user = FirebaseAuth.getInstance().currentUser
