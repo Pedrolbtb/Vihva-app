@@ -72,28 +72,39 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             />
 
+
         <CalendarView
             android:id="@+id/calendario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
-            android:layout_marginTop="25dp"
+            android:layout_width="327dp"
+            android:layout_height="312dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/background_lembrete"
+            android:elevation="4dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.574"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.329" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ListaCalendario"
-            android:layout_width="360dp"
-            android:layout_height="153dp"
+
+            android:layout_width="320dp"
+            android:layout_height="219dp"
             android:layout_marginTop="21dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/calendario"
-            app:layout_constraintVertical_bias="0.152" />
+            app:layout_constraintVertical_bias="0.0"
+            android:scrollbars="vertical"
+            android:scrollbarThumbVertical="@color/Letras"
+            android:verticalScrollbarPosition="left"
+            android:scrollbarFadeDuration="@integer/material_motion_duration_short_1"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

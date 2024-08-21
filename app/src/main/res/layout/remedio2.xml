@@ -81,6 +81,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:scrollbars="vertical"
+        android:scrollbarThumbVertical="@color/letras_remedios"
+        android:verticalScrollbarPosition="left"
+        android:scrollbarFadeDuration="@integer/material_motion_duration_short_1"
         />
 
     <TextView

@@ -59,5 +59,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:scrollbars="vertical"
+        android:scrollbarThumbVertical="@color/Letras"
+        android:verticalScrollbarPosition="left"
+        android:scrollbarFadeDuration="@integer/material_motion_duration_short_1"
        />
 </androidx.constraintlayout.widget.ConstraintLayout>

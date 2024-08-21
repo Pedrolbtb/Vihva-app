@@ -2,9 +2,11 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="110dp"
+    android:layout_height="90dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/view_remedio_">
+    android:background="@drawable/background_eve"
+    android:layout_margin="10dp"
+    >
 
     <TextView
         android:id="@+id/data"
@@ -12,6 +14,7 @@
         android:layout_height="32dp"
         android:layout_marginLeft="40dp"
         android:textSize="14sp"
+        android:fontFamily="@font/cloudsoft_bold_700"
         android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,17 +26,17 @@
         android:id="@+id/titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/cloudsoft_light_300"
         android:text=""
         android:textColor="#247894"
-        android:textSize="35sp"
-        android:layout_marginTop="10dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.165"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.638" />
 
     <ImageView
         android:layout_width="25dp"

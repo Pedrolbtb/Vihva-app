@@ -47,7 +47,12 @@
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.685" />
+        app:layout_constraintVertical_bias="0.685"
+        android:scrollbars="vertical"
+        android:scrollbarThumbVertical="@color/letras_remedios"
+        android:verticalScrollbarPosition="left"
+        android:scrollbarFadeDuration="@integer/material_motion_duration_short_1"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -104,7 +104,12 @@
                 app:layout_constraintHorizontal_bias="0.493"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.899" />
+                app:layout_constraintVertical_bias="0.899"
+                android:scrollbars="vertical"
+                android:scrollbarThumbVertical="@color/Letras"
+                android:verticalScrollbarPosition="left"
+                android:scrollbarFadeDuration="@integer/material_motion_duration_short_1"
+                />
 
         </LinearLayout>
 

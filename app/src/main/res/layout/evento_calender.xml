@@ -73,36 +73,20 @@
 
     <EditText
         android:id="@+id/eventDescriptionEditText"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="305dp"
+        android:layout_height="152dp"
         android:background="@drawable/edit_text"
         android:elevation="1dp"
         android:hint="Descrição do evento"
+        android:inputType="text"
         android:padding="12dp"
         android:textColor="@color/Letras"
         android:textSize="18sp"
-        android:layout_marginLeft="2dp"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="@+id/container_consulta"
-        app:layout_constraintEnd_toEndOf="@+id/container_consulta"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="@+id/container_consulta"
+        app:layout_constraintBottom_toTopOf="@+id/saveButton"
+        app:layout_constraintEnd_toEndOf="@+id/View_Consulta"
+        app:layout_constraintStart_toStartOf="@+id/View_Consulta"
         app:layout_constraintTop_toBottomOf="@+id/container_data"
-        app:layout_constraintVertical_bias="0.591" />
-
-    <View
-        android:id="@+id/container_consulta"
-        style="@style/container_linha"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="155dp"
-        android:background="@drawable/container_linha"
-        android:elevation="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
-        app:layout_constraintEnd_toEndOf="@id/View_Consulta"
-        app:layout_constraintStart_toStartOf="@id/View_Consulta" />
+        app:layout_constraintVertical_bias="0.712" />
 
     <TextView
         android:id="@+id/descricao_evento"
@@ -112,12 +96,10 @@
         android:layout_marginTop="15dp"
         android:elevation="1dp"
         android:text="Descrição do evento"
-        app:layout_constraintBottom_toBottomOf="@+id/container_consulta"
         app:layout_constraintEnd_toEndOf="@+id/View_Consulta"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/View_Consulta"
-        app:layout_constraintTop_toBottomOf="@+id/container_data"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/container_data" />
 
     <EditText
         android:id="@+id/eventEditText"
