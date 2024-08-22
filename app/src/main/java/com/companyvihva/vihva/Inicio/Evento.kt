@@ -41,7 +41,8 @@ class Evento : AppCompatActivity() {
         val descriptionEditText = findViewById<EditText>(R.id.eventDescriptionEditText)
         val saveButton = findViewById<Button>(R.id.saveButton)
         val backButton = findViewById<ImageButton>(R.id.btnVoltar)
-      val addmedico = findViewById<Button>(R.id.addmedico)
+        val addMedicoButton = findViewById<Button>(R.id.addmedico) // Configura o botão addmedico
+
         // Define o comportamento do botão de salvar
         saveButton.setOnClickListener {
             val title = titleEditText.text.toString()
@@ -89,6 +90,13 @@ class Evento : AppCompatActivity() {
             } else {
                 finish()
             }
+        }
+
+        // Define o comportamento do botão addmedico
+        addMedicoButton.setOnClickListener {
+            // Cria um Intent para iniciar a atividade AddMedicoLembrete
+            val intent = Intent(this, add_medico_lembrete::class.java)
+            startActivity(intent)
         }
     }
 
