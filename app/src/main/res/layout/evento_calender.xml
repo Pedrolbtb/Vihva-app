@@ -73,13 +73,16 @@
 
     <EditText
         android:id="@+id/eventDescriptionEditText"
-        android:layout_width="305dp"
-        android:layout_height="152dp"
+        android:layout_width="297dp"
+        android:layout_height="173dp"
         android:background="@drawable/edit_text"
         android:elevation="1dp"
         android:hint="Descrição do evento"
-        android:inputType="text"
+        android:inputType="textMultiLine"
+
+        android:gravity="top"
         android:padding="12dp"
+        android:maxLength="300"
         android:textColor="@color/Letras"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/saveButton"
@@ -109,28 +112,46 @@
         android:background="@drawable/edit_text"
         android:elevation="1dp"
         android:hint="Digite o título do evento"
+        android:inputType="text"
         android:padding="12dp"
         android:textColor="@color/Letras"
         android:textSize="18sp"
-        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="@+id/container_data"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.308"
+        app:layout_constraintHorizontal_bias="0.296"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_alarme"
-        app:layout_constraintVertical_bias="0.628" />
+        app:layout_constraintVertical_bias="0.401" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addmedico"
+        style="@style/Button_retornar"
+        android:layout_width="119dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="500dp"
+        android:text="adicionar"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
+        app:layout_constraintEnd_toEndOf="@id/View_Consulta"
+        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintStart_toStartOf="@id/View_Consulta"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.702" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/saveButton"
         style="@style/Button_salvar"
-        android:layout_width="300dp"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
         android:layout_marginTop="500dp"
         android:text="@string/text_salvar"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
         app:layout_constraintEnd_toEndOf="@id/View_Consulta"
+        app:layout_constraintHorizontal_bias="0.167"
         app:layout_constraintStart_toStartOf="@id/View_Consulta"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.699" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
@@ -138,6 +159,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="-30dp" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
