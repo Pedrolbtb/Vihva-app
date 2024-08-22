@@ -119,21 +119,6 @@
         app:layout_constraintVertical_bias="0.401" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/addmedico"
-        style="@style/Button_retornar"
-        android:layout_width="119dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="500dp"
-        android:text="adicionar"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
-        app:layout_constraintEnd_toEndOf="@id/View_Consulta"
-        app:layout_constraintHorizontal_bias="0.853"
-        app:layout_constraintStart_toStartOf="@id/View_Consulta"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.702" />
-
-    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/saveButton"
         style="@style/Button_salvar"
         android:layout_width="125dp"
@@ -148,14 +133,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.699" />
 
+
+    <Spinner
+        android:id="@+id/medicoSpinner"
+        android:layout_width="131dp"
+        android:layout_height="34dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.332"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.944" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="-30dp" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

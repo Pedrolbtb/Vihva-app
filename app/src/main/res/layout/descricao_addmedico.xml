@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Inicio.Alarme"
+    android:background="@drawable/background_home">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_save_perfil"
+            style="@style/foto"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginEnd="190dp"
+            android:layout_marginBottom="480dp"
+            android:scaleType="centerCrop"
+            app:civ_border_color="@color/Letras"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.307"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.735" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:text="Dr."
+            android:textSize="33dp"
+            android:layout_marginBottom="600dp"
+            android:layout_marginEnd="40dp"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/img_save_perfil"
+            app:layout_constraintTop_toTopOf="@id/img_save_perfil" />
+
+        <TextView
+            android:id="@+id/text_nome"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="600dp"
+            android:textSize="24sp"
+            android:layout_marginLeft="180dp"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView10"
+            app:layout_constraintStart_toStartOf="@id/img_save_perfil"
+            app:layout_constraintTop_toTopOf="@id/img_save_perfil"
+            />
+
+
+        <ImageButton
+            android:id="@+id/close"
+            android:layout_width="65dp"
+            android:layout_height="59dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/close_button_description"
+            android:padding="15dp"
+            android:src="@drawable/arrow_voltar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.08"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.044" />
+
+
+
+        <TextView
+            android:id="@+id/textViewcrm"
+            style="@style/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="57dp"
+            android:layout_marginBottom="480dp"
+            android:text="CRM:"
+            android:textSize="18sp"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/img_save_perfil"
+            app:layout_constraintTop_toTopOf="@+id/img_save_perfil"
+            app:layout_constraintVertical_bias="0.508" />
+
+        <TextView
+            android:id="@+id/crm"
+            style="@style/text"
+            android:layout_width="151dp"
+            android:layout_height="25dp"
+            android:textSize="18sp"
+            android:layout_marginBottom="480dp"
+            android:layout_marginLeft="150dp"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/img_save_perfil"
+            app:layout_constraintTop_toTopOf="@+id/img_save_perfil" />
+
+        <TextView
+            android:id="@+id/text_genero"
+            style="@style/text"
+            android:layout_width="140dp"
+            android:layout_height="30dp"
+            android:textSize="18sp"
+            android:layout_marginBottom="400dp"
+            android:layout_marginLeft="150dp"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/img_save_perfil"
+            app:layout_constraintTop_toTopOf="@+id/img_save_perfil" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="355dp"
+            android:layout_height="357dp"
+            app:cardCornerRadius="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_save_perfil">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/textView5"
+                    style="@style/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Centro Médico"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/centro_medico"
+                    app:layout_constraintHorizontal_bias="0.571"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.148"
+                    app:layout_constraintVertical_chainStyle="spread" />
+
+
+                <TextView
+                    android:id="@+id/centro_medico"
+
+                    android:layout_width="178dp"
+                    android:layout_height="27dp"
+                    android:textSize="15sp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.971"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.148" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="1.0" />
+
+        <Button
+            android:id="@+id/add_medico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="adicionar medico"
+            app:layout_constraintBottom_toTopOf="@+id/cardView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_genero"
+            app:layout_constraintVertical_bias="0.35" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

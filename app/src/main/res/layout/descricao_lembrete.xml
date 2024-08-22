@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/off_white"
-    tools:context=".Inicio.Calendario">
+  >
 
 
     <ImageButton
@@ -49,66 +49,39 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.629" />
 
-    <View
-        android:id="@+id/view_descLembrete"
-        style="@style/Container_Evento"
-        android:layout_width="match_parent"
-        android:layout_height="550dp"
-        android:layout_marginTop="60dp"
-        android:elevation="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.493" />
-
-    <View
-        android:id="@+id/container_titulo"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="80dp"
-        android:background="@drawable/container_linha"
-        android:elevation="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view_descLembrete"
-        app:layout_constraintEnd_toEndOf="@id/view_descLembrete"
-        app:layout_constraintStart_toStartOf="@id/view_descLembrete"
-        app:layout_constraintTop_toTopOf="@+id/view_descLembrete" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginBottom="470dp"
         android:elevation="2dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="Título"
         android:textColor="@color/Letras"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@id/view_descLembrete"
-        app:layout_constraintEnd_toEndOf="@+id/view_descLembrete"
-        app:layout_constraintStart_toStartOf="@+id/view_descLembrete"
-        app:layout_constraintTop_toTopOf="@id/view_descLembrete"
-        app:layout_constraintVertical_bias="0.629" />
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.193"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.212" />
 
     <TextView
         android:id="@+id/titulo"
         style="@style/text_doenca_e_remedio"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginBottom="390dp"
         android:elevation="2dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text=""
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@id/view_descLembrete"
-        app:layout_constraintEnd_toEndOf="@id/view_descLembrete"
-        app:layout_constraintStart_toStartOf="@id/view_descLembrete"
-        app:layout_constraintTop_toTopOf="@id/view_descLembrete"
-        app:layout_constraintVertical_bias="0.98" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/descricao_lembrete"
+        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.32" />
 
     <TextView
         android:id="@+id/textView16"
@@ -119,30 +92,39 @@
         android:text="Descrição"
         android:textColor="@color/Letras"
         android:textSize="24sp"
-        android:layout_marginBottom="60dp"
-        app:layout_constraintBottom_toBottomOf="@id/view_descLembrete"
-        app:layout_constraintEnd_toEndOf="@+id/view_descLembrete"
-        app:layout_constraintStart_toStartOf="@+id/view_descLembrete"
-        app:layout_constraintTop_toTopOf="@id/view_descLembrete"
-        app:layout_constraintVertical_bias="0.629" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.758"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.212" />
 
     <TextView
         android:id="@+id/descricao_lembrete"
         style="@style/text_doenca_e_remedio"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginBottom="100dp"
         android:elevation="2dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text=""
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@id/view_descLembrete"
-        app:layout_constraintEnd_toEndOf="@id/view_descLembrete"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@id/view_descLembrete"
-        app:layout_constraintTop_toTopOf="@id/view_descLembrete"
-        app:layout_constraintVertical_bias="0.98" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.32" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lista_medicos"
+        android:layout_width="305dp"
+        android:layout_height="231dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.677" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

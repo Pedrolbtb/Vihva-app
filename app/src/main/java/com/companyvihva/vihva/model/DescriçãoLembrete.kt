@@ -1,4 +1,4 @@
-package com.companyvihva.vihva.model.PopupRemedio
+package com.companyvihva.vihva.model
 
 import android.os.Bundle
 import android.util.Log
@@ -7,7 +7,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.R
+import com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter.AdapterListaAmigos
+import com.companyvihva.vihva.com.companyvihva.vihva.model.Amigos
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -15,42 +19,45 @@ class DescriçãoLembrete : AppCompatActivity() {
 
     private lateinit var tituloTextView: TextView
     private lateinit var descricaoTextView: TextView
+    private lateinit var recyclerViewMedicos: RecyclerView
+    private lateinit var adapterListaAmigos: AdapterListaAmigos
 
-    // Criação das instâncias do FirebaseAuth e FirebaseFirestore
     private val auth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
     private val firestore: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
+
+    private val listaMedicos: MutableList<Amigos> = mutableListOf() // Lista para médicos
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.descricao_lembrete)
 
-        // Inicializa as Views
         tituloTextView = findViewById(R.id.titulo)
         descricaoTextView = findViewById(R.id.descricao_lembrete)
+        recyclerViewMedicos = findViewById(R.id.lista_medicos)
 
-        //Botão de voltar
-        val btnVoltar = findViewById<ImageButton>(R.id.btn_voltarDO)
-        btnVoltar.setOnClickListener {
-            finish() // Finaliza a atividade atual e volta para a anterior
+        // Configura o RecyclerView
+        recyclerViewMedicos.layoutManager = LinearLayoutManager(this)
+        recyclerViewMedicos.setHasFixedSize(true)
+
+        adapterListaAmigos = AdapterListaAmigos(this, listaMedicos)
+        recyclerViewMedicos.adapter = adapterListaAmigos
+
+        // Botão de voltar
+        findViewById<ImageButton>(R.id.btn_voltarDO).setOnClickListener {
+            finish()
         }
 
         // Recupera o ID do lembrete passado via Intent
         val eventoId = intent.getStringExtra("eventoId")
 
-        // Verifica se o ID foi passado corretamente
-        if (eventoId != null) {
-            buscarLembrete(eventoId)
-        } else {
-            // Lidar com a ausência do ID
+        eventoId?.let { buscarLembrete(it) } ?: run {
             tituloTextView.text = "Erro: ID do lembrete não encontrado."
             descricaoTextView.text = ""
         }
 
-        val btnExcluir = findViewById<ImageButton>(R.id.lixeira_doencas)
-        btnExcluir.setOnClickListener {
-            eventoId?.let { id ->
-                showConfirmDeleteDialog(id)
-            }
+        // Botão de excluir
+        findViewById<ImageButton>(R.id.lixeira_doencas).setOnClickListener {
+            eventoId?.let { id -> showConfirmDeleteDialog(id) }
         }
     }
 
@@ -62,22 +69,62 @@ class DescriçãoLembrete : AppCompatActivity() {
             .document(eventoId)
 
         docRef.get().addOnSuccessListener { document ->
-            if (document != null) {
-                val titulo = document.getString("titulo")
-                val descricao = document.getString("descricao")
+            if (document.exists()) {
+                val titulo = document.getString("titulo") ?: "Título não disponível"
+                val descricao = document.getString("descricao") ?: "Descrição não disponível"
+                val medicosIds = document.get("medicosUid") as? List<String> ?: emptyList()
 
-                // Atualiza as Views com os dados do lembrete
-                tituloTextView.text = titulo ?: "Título não disponível"
-                descricaoTextView.text = descricao ?: "Descrição não disponível"
+                tituloTextView.text = titulo
+                descricaoTextView.text = descricao
+
+                buscarMedicos(medicosIds)
             } else {
-                // Lidar com o caso em que o documento não existe
                 tituloTextView.text = "Documento não encontrado."
                 descricaoTextView.text = ""
             }
         }.addOnFailureListener { exception ->
-            // Lidar com erros ao acessar o Firestore
             tituloTextView.text = "Erro ao carregar o lembrete."
             descricaoTextView.text = ""
+            Log.w("DescriçãoLembrete", "Erro ao acessar o Firestore", exception)
+        }
+    }
+
+    private fun buscarMedicos(medicosIds: List<String>) {
+        listaMedicos.clear() // Limpa a lista antes de adicionar novos médicos
+        adapterListaAmigos.notifyDataSetChanged()
+
+        if (medicosIds.isEmpty()) {
+            // Caso não haja médicos para exibir
+            return
+        }
+
+        // Faz a busca dos documentos dos médicos em paralelo
+        val batchSize = 10 // Define o tamanho máximo do batch
+        val batches = medicosIds.chunked(batchSize)
+
+        batches.forEach { batch ->
+            val batchRef = firestore.batch()
+            val batchRequests = batch.map { medicoId ->
+                firestore.collection("medicos").document(medicoId).get()
+                    .addOnSuccessListener { document ->
+                        if (document.exists()) {
+                            val nome = document.getString("nome") ?: "Nome não disponível"
+                            val crm = document.getString("crm") ?: "CRM não disponível"
+                            val foto = document.getString("imageUrl") ?: ""
+                            val medico = Amigos(foto, nome, medicoId, crm)
+                            listaMedicos.add(medico)
+                            adapterListaAmigos.notifyDataSetChanged()
+                        } else {
+                            Log.d("DescriçãoLembrete", "Documento do médico não encontrado")
+                        }
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w("DescriçãoLembrete", "Erro ao buscar médico", e)
+                    }
+            }
+
+            // Execute todos os requests do batch
+            batchRequests.forEach { it }
         }
     }
 
@@ -85,16 +132,13 @@ class DescriçãoLembrete : AppCompatActivity() {
         AlertDialog.Builder(this).apply {
             setTitle("Confirmação de Exclusão")
             setMessage("Tem certeza que deseja excluir este lembrete? Esta ação não pode ser desfeita.")
-            setPositiveButton("Sim") { _, _ ->
-                deleteLembrete(eventoId)
-            }
+            setPositiveButton("Sim") { _, _ -> deleteLembrete(eventoId) }
             setNegativeButton("Não", null)
             create()
             show()
         }
     }
 
-    // Método para excluir o lembrete individualmente
     private fun deleteLembrete(eventoId: String) {
         val userId = auth.currentUser?.uid ?: return
         val docRef = firestore.collection("clientes")

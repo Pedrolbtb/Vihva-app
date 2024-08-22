@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.databinding.ItemLembreteBinding
 import com.companyvihva.vihva.com.companyvihva.vihva.model.tipo_lembrete
-import com.companyvihva.vihva.model.PopupRemedio.DescriçãoLembrete
+import com.companyvihva.vihva.model.DescriçãoLembrete
+
 
 class Adapter_lembrete(
     private var eventos: List<tipo_lembrete>,
