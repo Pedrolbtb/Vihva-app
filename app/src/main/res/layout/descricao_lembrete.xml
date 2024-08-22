@@ -13,15 +13,11 @@
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginStart="1dp"
-        android:layout_marginEnd="330dp"
-        android:layout_marginBottom="670dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/button_back"
         android:padding="15dp"
         android:src="@drawable/arrow_voltar_vermelho"
         android:text="@string/button_back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,15 +25,12 @@
         android:id="@+id/lixeira_doencas"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="665dp"
         android:background="#00FFFFFF"
         android:contentDescription="Apagar"
         android:src="@drawable/delete_lista"
-        android:layout_marginLeft="330dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.235"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

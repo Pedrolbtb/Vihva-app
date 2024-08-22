@@ -148,7 +148,7 @@
             android:layout_marginTop="150dp"
             android:gravity="center"
             android:text="@string/text_naotemremedios"
-            android:textColor="@color/letras_remedios"
+            android:textColor="#60AD9C"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

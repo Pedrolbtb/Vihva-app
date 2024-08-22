@@ -11,23 +11,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageButton
+            android:id="@+id/close"
+            android:layout_width="65dp"
+            android:layout_height="59dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/close_button_description"
+            android:padding="15dp"
+            android:src="@drawable/arrow_voltar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_save_perfil"
             style="@style/foto"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:layout_marginEnd="190dp"
-            android:layout_marginBottom="480dp"
+            android:layout_marginEnd="250dp"
+            android:layout_marginBottom="550dp"
             android:scaleType="centerCrop"
             app:civ_border_color="@color/Letras"
             app:civ_border_width="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.307"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.735" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/textView10"
@@ -35,7 +42,7 @@
             android:layout_height="45dp"
             android:text="Dr."
             android:textSize="33dp"
-            android:layout_marginBottom="600dp"
+            android:layout_marginBottom="635dp"
             android:layout_marginEnd="40dp"
             android:fontFamily="@font/cloudsoft_bold_700"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -47,7 +54,7 @@
             android:id="@+id/text_nome"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="600dp"
+            android:layout_marginBottom="637dp"
             android:textSize="24sp"
             android:layout_marginLeft="180dp"
             android:fontFamily="@font/cloudsoft_bold_700"
@@ -58,41 +65,10 @@
             app:layout_constraintTop_toTopOf="@id/img_save_perfil"
             />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/exclui_medico"
-            style="@style/Button_salvar"
-            android:layout_width="160dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="170dp"
-            android:width="180dp"
-            android:background="@drawable/button_logout"
-            android:elevation="2dp"
-            android:text="@string/text_desfaz_amizade"
-            android:textColor="@color/off_white"
-            android:textSize="13sp"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.358"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_save_perfil"
-            app:layout_constraintVertical_bias="0.078" />
 
 
-        <ImageButton
-            android:id="@+id/close"
-            android:layout_width="65dp"
-            android:layout_height="59dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/close_button_description"
-            android:padding="15dp"
-            android:src="@drawable/arrow_voltar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.08"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.044" />
+
+
 
 
 
@@ -102,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="57dp"
-            android:layout_marginBottom="480dp"
+            android:layout_marginBottom="500dp"
             android:text="CRM:"
             android:textSize="18sp"
             android:fontFamily="@font/cloudsoft_bold_700"
@@ -115,10 +91,10 @@
         <TextView
             android:id="@+id/crm"
             style="@style/text"
-            android:layout_width="151dp"
-            android:layout_height="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:layout_marginBottom="480dp"
+            android:layout_marginBottom="498dp"
             android:layout_marginLeft="150dp"
             android:fontFamily="@font/cloudsoft_bold_700"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -132,13 +108,31 @@
             android:layout_width="140dp"
             android:layout_height="30dp"
             android:textSize="18sp"
-            android:layout_marginBottom="400dp"
+            android:layout_marginBottom="420dp"
             android:layout_marginLeft="150dp"
             android:fontFamily="@font/cloudsoft_bold_700"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/img_save_perfil"
             app:layout_constraintTop_toTopOf="@+id/img_save_perfil" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/exclui_medico"
+            style="@style/Button_salvar"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="170dp"
+            android:width="180dp"
+            android:background="@drawable/button_logout"
+            android:elevation="2dp"
+            android:text="@string/text_desfaz_amizade"
+            android:textColor="@color/off_white"
+            android:textSize="13sp"
+            android:layout_marginBottom="200dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
@@ -147,8 +141,7 @@
             app:cardCornerRadius="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/exclui_medico">
+            app:layout_constraintStart_toStartOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
