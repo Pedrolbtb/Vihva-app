@@ -41,21 +41,14 @@
             android:name=".Inicio.Editar_perfil"
             android:exported="false" />
         <activity
-            android:name=".Inicio.add_medico_lembrete"
-            android:exported="false" />
-        <activity
-            android:name=".model.DescriçãoLembrete"
+            android:name=".model.PopupRemedio.DescriçãoLembrete"
             android:exported="false" />
         <activity
             android:name=".Login.Termos_detalhes"
             android:exported="false" />
         <activity
-            android:name=".Inicio.Perfil_medico.Descrição_addmedico"
-            android:exported="false" />
-        <activity
             android:name=".model.Descrição_alarme"
             android:exported="false" />
-
         <activity
             android:name=".Login.Termos"
             android:exported="false" />

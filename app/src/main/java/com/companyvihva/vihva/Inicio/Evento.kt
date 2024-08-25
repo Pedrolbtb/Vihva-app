@@ -7,11 +7,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.NotificationReceiver
 import com.companyvihva.vihva.R
@@ -25,9 +23,6 @@ class Evento : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
     private lateinit var selectedDate: Date
-    private lateinit var medicoSpinner: Spinner
-    private var listaMedicos: MutableList<String> = mutableListOf()
-    private var medicoMap: MutableMap<String, String> = mutableMapOf() // Map para armazenar UIDs e nomes
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,12 +31,6 @@ class Evento : AppCompatActivity() {
         // Inicializa o Firestore e FirebaseAuth
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
-
-        // Inicializa o Spinner
-        medicoSpinner = findViewById(R.id.medicoSpinner)
-
-        // Carrega a lista de médicos do Firebase
-        carregarMedicos()
 
         // Obtém a data selecionada da Intent
         val dateStr = intent.getStringExtra("selectedDate")
@@ -52,49 +41,41 @@ class Evento : AppCompatActivity() {
         val descriptionEditText = findViewById<EditText>(R.id.eventDescriptionEditText)
         val saveButton = findViewById<Button>(R.id.saveButton)
         val backButton = findViewById<ImageButton>(R.id.btnVoltar)
-
+      val addmedico = findViewById<Button>(R.id.addmedico)
         // Define o comportamento do botão de salvar
         saveButton.setOnClickListener {
             val title = titleEditText.text.toString()
             val description = descriptionEditText.text.toString()
-            val medicoNomeSelecionado = medicoSpinner.selectedItem.toString()
-            val medicoUidSelecionado = medicoMap.entries.find { it.value == medicoNomeSelecionado }?.key
 
-            if (medicoUidSelecionado != null) {
-                // Obtém o ID do usuário atual
-                val userId = auth.currentUser?.uid ?: return@setOnClickListener
+            // Obtém o ID do usuário atual
+            val userId = auth.currentUser?.uid ?: return@setOnClickListener
 
-                // Cria um objeto de evento com os dados fornecidos
-                val event = hashMapOf(
-                    "titulo" to title,
-                    "descricao" to description,
-                    "data" to selectedDate,
-                    "medicoNome" to medicoNomeSelecionado, // Salva o nome do médico selecionado
-                    "medicoUid" to medicoUidSelecionado // Salva o UID do médico selecionado
-                )
+            // Cria um objeto de evento com os dados fornecidos
+            val event = hashMapOf(
+                "titulo" to title,
+                "descricao" to description,
+                "data" to selectedDate
+            )
 
-                // Salva o evento na coleção de eventos do usuário no Firestore
-                db.collection("clientes")
-                    .document(userId)
-                    .collection("eventos")
-                    .add(event)
-                    .addOnSuccessListener {
-                        // Agenda uma notificação para o evento salvo
-                        scheduleNotification(title, description, selectedDate)
+            // Salva o evento na coleção de eventos do usuário no Firestore
+            db.collection("clientes")
+                .document(userId)
+                .collection("eventos")
+                .add(event)
+                .addOnSuccessListener {
+                    // Agenda uma notificação para o evento salvo
+                    scheduleNotification(title, description, selectedDate)
 
-                        // Cria um Intent para retornar um resultado de sucesso
-                        val resultIntent = Intent().apply {
-                            putExtra("evento", "Evento salvo com sucesso!")
-                        }
-                        setResult(RESULT_OK, resultIntent)
-                        finish() // Finaliza a atividade atual
+                    // Cria um Intent para retornar um resultado de sucesso
+                    val resultIntent = Intent().apply {
+                        putExtra("evento", "Evento salvo com sucesso!")
                     }
-                    .addOnFailureListener {
-                        // Aqui você pode adicionar lógica para tratar falhas ao salvar
-                    }
-            } else {
-                // Tratamento para caso o médico não seja encontrado
-            }
+                    setResult(RESULT_OK, resultIntent)
+                    finish() // Finaliza a atividade atual
+                }
+                .addOnFailureListener {
+                    // Aqui você pode adicionar lógica para tratar falhas ao salvar
+                }
         }
 
         // Define o comportamento do botão de voltar
@@ -109,32 +90,6 @@ class Evento : AppCompatActivity() {
                 finish()
             }
         }
-    }
-
-    // Carrega a lista de médicos do Firebase
-    private fun carregarMedicos() {
-        val userId = auth.currentUser?.uid ?: return
-        db.collection("clientes")
-            .document(userId)
-            .get()
-            .addOnSuccessListener { document ->
-                val medicosArray = document.get("medicos") as? List<String>
-                medicosArray?.forEach { medicoUid ->
-                    db.collection("medicos").document(medicoUid).get().addOnSuccessListener { medicoDoc ->
-                        val nomeMedico = medicoDoc.getString("nome") ?: medicoUid
-                        listaMedicos.add(nomeMedico)
-                        medicoMap[medicoUid] = nomeMedico
-
-                        // Atualiza o adapter do Spinner
-                        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaMedicos)
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                        medicoSpinner.adapter = adapter
-                    }
-                }
-            }
-            .addOnFailureListener {
-                // Trate o erro aqui, por exemplo, mostre uma mensagem de erro ao usuário
-            }
     }
 
     // Converte uma string de data para um objeto Date
@@ -159,13 +114,7 @@ class Evento : AppCompatActivity() {
             putExtra("title", title)
             putExtra("description", description)
         }
-
-        val pendingIntent = PendingIntent.getBroadcast(
-            this,
-            0,
-            notificationIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE // Adiciona FLAG_IMMUTABLE
-        )
+        val pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         // Agenda a notificação para ser disparada na data e hora especificadas
         alarmManager.setExact(
@@ -174,5 +123,4 @@ class Evento : AppCompatActivity() {
             pendingIntent
         )
     }
-
 }
