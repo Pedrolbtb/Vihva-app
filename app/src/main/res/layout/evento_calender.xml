@@ -36,9 +36,10 @@
         android:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.493" />
+        app:layout_constraintVertical_bias="0.461" />
 
     <View
         android:id="@+id/container_data"
@@ -136,14 +137,17 @@
 
     <Spinner
         android:id="@+id/medicoSpinner"
-        android:layout_width="131dp"
-        android:layout_height="34dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.332"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.944" />
+        android:layout_width="141dp"
+        android:layout_height="37dp"
+        android:background="@drawable/spinner"
+        android:elevation="345dp"
+        android:gravity="top"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
+        app:layout_constraintEnd_toEndOf="@+id/View_Consulta"
+        app:layout_constraintHorizontal_bias="0.147"
+        app:layout_constraintStart_toStartOf="@+id/View_Consulta"
+        app:layout_constraintTop_toBottomOf="@+id/text_alarme"
+        app:layout_constraintVertical_bias="0.25" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"

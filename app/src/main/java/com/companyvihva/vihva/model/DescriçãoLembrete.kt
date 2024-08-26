@@ -17,30 +17,31 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class DescriçãoLembrete : AppCompatActivity() {
 
+    private lateinit var db: FirebaseFirestore
+    private lateinit var adapterListaAmigos: AdapterListaAmigos
+    private val listaMedicos: MutableList<Amigos> = mutableListOf()
+    private lateinit var recyclerViewMedicos: RecyclerView
     private lateinit var tituloTextView: TextView
     private lateinit var descricaoTextView: TextView
-    private lateinit var recyclerViewMedicos: RecyclerView
-    private lateinit var adapterListaAmigos: AdapterListaAmigos
 
     private val auth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
-    private val firestore: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
-
-    private val listaMedicos: MutableList<Amigos> = mutableListOf() // Lista para médicos
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.descricao_lembrete)
 
-        tituloTextView = findViewById(R.id.titulo)
-        descricaoTextView = findViewById(R.id.descricao_lembrete)
-        recyclerViewMedicos = findViewById(R.id.lista_medicos)
+        // Inicializa o Firestore
+        db = FirebaseFirestore.getInstance()
 
         // Configura o RecyclerView
+        recyclerViewMedicos = findViewById(R.id.lista_medicos)
         recyclerViewMedicos.layoutManager = LinearLayoutManager(this)
         recyclerViewMedicos.setHasFixedSize(true)
-
         adapterListaAmigos = AdapterListaAmigos(this, listaMedicos)
         recyclerViewMedicos.adapter = adapterListaAmigos
+
+        tituloTextView = findViewById(R.id.titulo)
+        descricaoTextView = findViewById(R.id.descricao_lembrete)
 
         // Botão de voltar
         findViewById<ImageButton>(R.id.btn_voltarDO).setOnClickListener {
@@ -63,7 +64,7 @@ class DescriçãoLembrete : AppCompatActivity() {
 
     private fun buscarLembrete(eventoId: String) {
         val userId = auth.currentUser?.uid ?: return
-        val docRef = firestore.collection("clientes")
+        val docRef = db.collection("clientes")
             .document(userId)
             .collection("eventos")
             .document(eventoId)
@@ -72,12 +73,14 @@ class DescriçãoLembrete : AppCompatActivity() {
             if (document.exists()) {
                 val titulo = document.getString("titulo") ?: "Título não disponível"
                 val descricao = document.getString("descricao") ?: "Descrição não disponível"
-                val medicosIds = document.get("medicosUid") as? List<String> ?: emptyList()
+                val medicoUid = document.getString("medicoUid") // Supondo que seja uma string única
 
                 tituloTextView.text = titulo
                 descricaoTextView.text = descricao
 
-                buscarMedicos(medicosIds)
+                medicoUid?.let {
+                    buscarMedico(it)
+                }
             } else {
                 tituloTextView.text = "Documento não encontrado."
                 descricaoTextView.text = ""
@@ -85,47 +88,36 @@ class DescriçãoLembrete : AppCompatActivity() {
         }.addOnFailureListener { exception ->
             tituloTextView.text = "Erro ao carregar o lembrete."
             descricaoTextView.text = ""
-            Log.w("DescriçãoLembrete", "Erro ao acessar o Firestore", exception)
+            Log.w("DescricaoLembrete", "Erro ao acessar o Firestore", exception)
         }
     }
 
-    private fun buscarMedicos(medicosIds: List<String>) {
+    private fun buscarMedico(medicoUid: String) {
         listaMedicos.clear() // Limpa a lista antes de adicionar novos médicos
         adapterListaAmigos.notifyDataSetChanged()
 
-        if (medicosIds.isEmpty()) {
-            // Caso não haja médicos para exibir
+        if (medicoUid.isEmpty()) {
+            // Caso não haja médico para exibir
             return
         }
 
-        // Faz a busca dos documentos dos médicos em paralelo
-        val batchSize = 10 // Define o tamanho máximo do batch
-        val batches = medicosIds.chunked(batchSize)
-
-        batches.forEach { batch ->
-            val batchRef = firestore.batch()
-            val batchRequests = batch.map { medicoId ->
-                firestore.collection("medicos").document(medicoId).get()
-                    .addOnSuccessListener { document ->
-                        if (document.exists()) {
-                            val nome = document.getString("nome") ?: "Nome não disponível"
-                            val crm = document.getString("crm") ?: "CRM não disponível"
-                            val foto = document.getString("imageUrl") ?: ""
-                            val medico = Amigos(foto, nome, medicoId, crm)
-                            listaMedicos.add(medico)
-                            adapterListaAmigos.notifyDataSetChanged()
-                        } else {
-                            Log.d("DescriçãoLembrete", "Documento do médico não encontrado")
-                        }
-                    }
-                    .addOnFailureListener { e ->
-                        Log.w("DescriçãoLembrete", "Erro ao buscar médico", e)
-                    }
+        db.collection("medicos").document(medicoUid).get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val url = document.getString("imageUrl") ?: ""
+                    val nome = document.getString("nome") ?: "Nome não disponível"
+                    val crm = document.getString("crm") ?: "CRM não disponível"
+                    val medico = Amigos(url, nome, medicoUid, crm)
+                    listaMedicos.add(medico)
+                    Log.d("DescricaoLembrete", "Médico adicionado: $medico")
+                    adapterListaAmigos.notifyDataSetChanged()
+                } else {
+                    Log.d("DescricaoLembrete", "Documento do médico não encontrado")
+                }
             }
-
-            // Execute todos os requests do batch
-            batchRequests.forEach { it }
-        }
+            .addOnFailureListener { e ->
+                Log.w("DescricaoLembrete", "Erro ao buscar médico", e)
+            }
     }
 
     private fun showConfirmDeleteDialog(eventoId: String) {
@@ -141,7 +133,7 @@ class DescriçãoLembrete : AppCompatActivity() {
 
     private fun deleteLembrete(eventoId: String) {
         val userId = auth.currentUser?.uid ?: return
-        val docRef = firestore.collection("clientes")
+        val docRef = db.collection("clientes")
             .document(userId)
             .collection("eventos")
             .document(eventoId)
@@ -149,12 +141,12 @@ class DescriçãoLembrete : AppCompatActivity() {
         docRef.delete()
             .addOnSuccessListener {
                 Toast.makeText(this, "Lembrete excluído com sucesso", Toast.LENGTH_SHORT).show()
-                Log.d("DescriçãoLembrete", "Lembrete excluído com sucesso")
-                onBackPressed()
+                Log.d("DescricaoLembrete", "Lembrete excluído com sucesso")
+                finish() // Fecha a atividade após a exclusão
             }
             .addOnFailureListener { e ->
-                Log.w("DescriçãoLembrete", "Erro ao excluir o lembrete", e)
-                Toast.makeText(this, "Erro ao excluir o lembrete", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Erro ao excluir lembrete", Toast.LENGTH_SHORT).show()
+                Log.w("DescricaoLembrete", "Erro ao excluir lembrete", e)
             }
     }
 }

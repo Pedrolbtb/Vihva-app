@@ -40,8 +40,9 @@
         <activity
             android:name=".Inicio.Editar_perfil"
             android:exported="false" />
+
         <activity
-            android:name=".model.PopupRemedio.DescriçãoLembrete"
+            android:name=".model.DescriçãoLembrete"
             android:exported="false" />
         <activity
             android:name=".Login.Termos_detalhes"
@@ -86,7 +87,7 @@
             android:name=".Configuracoes.ConfigNotificacoes"
             android:exported="false" />
         <activity
-            android:name=".Inicio.Evento"
+            android:name=".Evento.Evento"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <!--
