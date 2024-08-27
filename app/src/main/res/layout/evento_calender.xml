@@ -137,17 +137,16 @@
 
     <Spinner
         android:id="@+id/medicoSpinner"
-        android:layout_width="141dp"
-        android:layout_height="37dp"
+        android:layout_width="302dp"
+        android:layout_height="59dp"
         android:background="@drawable/spinner"
         android:elevation="345dp"
         android:gravity="top"
         app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
         app:layout_constraintEnd_toEndOf="@+id/View_Consulta"
-        app:layout_constraintHorizontal_bias="0.147"
         app:layout_constraintStart_toStartOf="@+id/View_Consulta"
         app:layout_constraintTop_toBottomOf="@+id/text_alarme"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.256" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
