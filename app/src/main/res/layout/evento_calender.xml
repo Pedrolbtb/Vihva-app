@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_home"
+    android:background="@color/off_white"
     tools:context=".Inicio.Calendario">
 
     <ImageButton
@@ -36,13 +36,11 @@
         android:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.461" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/container_data"
+        android:id="@+id/container_descricao"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
@@ -58,53 +56,18 @@
     <TextView
         android:id="@+id/TituloConsulta"
         style="@style/text_botoesAlarme"
-        android:layout_marginBottom="500dp"
         android:elevation="1dp"
         android:text="Digite o título do evento"
-        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
-        app:layout_constraintEnd_toEndOf="@+id/container_data"
-        app:layout_constraintStart_toStartOf="@+id/container_data"
-        app:layout_constraintTop_toTopOf="@+id/View_Consulta"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <EditText
-        android:id="@+id/eventDescriptionEditText"
-        android:layout_width="297dp"
-        android:layout_height="173dp"
-        android:background="@drawable/edit_text"
-        android:elevation="1dp"
-        android:hint="Descrição do evento"
-        android:inputType="textMultiLine"
-
-        android:gravity="top"
-        android:padding="12dp"
-        android:maxLength="300"
-        android:textColor="@color/Letras"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/saveButton"
-        app:layout_constraintEnd_toEndOf="@+id/View_Consulta"
-        app:layout_constraintStart_toStartOf="@+id/View_Consulta"
-        app:layout_constraintTop_toBottomOf="@+id/container_data"
-        app:layout_constraintVertical_bias="0.712" />
-
-    <TextView
-        android:id="@+id/descricao_evento"
-        style="@style/text_botoesAlarme"
-        android:layout_width="194dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="15dp"
-        android:elevation="1dp"
-        android:text="Descrição do evento"
-        app:layout_constraintEnd_toEndOf="@+id/View_Consulta"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/View_Consulta"
-        app:layout_constraintTop_toBottomOf="@+id/container_data" />
+        android:layout_marginBottom="170dp"
+        app:layout_constraintBottom_toBottomOf="@+id/container_descricao"
+        app:layout_constraintEnd_toEndOf="@+id/container_descricao"
+        app:layout_constraintStart_toStartOf="@+id/container_descricao"
+        app:layout_constraintTop_toTopOf="@+id/View_Consulta" />
 
     <EditText
         android:id="@+id/eventEditText"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginStart="30dp"
         android:background="@drawable/edit_text"
         android:elevation="1dp"
         android:hint="Digite o título do evento"
@@ -112,28 +75,22 @@
         android:padding="12dp"
         android:textColor="@color/Letras"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/container_data"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.296"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_alarme"
-        app:layout_constraintVertical_bias="0.401" />
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="@+id/container_descricao"
+        app:layout_constraintEnd_toEndOf="@+id/container_descricao"
+        app:layout_constraintStart_toStartOf="@+id/container_descricao"
+        app:layout_constraintTop_toBottomOf="@+id/text_alarme" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/saveButton"
-        style="@style/Button_salvar"
-        android:layout_width="125dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="500dp"
-        android:text="@string/text_salvar"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
-        app:layout_constraintEnd_toEndOf="@id/View_Consulta"
-        app:layout_constraintHorizontal_bias="0.167"
-        app:layout_constraintStart_toStartOf="@id/View_Consulta"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.699" />
-
+    <TextView
+        android:id="@+id/EscolherMedico"
+        style="@style/text_botoesAlarme"
+        android:elevation="1dp"
+        android:text="Escolha o médico"
+        android:layout_marginTop="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/container_descricao"
+        app:layout_constraintEnd_toEndOf="@+id/container_descricao"
+        app:layout_constraintStart_toStartOf="@+id/container_descricao"
+        app:layout_constraintTop_toTopOf="@+id/View_Consulta"/>
 
     <Spinner
         android:id="@+id/medicoSpinner"
@@ -142,11 +99,56 @@
         android:background="@drawable/spinner"
         android:elevation="345dp"
         android:gravity="top"
+        android:layout_marginTop="130dp"
+        app:layout_constraintBottom_toBottomOf="@+id/container_descricao"
+        app:layout_constraintEnd_toEndOf="@+id/container_descricao"
+        app:layout_constraintStart_toStartOf="@+id/container_descricao"
+        app:layout_constraintTop_toTopOf="@+id/View_Consulta" />
+
+    <TextView
+        android:id="@+id/descricao_evento"
+        style="@style/text_botoesAlarme"
+        android:layout_width="194dp"
+        android:layout_height="21dp"
+        android:elevation="1dp"
+        android:text="Descrição do evento"
+        android:layout_marginBottom="290dp"
         app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
         app:layout_constraintEnd_toEndOf="@+id/View_Consulta"
         app:layout_constraintStart_toStartOf="@+id/View_Consulta"
-        app:layout_constraintTop_toBottomOf="@+id/text_alarme"
-        app:layout_constraintVertical_bias="0.256" />
+        app:layout_constraintTop_toBottomOf="@+id/container_descricao" />
+
+    <EditText
+        android:id="@+id/eventDescriptionEditText"
+        android:layout_width="297dp"
+        android:layout_height="173dp"
+        android:background="@drawable/edit_text"
+        android:elevation="1dp"
+        android:gravity="top"
+        android:hint="Descrição do evento"
+        android:inputType="textMultiLine"
+        android:maxLength="300"
+        android:padding="12dp"
+        android:textColor="@color/Letras"
+        android:textSize="18sp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
+        app:layout_constraintEnd_toEndOf="@+id/View_Consulta"
+        app:layout_constraintStart_toStartOf="@+id/View_Consulta"
+        app:layout_constraintTop_toBottomOf="@+id/container_descricao" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/saveButton"
+        style="@style/Button_salvar"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="@string/text_salvar"
+        android:textSize="15sp"
+        android:layout_marginTop="220dp"
+        app:layout_constraintBottom_toBottomOf="@+id/View_Consulta"
+        app:layout_constraintEnd_toEndOf="@id/View_Consulta"
+        app:layout_constraintStart_toStartOf="@id/View_Consulta"
+        app:layout_constraintTop_toBottomOf="@+id/container_descricao" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
