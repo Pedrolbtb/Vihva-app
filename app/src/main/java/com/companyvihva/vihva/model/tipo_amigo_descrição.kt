@@ -7,6 +7,9 @@ data class tipo_amigo_descrição(
     val centroMedico: String,
     val crm: String,
     val sobrenome: String,
-    val documentId: String
+    val documentId: String,
+    val foto1 : String,
+    val foto2 : String,
+    val foto3 : String
 )
 

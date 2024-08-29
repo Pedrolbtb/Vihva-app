@@ -141,14 +141,12 @@
             app:cardCornerRadius="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exclui_medico">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
-
-
+                android:layout_height="match_parent">
 
 
                 <TextView
@@ -167,8 +165,20 @@
                     app:layout_constraintVertical_chainStyle="spread" />
 
 
+                <TextView
 
-
+                    style="@style/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Imagens da clinica "
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.386"
+                    app:layout_constraintVertical_chainStyle="spread" />
 
                 <TextView
                     android:id="@+id/centro_medico"
@@ -184,6 +194,50 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.148" />
 
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/foto1"
+                    style="@style/foto"
+                    android:layout_width="94dp"
+                    android:layout_height="97dp"
+                    android:scaleType="centerCrop"
+                    app:civ_border_color="@color/Letras"
+                    app:civ_border_width="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.076"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.703" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/foto2"
+                    style="@style/foto"
+                    android:layout_width="94dp"
+                    android:layout_height="97dp"
+                    android:scaleType="centerCrop"
+                    app:civ_border_color="@color/Letras"
+                    app:civ_border_width="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.938"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.703" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/foto3"
+                    style="@style/foto"
+                    android:layout_width="94dp"
+                    android:layout_height="97dp"
+                    android:scaleType="centerCrop"
+                    app:civ_border_color="@color/Letras"
+                    app:civ_border_width="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.703" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

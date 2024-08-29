@@ -73,7 +73,9 @@ class Descrição_addmedico : AppCompatActivity() {
                     val imageUrl = document.getString("imageUrl")
                     val centroMedico = document.getString("centroMedico")
                     val crm = document.getString("crm")
-
+                    val foto1 = document.getString("fotoUm")
+                    val foto2 = document.getString("fotoDois")
+                    val foto3 = document.getString("fotoTres")
                     // Carrega a URL de imagem usando o Picasso
                     imageUrl?.let {
                         Picasso.get().load(it).into(urlImageView)
@@ -87,7 +89,10 @@ class Descrição_addmedico : AppCompatActivity() {
                         centroMedico ?: "",
                         crm ?: "",
                         sobrenome ?: "",
-                        ""
+                        "",
+                        foto1 ?: "",
+                        foto2 ?: "",
+                        foto3 ?: ""
                     )
 
                     // Atualiza as TextViews com os dados

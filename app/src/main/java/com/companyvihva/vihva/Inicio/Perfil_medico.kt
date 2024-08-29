@@ -27,7 +27,12 @@ class Perfil_medico : AppCompatActivity() {
     private var amigoId: String? = null
     private lateinit var centroMedicoView: TextView
     private lateinit var crmView: TextView
-    private lateinit var nomeCompletoView: TextView // Atualizado para a TextView que exibirá o nome completo
+    private lateinit var nomeCompletoView: TextView
+    private lateinit var fotoUmImageView:ImageView
+    private lateinit var fotoDoisImageView: ImageView
+    private lateinit var fotoTresImageView: ImageView
+
+    // Atualizado para a TextView que exibirá o nome completo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +52,9 @@ class Perfil_medico : AppCompatActivity() {
         centroMedicoView = findViewById(R.id.centro_medico)
         crmView = findViewById(R.id.crm)
         nomeCompletoView = findViewById(R.id.text_nome) // Corrigido para a TextView que exibirá o nome completo
-
+        fotoUmImageView = findViewById(R.id.foto1)
+        fotoDoisImageView = findViewById(R.id.foto2)
+        fotoTresImageView = findViewById(R.id.foto3)
         // Configura o botão de voltar
         val btnVoltar = findViewById<ImageButton>(R.id.close)
         btnVoltar.setOnClickListener {
@@ -79,10 +86,21 @@ class Perfil_medico : AppCompatActivity() {
                     val imageUrl = document.getString("imageUrl")
                     val centroMedico = document.getString("centroMedico")
                     val crm = document.getString("crm")
-
+                    val fotoUm = document.getString("fotoUm")
+                    val fotoDois = document.getString("fotoDois")
+                    val fotoTres = document.getString("fotoTres")
                     // Carrega a URL de imagem usando o Picasso
                     imageUrl?.let {
                         Picasso.get().load(it).into(urlImageView)
+                    }
+                    fotoUm?.let {
+                        Picasso.get().load(it).into(fotoUmImageView)
+                    }
+                    fotoDois?.let {
+                        Picasso.get().load(it).into(fotoDoisImageView)
+                    }
+                    fotoTres?.let {
+                        Picasso.get().load(it).into(fotoTresImageView)
                     }
 
                     // Cria um objeto Tipo_Classe com os dados obtidos no Firestore
@@ -93,7 +111,11 @@ class Perfil_medico : AppCompatActivity() {
                         centroMedico ?: "",
                         crm ?: "",
                         sobrenome ?: "",
-                        ""
+                        "",
+                        fotoUm ?: "",
+                        fotoDois ?: "",
+                        fotoTres ?: ""
+
                     )
 
                     // Atualiza as TextViews com os dados
