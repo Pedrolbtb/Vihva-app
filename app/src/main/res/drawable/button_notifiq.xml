@@ -1,6 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item>
 <shape xmlns:android="http://schemas.android.com/apk/res/android" >
-    <corners android:radius="20dp"/>
+    <corners android:radius="350dp"/>
     <solid android:color="@color/Letras"/>
     <stroke android:color="@color/off_white" android:width="1dp"/>
 </shape>
+</item>
+    <!-- Image drawable centered on top of the shape -->
+<item android:drawable="@drawable/ic_aceitarnotific" android:gravity="center"/>
+</layer-list>

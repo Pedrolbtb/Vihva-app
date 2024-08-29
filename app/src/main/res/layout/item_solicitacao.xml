@@ -61,32 +61,28 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAceitar"
-        android:layout_width="90dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/button_notifiq"
         android:fontFamily="@font/cloudsoft_bold_700"
-        android:text="@string/text_aceitar"
         android:textColor="@color/off_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnRejeitar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.854" />
+/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRejeitar"
-        android:layout_width="90dp"
-        android:layout_height="40dp"
-        android:background="@drawable/button_voltar_notifiq"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/button_xis_notific"
         android:fontFamily="@font/cloudsoft_bold_700"
-        android:text="@string/text_rejeitar"
         android:textColor="@color/off_white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.854" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textView9"

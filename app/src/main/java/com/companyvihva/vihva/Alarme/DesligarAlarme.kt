@@ -10,16 +10,42 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.R
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.Date
 
 class DesligarAlarme : AppCompatActivity() {
+
+    private lateinit var alarmTimeTextView: TextView
+    private lateinit var alarmDateTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_desligar_alarme)
 
-        val textView = findViewById<TextView>(R.id.alarm_message)
-        textView.text = "Alarme disparado! Clique no botão abaixo para desligá-lo."
+        // Inicializa os TextViews para exibir a hora e a data
+        alarmTimeTextView = findViewById(R.id.alarm_time)
+        alarmDateTextView = findViewById(R.id.alarm_date)
 
+        // Formata a hora e a data atuais
+        val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val now = Date()
+        val currentTime = timeFormat.format(now)
+        val currentDate = dateFormat.format(now)
+
+        // Atualiza os TextViews com a hora e a data atuais
+        alarmTimeTextView.text = currentTime
+        alarmDateTextView.text = currentDate
+
+        // Atualiza o TextView da mensagem do alarme
+        val messageTextView = findViewById<TextView>(R.id.alarm_message)
+        messageTextView.text = "Alarme disparado!"
+
+        val messageTextView2 = findViewById<TextView>(R.id.alarm_message2)
+        messageTextView2.text = "Clique no botão abaixo para desligá-lo."
+
+        // Configura o botão para desligar o alarme
         val btnDesligarAlarme = findViewById<Button>(R.id.btn_desligar_alarme)
         btnDesligarAlarme.setOnClickListener {
             desligarAlarme()

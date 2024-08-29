@@ -1,26 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:background="@color/off_white"
-    android:padding="16dp">
+    android:background="@color/off_white"> <!-- Cor de fundo roxa -->
 
-    <TextView
-        android:id="@+id/alarm_message"
-        android:layout_width="wrap_content"
+    <!-- LinearLayout para centralizar os textos verticalmente -->
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="376dp"
         android:layout_height="wrap_content"
-        android:text="Alarme disparado!"
-        android:textSize="18sp"
-        android:layout_marginBottom="24dp"/>
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
+
+        <!-- ImageView centralizado no topo -->
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitEnd"
+            app:srcCompat="@drawable/baseline_alarm_on_24" />
+
+        <!-- Texto para a hora do alarme -->
+        <TextView
+            android:id="@+id/alarm_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="09:31"
+            android:textColor="@color/Letras"
+            android:textSize="70sp" />
+
+        <!-- Texto para a data do alarme -->
+        <TextView
+            android:id="@+id/alarm_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            android:text="qua., 21 ago."
+            android:textColor="@color/Letras"
+            android:textSize="20sp" />
+
+        <!-- Texto para a mensagem do alarme -->
+        <TextView
+            android:id="@+id/alarm_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            android:text="Alarme disparado!!"
+            android:textColor="@color/Letras"
+
+            android:textSize="18dp" />
+
+        <!-- Texto adicional da mensagem do alarme -->
+        <TextView
+            android:id="@+id/alarm_message2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/cloudsoft_bold_700"
+            android:text="Clique no botão abaixo para desligá-lo."
+            android:textColor="@color/Letras"
+            android:textSize="18dp" />
+
+    </LinearLayout>
+
+    <!-- Botão para desligar o alarme -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_desligar_alarme"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:textSize="17sp"
         style="@style/Button_retornar"
-        android:text="Desligar Alarme"/>
+        android:background="@drawable/button_xis"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:drawablePadding="0dp"
+        android:textSize="17sp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp" /> <!-- Ajusta a distância da parte inferior -->
 
-</LinearLayout>
+</RelativeLayout>
