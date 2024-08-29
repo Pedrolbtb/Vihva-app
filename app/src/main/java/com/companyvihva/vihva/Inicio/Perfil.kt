@@ -1,4 +1,3 @@
-
 package com.companyvihva.vihva.Inicio
 
 import android.annotation.SuppressLint
@@ -14,33 +13,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.Configuracoes.ConfigNotificacoes
-import com.companyvihva.vihva.CriarPerfil.FotoBio
 import com.companyvihva.vihva.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 
 class Perfil : Fragment() {
     private lateinit var db: FirebaseFirestore
-    private var selectedImageUri: Uri? = null
-    private var popupImageView: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Inicialização do Firestore dentro do onCreate
-        db = FirebaseFirestore.getInstance()
+        db = FirebaseFirestore.getInstance() // Inicializa o Firestore
     }
 
     override fun onCreateView(
@@ -67,6 +57,7 @@ class Perfil : Fragment() {
                         val biografia = document.getString("biografia")
                         val genero = document.getString("genero")
                         val imageUrl = document.getString("imageUrl")
+
                         view.findViewById<TextView>(R.id.text_nome).text =
                             "${nome ?: "Nome não fornecido"} ${sobrenome ?: "Sobrenome não fornecido"}"
                         view.findViewById<TextView>(R.id.text_genero).text =
@@ -78,7 +69,7 @@ class Perfil : Fragment() {
                         view.findViewById<TextView>(R.id.text_peso).text =
                             "${peso ?: "Peso não fornecido"} kg"
                         view.findViewById<TextView>(R.id.View_biografia).text =
-                            "${biografia ?: "Biografia não fornecida"} "
+                            "${biografia ?: "Biografia não fornecida"}"
 
                         // Carregar a imagem usando Picasso
                         imageUrl?.let {
@@ -86,6 +77,9 @@ class Perfil : Fragment() {
                                 Picasso.get().load(it).into(imageView)
                             }
                         }
+
+                        // Chama a função para buscar os hábitos
+                        fetchHabitosDoUsuario(uid)
                     } else {
                         Log.d("PerfilFragment", "Documento não existe")
                     }
@@ -94,13 +88,13 @@ class Perfil : Fragment() {
                     Log.d("PerfilFragment", "Erro ao pegar o documento", exception)
                 }
         }
+
         val btn_editar = view.findViewById<Button>(R.id.btn_editar)
         btn_editar.setOnClickListener {
             val intent = Intent(requireContext(), Editar_perfil::class.java)
             startActivity(intent)
         }
 
-        // Encontrar o botão btn_medicos
         val btnMedicos = view.findViewById<ImageButton>(R.id.btn_medicos)
         btnMedicos.setOnClickListener {
             val intent = Intent(requireContext(), Lista_amizades::class.java)
@@ -128,6 +122,27 @@ class Perfil : Fragment() {
         }
     }
 
+    private fun fetchHabitosDoUsuario(uid: String) {
+        val docRef = db.collection("clientes").document(uid)
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    val habitos = document.get("habitos") as? List<String>
+                    val habitosTextView = view?.findViewById<TextView>(R.id.View_biografia_habitos)
+                    if (habitos != null && habitosTextView != null) {
+                        habitosTextView.text = habitos.joinToString(separator = ", ")
+                    } else {
+                        Log.d("Perfil", "Hábitos não encontrados ou TextView nula")
+                    }
+                } else {
+                    Log.d("Perfil", "Documento do cliente não encontrado")
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.w("Perfil", "Erro ao obter documento do cliente", e)
+            }
+    }
+
     @SuppressLint("MissingInflatedId")
     private fun mostrarpopupcodigo(uid: String) {
         val inflater = LayoutInflater.from(requireContext())
@@ -136,16 +151,14 @@ class Perfil : Fragment() {
         val btnCancelar = popupView.findViewById<ImageButton>(R.id.btnCancelar)
         val textViewCodigo = popupView.findViewById<TextView>(R.id.textView_codigo)
 
-        // Definir o UID no TextView do popup
-        textViewCodigo.text = "${uid ?: "UID não fornecido"}"
+        textViewCodigo.text = uid
 
         builder.setView(popupView)
         val alertDialog = builder.create()
         alertDialog.show()
 
-        // Configurar listener para o botão Cancelar
         btnCancelar.setOnClickListener {
-            alertDialog.dismiss() // Fechar o diálogo ao cancelar
+            alertDialog.dismiss()
         }
     }
 }
