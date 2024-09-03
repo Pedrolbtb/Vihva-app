@@ -73,7 +73,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_desligar_alarme"
         style="@style/Button_retornar"
-        android:background="@drawable/button_xis"
+        android:background="@drawable/button_with_x"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:drawablePadding="0dp"

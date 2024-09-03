@@ -78,7 +78,7 @@
         android:layout_height="45dp"
         android:layout_marginBottom="10dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/button_xis_notific"
+        android:background="@drawable/button_with_x"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:textColor="@color/off_white"
         app:layout_constraintBottom_toBottomOf="parent"
