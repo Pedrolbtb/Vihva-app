@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -309,8 +310,11 @@ private fun setupRecyclerView2(view: View) {
                     val smsMessage = "$savedMessage\nhttps://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}"
 
                     val smsManager: SmsManager = SmsManager.getDefault()
+
+
+
                     smsManager.sendTextMessage(
-                        "+5519989769783",
+                        preferences.getString("phone",""),
                         null,
                         smsMessage,
                         null,
@@ -338,4 +342,6 @@ private fun setupRecyclerView2(view: View) {
             }
             }
         }
+
+
 }
