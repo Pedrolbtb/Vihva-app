@@ -28,7 +28,7 @@
                 android:layout_gravity="start"
                 android:layout_marginTop="10dp"
                 android:background="#00FFFFFF"
-                android:src="@drawable/arrow_voltar"/>
+                android:src="@drawable/arrow_voltar_vermelho"/>
 
             <TextView
                 android:id="@+id/textView_topo_popup_edit_bio"

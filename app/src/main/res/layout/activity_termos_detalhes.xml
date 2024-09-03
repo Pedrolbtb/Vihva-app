@@ -24,11 +24,10 @@
     <ImageView
         android:id="@+id/escudinho"
         android:layout_width="60dp"
-        android:layout_height="55dp"
+        android:layout_height="60dp"
         android:layout_marginTop="96dp"
         android:background="@drawable/ic_escudo_verificado"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,6 +59,7 @@
             android:id="@+id/textViewScroll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:contentDescription="@string/text_termos_dois"
             android:fontFamily="@font/cloudsoft_light_300"
             android:text="@string/text_termos_dois"

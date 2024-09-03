@@ -5,18 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@drawable/background_remedios">
+    android:background="@color/off_white">
 
     <ImageButton
         android:id="@+id/btn_voltarpop"
-        android:layout_width="53dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:scaleType="fitCenter"
-        android:src="@drawable/arrow_voltar_verde"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
+        android:src="@drawable/arrow_voltar_vermelho"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
