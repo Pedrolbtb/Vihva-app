@@ -36,5 +36,11 @@ class Config_List : AppCompatActivity() {
             finish()
         }
 
+        val btnSobrenos = findViewById<TableRow>(R.id.button_configList_sobrenos).setOnClickListener {
+            val telaDelete = Intent(this, Config_Sobrenos::class.java)
+            startActivity(telaDelete)
+            finish()
+        }
+
     }
 }
