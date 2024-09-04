@@ -13,7 +13,7 @@
         style="@style/titulo_criaperfil"
         android:layout_width="407dp"
         android:layout_height="60dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:text="@string/text_habitos"
         android:textAlignment="center"
         android:textSize="30sp"
@@ -25,8 +25,8 @@
     <View
         android:id="@+id/containerComponents"
         style="@style/ContainerComponents"
-        android:layout_width="415dp"
-        android:layout_height="640dp"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
         android:layout_marginTop="110dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,9 +38,8 @@
         android:id="@+id/btn_proximo"
         style="@style/Button_salvar"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="28dp"
         android:text="@string/text_salvar"
-        android:layout_marginTop="650dp"
+        android:layout_marginTop="640dp"
         app:layout_constraintBottom_toBottomOf="@id/containerComponents"
         app:layout_constraintEnd_toEndOf="@id/containerComponents"
         app:layout_constraintStart_toStartOf="@id/containerComponents"
@@ -48,7 +47,7 @@
 
         <TableRow
             android:id="@+id/table_tabagismo"
-            android:layout_width="match_parent"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@drawable/container_linha"
@@ -75,7 +74,7 @@
 
     <TableRow
         android:id="@+id/table_alcolismo"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="380dp"
         android:background="@drawable/container_linha"
@@ -105,7 +104,7 @@
 
     <TableRow
         android:id="@+id/table_ciclismo"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="380dp"
         android:layout_marginTop="5dp"
@@ -133,7 +132,7 @@
 
     <TableRow
         android:id="@+id/table_caminhada"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="335dp"
@@ -160,7 +159,7 @@
 
     <TableRow
         android:id="@+id/table_fast_food"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="380dp"
         android:background="@drawable/container_linha"
@@ -190,7 +189,7 @@
 
     <TableRow
         android:id="@+id/table_good_food"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="335dp"
@@ -217,7 +216,7 @@
 
     <TableRow
         android:id="@+id/table_gym"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="335dp"
@@ -244,7 +243,7 @@
 
     <TableRow
         android:id="@+id/table_sleep"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="335dp"
@@ -272,7 +271,7 @@
 
     <TableRow
         android:id="@+id/table_sono_ruim"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="380dp"
         android:background="@drawable/container_linha"
@@ -299,7 +298,7 @@
 
     <TableRow
         android:id="@+id/table_agua"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="335dp"
