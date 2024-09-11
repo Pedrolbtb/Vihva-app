@@ -28,7 +28,7 @@ class Descrição_addmedico : AppCompatActivity() {
     private lateinit var centroMedicoView: TextView
     private lateinit var crmView: TextView
     private lateinit var nomeCompletoView: TextView // Atualizado para a TextView que exibirá o nome completo
-
+  private lateinit var  detalhesClinicaView: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.descricao_addmedico)
@@ -47,7 +47,7 @@ class Descrição_addmedico : AppCompatActivity() {
         centroMedicoView = findViewById(R.id.centro_medico)
         crmView = findViewById(R.id.crm)
         nomeCompletoView = findViewById(R.id.text_nome) // Corrigido para a TextView que exibirá o nome completo
-
+        detalhesClinicaView = findViewById(R.id.detalhes_clinica)
         // Configura o botão de voltar
         val btnVoltar = findViewById<ImageButton>(R.id.close)
         btnVoltar.setOnClickListener {
@@ -76,6 +76,7 @@ class Descrição_addmedico : AppCompatActivity() {
                     val foto1 = document.getString("fotoUm")
                     val foto2 = document.getString("fotoDois")
                     val foto3 = document.getString("fotoTres")
+                    val detalhesClinica = document.getString("detalhesClinica")
                     // Carrega a URL de imagem usando o Picasso
                     imageUrl?.let {
                         Picasso.get().load(it).into(urlImageView)
@@ -92,7 +93,8 @@ class Descrição_addmedico : AppCompatActivity() {
                         "",
                         foto1 ?: "",
                         foto2 ?: "",
-                        foto3 ?: ""
+                        foto3 ?: "",
+                        detalhesClinica ?: ""
                     )
 
                     // Atualiza as TextViews com os dados
@@ -101,6 +103,7 @@ class Descrição_addmedico : AppCompatActivity() {
                     descricaoTextView.text = especializacao
                     centroMedicoView.text = centroMedico
                     crmView.text = crm
+                    detalhesClinicaView.text = detalhesClinica
                 } else {
                     Log.d("Perfil_medico", "Documento não encontrado")
                 }
