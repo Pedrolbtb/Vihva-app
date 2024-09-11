@@ -50,7 +50,6 @@ class Alarme : Fragment() {
 
         return rootView
     }
-
     private fun fetchAlarmes() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val db = FirebaseFirestore.getInstance()

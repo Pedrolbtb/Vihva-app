@@ -20,6 +20,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.companyvihva.vihva.Inicio.Alarme
 import com.companyvihva.vihva.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -105,6 +106,7 @@ class CriaAlarme : AppCompatActivity() {
         findViewById<Button>(R.id.btn_salvarAlarme).setOnClickListener {
             observacao()
             requestAlarmPermissionsAndSchedule()
+            iniciarFragment()
         }
 
         findViewById<ImageButton>(R.id.btnVoltar).setOnClickListener {
@@ -112,6 +114,7 @@ class CriaAlarme : AppCompatActivity() {
             startActivity(telaEscolhaRemedio)
         }
     }
+
 
     private fun observacao() {
         val user = auth.currentUser
@@ -135,9 +138,21 @@ class CriaAlarme : AppCompatActivity() {
                     Toast.makeText(this, "Alarme salvo com sucesso!", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
-                    Toast.makeText(this, "Erro ao salvar o alarme: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Erro ao salvar o alarme: ${e.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
         }
+    }
+
+    private fun iniciarFragment() {
+        val alarme = Alarme()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.Lista_alarme, alarme)
+            .addToBackStack(null) // Opcional, se você deseja que o Fragment possa ser retornado com o botão de voltar
+            .commit()
     }
 
     @RequiresApi(Build.VERSION_CODES.S)
