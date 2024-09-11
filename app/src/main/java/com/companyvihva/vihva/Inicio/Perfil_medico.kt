@@ -31,6 +31,7 @@ class Perfil_medico : AppCompatActivity() {
     private lateinit var fotoUmImageView:ImageView
     private lateinit var fotoDoisImageView: ImageView
     private lateinit var fotoTresImageView: ImageView
+    private lateinit var detalhesClinicaView: TextView
 
     // Atualizado para a TextView que exibirá o nome completo
 
@@ -55,6 +56,7 @@ class Perfil_medico : AppCompatActivity() {
         fotoUmImageView = findViewById(R.id.foto1)
         fotoDoisImageView = findViewById(R.id.foto2)
         fotoTresImageView = findViewById(R.id.foto3)
+        detalhesClinicaView = findViewById(R.id.detalhes_clinica)
         // Configura o botão de voltar
         val btnVoltar = findViewById<ImageButton>(R.id.close)
         btnVoltar.setOnClickListener {
@@ -89,6 +91,8 @@ class Perfil_medico : AppCompatActivity() {
                     val fotoUm = document.getString("fotoUm")
                     val fotoDois = document.getString("fotoDois")
                     val fotoTres = document.getString("fotoTres")
+                    val detalhesClinica = document.getString("detalhesClinica")
+
                     // Carrega a URL de imagem usando o Picasso
                     imageUrl?.let {
                         Picasso.get().load(it).into(urlImageView)
@@ -114,7 +118,8 @@ class Perfil_medico : AppCompatActivity() {
                         "",
                         fotoUm ?: "",
                         fotoDois ?: "",
-                        fotoTres ?: ""
+                        fotoTres ?: "",
+                        detalhesClinica ?:""
 
                     )
 
@@ -124,6 +129,7 @@ class Perfil_medico : AppCompatActivity() {
                     descricaoTextView.text = especializacao
                     centroMedicoView.text = centroMedico
                     crmView.text = crm
+                    detalhesClinicaView.text = detalhesClinica
                 } else {
                     Log.d("Perfil_medico", "Documento não encontrado")
                 }

@@ -10,6 +10,7 @@ data class tipo_amigo_descrição(
     val documentId: String,
     val foto1 : String,
     val foto2 : String,
-    val foto3 : String
+    val foto3 : String,
+    val detalhesClinica: String
 )
 
