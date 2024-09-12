@@ -233,15 +233,15 @@
     <string name="text_titulo_add_doenca">Adicionar tratamentos</string>
 
     <array name="ddi">
-        <item>DDD 11</item>
-        <item>DDD 12</item>
-        <item>DDD 13</item>
-        <item>DDD 14</item>
-        <item>DDD 15</item>
-        <item>DDD 16</item>
-        <item>DDD 17</item>
-        <item>DDD 18</item>
-        <item>DDD 19</item>
+        <item> DDI +55 </item>
+        <item> DDI +54 </item>
+        <item> DDI +1 </item>
+        <item> DDI +7 </item>
+        <item> DDI +61 </item>
+        <item> DDI +91 </item>
+        <item> DDI +595 </item>
+        <item> DDI +39 </item>
+        <item> DDI +40 </item>
     </array>
 
     <array name="TipoMed">
