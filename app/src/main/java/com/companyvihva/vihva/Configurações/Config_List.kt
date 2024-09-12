@@ -7,6 +7,7 @@ import android.widget.ImageButton
 import android.widget.TableRow
 import androidx.appcompat.app.AppCompatActivity
 import com.companyvihva.vihva.Configuracoes.ConfigNotificacoes
+import com.companyvihva.vihva.Configuracoes.Configuracoes
 import com.companyvihva.vihva.R
 
 

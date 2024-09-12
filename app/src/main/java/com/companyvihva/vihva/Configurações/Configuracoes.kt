@@ -1,4 +1,4 @@
-package com.companyvihva.vihva.Configurações
+package com.companyvihva.vihva.Configuracoes
 
 import android.app.ActivityOptions
 import android.content.SharedPreferences
@@ -20,80 +20,21 @@ class Configuracoes : AppCompatActivity() {
     private lateinit var editTextPhone: EditText
     private lateinit var editTextMessage: EditText
 
-    private fun savemessagetopreference() {
-
-    }
-
-
-
-
-    // Definindo constantes e lista de palavras proibidas
     companion object {
         const val PREF_NAME = "socorro"
         const val KEY_DDI = "ddi"
         const val KEY_PHONE = "phone"
         const val KEY_DEFAULT_MSG = "default_msg"
         val PROIBIDAS = listOf(
-            "porra",
-            "Porra",
-            "caralho",
-            "Caralho",
-            "Pinto",
-            "pinto",
-            "Buceta",
-            "buceta",
-            "boceta",
-            "Boceta",
-            "puta",
-            "Puta",
-            "caceta",
-            "Caceta",
-            "escroto",
-            "Escroto",
-            "cu",
-            "Cu",
-            "acefalo",
-            "Acefalo",
-            "foder",
-            "Foder",
-            "fudeu",
-            "Fudeu",
-            "Fodeu",
-            "fodeu",
-            "fude",
-            "Fude",
-            "Desgraçado",
-            "desgraçado",
-            "Desgraçada",
-            "desgraçada",
-            "Vadia",
-            "vadia",
-            "Vadio",
-            "vadio",
-            "Arrombado",
-            "arrombado",
-            "Piroca",
-            "piroca",
-            "Rola",
-            "Rolão",
-            "Rolao",
-            "Rolona",
-            "rolona",
-            "rola",
-            "cuzão",
-            "Cuzão",
-            "cuzona",
-            "napa",
-            "Cuzona",
-            "vai tomar no rabo",
-            "Vai tomar no rabo"
+            "porra", "caralho", "pinto", "buceta", "boceta", "puta", "caceta",
+            "escroto", "cu", "acefalo", "foder", "fudeu", "desgraçado", "vadia", "vadio",
+            "arrombado", "piroca", "rola", "cuzão", "cuzona", "vai tomar no rabo"
         )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_configuracoes)
-
 
         // Vincula elementos do layout com variáveis Kotlin
         spinnerDDI = findViewById(R.id.spinnerDDI)
@@ -113,7 +54,7 @@ class Configuracoes : AppCompatActivity() {
             }
         }
 
-        //deixar spinner bonito
+        // Configuração do Spinner
         val adapter = ArrayAdapter.createFromResource(
             this,
             R.array.ddi,
@@ -121,7 +62,7 @@ class Configuracoes : AppCompatActivity() {
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerDDI.adapter = adapter
-        // Obter um conjunto de preferências do aplicativo
+
         val preferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE)
 
         // Carregar preferências
@@ -134,19 +75,23 @@ class Configuracoes : AppCompatActivity() {
             if (containsPalavrasProibidas(message)) {
                 Toast.makeText(
                     this,
-                    "esta mensagem fere os termos do aplicativo e foi bloqueada",
+                    "Esta mensagem fere os termos do aplicativo e foi bloqueada",
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                preferences.edit()
-                    .putInt(KEY_DDI, spinnerDDI.selectedItemPosition)
-                    .putLong(KEY_PHONE, editTextPhone.text.toString().toLong())
-                    .putString(KEY_DEFAULT_MSG, message)
-                    .apply()
+                try {
+                    preferences.edit()
+                        .putInt(KEY_DDI, spinnerDDI.selectedItemPosition)
+                        .putLong(KEY_PHONE, editTextPhone.text.toString().toLong())
+                        .putString(KEY_DEFAULT_MSG, message)
+                        .apply()
 
-                // Exibir uma mensagem de sucesso
-                Toast.makeText(this, getString(R.string.preferences_success), Toast.LENGTH_SHORT)
-                    .show()
+                    // Exibir uma mensagem de sucesso
+                    Toast.makeText(this, getString(R.string.preferences_success), Toast.LENGTH_SHORT)
+                        .show()
+                } catch (e: NumberFormatException) {
+                    Toast.makeText(this, "Número de telefone inválido", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
@@ -162,13 +107,13 @@ class Configuracoes : AppCompatActivity() {
                         .remove(KEY_DEFAULT_MSG)
                         .apply()
 
-                    // Carrega as novas preferências (refresh do Fernandinho)
+                    // Carrega as novas preferências
                     loadPreferences(preferences)
                 }
                 .setNegativeButton("Não", null)
                 .create()
                 .show()
-        } // Fim do restaurar
+        }
     }
 
     // Método para carregar preferências e atualizar a UI
@@ -182,9 +127,6 @@ class Configuracoes : AppCompatActivity() {
             )
         )
     }
-
-
-
 
     // Método para verificar se a mensagem contém palavras proibidas
     private fun containsPalavrasProibidas(message: String): Boolean {

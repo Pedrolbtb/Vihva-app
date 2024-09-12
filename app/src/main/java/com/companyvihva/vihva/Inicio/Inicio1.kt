@@ -30,7 +30,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.Alarme.ConfigFrequencia
-import com.companyvihva.vihva.Configurações.Configuracoes
+import com.companyvihva.vihva.Configuracoes.Configuracoes
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.AdicionarDoenca.AdicionarDoenca
 import com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter.AdapterDoenca
@@ -307,14 +307,14 @@ private fun setupRecyclerView2(view: View) {
                         "Mensagem padrão não definida"
                     )
 
+                    val phone = preferences.getLong(Configuracoes.KEY_PHONE, 0L)
+
                     val smsMessage = "$savedMessage\nhttps://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}"
 
                     val smsManager: SmsManager = SmsManager.getDefault()
 
-
-
                     smsManager.sendTextMessage(
-                        preferences.getString("phone",""),
+                        phone.toString(),
                         null,
                         smsMessage,
                         null,
@@ -342,6 +342,4 @@ private fun setupRecyclerView2(view: View) {
             }
             }
         }
-
-
 }

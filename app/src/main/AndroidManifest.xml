@@ -128,7 +128,7 @@
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Configurações.Configuracoes"
+            android:name=".Configuracoes.Configuracoes"
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
