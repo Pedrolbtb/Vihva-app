@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -125,6 +126,11 @@ class ConfigNotificacoes : AppCompatActivity() {
 
         val notificationManager = NotificationManagerCompat.from(this)
         val channelId = "friend_request_channel_id"
+
+        val btnVoltar = findViewById<ImageButton>(R.id.btnVoltarNotifiq)
+        btnVoltar.setOnClickListener {
+            finish()
+        }
 
         // Criar o canal de notificação para Android 8.0 e superior
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

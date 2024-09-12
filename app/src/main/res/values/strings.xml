@@ -343,7 +343,7 @@ Dúvidas podem ser esclarecidas através do e-mail: vivahproject475@gmail.com.
     //sistema de amizade e notificações
     <string name="text_rejeitar">Rejeitar</string>
     <string name="text_aceitar">Aceitar</string>
-    <string name="text_list_amizade">Meus amigos</string>
+    <string name="text_list_amizade">Meus médicos</string>
     <string name="text_desfaz_amizade">Desfazer Amizade</string>
 
 
