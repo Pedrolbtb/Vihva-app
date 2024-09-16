@@ -53,6 +53,10 @@ class ConfigNotificacoes : AppCompatActivity() {
         }
         recyclerView.adapter = adapter
 
+        val btnVoltar = findViewById<ImageButton>(R.id.btnVoltarNotifiq)
+            .setOnClickListener {
+            finish()
+        }
         carregarSolicitacoesAmizade()
         monitorarSolicitacoesDeAmizade()
 

@@ -64,6 +64,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_descAlarme"
         style="@style/layout_campos"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
         android:layout_marginBottom="300dp"
         android:textColor="@color/Letras"
         app:expandedHintEnabled="false"
@@ -105,6 +107,19 @@
         app:layout_constraintStart_toStartOf="@id/containerAlarme"
         app:layout_constraintTop_toTopOf="@+id/containerAlarme" />
 
+    <ImageView
+        android:id="@+id/seta_legal"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="300dp"
+        app:layout_constraintBottom_toBottomOf="@+id/container_programacaoRemedio"
+        app:layout_constraintEnd_toEndOf="@+id/container_programacaoRemedio"
+        app:layout_constraintStart_toStartOf="@+id/container_programacaoRemedio"
+        app:layout_constraintTop_toTopOf="@id/containerAlarme"
+        tools:srcCompat="@drawable/arrow_right" />
+
+
     <TextView
         android:id="@+id/programacaoalarme"
         style="@style/text_botoesAlarme"
@@ -142,6 +157,17 @@
         app:layout_constraintStart_toStartOf="@id/containerAlarme"
         app:layout_constraintTop_toBottomOf="@+id/container_programacaoRemedio" />
 
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        tools:srcCompat="@drawable/arrow_right"
+        android:layout_marginTop="125dp"
+        android:layout_marginStart="300dp"
+        app:layout_constraintBottom_toBottomOf="@id/containerAlarme"
+        app:layout_constraintTop_toTopOf="@id/containerAlarme"
+        app:layout_constraintEnd_toEndOf="@id/containerAlarme"
+        app:layout_constraintStart_toStartOf="@id/containerAlarme"/>
 
     <TextView
         android:id="@+id/estoque"

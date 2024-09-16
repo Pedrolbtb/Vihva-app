@@ -43,10 +43,9 @@
         android:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.506" />
+        />
 
     <View
         android:id="@+id/container_Frequencia"
@@ -62,6 +61,18 @@
         app:layout_constraintEnd_toEndOf="@id/View_Programacao"
         app:layout_constraintStart_toStartOf="@id/View_Programacao"
         app:layout_constraintTop_toTopOf="@+id/View_Programacao" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        tools:srcCompat="@drawable/arrow_right"
+        android:layout_marginBottom="485dp"
+        android:layout_marginStart="300dp"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@id/View_Programacao"
+        app:layout_constraintTop_toTopOf="@id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao"/>
 
     <TextView
         android:id="@+id/programacaoalarme"
@@ -102,6 +113,18 @@
         app:layout_constraintEnd_toEndOf="@id/View_Programacao"
         app:layout_constraintStart_toStartOf="@id/View_Programacao"
         app:layout_constraintTop_toBottomOf="@id/container_Frequencia" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        tools:srcCompat="@drawable/arrow_right"
+        android:layout_marginBottom="340dp"
+        android:layout_marginStart="300dp"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@id/View_Programacao"
+        app:layout_constraintTop_toTopOf="@id/View_Programacao"
+        app:layout_constraintEnd_toEndOf="@id/View_Programacao"
+        app:layout_constraintStart_toStartOf="@id/View_Programacao"/>
 
     <TextView
         android:id="@+id/duracaodolembrete"
@@ -199,13 +222,7 @@
         app:layout_constraintTop_toBottomOf="@+id/hora_apartir"
         app:layout_constraintVertical_bias="1.0" />
 
-    <LinearLayout
-        android:id="@+id/layouthora"
-        android:layout_width="346dp"
-        android:layout_height="300dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"></LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

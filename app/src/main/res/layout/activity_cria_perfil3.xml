@@ -39,11 +39,11 @@
         style="@style/Button_salvar"
         android:layout_marginStart="8dp"
         android:text="@string/text_salvar"
-        android:layout_marginTop="640dp"
+        android:layout_marginTop="525dp"
         app:layout_constraintBottom_toBottomOf="@id/containerComponents"
         app:layout_constraintEnd_toEndOf="@id/containerComponents"
         app:layout_constraintStart_toStartOf="@id/containerComponents"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/containerComponents" />
 
         <TableRow
             android:id="@+id/table_tabagismo"
