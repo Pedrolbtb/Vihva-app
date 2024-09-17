@@ -6,7 +6,7 @@
     android:elevation="2dp"
     android:layout_marginBottom="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background_notifiq">
+    android:background="@drawable/background_widget">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_fotoitem"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text=""
-        android:textColor="@color/off_white"
+        android:textColor="@color/Letras"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnAceitar"
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text=""
-        android:textColor="@color/off_white"
+        android:textColor="@color/Letras"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -91,7 +91,7 @@
         android:textSize="15dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="Solitição de Amizade "
-        android:textColor="@color/off_white"
+        android:textColor="@color/Letras"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.659"

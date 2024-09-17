@@ -49,6 +49,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/circular"
+                android:src="@drawable/duda"
                 app:civ_border_color="@color/Letras"
                 app:civ_border_width="1dp"
                 tools:src="@drawable/duda" />
@@ -59,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:text="Maria Eduarda Schmidt"
+                android:text="Maria Eduarda Shimidt"
                 android:textSize="25sp" />
 
             <TextView
@@ -77,6 +78,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/circular"
+                android:src="@drawable/rita"
                 app:civ_border_color="@color/Letras"
                 app:civ_border_width="1dp"
                 tools:src="@drawable/rita" />
@@ -95,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Bravinha e fã do nicão"
+                android:text="Bravinha e fã do caique das revoada"
                 android:textColor="@color/hint"
                 android:textSize="20sp" />
 
@@ -105,6 +107,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/circular"
+                android:src="@drawable/nicolas"
                 app:civ_border_color="@color/Letras"
                 app:civ_border_width="1dp"
                 tools:src="@drawable/nicolas" />
@@ -133,6 +136,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/circular"
+                android:src="@drawable/pedrao"
                 app:civ_border_color="@color/Letras"
                 app:civ_border_width="1dp" />
 
@@ -160,6 +164,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/circular"
+                android:src="@drawable/mumuzinho"
                 app:civ_border_color="@color/Letras"
                 app:civ_border_width="1dp"
                 tools:src="@drawable/mumuzinho" />
