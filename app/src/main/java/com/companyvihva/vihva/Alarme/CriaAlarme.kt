@@ -106,7 +106,7 @@ class CriaAlarme : AppCompatActivity() {
         findViewById<Button>(R.id.btn_salvarAlarme).setOnClickListener {
             observacao()
             requestAlarmPermissionsAndSchedule()
-            iniciarFragment()
+        //    openfragment_alarme()
         }
 
         findViewById<ImageButton>(R.id.btnVoltar).setOnClickListener {
@@ -115,6 +115,22 @@ class CriaAlarme : AppCompatActivity() {
         }
     }
 
+    //*private fun openfragment_alarme() {
+        // Verifica se o FragmentX já está presente no FragmentManager
+    //    val openfragment_alarme = supportFragmentManager.findFragmentByTag(Alarme()::class.java.simpleName)
+
+    //    if (openfragment_alarme == null) {
+     //       // Cria uma nova instância do FragmentX
+      //      val newFragmentX = Alarme()
+
+      // Adiciona o fragmento usando uma transação
+    //        supportFragmentManager.beginTransaction()
+   //             .replace(R.id.fragment_alarme, container, Alarme::class.java.simpleName)
+   //             .addToBackStack(null) // Opcional: Adiciona ao back stack para permitir navegação de volta
+   //             .commit()
+ //       }
+ //   }
+//}
 
     private fun observacao() {
         val user = auth.currentUser
@@ -146,15 +162,6 @@ class CriaAlarme : AppCompatActivity() {
                 }
         }
     }
-
-    private fun iniciarFragment() {
-        val alarme = Alarme()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.Lista_alarme, alarme)
-            .addToBackStack(null) // Opcional, se você deseja que o Fragment possa ser retornado com o botão de voltar
-            .commit()
-    }
-
     @RequiresApi(Build.VERSION_CODES.S)
     private fun requestAlarmPermissionsAndSchedule() {
         val permissions = arrayOf(Manifest.permission.POST_NOTIFICATIONS)

@@ -15,10 +15,10 @@ import com.companyvihva.vihva.Alarme.EscolhaRemedio
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.Adapter_alarme
 import com.companyvihva.vihva.com.companyvihva.vihva.model.tipo_alarme
-
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
+@Suppress("UNREACHABLE_CODE")
 class Alarme : Fragment() {
 
     private lateinit var preferences: SharedPreferences
@@ -29,6 +29,8 @@ class Alarme : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
+       // return inflater.inflate(R.layout.fragment_alarme, container, false)
         val rootView = inflater.inflate(R.layout.fragment_alarme, container, false)
 
         preferences = requireActivity().getSharedPreferences("vihva", Context.MODE_PRIVATE)
@@ -50,7 +52,8 @@ class Alarme : Fragment() {
 
         return rootView
     }
-    private fun fetchAlarmes() {
+
+    fun fetchAlarmes() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val db = FirebaseFirestore.getInstance()
 
@@ -60,12 +63,9 @@ class Alarme : Fragment() {
                 val listaAlarmes = mutableListOf<tipo_alarme>()
                 for (document in result) {
                     val descricao = document.getString("descricao") ?: "Descrição não disponível"
-                    val nomeRemedio = document.getString("remedioId") ?: "Nome do remédio não disponivel"
-                    val imageRemedio = document.getString("remedioId") ?: "Imagem do remédio não disponivel"
-                    val frequencia = document.getString("frequencia") ?: "frequencia não disponivel"
-                    listaAlarmes.add(tipo_alarme(descricao,nomeRemedio,frequencia ))
-
-
+                    val nomeRemedio = document.getString("remedioId") ?: "Nome do remédio não disponível"
+                    val frequencia = document.getString("frequencia") ?: "Frequência não disponível"
+                    listaAlarmes.add(tipo_alarme(descricao, nomeRemedio, frequencia))
                 }
                 // Atualizando o adapter com a lista de alarmes
                 adapter = Adapter_alarme(listaAlarmes, requireContext())
@@ -73,18 +73,6 @@ class Alarme : Fragment() {
             }
             .addOnFailureListener { e ->
                 // Tratar falha de carregamento
-            }
-    }
-
-    private fun saveData(hour: Int, minute: Int) {
-        val dadosCliente = hashMapOf("hora" to hour, "minuto" to minute)
-        val db = FirebaseFirestore.getInstance()
-        db.collection("alarme").add(dadosCliente)
-            .addOnSuccessListener { documentReference ->
-                // Toast.makeText(requireContext(), "Dados salvos com sucesso", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener { e ->
-                // Toast.makeText(requireContext(), "Erro ao salvar os dados: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -98,5 +86,10 @@ class Alarme : Fragment() {
     private fun irParaEscolheRemedio() {
         val telaCriaAlarme = Intent(requireActivity(), EscolhaRemedio::class.java)
         startActivity(telaCriaAlarme)
+    }
+
+    // Método para atualizar a lista de alarmes
+    fun updateAlarmes() {
+        fetchAlarmes()
     }
 }
