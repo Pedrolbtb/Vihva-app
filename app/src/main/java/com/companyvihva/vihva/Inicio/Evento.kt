@@ -1,20 +1,28 @@
 package com.companyvihva.vihva.Evento
 
 import MedicoAdapter
+import android.annotation.SuppressLint
 import android.app.ActivityOptions
 import android.app.AlarmManager
+import android.app.AlertDialog
 import android.app.PendingIntent
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Spinner
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import com.companyvihva.vihva.NotificationReceiver
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.model.medico_spinner
@@ -119,6 +127,22 @@ class Evento : AppCompatActivity() {
                 finish()
             }
         }
+
+        var currentUserUid: String? = "exemplo_uid"
+        val btnCodigo = findViewById<ImageButton>(R.id.interrogacao) // Remova ImageButton
+        btnCodigo.setOnClickListener {
+            currentUserUid?.let { uid ->
+                val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                val clip = ClipData.newPlainText("UID", uid)
+                clipboard.setPrimaryClip(clip)
+                Toast.makeText(
+                    this, // Use apenas this
+                    "Código do usuário copiado para área de transferência",
+                    Toast.LENGTH_SHORT
+                ).show()
+                mostrarpopupcodigo(uid)
+            }
+        }
     }
 
     // Carrega a lista de médicos do Firebase
@@ -189,5 +213,24 @@ class Evento : AppCompatActivity() {
             calendar.timeInMillis,
             pendingIntent
         )
+    }
+
+    @SuppressLint("MissingInflatedId")
+    private fun mostrarpopupcodigo(uid: String) {
+        val inflater = LayoutInflater.from(this)
+        val builder = AlertDialog.Builder(this)
+        val popupView = inflater.inflate(R.layout.popup_codigo, null)
+        val btnCancelar = popupView.findViewById<ImageButton>(R.id.btnCancelar)
+        val textViewCodigo = popupView.findViewById<TextView>(R.id.textView_codigo)
+
+        textViewCodigo.text = uid
+
+        builder.setView(popupView)
+        val alertDialog = builder.create()
+        alertDialog.show()
+
+        btnCancelar.setOnClickListener {
+            alertDialog.dismiss()
+        }
     }
 }
