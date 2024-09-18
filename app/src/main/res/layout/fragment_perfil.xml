@@ -163,19 +163,20 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginStart="52dp"
-            android:layout_marginBottom="190dp"
+            android:layout_marginBottom="180dp"
             android:layout_marginEnd="55dp"
             android:elevation="4dp"
             android:fontFamily="@font/cloudsoft_bold_700"
-            android:gravity="top"
             android:textColor="@color/black"
             android:textSize="18sp"
+            android:textAlignment="center"
             android:scrollbarAlwaysDrawVerticalTrack="true"
             app:layout_constraintBottom_toBottomOf="@id/container_bio"
             app:layout_constraintEnd_toEndOf="@id/container_bio"
             app:layout_constraintStart_toStartOf="@id/container_bio"
             app:layout_constraintTop_toTopOf="@id/container_bio"
-            android:text="Erro ao puxar sua biografia"/>
+            android:text="Erro ao puxar sua biografia"
+            tools:ignore="RtlCompat" />
 
         <TextView
             android:id="@+id/titulo_habitos"

@@ -16,19 +16,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/text_doenca_e_remedio"
+        android:layout_marginBottom="580dp"
+        android:textColor="#60AD9C"
+        android:text="@string/text_adicionarRemedio"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
     <androidx.appcompat.widget.SearchView
         android:id="@+id/SearchRemedio2"
-        android:layout_width="358dp"
-        android:layout_height="53dp"
+        android:layout_width="360dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/background_search_remedio"
         app:iconifiedByDefault="false"
         app:layout_constraintBottom_toTopOf="@+id/recyclerview_nova_lista"
         app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintHorizontal_bias="0.528"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.781"
         app:queryBackground="@android:color/transparent"
         app:queryHint="Buscar Remedio" />
 
@@ -37,12 +48,11 @@
         android:layout_width="360dp"
         android:layout_height="480dp"
         android:elevation="2dp"
+        android:layout_marginTop="180dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.685"
         android:scrollbars="vertical"
         android:scrollbarThumbVertical="@color/letras_remedios"
         android:verticalScrollbarPosition="left"

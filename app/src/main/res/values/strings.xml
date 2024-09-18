@@ -3,6 +3,8 @@
 
     <string name="text_horas">horas</string>
 
+    <string name="text_textnaotemdoenca">Você ainda não tem tratamentos cadastrados</string>
+
     <string name="text_sobrenos">Sobre nós</string>
 
     <string name="text_criadores">Idealizadores</string>

@@ -63,12 +63,12 @@
         android:id="@+id/layout_altura"
         style="@style/layout_campos"
         android:elevation="4dp"
-        app:suffixText="cm"
         android:textColor="@color/Letras"
         app:expandedHintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/containerComponents"
+        app:suffixText="cm"
         app:suffixTextColor="@color/hint">
 
         <!-- campos de altura-->
@@ -88,13 +88,13 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_peso"
         style="@style/layout_campos"
-        app:suffixText="kg"
-        android:textColor="@color/Letras"
         android:elevation="4dp"
+        android:textColor="@color/Letras"
         app:expandedHintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_altura"
+        app:suffixText="kg"
         app:suffixTextColor="@color/hint">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -113,8 +113,8 @@
         android:id="@+id/txt_genero"
         style="@style/text"
         android:layout_marginTop="10dp"
-        android:text="@string/text_genero"
         android:elevation="4dp"
+        android:text="@string/text_genero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_peso" />
@@ -123,8 +123,8 @@
         android:id="@+id/radioGroup"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:orientation="horizontal"
         android:elevation="4dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_genero">
@@ -155,6 +155,7 @@
             style="@style/Radio_Button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginBottom="17dp"
             android:text="@string/text_cnao"
             android:textColor="@color/Letras"
             android:textSize="14sp" />
@@ -187,4 +188,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/containerComponents" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.64" />
 </androidx.constraintlayout.widget.ConstraintLayout>

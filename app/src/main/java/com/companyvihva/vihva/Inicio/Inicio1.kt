@@ -57,6 +57,7 @@ class Inicio1 : Fragment() {
     private lateinit var recyclerview_doenca: RecyclerView
     private lateinit var recyclerViewRemedioAdicionado: RecyclerView
     private lateinit var textview_naotemremedio: TextView
+    private lateinit var textview_naotemdoenca: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,6 +67,7 @@ class Inicio1 : Fragment() {
         textview_naotemremedio = view.findViewById(R.id.textview_naotemremedio)
         recyclerViewRemedioAdicionado = view.findViewById(R.id.Recyclerview_remedioAdicionado)
         recyclerview_doenca = view.findViewById(R.id.recyclerview_doenca) // Adicionado setup aqui
+        textview_naotemdoenca = view.findViewById(R.id.textview_naotemdoenca)
 
         db = FirebaseFirestore.getInstance()
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
@@ -99,12 +101,24 @@ class Inicio1 : Fragment() {
 
         val imageLixeiraGlobal: ImageView = view.findViewById(R.id.image_lixeira_global)
         imageLixeiraGlobal.setOnClickListener {
-            deletarArrayRemedios()
-
+            showConfirmDeleteDialog()
         }
 
         return view
 
+    }
+
+    private fun showConfirmDeleteDialog(){
+        androidx.appcompat.app.AlertDialog.Builder(requireContext()).apply {
+            setTitle("Confirmação de exclusão")
+            setMessage("Tem certeza que deseja excluir todos os medicamentos? Você pode adiciona-lo novamente na lista de remédios")
+            setPositiveButton("Sim") {_, _ ->
+                deletarArrayRemedios()
+            }
+            setNegativeButton("Não", null)
+            create()
+            show()
+        }
     }
 
     // Configuração da RecyclerView para remédios
@@ -206,8 +220,12 @@ private fun setupRecyclerView2(view: View) {
                     if (document != null && document.exists()) {
                         val doencaIds = document.get("doenca") as? List<String>
                         if (doencaIds.isNullOrEmpty()) {
+                            textview_naotemdoenca.visibility = View.VISIBLE
+                            recyclerview_doenca.visibility = View.GONE
                             Log.d("Inicio1", "Nenhuma doença encontrada")
                         } else {
+                            textview_naotemdoenca.visibility = View.GONE
+                            recyclerview_doenca.visibility = View.VISIBLE
                             for (doencaId in doencaIds) {
                                 fetchDadosDoFirebase2(doencaId)
                             }

@@ -8,31 +8,23 @@
     android:background="@drawable/background_remedios">
 
     <ImageButton
-        android:id="@+id/btn_voltarpop"
-        android:layout_width="53dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="32dp"
+        android:id="@+id/btn_voltarListaRe"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:scaleType="fitCenter"
-        android:src="@drawable/arrow_voltar_verde"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
+        android:src="@drawable/arrow_voltar_vermelho"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageButton
         android:id="@+id/lixeira_remedios"
-
         android:layout_width="50dp"
+        android:layout_marginTop="10dp"
         android:layout_height="50dp"
-        android:layout_marginStart="316dp"
-        android:layout_marginTop="32dp"
         android:background="#00FFFFFF"
         android:src="@drawable/delete_lista"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/btn_voltarpop"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
@@ -79,22 +71,6 @@
         app:layout_constraintStart_toStartOf="@id/view_descRemedio"
         app:layout_constraintTop_toBottomOf="@+id/nomere"
         />
-
-    <androidx.appcompat.widget.AppCompatButton
-
-        android:id="@+id/btn_add_alarme"
-        android:layout_width="162dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/button"
-        android:fontFamily="@font/cloudsoft_bold_700"
-        android:text="@string/text_adc_alarme"
-        android:textColor="@color/off_white"
-        app:layout_constraintBottom_toBottomOf="@id/view_descRemedio"
-        app:layout_constraintEnd_toEndOf="@id/view_descRemedio"
-        app:layout_constraintStart_toStartOf="@+id/view_descRemedio"
-        app:layout_constraintTop_toBottomOf="@+id/descricao1"
-        app:layout_constraintVertical_bias="0.45" />
 
     <View
         android:layout_width="130dp"

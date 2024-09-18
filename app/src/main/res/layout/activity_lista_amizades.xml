@@ -11,6 +11,7 @@
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/SearchView"
+        android:background="@drawable/background_search_remedio"
         android:layout_width="358dp"
         android:layout_height="53dp"
         android:layout_marginTop="40dp"

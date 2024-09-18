@@ -67,10 +67,7 @@ class Inicio : AppCompatActivity() {
     }
 
     private fun loadDoencaData() {
-        // Referência ao documento/coleção no Cloud Firestore
         val doencaRef = db.collection("doenca").document("diabetes")
-
-
     }
 
     fun irParaTelaConfig(view: View) {

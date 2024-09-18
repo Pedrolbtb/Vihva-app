@@ -66,7 +66,7 @@
         android:layout_width="155dp"
         android:layout_height="52dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="170dp"
+        android:layout_marginEnd="160dp"
         android:background="@drawable/button_verde"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:text="@string/text_adc_remed"
@@ -76,21 +76,36 @@
         app:layout_constraintStart_toStartOf="@id/view_descRemedio"
         app:layout_constraintTop_toBottomOf="@+id/descricao1" />
 
-    <androidx.appcompat.widget.AppCompatButton
 
-        android:id="@+id/btn_add_alarme"
-        android:layout_width="162dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="170dp"
-        android:background="@drawable/button"
-        android:fontFamily="@font/cloudsoft_bold_700"
-        android:text="@string/text_adc_alarme"
-        android:textColor="@color/off_white"
-        app:layout_constraintBottom_toBottomOf="@id/view_descRemedio"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_miligrama"
+        style="@style/layout_campos"
+        app:suffixText="mg"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="180dp"
+        android:textColor="@color/letras_remedios"
+        android:layout_marginTop="490dp"
+        android:elevation="4dp"
+        app:expandedHintEnabled="false"
         app:layout_constraintEnd_toEndOf="@id/view_descRemedio"
         app:layout_constraintStart_toStartOf="@id/view_descRemedio"
-        app:layout_constraintTop_toBottomOf="@+id/descricao1" />
+        app:layout_constraintTop_toTopOf="@+id/view_descRemedio"
+        app:layout_constraintBottom_toBottomOf="@id/view_descRemedio"
+        app:suffixTextColor="@color/hint">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_peso"
+            style="@style/Edit_Text_Login"
+            android:background="@drawable/campo_mg"
+            android:drawableTint="@color/letras_remedios"
+            android:inputType="number"
+            android:maxLength="3"
+            android:hint=""
+            android:nextFocusForward="@id/edit_senha"
+            android:textColor="@color/letras_remedios"
+            android:textColorHint="@color/hint" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <View
         android:layout_width="130dp"
