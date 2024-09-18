@@ -94,16 +94,32 @@
 
     <Spinner
         android:id="@+id/medicoSpinner"
-        android:layout_width="302dp"
+        android:layout_width="260dp"
         android:layout_height="59dp"
         android:background="@drawable/spinner"
         android:elevation="345dp"
         android:gravity="top"
         android:layout_marginTop="130dp"
+        android:layout_marginEnd="50dp"
         app:layout_constraintBottom_toBottomOf="@+id/container_descricao"
         app:layout_constraintEnd_toEndOf="@+id/container_descricao"
         app:layout_constraintStart_toStartOf="@+id/container_descricao"
         app:layout_constraintTop_toTopOf="@+id/View_Consulta" />
+
+    <ImageButton
+        android:id="@+id/interrogacao"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:backgroundTint="#00FFFFFF"
+        android:src="@drawable/baseline_question_mark_24"
+        android:elevation="1dp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="130dp"
+        app:layout_constraintBottom_toBottomOf="@+id/container_descricao"
+        app:layout_constraintEnd_toEndOf="@+id/container_descricao"
+        app:layout_constraintStart_toStartOf="@+id/container_descricao"
+        app:layout_constraintTop_toTopOf="@+id/View_Consulta"
+        tools:src="@drawable/baseline_question_mark_24" />
 
     <TextView
         android:id="@+id/descricao_evento"
