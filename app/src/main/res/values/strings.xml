@@ -323,6 +323,8 @@ Dúvidas podem ser esclarecidas através do e-mail: vivahproject475@gmail.com.
 
 </string>
 
+    <string name="text_manual">Manual do usuário</string>
+
     /////////HABITOS//////////
     <string name="text_habitos">Conte nos seus hábitos</string>
     <string name="text_tabagismo">Tabagismo</string>
