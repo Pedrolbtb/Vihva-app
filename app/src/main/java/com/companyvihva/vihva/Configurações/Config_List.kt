@@ -26,11 +26,6 @@ class Config_List : AppCompatActivity() {
             onBackPressed()
         }
 
-        /// findViewById<ImageButton>(R.id.voltar_configList).setOnClickListener {
-        //    val telaInicio = Intent(this, Inicio::class.java)
-          //  startActivity(telaInicio)
-       //  }
-
         findViewById<TableRow>(R.id.button_configList_deleteconta).setOnClickListener {
             val telaDelete = Intent(this, Config_DeletarPerfil::class.java)
             startActivity(telaDelete)
@@ -40,6 +35,12 @@ class Config_List : AppCompatActivity() {
         val btnSobrenos = findViewById<TableRow>(R.id.button_configList_sobrenos).setOnClickListener {
             val telaDelete = Intent(this, Config_Sobrenos::class.java)
             startActivity(telaDelete)
+            finish()
+        }
+
+        val btnManual = findViewById<TableRow>(R.id.button_configlist_manual).setOnClickListener {
+            val telaManu = Intent(this,Configuracoes_manual_usuario::class.java)
+            startActivity(telaManu)
             finish()
         }
 

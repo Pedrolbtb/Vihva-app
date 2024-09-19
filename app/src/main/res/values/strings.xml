@@ -232,18 +232,22 @@
 
     <string name="text_restaurar">Restaurar</string>
 
+    <string name="text_sos_titulo">Configurações SOS</string>
+
+    <string name="text_titulo_configuracoes_principal">Configurações</string>
+
     <string name="text_titulo_add_doenca">Adicionar tratamentos</string>
 
     <array name="ddi">
-        <item> DDI +55 </item>
-        <item> DDI +54 </item>
-        <item> DDI +1 </item>
-        <item> DDI +7 </item>
-        <item> DDI +61 </item>
-        <item> DDI +91 </item>
-        <item> DDI +595 </item>
-        <item> DDI +39 </item>
-        <item> DDI +40 </item>
+        <item>DDI +55</item>
+        <item>DDI +54</item>
+        <item>DDI +1</item>
+        <item>DDI +7</item>
+        <item>DDI +61</item>
+        <item>DDI +91</item>
+        <item>DDI +595</item>
+        <item>DDI +39</item>
+        <item>DDI +40</item>
     </array>
 
     <array name="TipoMed">
@@ -325,8 +329,6 @@ Dúvidas podem ser esclarecidas através do e-mail: vivahproject475@gmail.com.
 
 </string>
 
-    <string name="text_manual">Manual do usuário</string>
-
     /////////HABITOS//////////
     <string name="text_habitos">Conte nos seus hábitos</string>
     <string name="text_tabagismo">Tabagismo</string>
@@ -350,6 +352,9 @@ Dúvidas podem ser esclarecidas através do e-mail: vivahproject475@gmail.com.
     <string name="text_list_amizade">Meus médicos</string>
     <string name="text_desfaz_amizade">Desfazer Amizade</string>
 
+    /////MANUAL DO USUARIO//////////
+
+    <string name="text_manual">Manual do usuário</string>
 
 </resources>
 

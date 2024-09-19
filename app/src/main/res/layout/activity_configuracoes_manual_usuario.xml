@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/off_white"
+    tools:context=".Configurações.Configuracoes_manual_usuario">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <ImageButton
+            android:id="@+id/btnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="start"
+            android:layout_marginTop="10dp"
+            android:background="#00FFFFFF"
+            android:src="@drawable/arrow_voltar_vermelho"/>
+
+
+        <TextView
+            style="@style/titulo_criaperfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:text="@string/text_manual" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="581dp"
+            >
+
+            <TableRow
+                android:id="@+id/ManuInicio"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/container_linha"
+                >
+
+                <TextView
+                    style="@style/text_doenca_e_remedio"
+                    android:layout_width="330dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="30dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/config_btn_sos"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="30dp"
+                    app:srcCompat="@drawable/seta_direita" />
+            </TableRow>
+
+
+        </TableLayout>
+
+    </LinearLayout>
+</ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,12 +22,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        style="@style/titulo_criaperfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/text_titulo_configuracoes_principal"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="411dp"
         android:layout_height="638dp"
-        android:layout_marginTop="65dp"
-
+        android:layout_marginTop="115dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

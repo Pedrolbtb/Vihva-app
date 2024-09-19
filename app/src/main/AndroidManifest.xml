@@ -32,6 +32,9 @@
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
         <activity
+            android:name=".Configurações.Configuracoes_manual_usuario"
+            android:exported="false" />
+        <activity
             android:name=".Configurações.Config_Sobrenos"
             android:exported="false" />
         <activity
