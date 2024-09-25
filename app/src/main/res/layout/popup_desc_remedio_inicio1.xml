@@ -8,7 +8,7 @@
     android:background="@drawable/background_remedios">
 
     <ImageButton
-        android:id="@+id/btn_voltarListaRe"
+        android:id="@+id/btn_voltarpop"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:background="?attr/selectableItemBackgroundBorderless"
