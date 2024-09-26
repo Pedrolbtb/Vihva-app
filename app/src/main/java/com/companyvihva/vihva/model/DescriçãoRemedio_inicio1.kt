@@ -36,7 +36,6 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
 
         // Inicializa as views
         nomeTextView = findViewById(R.id.nomere)
-        descricaoTextView = findViewById(R.id.descricao1)
         urlImageView = findViewById(R.id.foto_Remedio)
 
         // Busca os dados do remédio no Firebase usando o ID
@@ -65,7 +64,6 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
         docRef.get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
-                    val descricao = document.getString("descricao")
                     val url = document.getString("Url")
                     val nome = document.getString("nome")
                     // Carrega a imagem usando o Picasso se a URL estiver disponível
@@ -74,7 +72,6 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
                     }
                     // Atualiza os TextViews com os dados do remédio
                     nomeTextView.text = nome
-                    descricaoTextView.text = descricao
                 } else {
                     Log.d("DescriçãoRemedio_inicio1", "Documento não encontrado")
                 }

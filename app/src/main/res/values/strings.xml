@@ -9,6 +9,10 @@
 
     <string name="text_criadores">Idealizadores</string>
 
+    <string name="text_observacao_medicamento">Observações do medicamento</string>
+
+    <string name="text_prescrição">Prescrito por</string>
+
     <string name="text_seg">Seg</string>
 
     <string name="text_terca">Ter</string>

@@ -155,6 +155,7 @@ class Perfil : Fragment() {
 
         builder.setView(popupView)
         val alertDialog = builder.create()
+        alertDialog.window?.setDimAmount(0.10f)
         alertDialog.show()
 
         btnCancelar.setOnClickListener {
