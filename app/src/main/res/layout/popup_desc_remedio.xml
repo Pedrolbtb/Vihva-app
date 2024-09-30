@@ -61,7 +61,6 @@
         />
 
     <androidx.appcompat.widget.AppCompatButton
-
         android:id="@+id/btn_add_remédio"
         android:layout_width="155dp"
         android:layout_height="52dp"

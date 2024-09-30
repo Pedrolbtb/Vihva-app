@@ -27,6 +27,10 @@
 
     <string name="text_domingo">Dom</string>
 
+    <string name="text_confirm">Confirmar</string>
+
+    <string name="text_receitadoem">Receitado em</string>
+
     <string name="text_lembreme">Lembre-me até</string>
 
     <string name="text_lembreas">Lembre-as</string>
