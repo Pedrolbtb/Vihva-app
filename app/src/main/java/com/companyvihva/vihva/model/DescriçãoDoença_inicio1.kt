@@ -34,7 +34,6 @@ class DescriçãoDoença_inicio1 : AppCompatActivity() {
     private var medicoMap: MutableMap<String, String> = mutableMapOf()
     private var formattedDate: String? = null
     private lateinit var nomeTextView: TextView
-    private lateinit var textViewCalendario: TextView
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +47,7 @@ class DescriçãoDoença_inicio1 : AppCompatActivity() {
         // Inicializa as Views
         medicoSpinner = findViewById(R.id.medicoSpinner)
         urlImageView = findViewById(R.id.foto_Doenca)
-        textViewCalendario = findViewById(R.id.textView_receitado)
+        val textViewCalendario = findViewById<TextView>(R.id.textView_receitado)
 
         nomeTextView = findViewById(R.id.nomeDoenca)
 

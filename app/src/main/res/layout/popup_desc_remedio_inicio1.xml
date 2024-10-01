@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/off_white">
+
+    android:background="@drawable/background_remedios">
 
 
     <View
@@ -86,6 +87,7 @@
         <ImageView
             android:id="@+id/foto_Remedio"
             android:layout_width="126dp"
+            android:scaleType="centerCrop"
             android:layout_height="122dp"
             />
 
@@ -121,15 +123,16 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_descAlarme"
         style="@style/Edit_Text_Login"
+        android:background="@drawable/edit_text_verde"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_marginTop="50dp"
-        android:drawableTint="@color/Letras"
+        android:drawableTint="@color/letras_remedios"
         android:gravity="top"
         android:hint="@string/desc_alarme"
         android:inputType="textMultiLine"
         android:nextFocusForward="@id/edit_senha"
-        android:textColor="@color/Letras"
+        android:textColor="@color/letras_remedios"
         android:textColorHint="@color/hint"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@id/viewDescInicio1"
@@ -181,7 +184,7 @@
         android:layout_height="59dp"
         android:layout_marginTop="350dp"
         android:layout_marginEnd="180dp"
-        android:background="@drawable/spinner"
+        android:background="@drawable/spinner_verde"
         app:layout_constraintEnd_toEndOf="@id/viewDescInicio1"
         app:layout_constraintStart_toStartOf="@id/viewDescInicio1"
         app:layout_constraintTop_toTopOf="@id/viewDescInicio1"
@@ -191,7 +194,7 @@
     <TextView
         android:id="@+id/textView_receitado"
         style="@style/text_botoesAlarme"
-        android:background="@drawable/spinner"
+        android:background="@drawable/spinner_verde"
         android:layout_width="150dp"
         android:layout_height="59dp"
         android:textSize="18sp"
@@ -200,7 +203,7 @@
         android:paddingTop="18dp"
         android:paddingStart="10dp"
         android:drawablePadding="5dp"
-        android:textColor="@color/Letras"
+        android:textColor="@color/letras_remedios"
         android:layout_marginStart="175dp"
         app:layout_constraintStart_toStartOf="@id/viewDescInicio1"
         app:layout_constraintTop_toTopOf="@id/viewDescInicio1"

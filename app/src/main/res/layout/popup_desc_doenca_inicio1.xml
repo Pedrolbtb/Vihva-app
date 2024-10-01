@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/off_white">
+    android:background="@drawable/background_home">
 
 
     <View
@@ -86,7 +86,7 @@
         <ImageView
             android:id="@+id/foto_Doenca"
             android:layout_width="126dp"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:layout_height="122dp"
             />
 
@@ -117,7 +117,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.500684" />
+        app:layout_constraintGuide_percent="1.0" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_descAlarme"

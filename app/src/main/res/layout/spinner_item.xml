@@ -17,7 +17,6 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginEnd="88dp"
-
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,13 +29,12 @@
         android:id="@+id/medicoTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         style="@style/text"
         android:textSize="16sp"
+        android:textColor="@color/Letras"
+        android:layout_marginStart="50dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.248"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
