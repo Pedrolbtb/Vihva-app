@@ -1,9 +1,11 @@
 package com.companyvihva.vihva.com.companyvihva.vihva.model
 
+import MedicoAdapter
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -24,6 +26,10 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var nomeTextView: TextView
     private lateinit var urlImageView: ImageView
+    private lateinit var db:FirebaseFirestore
+    private lateinit var medicoSpinner: Spinner
+    private var listaMedicos: MutableList<medico_spinner> = mutableListOf()
+    private var medicoMap: MutableMap<String, String> = mutableMapOf() // Map para armazenar UIDs e nomes
     private lateinit var textViewCalendario: TextView // Initialize textViewCalendario
     private var remedioId: String? = null
     private var formattedDate: String? = null // To store selected date
@@ -35,6 +41,10 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
         // Initialize Firestore and FirebaseAuth
         firestore = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
+
+        // Inicializa o Spinner
+        medicoSpinner = findViewById(R.id.medicoSpinner)
 
         // Get the medicine ID passed by the Intent
         remedioId = intent.getStringExtra("remedioId")
@@ -75,6 +85,9 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
             }
             datePicker.show(supportFragmentManager, "DatePicker")
         }
+
+        carregarMedicos()
+
     }
 
     // Method to fetch medicine data from Firebase
@@ -130,5 +143,34 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
                     Log.w("DescricaoRemedioInicio1", "Erro ao remover remédio do array", e)
                 }
         }
+    }
+    private fun carregarMedicos() {
+        val userId = auth.currentUser?.uid ?: return
+        db.collection("clientes")
+            .document(userId)
+            .get()
+            .addOnSuccessListener { document ->
+                val medicosArray = document.get("medicos") as? List<String>
+                if (medicosArray != null) {
+                    val medicosList = mutableListOf<medico_spinner>()
+                    medicosArray.forEach { medicoUid ->
+                        db.collection("medicos").document(medicoUid).get().addOnSuccessListener { medicoDoc ->
+                            val nomeMedico = medicoDoc.getString("nome") ?: medicoUid
+                            val imageUrl = medicoDoc.getString("imageUrl") ?: ""
+                            val medico = medico_spinner(nomeMedico, imageUrl)
+                            medicosList.add(medico)
+                            medicoMap[medicoUid] = nomeMedico // Adiciona o UID e nome ao mapa
+
+                            // Atualiza o adapter do Spinner
+                            val adapter = MedicoAdapter(this, medicosList)
+                            medicoSpinner.adapter = adapter
+                        }
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e("Evento", "Error loading doctors", e)
+                // Trate o erro aqui, por exemplo, mostre uma mensagem de erro ao usuário
+            }
     }
 }

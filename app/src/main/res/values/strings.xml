@@ -25,6 +25,12 @@
 
     <string name="text_sabado">Sáb</string>
 
+    <string name="text_observacoes_doenca">Observações da doença</string>
+
+    <string name="desc_doenca">Insira observações sobre a doença</string>
+
+    <string name="desc_diagnostico">Diagnosticado em</string>
+
     <string name="text_domingo">Dom</string>
 
     <string name="text_confirm">Confirmar</string>
