@@ -20,7 +20,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.companyvihva.vihva.Inicio.Alarme
 import com.companyvihva.vihva.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -34,6 +33,7 @@ class CriaAlarme : AppCompatActivity() {
     private var documentId: String? = null
     private val PERMISSION_REQUEST_CODE = 100
     private var horaDiariamente: String? = null // Inicialize como null se não for passado na Intent
+    private var nome: String? = null // Variável nome para o remédio
 
     @RequiresApi(Build.VERSION_CODES.S)
     @SuppressLint("SetTextI18n")
@@ -55,7 +55,7 @@ class CriaAlarme : AppCompatActivity() {
         val lembreme = intent.getStringExtra("lembreme")
         val tipomed = intent.getStringExtra("tipomed")
         val switchEstoqueChecked = intent.getBooleanExtra("switchEstoque", false)
-        val nome = intent.getStringExtra("remedioId")
+        nome = intent.getStringExtra("remedioId") // Usando nome em vez de Nome
 
         val editnomeAlarme = findViewById<TextView>(R.id.layout_nome_alarme)
         editnomeAlarme.text = nome ?: "Nome não disponível"
@@ -106,7 +106,6 @@ class CriaAlarme : AppCompatActivity() {
         findViewById<Button>(R.id.btn_salvarAlarme).setOnClickListener {
             observacao()
             requestAlarmPermissionsAndSchedule()
-        //    openfragment_alarme()
         }
 
         findViewById<ImageButton>(R.id.btnVoltar).setOnClickListener {
@@ -114,23 +113,6 @@ class CriaAlarme : AppCompatActivity() {
             startActivity(telaEscolhaRemedio)
         }
     }
-
-    //*private fun openfragment_alarme() {
-        // Verifica se o FragmentX já está presente no FragmentManager
-    //    val openfragment_alarme = supportFragmentManager.findFragmentByTag(Alarme()::class.java.simpleName)
-
-    //    if (openfragment_alarme == null) {
-     //       // Cria uma nova instância do FragmentX
-      //      val newFragmentX = Alarme()
-
-      // Adiciona o fragmento usando uma transação
-    //        supportFragmentManager.beginTransaction()
-   //             .replace(R.id.fragment_alarme, container, Alarme::class.java.simpleName)
-   //             .addToBackStack(null) // Opcional: Adiciona ao back stack para permitir navegação de volta
-   //             .commit()
- //       }
- //   }
-//}
 
     private fun observacao() {
         val user = auth.currentUser
@@ -162,6 +144,7 @@ class CriaAlarme : AppCompatActivity() {
                 }
         }
     }
+
     @RequiresApi(Build.VERSION_CODES.S)
     private fun requestAlarmPermissionsAndSchedule() {
         val permissions = arrayOf(Manifest.permission.POST_NOTIFICATIONS)
@@ -224,8 +207,10 @@ class CriaAlarme : AppCompatActivity() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        // Abrir a Activity para desligar o alarme
-        val desligaAlarmeIntent = Intent(this, DesligarAlarme::class.java)
+        // Abrir a Activity para desligar o alarme, passando o nome do remédio
+        val desligaAlarmeIntent = Intent(this, DesligarAlarme::class.java).apply {
+            putExtra("remedioNome", nome) // Passa o nome do remédio como extra
+        }
         val desligaAlarmePendingIntent = PendingIntent.getActivity(
             this,
             1,
@@ -249,26 +234,11 @@ class CriaAlarme : AppCompatActivity() {
             )
 
             Toast.makeText(this, "Alarme agendado para $horaDiariamente!", Toast.LENGTH_SHORT).show()
-            Log.d("AgendarAlarme", "Alarme agendado para $horaDiariamente!")
-        } catch (e: SecurityException) {
-            Log.e("AgendarAlarme", "SecurityException: ${e.message}")
+            Log.d("AgendarAlarme", "Alarme agendado com sucesso para $horaDiariamente")
+        } catch (e: Exception) {
             Toast.makeText(this, "Erro ao agendar o alarme: ${e.message}", Toast.LENGTH_SHORT).show()
+            Log.e("AgendarAlarme", "Erro ao agendar alarme", e)
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.S)
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                agendarAlarme()
-            } else {
-                Toast.makeText(this, "Permissão para notificações não concedida", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 }

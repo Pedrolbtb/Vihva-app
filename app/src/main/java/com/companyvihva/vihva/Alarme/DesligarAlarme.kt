@@ -38,9 +38,12 @@ class DesligarAlarme : AppCompatActivity() {
         alarmTimeTextView.text = currentTime
         alarmDateTextView.text = currentDate
 
-        // Atualiza o TextView da mensagem do alarme
+        // Recebe o nome do remédio
+        val remedioNome = intent.getStringExtra("remedioNome") ?: "Remédio"
+
+        // Atualiza o TextView da mensagem do alarme com o nome do remédio
         val messageTextView = findViewById<TextView>(R.id.alarm_message)
-        messageTextView.text = "Alarme disparado!"
+        messageTextView.text = "Alarme disparado! Remédio: $remedioNome"
 
         val messageTextView2 = findViewById<TextView>(R.id.alarm_message2)
         messageTextView2.text = "Clique no botão abaixo para desligá-lo."
