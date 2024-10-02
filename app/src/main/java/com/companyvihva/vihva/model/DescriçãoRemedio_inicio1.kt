@@ -3,6 +3,7 @@ package com.companyvihva.vihva.com.companyvihva.vihva.model
 import MedicoAdapter
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Spinner
@@ -58,6 +59,11 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
         btnVoltar.setOnClickListener {
             onBackPressed()
         }
+
+        val medicosList = mutableListOf("Nenhum médico selecionado") // Opção padrão
+        val adapter = ArrayAdapter(this, R.layout.spinner, medicosList)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        medicoSpinner.adapter = adapter
 
         // Configura o botão de excluir
         val btnExcluir = findViewById<ImageButton>(R.id.lixeira_remedios)
@@ -167,8 +173,7 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
             "nome" to nomeRemedio,
             "observacao" to observacao,
             "prescritoPor" to prescritoPor,
-            "dataPrescricao" to dataPrescricao,
-
+            "dataPrescricao" to dataPrescricao
         )
 
         // Salva os dados no Firestore
@@ -189,26 +194,33 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
         firestore.collection("clientes").document(userId).get()
             .addOnSuccessListener { document ->
                 val medicosArray = document.get("medicos") as? List<String>
+
+                // Adiciona a opção "Nenhum médico selecionado" primeiro
+                val medicoNenhum = medico_spinner("Nenhum médico selecionado", "")
+                listaMedicos.add(medicoNenhum)
+
                 if (medicosArray != null) {
-                    val medicosList = mutableListOf<medico_spinner>()
                     medicosArray.forEach { medicoUid ->
                         firestore.collection("medicos").document(medicoUid).get()
                             .addOnSuccessListener { medicoDoc ->
                                 val nomeMedico = medicoDoc.getString("nome") ?: medicoUid
                                 val imageUrl = medicoDoc.getString("imageUrl") ?: ""
                                 val medico = medico_spinner(nomeMedico, imageUrl)
-                                medicosList.add(medico)
+                                listaMedicos.add(medico)
                                 medicoMap[medicoUid] = nomeMedico
 
                                 // Atualiza o adapter do Spinner
-                                val adapter = MedicoAdapter(this, medicosList)
+                                val adapter = MedicoAdapter(this, listaMedicos)
                                 medicoSpinner.adapter = adapter
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w("DescricaoRemedioInicio1", "Erro ao buscar médico $medicoUid", e)
                             }
                     }
                 }
             }
             .addOnFailureListener { e ->
-                Log.e("Evento", "Erro ao carregar médicos", e)
+                Log.w("DescricaoRemedioInicio1", "Erro ao buscar médicos", e)
             }
     }
 }

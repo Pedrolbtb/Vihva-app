@@ -11,6 +11,8 @@
 
     <string name="text_observacao_medicamento">Observações do medicamento</string>
 
+    <string name="text_mednaoselecionado">Sem médico</string>
+
     <string name="text_prescrição">Prescrito por</string>
 
     <string name="text_seg">Seg</string>

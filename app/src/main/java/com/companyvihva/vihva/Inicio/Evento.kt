@@ -46,6 +46,7 @@ class Evento : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
+        // Inicializa o Spinner
         medicoSpinner = findViewById(R.id.medicoSpinner)
 
         carregarMedicos()
@@ -62,42 +63,54 @@ class Evento : AppCompatActivity() {
             val title = titleEditText.text.toString()
             val description = descriptionEditText.text.toString()
             val medicoNomeSelecionado = medicoSpinner.selectedItem as? medico_spinner
-            val medicoUidSelecionado = if (medicoNomeSelecionado?.nome == "Não colocar médico") {
-                null
-            } else {
-                medicoMap.entries.find { it.value == medicoNomeSelecionado?.nome }?.key
-            }
+            val medicoUidSelecionado = medicoMap.entries.find { it.value == medicoNomeSelecionado?.nome }?.key
 
-            val userId = auth.currentUser?.uid ?: return@setOnClickListener
-            val event = hashMapOf(
-                "titulo" to title,
-                "descricao" to description,
-                "data" to selectedDate,
-                "medicoNome" to medicoNomeSelecionado?.nome,
-                "medicoUid" to medicoUidSelecionado
-            )
+            if (medicoUidSelecionado != null) {
+                // Obtém o ID do usuário atual
+                val userId = auth.currentUser?.uid ?: return@setOnClickListener
 
-            db.collection("clientes")
-                .document(userId)
-                .collection("eventos")
-                .add(event)
-                .addOnSuccessListener {
-                    Log.d("Evento", "Event saved successfully")
-                    scheduleNotification(title, description, selectedDate)
+                // Cria um objeto de evento com os dados fornecidos
+                val event = hashMapOf(
+                    "titulo" to title,
+                    "descricao" to description,
+                    "data" to selectedDate,
+                    "medicoNome" to medicoNomeSelecionado?.nome, // Salva o nome do médico selecionado
+                    "medicoUid" to medicoUidSelecionado // Salva o UID do médico selecionado
+                )
 
-                    val resultIntent = Intent().apply {
-                        putExtra("evento", "Evento salvo com sucesso!")
+                // Salva o evento na coleção de eventos do usuário no Firestore
+                db.collection("clientes")
+                    .document(userId)
+                    .collection("eventos")
+                    .add(event)
+                    .addOnSuccessListener {
+                        Log.d("Evento", "Event saved successfully")
+
+                        // Agenda uma notificação para o evento salvo
+                        scheduleNotification(title, description, selectedDate)
+
+                        // Cria um Intent para retornar um resultado de sucesso
+                        val resultIntent = Intent().apply {
+                            putExtra("evento", "Evento salvo com sucesso!")
+                        }
+                        setResult(RESULT_OK, resultIntent)
+                        finish() // Finaliza a atividade atual
                     }
-                    setResult(RESULT_OK, resultIntent)
-                    finish()
-                }
-                .addOnFailureListener { e ->
-                    Log.e("Evento", "Error saving event", e)
-                }
+                    .addOnFailureListener { e ->
+                        Log.e("Evento", "Error saving event", e)
+                        // Aqui você pode adicionar lógica para tratar falhas ao salvar
+                    }
+            } else {
+                Log.e("Evento", "Selected doctor UID is null")
+                // Tratamento para caso o médico não seja encontrado
+            }
         }
 
+        // Define o comportamento do botão de voltar
         backButton.setOnClickListener {
             Log.d("Evento", "Back button clicked")
+
+            // Adiciona animação ao voltar para a tela anterior
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 val options = ActivityOptions.makeCustomAnimation(this, R.anim.fade_in, R.anim.fade_out)
                 finishAfterTransition()
@@ -122,6 +135,7 @@ class Evento : AppCompatActivity() {
         }
     }
 
+    // Carrega a lista de médicos do Firebase
     private fun carregarMedicos() {
         val userId = auth.currentUser?.uid ?: return
         db.collection("clientes")
@@ -129,48 +143,45 @@ class Evento : AppCompatActivity() {
             .get()
             .addOnSuccessListener { document ->
                 val medicosArray = document.get("medicos") as? List<String>
-                val medicosList = mutableListOf<medico_spinner>()
-
-                // Adicionar a opção "Não colocar médico"
-                medicosList.add(medico_spinner("Não colocar médico", ""))
-
                 if (medicosArray != null) {
+                    val medicosList = mutableListOf<medico_spinner>()
                     medicosArray.forEach { medicoUid ->
                         db.collection("medicos").document(medicoUid).get().addOnSuccessListener { medicoDoc ->
                             val nomeMedico = medicoDoc.getString("nome") ?: medicoUid
                             val imageUrl = medicoDoc.getString("imageUrl") ?: ""
                             val medico = medico_spinner(nomeMedico, imageUrl)
                             medicosList.add(medico)
-                            medicoMap[medicoUid] = nomeMedico
+                            medicoMap[medicoUid] = nomeMedico // Adiciona o UID e nome ao mapa
 
-                            // Atualiza o adapter uma única vez após carregar todos os médicos
-                            if (medicosList.size == medicosArray.size + 1) {
-                                val adapter = MedicoAdapter(this, medicosList)
-                                medicoSpinner.adapter = adapter
-                            }
+                            // Atualiza o adapter do Spinner
+                            val adapter = MedicoAdapter(this, medicosList)
+                            medicoSpinner.adapter = adapter
                         }
                     }
                 }
             }
             .addOnFailureListener { e ->
                 Log.e("Evento", "Error loading doctors", e)
+                // Trate o erro aqui, por exemplo, mostre uma mensagem de erro ao usuário
             }
     }
 
+    // Converte uma string de data para um objeto Date
     private fun parseDate(dateStr: String?): Date {
         val format = SimpleDateFormat("d/M/yyyy", Locale.getDefault())
         return try {
-            format.parse(dateStr) ?: Date()
+            format.parse(dateStr) ?: Date() // Retorna a data convertida ou a data atual se falhar
         } catch (e: Exception) {
             Log.e("Evento", "Error parsing date", e)
-            Date()
+            Date() // Retorna a data atual em caso de exceção
         }
     }
 
+    // Agenda uma notificação para o evento
     private fun scheduleNotification(title: String, description: String, date: Date) {
         val calendar = Calendar.getInstance().apply {
             time = date
-            set(Calendar.HOUR_OF_DAY, 9)
+            set(Calendar.HOUR_OF_DAY, 9) // Configura a hora da notificação para 09:00
         }
 
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -183,10 +194,15 @@ class Evento : AppCompatActivity() {
             this,
             0,
             notificationIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE // Adiciona FLAG_IMMUTABLE
         )
 
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
+        // Agenda a notificação para ser disparada na data e hora especificadas
+        alarmManager.setExact(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            pendingIntent
+        )
     }
 
     @SuppressLint("MissingInflatedId")
