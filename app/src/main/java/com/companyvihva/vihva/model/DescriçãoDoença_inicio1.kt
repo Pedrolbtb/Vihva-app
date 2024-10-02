@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.model.Tipo_Classe
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -60,6 +61,12 @@ class DescriçãoDoença_inicio1 : AppCompatActivity() {
             onBackPressed()
         }
 
+        val btnSalvar = findViewById<AppCompatButton>(R.id.btn_salvar)
+        btnSalvar.setOnClickListener {
+            salvarInformacoes()
+        }
+
+
         // Configura o botão de excluir
         val btnExcluir = findViewById<ImageButton>(R.id.lixeira_doencas)
         btnExcluir.setOnClickListener {
@@ -106,7 +113,7 @@ class DescriçãoDoença_inicio1 : AppCompatActivity() {
                     nomeTextView.text = nome
 
                     // Cria um objeto Tipo_Classe com os dados obtidos no Firestore
-                    doenca = Tipo_Classe(url ?: "", nome ?: "", descricao ?: "")
+                    doenca = Tipo_Classe(url ?: "", nome ?: "", descricao ?: "" )
 
                     // Atualiza as TextViews com os dados de nome e descrição
                     // Adicione aqui o código para atualizar as TextViews (caso existam)
@@ -177,5 +184,43 @@ class DescriçãoDoença_inicio1 : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.e("Evento", "Erro ao carregar médicos", e)
             }
+
+
+
     }
+
+    private fun salvarInformacoes() {
+        val user = auth.currentUser
+        if (user == null) {
+            Toast.makeText(this, "Usuário não autenticado", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val nomeDoenca = nomeTextView.text.toString()
+        val observacao = findViewById<TextView>(R.id.edit_descAlarme).text.toString()
+        val prescritoPor = medicoMap[medicoSpinner.selectedItem.toString()] ?: ""
+        val dataPrescricao = formattedDate ?: ""
+
+        // Verifique se a variável `doenca` está preenchida com os dados necessários
+        doenca?.let { tipoClasse ->
+            val doencaMap = hashMapOf(
+                "nome" to nomeDoenca,
+                "observacao" to observacao,
+                "prescritoPor" to prescritoPor,
+                "dataPrescricao" to dataPrescricao
+            )
+
+            val clienteDocRef = firestore.collection("clientes").document(user.uid)
+
+            clienteDocRef.update("observações doencas", FieldValue.arrayUnion(doencaMap))
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Informações salvas com sucesso", Toast.LENGTH_SHORT).show()
+                    Log.d("DescriçãoDoença_Inicio1", "Sucesso ao salvar informações da doença")
+                }
+                .addOnFailureListener { e ->
+                    Log.w("DescriçãoDoença_Inicio1", "Erro ao salvar informações da doença", e)
+                }
+        }
+    }
+
 }

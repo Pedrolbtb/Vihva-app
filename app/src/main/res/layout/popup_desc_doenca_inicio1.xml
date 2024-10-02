@@ -211,7 +211,7 @@
         />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_add_remédio"
+        android:id="@+id/btn_salvar"
         android:layout_width="200dp"
         android:layout_height="52dp"
         android:background="@drawable/button"
