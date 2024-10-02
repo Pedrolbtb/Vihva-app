@@ -24,24 +24,38 @@ class Descrição_alarme : AppCompatActivity() {
         setContentView(R.layout.descricao_alarme)
 
         // Inicializa a View
-        descricaoTextView = findViewById(R.id.descricao) // Certifique-se de que esse ID exista no seu layout XML
+        descricaoTextView = findViewById(R.id.descricao)
 
         // Recupera o ID do alarme passado via Intent
         val alarmeId = intent.getStringExtra("ALARME_ID")
 
-        // Verifica se o ID foi passado corretamente
+        // Verifica se o ID do alarme foi passado corretamente
         if (alarmeId != null) {
             buscarAlarme(alarmeId)
         } else {
-            // Lidar com a ausência do ID
             descricaoTextView.text = "Erro: ID do alarme não encontrado."
         }
 
+        // Configuração do botão de exclusão de alarme
         val btnExcluir = findViewById<ImageButton>(R.id.lixeira_alarme)
         btnExcluir.setOnClickListener {
-            alarmeId?.let { id ->
-                showConfirmDeleteDialog(id)
+            alarmeId?.let { id -> showConfirmDeleteDialog(id) }
+        }
+
+        // Configuração do botão de voltar
+        val btnVoltar = findViewById<ImageButton>(R.id.btn_voltarDO)
+        btnVoltar.setOnClickListener {
+            onBackPressed() // Volta para a tela anterior
+        }
+
+        // Obtém o ID do lembrete, altere conforme sua lógica
+        val eventoId = intent.getStringExtra("EVENTO_ID") // Certifique-se de passar o ID correto pelo Intent
+        if (eventoId != null) {
+            findViewById<ImageButton>(R.id.lixeira_alarme).setOnClickListener {
+                showConfirmDeleteDialogLembrete(eventoId)
             }
+        } else {
+            Log.w("DescriçãoLembrete", "ID do lembrete não encontrado.")
         }
     }
 
@@ -57,11 +71,9 @@ class Descrição_alarme : AppCompatActivity() {
                 val descricao = document.getString("descricao")
                 descricaoTextView.text = descricao ?: "Descrição não disponível"
             } else {
-                // Lidar com o caso em que o documento não existe
                 descricaoTextView.text = "Documento não encontrado."
             }
         }.addOnFailureListener { exception ->
-            // Lidar com erros ao acessar o Firestore
             descricaoTextView.text = "Erro ao carregar o alarme."
         }
     }
@@ -70,9 +82,7 @@ class Descrição_alarme : AppCompatActivity() {
         AlertDialog.Builder(this).apply {
             setTitle("Confirmação de Exclusão")
             setMessage("Tem certeza que deseja excluir este alarme? Esta ação não pode ser desfeita.")
-            setPositiveButton("Sim") { _, _ ->
-                deleteAlarme(alarmeId)
-            }
+            setPositiveButton("Sim") { _, _ -> deleteAlarme(alarmeId) }
             setNegativeButton("Não", null)
             create()
             show()
@@ -96,6 +106,38 @@ class Descrição_alarme : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.w("DescriçãoAlarme", "Erro ao excluir o alarme", e)
                 Toast.makeText(this, "Erro ao excluir o alarme", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun showConfirmDeleteDialogLembrete(eventoId: String) {
+        AlertDialog.Builder(this).apply {
+            setTitle("Confirmação de Exclusão")
+            setMessage("Tem certeza que deseja excluir este lembrete? Esta ação não pode ser desfeita.")
+            setPositiveButton("Sim") { _, _ -> deleteLembrete(eventoId) }
+            setNegativeButton("Não", null)
+            create()
+            show()
+        }
+    }
+
+    private fun deleteLembrete(eventoId: String) {
+        val userId = auth.currentUser?.uid ?: return
+        val docRef = firestore.collection("clientes")
+            .document(userId)
+            .collection("Lembretes")
+            .document(eventoId)
+
+        Log.d("DescriçãoLembrete", "Tentando excluir o lembrete com ID: $eventoId")
+
+        docRef.delete()
+            .addOnSuccessListener {
+                Toast.makeText(this, "Lembrete excluído com sucesso", Toast.LENGTH_SHORT).show()
+                Log.d("DescriçãoLembrete", "Lembrete excluído com sucesso")
+                onBackPressed()
+            }
+            .addOnFailureListener { e ->
+                Log.w("DescriçãoLembrete", "Erro ao excluir o lembrete", e)
+                Toast.makeText(this, "Erro ao excluir o lembrete", Toast.LENGTH_SHORT).show()
             }
     }
 }
