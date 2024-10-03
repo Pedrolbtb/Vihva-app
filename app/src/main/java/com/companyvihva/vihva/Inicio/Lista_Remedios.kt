@@ -1,5 +1,7 @@
 package com.companyvihva.vihva
 
+import android.app.ActivityOptions
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
@@ -34,7 +36,16 @@ class Lista_Remedios : AppCompatActivity() {
         // Configurando o botão de voltar
         val btnVoltar = findViewById<ImageButton>(R.id.btn_voltarListaRe)
         btnVoltar.setOnClickListener {
-            onBackPressed()
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                val options = ActivityOptions.makeCustomAnimation(
+                    this, R.anim.fade_in, R.anim.fade_out
+                )
+                finishAfterTransition()
+            } else {
+                finish()
+                onBackPressed()
+            }
         }
 
         // Encontrando o RecyclerView na view inflada e configurando-o

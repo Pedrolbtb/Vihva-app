@@ -1,8 +1,10 @@
 package com.companyvihva.vihva.Inicio
 
+import android.app.ActivityOptions
 import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -109,6 +111,14 @@ class Editar_perfil : AppCompatActivity() {
         }
 
         btnClose.setOnClickListener {
+
+        }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                val options = ActivityOptions.makeCustomAnimation(
+                    this, R.anim.fade_in, R.anim.fade_out
+                )
+                finishAfterTransition()
+            } else {
             finish() // Fecha a atividade ao clicar no botão fechar
         }
     }
