@@ -22,8 +22,8 @@
 
             <ImageButton
                 android:id="@+id/btnClose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:layout_gravity="start"
                 android:layout_marginTop="10dp"
@@ -198,7 +198,6 @@
                 <androidx.appcompat.widget.AppCompatRadioButton
                     android:id="@+id/radio_Semgen_V2"
                     style="@style/Radio_Button"
-                    android:layout_marginBottom="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text_cnao"

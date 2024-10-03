@@ -1,5 +1,7 @@
 package com.companyvihva.vihva.Inicio
 
+import android.app.ActivityOptions
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
@@ -38,7 +40,15 @@ class add_medico_lembrete : AppCompatActivity() {
 
         val btnVoltar = findViewById<ImageButton>(R.id.btnVoltarAmizade)
         btnVoltar.setOnClickListener {
-            finish()
+            // Adiciona animação ao voltar para a tela anterior
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                val options = ActivityOptions.makeCustomAnimation(
+                    this, R.anim.fade_in, R.anim.fade_out
+                )
+                finishAfterTransition()
+            } else {
+                finish()
+            }
         }
 
         setupSearchView()

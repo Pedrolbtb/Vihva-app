@@ -1,5 +1,7 @@
 package com.companyvihva.vihva.Inicio.Perfil_medico
 
+import android.app.ActivityOptions
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
@@ -60,7 +62,15 @@ class Perfil_medico : AppCompatActivity() {
         // Configura o botão de voltar
         val btnVoltar = findViewById<ImageButton>(R.id.close)
         btnVoltar.setOnClickListener {
-            onBackPressed()
+            // Adiciona animação ao voltar para a tela anterior
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                val options = ActivityOptions.makeCustomAnimation(
+                    this, R.anim.fade_in, R.anim.fade_out
+                )
+                finishAfterTransition()
+            } else {
+                finish()
+            }
         }
 
         // Configura o botão de excluir amigo
