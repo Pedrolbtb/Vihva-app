@@ -12,10 +12,8 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toTopOf="parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,38 +40,109 @@
             android:layout_marginTop="60dp"
             android:text="@string/text_manual" />
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="581dp"
-            >
-
-            <TableRow
-                android:id="@+id/ManuInicio"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/container_linha"
-                >
-
-                <TextView
-                    style="@style/text_doenca_e_remedio"
-                    android:layout_width="330dp"
-                    android:layout_height="55dp"
-                    android:layout_marginStart="30dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/config_btn_sos"
-                    android:textSize="20sp" />
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="30dp"
-                    app:srcCompat="@drawable/seta_direita" />
-            </TableRow>
+        <TextView
+            style="@style/titulo_criaperfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:text="@string/cmadddoenca" />
 
 
-        </TableLayout>
+        <VideoView
+            android:id="@+id/videoViewDoenca"
+            android:layout_width="240dp"
+            android:layout_height="440dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="20dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/playButtonDoenca"
+            style="@style/Button"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/button_play"
+            android:elevation="40dp"
+            android:textColor="@color/off_white"
+            android:textSize="20sp"
+            android:layout_marginStart="180dp"
+            android:textStyle="bold"
+            />
+
+
+        <TextView
+            style="@style/titulo_criaperfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:text="@string/cmaddremedio" />
+
+        <VideoView
+            android:id="@+id/videoViewRemedio"
+            android:layout_width="240dp"
+            android:layout_height="440dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="20dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/playButtonRemedio"
+            style="@style/Button"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/button_play"
+            android:elevation="40dp"
+            android:textColor="@color/off_white"
+            android:textSize="20sp"
+            android:layout_marginStart="180dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            style="@style/titulo_criaperfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:text="@string/cmexcluicoisas" />
+
+        <VideoView
+            android:id="@+id/videoViewExclui"
+            android:layout_width="240dp"
+            android:layout_height="440dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="20dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/playButtonExclui"
+            style="@style/Button"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/button_play"
+            android:elevation="40dp"
+            android:textColor="@color/off_white"
+            android:textSize="20sp"
+            android:layout_marginStart="180dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            style="@style/titulo_criaperfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:text="@string/cmeditarperfil" />
+
+
+
 
     </LinearLayout>
 </ScrollView>

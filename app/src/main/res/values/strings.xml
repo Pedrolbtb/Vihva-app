@@ -19,6 +19,14 @@
 
     <string name="text_terca">Ter</string>
 
+    <string name="cmadddoenca">Como adicionar doenças</string>
+
+    <string name="cmaddremedio">Como adicionar remédios</string>
+
+    <string name="cmexcluicoisas">Como excluir itens</string>
+
+    <string name="cmeditarperfil">Como editar o perfil</string>
+
     <string name="text_quarta">Qua</string>
 
     <string name="text_quinta">Qui</string>
