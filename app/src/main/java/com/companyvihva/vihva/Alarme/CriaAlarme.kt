@@ -114,8 +114,8 @@ class CriaAlarme : AppCompatActivity() {
 
 
         findViewById<ImageButton>(R.id.btnVoltar).setOnClickListener {
-            val telaEscolhaRemedio = Intent(this, EscolhaRemedio::class.java)
-            startActivity(telaEscolhaRemedio)
+            val estoque = Intent(this, ConfigEstoque::class.java)
+            startActivity(estoque)
         }
     }
 

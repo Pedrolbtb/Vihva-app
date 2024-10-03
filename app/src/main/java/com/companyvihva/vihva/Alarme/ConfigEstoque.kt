@@ -96,7 +96,7 @@ class ConfigEstoque : AppCompatActivity() {
         // Configurando o listener para o botão de voltar
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
         btnVoltar.setOnClickListener {
-            val intent = Intent(this, CriaAlarme::class.java).apply {
+            val intent = Intent(this, ConfigDuracao::class.java).apply {
                 putExtra("frequencia", frequencia)
                 putExtra("horaemhora", horaemhora)
                 putExtra("duracao", duracao)

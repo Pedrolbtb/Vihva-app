@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.companyvihva.vihva.Inicio.Inicio
 import com.companyvihva.vihva.R
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
@@ -105,7 +106,7 @@ class ConfigDuracao : AppCompatActivity() {
         val btnProximo: Button = findViewById(R.id.btn_proximo)
         btnProximo.setOnClickListener {
             SalvaeAgenda()
-            agendarAlarme()
+
         }
 
         val btnVoltar: ImageButton = findViewById(R.id.btnVoltar)
@@ -197,18 +198,6 @@ class ConfigDuracao : AppCompatActivity() {
     }
 
     private fun agendarAlarme() {
-        val intent = Intent(this, CriaAlarme::class.java).apply {
-            putExtra("frequencia", frequencia)
-            putExtra("horaemhora", horaemhora)
-            putExtra("duracao", duracao)
-            putExtra("data", formattedDate)
-            putExtra("horaDiariamente", horaDiariamente)
-            putExtra("estoque", estoque)
-            putExtra("lembreme", lembreme)
-            putExtra("tipomed", tipomed)
-            putExtra("switchEstoque", switchEstoqueChecked)
-            putExtra("remedioId", nome)
-        }
-        startActivity(intent)
+
     }
 }
