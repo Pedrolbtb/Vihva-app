@@ -20,6 +20,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.companyvihva.vihva.Inicio.Inicio
 import com.companyvihva.vihva.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -106,7 +107,11 @@ class CriaAlarme : AppCompatActivity() {
         findViewById<Button>(R.id.btn_salvarAlarme).setOnClickListener {
             observacao()
             requestAlarmPermissionsAndSchedule()
+
+            val inicio = Intent(this, Inicio::class.java)
+            startActivity(inicio)
         }
+
 
         findViewById<ImageButton>(R.id.btnVoltar).setOnClickListener {
             val telaEscolhaRemedio = Intent(this, EscolhaRemedio::class.java)
