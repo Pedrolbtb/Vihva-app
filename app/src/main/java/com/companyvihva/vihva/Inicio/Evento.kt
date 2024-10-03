@@ -14,7 +14,6 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -60,57 +59,12 @@ class Evento : AppCompatActivity() {
         val backButton = findViewById<ImageButton>(R.id.btnVoltar)
 
         saveButton.setOnClickListener {
-            val title = titleEditText.text.toString()
-            val description = descriptionEditText.text.toString()
-            val medicoNomeSelecionado = medicoSpinner.selectedItem as? medico_spinner
-            val medicoUidSelecionado = medicoMap.entries.find { it.value == medicoNomeSelecionado?.nome }?.key
-
-            if (medicoUidSelecionado != null) {
-                // Obtém o ID do usuário atual
-                val userId = auth.currentUser?.uid ?: return@setOnClickListener
-
-                // Cria um objeto de evento com os dados fornecidos
-                val event = hashMapOf(
-                    "titulo" to title,
-                    "descricao" to description,
-                    "data" to selectedDate,
-                    "medicoNome" to medicoNomeSelecionado?.nome, // Salva o nome do médico selecionado
-                    "medicoUid" to medicoUidSelecionado // Salva o UID do médico selecionado
-                )
-
-                // Salva o evento na coleção de eventos do usuário no Firestore
-                db.collection("clientes")
-                    .document(userId)
-                    .collection("eventos")
-                    .add(event)
-                    .addOnSuccessListener {
-                        Log.d("Evento", "Event saved successfully")
-
-                        // Agenda uma notificação para o evento salvo
-                        scheduleNotification(title, description, selectedDate)
-
-                        // Cria um Intent para retornar um resultado de sucesso
-                        val resultIntent = Intent().apply {
-                            putExtra("evento", "Evento salvo com sucesso!")
-                        }
-                        setResult(RESULT_OK, resultIntent)
-                        finish() // Finaliza a atividade atual
-                    }
-                    .addOnFailureListener { e ->
-                        Log.e("Evento", "Error saving event", e)
-                        // Aqui você pode adicionar lógica para tratar falhas ao salvar
-                    }
-            } else {
-                Log.e("Evento", "Selected doctor UID is null")
-                // Tratamento para caso o médico não seja encontrado
-            }
+            salvarEvento(titleEditText, descriptionEditText)
         }
 
         // Define o comportamento do botão de voltar
         backButton.setOnClickListener {
             Log.d("Evento", "Back button clicked")
-
-            // Adiciona animação ao voltar para a tela anterior
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 val options = ActivityOptions.makeCustomAnimation(this, R.anim.fade_in, R.anim.fade_out)
                 finishAfterTransition()
@@ -122,7 +76,6 @@ class Evento : AppCompatActivity() {
         val btnCodigo = findViewById<ImageButton>(R.id.interrogacao)
         btnCodigo.setOnClickListener {
             val currentUserUid = auth.currentUser?.uid
-
             currentUserUid?.let { uid ->
                 val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                 val clip = ClipData.newPlainText("UID", uid)
@@ -135,74 +88,91 @@ class Evento : AppCompatActivity() {
         }
     }
 
-    // Carrega a lista de médicos do Firebase
-    private fun carregarMedicos() {
+    private fun salvarEvento(titleEditText: EditText, descriptionEditText: EditText) {
+        val title = titleEditText.text.toString()
+        val description = descriptionEditText.text.toString()
+        val medicoNomeSelecionado = medicoSpinner.selectedItem as? medico_spinner
+        val medicoUidSelecionado = medicoMap.entries.find { it.value == medicoNomeSelecionado?.nome }?.key
+
+        // Verifica se o título e a descrição não estão vazios
+        if (title.isBlank() || description.isBlank()) {
+            Toast.makeText(this, "Título e descrição não podem estar vazios.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val event = hashMapOf(
+            "titulo" to title,
+            "descricao" to description,
+            "data" to selectedDate,
+            "medicoNome" to when {
+                medicoNomeSelecionado?.nome == "Não adicionar médico" -> null
+                else -> medicoNomeSelecionado?.nome
+            },
+            "medicoUid" to if (medicoNomeSelecionado?.nome == "Não adicionar médico") null else medicoUidSelecionado
+        )
+
+        // Adiciona log para verificar os dados que serão salvos
+        Log.d("Evento", "Dados do evento: $event")
+
         val userId = auth.currentUser?.uid ?: return
+
         db.collection("clientes")
             .document(userId)
-            .get()
-            .addOnSuccessListener { document ->
-                val medicosArray = document.get("medicos") as? List<String>
-                if (medicosArray != null) {
-                    val medicosList = mutableListOf<medico_spinner>()
-                    medicosArray.forEach { medicoUid ->
-                        db.collection("medicos").document(medicoUid).get().addOnSuccessListener { medicoDoc ->
-                            val nomeMedico = medicoDoc.getString("nome") ?: medicoUid
-                            val imageUrl = medicoDoc.getString("imageUrl") ?: ""
-                            val medico = medico_spinner(nomeMedico, imageUrl)
-                            medicosList.add(medico)
-                            medicoMap[medicoUid] = nomeMedico // Adiciona o UID e nome ao mapa
-
-                            // Atualiza o adapter do Spinner
-                            val adapter = MedicoAdapter(this, medicosList)
-                            medicoSpinner.adapter = adapter
-                        }
-                    }
-                }
+            .collection("eventos")
+            .add(event)
+            .addOnSuccessListener {
+                Log.d("Evento", "Evento salvo com sucesso")
+                // Aqui você pode adicionar lógica para agendar uma notificação
+                finish()
             }
             .addOnFailureListener { e ->
-                Log.e("Evento", "Error loading doctors", e)
-                // Trate o erro aqui, por exemplo, mostre uma mensagem de erro ao usuário
+                Log.e("Evento", "Erro ao salvar evento", e)
+                Toast.makeText(this, "Erro ao salvar evento: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
-    // Converte uma string de data para um objeto Date
+    private fun carregarMedicos() {
+        val userId = auth.currentUser?.uid ?: return
+        db.collection("clientes").document(userId).get()
+            .addOnSuccessListener { document ->
+                val medicosArray = document.get("medicos") as? List<String>
+
+                // Adiciona a opção "Não adicionar médico" primeiro
+                listaMedicos.add(medico_spinner("Não adicionar médico", ""))
+
+                if (medicosArray != null) {
+                    medicosArray.forEach { medicoUid ->
+                        db.collection("medicos").document(medicoUid).get()
+                            .addOnSuccessListener { medicoDoc ->
+                                val nomeMedico = medicoDoc.getString("nome") ?: medicoUid
+                                val imageUrl = medicoDoc.getString("imageUrl") ?: ""
+                                val medico = medico_spinner(nomeMedico, imageUrl)
+                                listaMedicos.add(medico)
+                                medicoMap[medicoUid] = nomeMedico
+                            }
+                            .addOnFailureListener { e ->
+                                Log.e("Evento", "Erro ao buscar médico $medicoUid", e)
+                            }
+                    }
+                }
+
+                // Atualiza o adapter do Spinner após adicionar todos os médicos
+                val adapter = MedicoAdapter(this, listaMedicos)
+                medicoSpinner.adapter = adapter
+            }
+            .addOnFailureListener { e ->
+                Log.e("Evento", "Erro ao buscar médicos", e)
+            }
+    }
+
     private fun parseDate(dateStr: String?): Date {
         val format = SimpleDateFormat("d/M/yyyy", Locale.getDefault())
         return try {
-            format.parse(dateStr) ?: Date() // Retorna a data convertida ou a data atual se falhar
+            format.parse(dateStr) ?: Date()
         } catch (e: Exception) {
             Log.e("Evento", "Error parsing date", e)
-            Date() // Retorna a data atual em caso de exceção
+            Date()
         }
-    }
-
-    // Agenda uma notificação para o evento
-    private fun scheduleNotification(title: String, description: String, date: Date) {
-        val calendar = Calendar.getInstance().apply {
-            time = date
-            set(Calendar.HOUR_OF_DAY, 9) // Configura a hora da notificação para 09:00
-        }
-
-        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val notificationIntent = Intent(this, NotificationReceiver::class.java).apply {
-            putExtra("title", title)
-            putExtra("description", description)
-        }
-
-        val pendingIntent = PendingIntent.getBroadcast(
-            this,
-            0,
-            notificationIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE // Adiciona FLAG_IMMUTABLE
-        )
-
-        // Agenda a notificação para ser disparada na data e hora especificadas
-        alarmManager.setExact(
-            AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis,
-            pendingIntent
-        )
     }
 
     @SuppressLint("MissingInflatedId")
