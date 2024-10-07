@@ -60,10 +60,8 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
             onBackPressed()
         }
 
-        val medicosList = mutableListOf("Nenhum médico selecionado") // Opção padrão
-        val adapter = ArrayAdapter(this, R.layout.spinner, medicosList)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        medicoSpinner.adapter = adapter
+        // Carrega a lista de médicos do Firebase
+        carregarMedicos()
 
         // Configura o botão de excluir
         val btnExcluir = findViewById<ImageButton>(R.id.lixeira_remedios)
@@ -96,9 +94,6 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
         btnSalvar.setOnClickListener {
             salvarInformacoesRemedio()
         }
-
-        // Carrega a lista de médicos do Firebase
-        carregarMedicos()
     }
 
     // Método para carregar os dados do remédio do Firestore
@@ -165,14 +160,18 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
 
         val nomeRemedio = nomeTextView.text.toString()
         val observacao = observacaoTextView.text.toString()
-        val prescritoPor = medicoMap[medicoSpinner.selectedItem.toString()] ?: ""
+
+        // Obtem o UID do médico selecionado
+        val selectedMedico = medicoSpinner.selectedItem as? medico_spinner
+        val prescritoPorUid = selectedMedico?.let { medicoMap.keys.firstOrNull { key -> medicoMap[key] == it.nome } } ?: "" // Aqui pegamos o UID do médico
+
         val dataPrescricao = formattedDate ?: ""
 
         // Cria o mapa de dados do remédio
         val remedioMap = hashMapOf(
             "nome" to nomeRemedio,
             "observacao" to observacao,
-            "prescritoPor" to prescritoPor,
+            "prescritoPor" to prescritoPorUid, // Agora estamos armazenando o UID do médico
             "dataPrescricao" to dataPrescricao
         )
 
@@ -196,7 +195,7 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
                 val medicosArray = document.get("medicos") as? List<String>
 
                 // Adiciona a opção "Nenhum médico selecionado" primeiro
-                val medicoNenhum = medico_spinner("Nenhum médico selecionado", "")
+                val medicoNenhum = medico_spinner("Nenhum médico selecionado", "", "")
                 listaMedicos.add(medicoNenhum)
 
                 if (medicosArray != null) {
@@ -205,7 +204,7 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
                             .addOnSuccessListener { medicoDoc ->
                                 val nomeMedico = medicoDoc.getString("nome") ?: medicoUid
                                 val imageUrl = medicoDoc.getString("imageUrl") ?: ""
-                                val medico = medico_spinner(nomeMedico, imageUrl)
+                                val medico = medico_spinner(nomeMedico, imageUrl, medicoUid) // Passando o UID do médico
                                 listaMedicos.add(medico)
                                 medicoMap[medicoUid] = nomeMedico
 
