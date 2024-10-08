@@ -62,7 +62,6 @@
 
 
     <style name="Edit_Text_Login">
-
         <!--limita a quantidade de caracteres-->
         <item name="android:maxLength">25</item>
         <item name="android:layout_width">match_parent</item>
@@ -106,6 +105,11 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/Letras</item>
         <item name="fontFamily">@font/peanut_butter</item>
+    </style>
+
+    <style name="CustomDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
     
     <!--texto de apoio, como explicação que é para marcar genero-->

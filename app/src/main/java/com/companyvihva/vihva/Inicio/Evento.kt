@@ -178,7 +178,7 @@ class Evento : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     private fun mostrarpopupcodigo(uid: String) {
         val inflater = LayoutInflater.from(this)
-        val builder = AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(this, R.style.CustomDialog)
         val popupView = inflater.inflate(R.layout.popup_codigo, null)
         val btnCancelar = popupView.findViewById<ImageButton>(R.id.btnCancelar)
         val textViewCodigo = popupView.findViewById<TextView>(R.id.textView_codigo)

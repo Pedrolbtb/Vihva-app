@@ -89,8 +89,9 @@ class Perfil : Fragment() {
                 }
         }
 
-        val btn_editar = view.findViewById<Button>(R.id.btn_editar)
+        val btn_editar = view.findViewById<Button>(R.id.btn_editarPerfil)
         btn_editar.setOnClickListener {
+            Log.d("Botão", "Botão Editar clicado")
             val intent = Intent(requireContext(), Editar_perfil::class.java)
             startActivity(intent)
         }
@@ -146,7 +147,7 @@ class Perfil : Fragment() {
     @SuppressLint("MissingInflatedId")
     private fun mostrarpopupcodigo(uid: String) {
         val inflater = LayoutInflater.from(requireContext())
-        val builder = AlertDialog.Builder(requireContext())
+        val builder = AlertDialog.Builder(requireContext(), R.style.CustomDialog)
         val popupView = inflater.inflate(R.layout.popup_codigo, null)
         val btnCancelar = popupView.findViewById<ImageButton>(R.id.btnCancelar)
         val textViewCodigo = popupView.findViewById<TextView>(R.id.textView_codigo)
@@ -162,4 +163,5 @@ class Perfil : Fragment() {
             alertDialog.dismiss()
         }
     }
+
 }
