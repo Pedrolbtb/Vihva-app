@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.companyvihva.vihva.Alarme.EscolhaFrequencia
 import com.companyvihva.vihva.Login.Login
 import com.companyvihva.vihva.R
 import com.google.android.gms.tasks.Tasks
@@ -24,7 +25,9 @@ class Config_DeletarPerfil : AppCompatActivity() {
 
         val btnVoltar = findViewById<ImageButton>(R.id.btnVoltar_deletePerfil)
         btnVoltar.setOnClickListener {
-            finish()
+            val intent = Intent(this, Config_List::class.java).apply {
+            }
+            startActivity(intent)
         }
 
         val btn_delete = findViewById<Button>(R.id.btn_delete)

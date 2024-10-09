@@ -20,6 +20,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.companyvihva.vihva.Configurações.Config_List
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter.SolicitacaoAmizadeAdapter
 import com.companyvihva.vihva.com.companyvihva.vihva.model.SolicitacaoAmizade
@@ -55,7 +56,9 @@ class ConfigNotificacoes : AppCompatActivity() {
 
         val btnVoltar = findViewById<ImageButton>(R.id.btnVoltarNotifiq)
             .setOnClickListener {
-            finish()
+                val intent = Intent(this, Config_List::class.java).apply {
+                }
+                startActivity(intent)
         }
         carregarSolicitacoesAmizade()
         monitorarSolicitacoesDeAmizade()

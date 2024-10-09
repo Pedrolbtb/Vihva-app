@@ -1,5 +1,6 @@
 package com.companyvihva.vihva.Configurações
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
@@ -91,7 +92,9 @@ class Configuracoes_manual_usuario : AppCompatActivity() {
         // Listener para fechar a activity ao clicar no botão de voltar
         val btnClose = findViewById<ImageButton>(com.companyvihva.vihva.R.id.btnClose)
         btnClose.setOnClickListener {
-            finish()
+            val intent = Intent(this, Config_List::class.java).apply {
+            }
+            startActivity(intent)
         }
     }
 }

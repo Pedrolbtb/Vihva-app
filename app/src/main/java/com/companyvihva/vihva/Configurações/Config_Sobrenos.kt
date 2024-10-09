@@ -1,5 +1,6 @@
 package com.companyvihva.vihva.Configurações
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
@@ -11,7 +12,9 @@ class Config_Sobrenos : AppCompatActivity() {
         setContentView(R.layout.activity_config_sobrenos)
 
        val btnVoltar = findViewById<ImageButton>(R.id.btnClose).setOnClickListener {
-           finish()
+           val intent = Intent(this, Config_List::class.java).apply {
+           }
+           startActivity(intent)
        }
     }
 }
