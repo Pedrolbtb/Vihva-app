@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.R
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -104,5 +105,16 @@ class CriaPerfil : AppCompatActivity() {
             view = layout
             show()
         }
+    }
+
+    //animaçõa da tela
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+
+        fragmentTransaction.replace(R.id.frame_layout, fragment)
+        fragmentTransaction.commit()
     }
 }

@@ -92,7 +92,7 @@ class Perfil : Fragment() {
         val btn_editar = view.findViewById<Button>(R.id.btn_editarPerfil)
         btn_editar.setOnClickListener {
             Log.d("Botão", "Botão Editar clicado")
-            val intent = Intent(requireContext(), Editar_perfil::class.java)
+            val intent = Intent(requireActivity(), Editar_perfil::class.java)
             startActivity(intent)
         }
 

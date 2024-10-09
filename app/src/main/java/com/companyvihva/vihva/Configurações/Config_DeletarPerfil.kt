@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.Alarme.EscolhaFrequencia
 import com.companyvihva.vihva.Login.Login
 import com.companyvihva.vihva.R
@@ -143,5 +144,16 @@ class Config_DeletarPerfil : AppCompatActivity() {
                 // Ocorreu um erro ao listar os arquivos na pasta
                 Toast.makeText(this, "Erro ao listar arquivos na pasta: ${e.message}", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    //animaçõa da tela
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+
+        fragmentTransaction.replace(R.id.frame_layout, fragment)
+        fragmentTransaction.commit()
     }
 }

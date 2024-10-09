@@ -31,15 +31,14 @@
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/SearchRemedio2"
-        android:layout_width="360dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/background_search_remedio"
         app:iconifiedByDefault="false"
         app:layout_constraintBottom_toTopOf="@+id/recyclerview_nova_lista"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:queryBackground="@android:color/transparent"
         app:queryHint="Buscar Remedio" />
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.CriarPerfil.CriaPerfil
 import com.companyvihva.vihva.Inicio.Inicio
 import com.companyvihva.vihva.R
@@ -89,5 +90,16 @@ class Termos : AppCompatActivity() {
         val telaTermos_detalhes = Intent(this,Termos_detalhes::class.java)
         startActivity(telaTermos_detalhes)
         finish()
+    }
+
+    //animaçõa da tela
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+
+        fragmentTransaction.replace(R.id.frame_layout, fragment)
+        fragmentTransaction.commit()
     }
 }

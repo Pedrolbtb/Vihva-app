@@ -3,6 +3,8 @@ package com.companyvihva.vihva.CriarPerfil
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.Manifest
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -13,12 +15,15 @@ import com.companyvihva.vihva.R
 import android.util.Log
 import android.widget.TableRow
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.Configuracoes.ConfigNotificacoes
 import com.companyvihva.vihva.Inicio.Inicio
 import com.companyvihva.vihva.databinding.ActivityFotoBioBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import java.io.ByteArrayOutputStream
 
 class FotoBio : AppCompatActivity() {
@@ -32,8 +37,9 @@ class FotoBio : AppCompatActivity() {
 
     // Companion object para declarar uma constante para o código de solicitação de imagem
     companion object {
-        val IMAGE_REQUEST_CODE_POPUP = 100
-        val IMAGE_REQUEST_CODE = 100
+        const val IMAGE_REQUEST_CODE = 100
+        const val REQUEST_PERMISSION_CODE = 101 // Código de solicitação de permissão
+        const val IMAGE_REQUEST_CODE_POPUP = 101
         private const val TAG = "KotlinActivity"
     }
 
@@ -66,7 +72,7 @@ class FotoBio : AppCompatActivity() {
 
         // Define um ouvinte de clique para a imageView
         imageView.setOnClickListener {
-            pickImageGallery() // Chama o método para selecionar uma imagem da galeria
+            checkPermissionAndPickImage() // Chama o método para verificar permissão e selecionar uma imagem
         }
 
         // Configura o OnClickListener para o botão retornar
@@ -94,6 +100,31 @@ class FotoBio : AppCompatActivity() {
             saveData(nome, sobrenome, genero, idade, altura, peso, biografia)
             startActivity(intent)
             finish()
+        }
+    }
+
+    // Método para verificar permissão e abrir a galeria de mídia
+    private fun checkPermissionAndPickImage() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+            == PackageManager.PERMISSION_GRANTED) {
+            pickImageGallery() // Chama o método para selecionar uma imagem da galeria
+        } else {
+            // Solicita a permissão
+            ActivityCompat.requestPermissions(this,
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                REQUEST_PERMISSION_CODE)
+        }
+    }
+
+    // Função chamada quando a permissão é concedida ou negada
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                pickImageGallery() // Permissão concedida, abre a galeria
+            } else {
+                Toast.makeText(this, "Permissão para acessar a galeria negada.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -185,6 +216,17 @@ class FotoBio : AppCompatActivity() {
             }
         } else {
             Toast.makeText(this, "Usuário não autenticado", Toast.LENGTH_SHORT).show()
-            }
         }
+    }
+
+    // Animação da tela
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+
+        fragmentTransaction.replace(R.id.frame_layout, fragment)
+        fragmentTransaction.commit()
+    }
 }
