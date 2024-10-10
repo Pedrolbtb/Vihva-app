@@ -103,7 +103,7 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
         docRef.get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
-                    val url = document.getString("url")
+                    val url = document.getString("Url")
                     val nome = document.getString("nome")
                     // Carrega a imagem usando Picasso se a URL estiver disponível
                     url?.let {
@@ -164,7 +164,7 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
 
         // Obtem o UID do médico selecionado
         val selectedMedico = medicoSpinner.selectedItem as? medico_spinner
-        val prescritoPorUid = selectedMedico?.let { medicoMap.keys.firstOrNull { key -> medicoMap[key] == it.nome } } ?: "" // Aqui pegamos o UID do médico
+        val prescritoPorUid = selectedMedico?.let { medicoMap.keys.firstOrNull { key -> medicoMap[key] == it.nome } } ?: ""
 
         val dataPrescricao = formattedDate ?: ""
 
@@ -172,13 +172,13 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
         val remedioMap = hashMapOf(
             "nome" to nomeRemedio,
             "observacao" to observacao,
-            "prescritoPor" to prescritoPorUid, // Agora estamos armazenando o UID do médico
+            "prescritoPor" to prescritoPorUid,
             "dataPrescricao" to dataPrescricao
         )
 
-        // Salva os dados no Firestore
+        // Salva os dados no Firestore na coleção "clientes" sob o array "prescrições"
         val clienteDocRef = firestore.collection("clientes").document(user.uid)
-        clienteDocRef.update("remedios", FieldValue.arrayUnion(remedioMap))
+        clienteDocRef.update("prescrições", FieldValue.arrayUnion(remedioMap))
             .addOnSuccessListener {
                 Toast.makeText(this, "Informações salvas com sucesso", Toast.LENGTH_SHORT).show()
                 Log.d("DescricaoRemedioInicio1", "Sucesso ao salvar informações do remédio")
@@ -224,7 +224,7 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
             }
     }
 
-    //animaçõa da tela
+    // Animação da tela
     private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
