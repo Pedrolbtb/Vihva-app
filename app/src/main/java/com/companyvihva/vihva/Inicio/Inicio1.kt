@@ -86,6 +86,7 @@ class Inicio1 : Fragment(), SensorEventListener {
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.SEND_SMS
             )
+            enviarSOS()
         }
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(recyclerview_doenca)
@@ -131,6 +132,17 @@ class Inicio1 : Fragment(), SensorEventListener {
     }
 
     private fun enviarSOS() {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+
+            return
+        }
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             location?.let {
                 val preferences = requireContext().getSharedPreferences(
