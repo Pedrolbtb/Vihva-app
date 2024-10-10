@@ -178,7 +178,7 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
 
         // Salva os dados no Firestore na coleção "clientes" sob o array "prescrições"
         val clienteDocRef = firestore.collection("clientes").document(user.uid)
-        clienteDocRef.update("prescrições", FieldValue.arrayUnion(remedioMap))
+        clienteDocRef.update("prescriçõesRemedio", FieldValue.arrayUnion(remedioMap))
             .addOnSuccessListener {
                 Toast.makeText(this, "Informações salvas com sucesso", Toast.LENGTH_SHORT).show()
                 Log.d("DescricaoRemedioInicio1", "Sucesso ao salvar informações do remédio")

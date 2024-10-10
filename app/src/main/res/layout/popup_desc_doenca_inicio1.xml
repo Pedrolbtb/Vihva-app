@@ -120,7 +120,7 @@
         app:layout_constraintGuide_percent="1.0" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/edit_descAlarme"
+        android:id="@+id/edit_obervações"
         style="@style/Edit_Text_Login"
         android:layout_width="match_parent"
         android:layout_height="120dp"
