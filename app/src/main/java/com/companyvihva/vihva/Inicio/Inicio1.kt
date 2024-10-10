@@ -59,7 +59,7 @@ class Inicio1 : Fragment(), SensorEventListener {
     private lateinit var textview_naotemdoenca: TextView
     private lateinit var sensorManager: SensorManager
     private var acelerometro: Sensor? = null
-    private var shakeThreshold = 20f
+    private var shakeThreshold = 50f
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
