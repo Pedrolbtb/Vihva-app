@@ -30,6 +30,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.Alarme.ConfigFrequencia
 import com.companyvihva.vihva.Configuracoes.Configuracoes
+import com.companyvihva.vihva.Login.Login
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.AdicionarDoenca.AdicionarDoenca
 import com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter.AdapterDoenca_inicio1
@@ -40,6 +41,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.local.Persistence
 import kotlin.math.sqrt
 
 class Inicio1 : Fragment(), SensorEventListener {
@@ -57,17 +59,28 @@ class Inicio1 : Fragment(), SensorEventListener {
     private lateinit var textview_naotemdoenca: TextView
     private lateinit var sensorManager: SensorManager
     private var acelerometro: Sensor? = null
-    private var shakeThreshold = 12f
+    private var shakeThreshold = 8f
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_inicio1, container, false)
+
+        // Verifique se o usuário está autenticado
+        val User = FirebaseAuth.getInstance().currentUser
+        if (User == null) {
+            // Se não estiver autenticado, redirecione para a tela de login
+            val intent = Intent(requireContext(), Login::class.java)
+            startActivity(intent)
+            requireActivity().finish() // Fecha a activity atual se desejar
+        }
+
         textview_naotemremedio = view.findViewById(R.id.textview_naotemremedio)
         recyclerViewRemedioAdicionado = view.findViewById(R.id.Recyclerview_remedioAdicionado)
         recyclerview_doenca = view.findViewById(R.id.recyclerview_doenca)
         textview_naotemdoenca = view.findViewById(R.id.textview_naotemdoenca)
+
 
         db = FirebaseFirestore.getInstance()
         sensorManager = requireActivity().getSystemService(Context.SENSOR_SERVICE) as SensorManager
