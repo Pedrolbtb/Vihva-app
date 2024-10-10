@@ -2,16 +2,17 @@ package com.companyvihva.vihva.Inicio
 
 import android.Manifest
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.telephony.SmsManager
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,9 +23,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -33,9 +32,7 @@ import com.companyvihva.vihva.Alarme.ConfigFrequencia
 import com.companyvihva.vihva.Configuracoes.Configuracoes
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.AdicionarDoenca.AdicionarDoenca
-import com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter.AdapterDoenca
 import com.companyvihva.vihva.com.companyvihva.vihva.model.Adapter.AdapterDoenca_inicio1
-import com.companyvihva.vihva.model.Adapter.AdapterListanova
 import com.companyvihva.vihva.model.Adapter.AdapterRemedio_inicio1
 import com.companyvihva.vihva.model.Tipo_Remedios
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -43,9 +40,9 @@ import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.squareup.picasso.Picasso
+import kotlin.math.sqrt
 
-class Inicio1 : Fragment() {
+class Inicio1 : Fragment(), SensorEventListener {
 
     private lateinit var db: FirebaseFirestore
     private lateinit var adapterListanova: AdapterRemedio_inicio1
@@ -58,6 +55,9 @@ class Inicio1 : Fragment() {
     private lateinit var recyclerViewRemedioAdicionado: RecyclerView
     private lateinit var textview_naotemremedio: TextView
     private lateinit var textview_naotemdoenca: TextView
+    private lateinit var sensorManager: SensorManager
+    private var acelerometro: Sensor? = null
+    private var shakeThreshold = 12f
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,10 +66,18 @@ class Inicio1 : Fragment() {
         val view = inflater.inflate(R.layout.fragment_inicio1, container, false)
         textview_naotemremedio = view.findViewById(R.id.textview_naotemremedio)
         recyclerViewRemedioAdicionado = view.findViewById(R.id.Recyclerview_remedioAdicionado)
-        recyclerview_doenca = view.findViewById(R.id.recyclerview_doenca) // Adicionado setup aqui
+        recyclerview_doenca = view.findViewById(R.id.recyclerview_doenca)
         textview_naotemdoenca = view.findViewById(R.id.textview_naotemdoenca)
 
         db = FirebaseFirestore.getInstance()
+        sensorManager = requireActivity().getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        acelerometro = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+
+        // Registra o listener do sensor
+        acelerometro?.also { acc ->
+            sensorManager.registerListener(this, acc, SensorManager.SENSOR_DELAY_NORMAL)
+        }
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
         btnSOS = view.findViewById(R.id.sos)
         btnSOS.setOnClickListener {
@@ -82,20 +90,15 @@ class Inicio1 : Fragment() {
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(recyclerview_doenca)
 
-
         val btnAddDoenca: ImageButton = view.findViewById(R.id.image_adddoenca)
         btnAddDoenca.setOnClickListener {
             val intent = Intent(requireContext(), AdicionarDoenca::class.java)
             startActivity(intent)
         }
 
-        // Configuração das RecyclerViews
         setupRecyclerView(view)
         setupRecyclerView2(view)
 
-
-
-        // Busca dos dados dos usuários
         fetchRemediosDoUsuario()
         fetchRemediosDoUsuario2()
 
@@ -105,23 +108,76 @@ class Inicio1 : Fragment() {
         }
 
         return view
-
     }
 
-    private fun showConfirmDeleteDialog(){
-        androidx.appcompat.app.AlertDialog.Builder(requireContext()).apply {
-            setTitle("Confirmação de exclusão")
-            setMessage("Tem certeza que deseja excluir todos os medicamentos? Você pode adiciona-lo novamente na lista de remédios")
-            setPositiveButton("Sim") {_, _ ->
-                deletarArrayRemedios()
+    override fun onSensorChanged(event: SensorEvent?) {
+        event?.let {
+            if (it.sensor.type == Sensor.TYPE_ACCELEROMETER) {
+                val (x, y, z) = it.values
+                val gForce = sqrt((x * x + y * y + z * z).toDouble()).toFloat()
+
+                if (gForce > shakeThreshold) {
+                    enviarSOS()
+
+                    AlertDialog.Builder(requireContext())
+                        .setTitle("Mal súbito ou acidente detectado")
+                        .setMessage("Detectamos uma queda e o SMS do SOS foi enviado")
+                        .setPositiveButton("Ok", null)
+                        .create()
+                        .show()
+                }
             }
+        }
+    }
+
+    private fun enviarSOS() {
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            location?.let {
+                val preferences = requireContext().getSharedPreferences(
+                    Configuracoes.PREF_NAME, AppCompatActivity.MODE_PRIVATE
+                )
+
+                val savedMessage = preferences.getString(
+                    Configuracoes.KEY_DEFAULT_MSG, "Mensagem padrão não definida"
+                )
+                val phone = preferences.getLong(Configuracoes.KEY_PHONE, 0L)
+                val smsMessage = "$savedMessage\nhttps://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}"
+
+                SmsManager.getDefault().sendTextMessage(
+                    phone.toString(), null, smsMessage, null, null
+                )
+
+                Toast.makeText(
+                    requireContext(),
+                    "SMS enviado com a localização e a mensagem salva!",
+                    Toast.LENGTH_LONG
+                ).show()
+            } ?: run {
+                Toast.makeText(requireContext(), "Localização não disponível", Toast.LENGTH_SHORT).show()
+            }
+        }.addOnFailureListener { e ->
+            Toast.makeText(requireContext(), "Erro ao obter localização: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
+
+    override fun onDestroy() {
+        super.onDestroy()
+        sensorManager.unregisterListener(this)
+    }
+
+    private fun showConfirmDeleteDialog() {
+        AlertDialog.Builder(requireContext()).apply {
+            setTitle("Confirmação de exclusão")
+            setMessage("Tem certeza que deseja excluir todos os medicamentos? Você pode adicioná-los novamente na lista de remédios")
+            setPositiveButton("Sim") { _, _ -> deletarArrayRemedios() }
             setNegativeButton("Não", null)
             create()
             show()
         }
     }
 
-    // Configuração da RecyclerView para remédios
     private fun setupRecyclerView(view: View) {
         recyclerViewRemedioAdicionado.layoutManager = LinearLayoutManager(requireContext())
         recyclerViewRemedioAdicionado.setHasFixedSize(true)
@@ -131,29 +187,21 @@ class Inicio1 : Fragment() {
         recyclerViewRemedioAdicionado.adapter = adapterListanova
     }
 
-    // Busca dos remédios do usuário
     private fun fetchRemediosDoUsuario() {
-        val user = FirebaseAuth.getInstance().currentUser
-        val uid = user?.uid
-
-        if (uid != null) {
-            val clientRef = db.collection("clientes").document(uid)
-            clientRef.get()
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        uid?.let {
+            db.collection("clientes").document(it).get()
                 .addOnSuccessListener { document ->
-                    if (document != null && document.exists()) {
-                        val remediosId = document.get("remedios") as? List<String>
+                    document?.let { doc ->
+                        val remediosId = doc.get("remedios") as? List<String>
                         if (remediosId.isNullOrEmpty()) {
                             textview_naotemremedio.visibility = View.VISIBLE
                             recyclerViewRemedioAdicionado.visibility = View.GONE
                         } else {
                             textview_naotemremedio.visibility = View.GONE
                             recyclerViewRemedioAdicionado.visibility = View.VISIBLE
-                            for (remedioId in remediosId) {
-                                fetchDadosDoFirebase(remedioId)
-                            }
+                            remediosId.forEach { fetchDadosDoFirebase(it) }
                         }
-                    } else {
-                        Log.d("Inicio1", "Documento do cliente não encontrado")
                     }
                 }
                 .addOnFailureListener { e ->
@@ -162,29 +210,20 @@ class Inicio1 : Fragment() {
         }
     }
 
-    // Busca dos dados de cada remédio
     private fun fetchDadosDoFirebase(remedioId: String) {
-        val docRef = db.collection("remedios").document(remedioId)
-        docRef.get()
+        db.collection("remedios").document(remedioId).get()
             .addOnSuccessListener { document ->
-                if (document != null && document.exists()) {
-                    val nome = document.getString("nome")
-                    val tipo = document.getString("tipo")
-                    val url = document.getString("Url")
+                document?.let { doc ->
+                    val nome = doc.getString("nome")
+                    val tipo = doc.getString("tipo")
+                    val url = doc.getString("Url")
 
                     if (nome != null && tipo != null) {
                         val remedio = Tipo_Remedios(
-                            foto = url ?: "",
-                            nome = nome,
-                            tipo = tipo,
-                            documentId = remedioId // Adiciona o ID do documento aqui
+                            foto = url ?: "", nome = nome, tipo = tipo, documentId = remedioId
                         )
                         atualizarListaRemedios(remedio)
-                    } else {
-                        Log.d("Inicio1", "Nome ou tipo do remédio está nulo")
                     }
-                } else {
-                    Log.d("Inicio1", "Documento do remédio não encontrado")
                 }
             }
             .addOnFailureListener { e ->
@@ -192,46 +231,35 @@ class Inicio1 : Fragment() {
             }
     }
 
-    // Atualização da lista de remédios e notificação para o adapter
     private fun atualizarListaRemedios(remedio: Tipo_Remedios) {
         listaInicio.add(remedio)
         adapterListanova.notifyDataSetChanged()
     }
-/////////////////////////////////////////////////////////////
-    // Configuração da RecyclerView para doenças
-private fun setupRecyclerView2(view: View) {
-    recyclerview_doenca.layoutManager = LinearLayoutManager(requireContext())
-    recyclerview_doenca.setHasFixedSize(true)
 
-    listadoenca = mutableListOf()
-    adapterDoenca = AdapterDoenca_inicio1(requireContext(), listadoenca)
-    recyclerview_doenca.adapter = adapterDoenca
-}
+    private fun setupRecyclerView2(view: View) {
+        recyclerview_doenca.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        recyclerview_doenca.setHasFixedSize(true)
 
-    // Busca das doenças do usuário
-    private fun  fetchRemediosDoUsuario2() {
-        val user = FirebaseAuth.getInstance().currentUser
-        val uid = user?.uid
+        listadoenca = mutableListOf()
+        adapterDoenca = AdapterDoenca_inicio1(requireContext(), listadoenca)
+        recyclerview_doenca.adapter = adapterDoenca
+    }
 
-        if (uid != null) {
-            val clientRef = db.collection("clientes").document(uid)
-            clientRef.get()
+    private fun fetchRemediosDoUsuario2() {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        uid?.let {
+            db.collection("clientes").document(it).get()
                 .addOnSuccessListener { document ->
-                    if (document != null && document.exists()) {
-                        val doencaIds = document.get("doenca") as? List<String>
-                        if (doencaIds.isNullOrEmpty()) {
+                    document?.let { doc ->
+                        val doencasId = doc.get("doenca") as? List<String>
+                        if (doencasId.isNullOrEmpty()) {
                             textview_naotemdoenca.visibility = View.VISIBLE
                             recyclerview_doenca.visibility = View.GONE
-                            Log.d("Inicio1", "Nenhuma doença encontrada")
                         } else {
                             textview_naotemdoenca.visibility = View.GONE
                             recyclerview_doenca.visibility = View.VISIBLE
-                            for (doencaId in doencaIds) {
-                                fetchDadosDoFirebase2(doencaId)
-                            }
+                            doencasId.forEach { fetchDadosDoFirebase2(it) }
                         }
-                    } else {
-                        Log.d("Inicio1", "Documento do cliente não encontrado")
                     }
                 }
                 .addOnFailureListener { e ->
@@ -240,29 +268,20 @@ private fun setupRecyclerView2(view: View) {
         }
     }
 
-    // Busca dos dados de cada doença
     private fun fetchDadosDoFirebase2(doencaId: String) {
-        val docRef = db.collection("doenca").document(doencaId)
-        docRef.get()
+        db.collection("doenca").document(doencaId).get()
             .addOnSuccessListener { document ->
-                if (document != null && document.exists()) {
-                    val nome = document.getString("nome")
-                    val tipo = document.getString("tipo")
-                    val url = document.getString("Url")
+                document?.let { doc ->
+                    val nome = doc.getString("nome")
+                    val tipo = doc.getString("tipo")
+                    val url = doc.getString("Url")
 
                     if (nome != null && tipo != null) {
                         val doenca = Tipo_Remedios(
-                            foto = url ?: "",
-                            nome = nome,
-                            tipo = tipo,
-                            documentId = doencaId
+                            foto = url ?: "", nome = nome, tipo = tipo, documentId = doencaId
                         )
-                        atualizarListaDoencas(doenca)
-                    } else {
-                        Log.d("Inicio1", "Nome ou tipo da doença está nulo")
+                        atualizarListaDoenca(doenca)
                     }
-                } else {
-                    Log.d("Inicio1", "Documento da doença não encontrado")
                 }
             }
             .addOnFailureListener { e ->
@@ -270,94 +289,36 @@ private fun setupRecyclerView2(view: View) {
             }
     }
 
-    // Atualização da lista de doenças e notificação para o adapter
-    private fun atualizarListaDoencas(doenca: Tipo_Remedios) {
+    private fun atualizarListaDoenca(doenca: Tipo_Remedios) {
         listadoenca.add(doenca)
         adapterDoenca.notifyDataSetChanged()
     }
 
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-
     private fun deletarArrayRemedios() {
-        val user = FirebaseAuth.getInstance().currentUser
-        val uid = user?.uid
-
-        if (uid != null) {
-            val clientRef = db.collection("clientes").document(uid)
-            clientRef.update("remedios", FieldValue.delete())
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        uid?.let {
+            db.collection("clientes").document(it)
+                .update("remedios", FieldValue.delete())
                 .addOnSuccessListener {
-                    Toast.makeText(requireContext(), "Lista de remédios deletado com sucesso", Toast.LENGTH_SHORT).show()
+                    listaInicio.clear()
+                    adapterListanova.notifyDataSetChanged()
+                    Toast.makeText(requireContext(), "Todos os remédios foram excluídos!", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
-                    Toast.makeText(requireContext(), "Erro ao deletar o lista de remédios: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Log.w("Inicio1", "Erro ao deletar remédios", e)
                 }
-        } else {
-            Toast.makeText(requireContext(), "Erro: UID do usuário não encontrado", Toast.LENGTH_SHORT).show()
         }
     }
 
-    // Método requestPermissions
     private fun requestPermissions(vararg permissions: String) {
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                permissions[0]
-            ) != PackageManager.PERMISSION_GRANTED ||
-            ActivityCompat.checkSelfPermission(
-                requireContext(),
-                permissions[1]
-            ) != PackageManager.PERMISSION_GRANTED ||
-            ActivityCompat.checkSelfPermission(
-                requireContext(),
-                permissions[2]
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(requireActivity(), permissions, 0)
-        } else {
-            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-
-                if (location != null) {
-                    val preferences = requireContext().getSharedPreferences(
-                        Configuracoes.PREF_NAME, AppCompatActivity.MODE_PRIVATE)
-
-                    val savedMessage = preferences.getString(
-                        Configuracoes.KEY_DEFAULT_MSG,
-                        "Mensagem padrão não definida"
-                    )
-
-                    val phone = preferences.getLong(Configuracoes.KEY_PHONE, 0L)
-
-                    val smsMessage = "$savedMessage\nhttps://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}"
-
-                    val smsManager: SmsManager = SmsManager.getDefault()
-
-                    smsManager.sendTextMessage(
-                        phone.toString(),
-                        null,
-                        smsMessage,
-                        null,
-                        null
-                    )
-
-                    Toast.makeText(
-                        requireContext(),
-                        "SMS enviado com a localização e a mensagem salva!",
-                        Toast.LENGTH_LONG
-                    ).show()
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Localização não disponível",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }.addOnFailureListener { e ->
-                Toast.makeText(
-                    requireContext(),
-                    "Erro ao obter localização: ${e.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+        permissions.forEach { permission ->
+            if (ActivityCompat.checkSelfPermission(requireContext(), permission) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(permission),
+                    1
+                )
             }
         }
+    }
 }
