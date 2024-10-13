@@ -146,9 +146,9 @@
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".com.companyvihva.vihva.model.DescriçãoRemedio_inicio1"
-            android:exported="false"
- />
+            android:name=".model.DescriçãoRemedio_inicio1"
+            android:exported="false" />
+
         <activity
             android:name=".model.PopupRemedio.DescriçãoDoença"
             android:exported="false"

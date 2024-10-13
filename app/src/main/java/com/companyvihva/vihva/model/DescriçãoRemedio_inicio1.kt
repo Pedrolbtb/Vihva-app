@@ -1,4 +1,4 @@
-package com.companyvihva.vihva.com.companyvihva.vihva.model
+package com.companyvihva.vihva.model
 
 import MedicoAdapter
 import android.os.Bundle
@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.R
+import com.companyvihva.vihva.com.companyvihva.vihva.model.medico_spinner
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
@@ -36,6 +37,7 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
     private lateinit var observacaoTextView: TextView
     private var remedioId: String? = null
     private var formattedDate: String? = null
+    private var urlImagem: String? = null // Variável para armazenar a URL da imagem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,11 +105,12 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
         docRef.get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
-                    val url = document.getString("Url")
+                    val url = document.getString("urlImagem")
                     val nome = document.getString("nome")
                     // Carrega a imagem usando Picasso se a URL estiver disponível
                     url?.let {
                         Picasso.get().load(it).into(urlImageView)
+                        urlImagem = it // Armazena a URL da imagem
                     }
                     // Atualiza TextViews com os dados do remédio
                     nomeTextView.text = nome
@@ -173,10 +176,11 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
             "nome" to nomeRemedio,
             "observacao" to observacao,
             "prescritoPor" to prescritoPorUid,
-            "dataPrescricao" to dataPrescricao
+            "dataPrescricao" to dataPrescricao,
+            "urlImagem" to (urlImagem ?: "") // Adiciona a URL da imagem ao mapa
         )
 
-        // Salva os dados no Firestore na coleção "clientes" sob o array "prescrições"
+        // Salva os dados no Firestore na coleção "clientes" sob o array "prescriçõesRemedio"
         val clienteDocRef = firestore.collection("clientes").document(user.uid)
         clienteDocRef.update("prescriçõesRemedio", FieldValue.arrayUnion(remedioMap))
             .addOnSuccessListener {
@@ -213,25 +217,14 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
                                 val adapter = MedicoAdapter(this, listaMedicos)
                                 medicoSpinner.adapter = adapter
                             }
-                            .addOnFailureListener { e ->
-                                Log.w("DescricaoRemedioInicio1", "Erro ao buscar médico $medicoUid", e)
+                            .addOnFailureListener { exception ->
+                                Log.d("Firestore", "Erro ao carregar médicos: ", exception)
                             }
                     }
                 }
             }
-            .addOnFailureListener { e ->
-                Log.w("DescricaoRemedioInicio1", "Erro ao buscar médicos", e)
+            .addOnFailureListener { exception ->
+                Log.d("Firestore", "Erro ao carregar médicos do Firestore: ", exception)
             }
-    }
-
-    // Animação da tela
-    private fun replaceFragment(fragment: Fragment) {
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-
-        fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-
-        fragmentTransaction.replace(R.id.frame_layout, fragment)
-        fragmentTransaction.commit()
     }
 }

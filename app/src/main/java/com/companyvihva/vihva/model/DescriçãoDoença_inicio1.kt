@@ -98,30 +98,39 @@ class DescriçãoDoença_inicio1 : AppCompatActivity() {
         docRef.get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
-                    val nome = document.getString("nome")
-                    val descricao = document.getString("descricao")
-                    val url = document.getString("Url")
+                    val nome = document.getString("nome") ?: "Nome não disponível"
+                    val descricao = document.getString("descricao") ?: "Descrição não disponível"
+                    val url = document.getString("Url") ?: ""  // Use uma string vazia se o URL não estiver disponível
+                    val foto = document.getString("foto") ?: ""  // Se você precisar da foto  //eu precisei e nao funcionava!
 
                     // Carrega a Url de imagem usando o Picasso
-                    url?.let { Picasso.get().load(it).into(urlImageView) }
+                    if (url.isNotEmpty()) {
+                        Picasso.get().load(url).into(urlImageView)
+                    } else {
+                        Log.e("PopupDoenca", "URL não encontrada no documento")
+                    }
+
                     nomeTextView.text = nome
 
                     // Cria um objeto Tipo_Classe com os dados obtidos no Firestore
-                    doenca = Tipo_Classe(url ?: "", nome ?: "", descricao ?: "")
+                    doenca = Tipo_Classe(foto, nome, descricao) // Adiciona a URL aqui
                 } else {
                     Log.d("PopupDoenca", "Documento não encontrado")
                 }
             }
             .addOnFailureListener { e ->
                 Log.w("PopupDoenca", "Erro ao obter documento", e)
+                Toast.makeText(this, "Erro ao carregar dados da doença. Tente novamente.", Toast.LENGTH_SHORT).show()
             }
     }
+
+
 
     // Método para o Alert Dialog da doença
     private fun showConfirmDeleteDialog(doencaId: String) {
         AlertDialog.Builder(this).apply {
             setTitle("Confirmação de Exclusão")
-            setMessage("Tem certeza que deseja excluir esta doença? Você pode adicioná-la novamente na lista de doenças")
+            setMessage("Tem certeza que deseja excluir esta doença? Você pode adicioná-la novamente na lista de doenças.")
             setPositiveButton("Sim") { _, _ -> deleteDoencaArray(doencaId) }
             setNegativeButton("Não", null)
             create()
@@ -142,6 +151,7 @@ class DescriçãoDoença_inicio1 : AppCompatActivity() {
                 }
                 .addOnFailureListener { e ->
                     Log.w("DescriçãoDoença_Inicio1", "Erro ao excluir doença do array", e)
+                    Toast.makeText(this, "Erro ao excluir doença. Tente novamente.", Toast.LENGTH_SHORT).show()
                 }
         }
     }
@@ -155,6 +165,7 @@ class DescriçãoDoença_inicio1 : AppCompatActivity() {
             }
             .addOnFailureListener { e ->
                 Log.e("Evento", "Erro ao carregar médicos", e)
+                Toast.makeText(this, "Erro ao carregar médicos. Tente novamente.", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -173,6 +184,7 @@ class DescriçãoDoença_inicio1 : AppCompatActivity() {
                 medicoSpinner.adapter = adapter
             }.addOnFailureListener { e ->
                 Log.w("Evento", "Erro ao buscar médico $medicoUid", e)
+                Toast.makeText(this, "Erro ao carregar médico: $medicoUid", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -188,11 +200,27 @@ class DescriçãoDoença_inicio1 : AppCompatActivity() {
         val medicoSelecionado = medicoSpinner.selectedItem as? medico_spinner
         val prescritoPorUid = medicoSelecionado?.let { medicoMap.keys.firstOrNull { key -> medicoMap[key] == it.nome } } ?: ""
 
+        // Validações
+        if (nomeDoenca.isEmpty()) {
+            Toast.makeText(this, "Por favor, insira o nome da doença", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (formattedDate == null) {
+            Toast.makeText(this, "Por favor, selecione uma data", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Adicione a URL da imagem da doença, se disponível
+        val urlImagem = doenca?.foto // Obtém a URL da imagem da doença
+
         // Cria o mapa de dados da doença
         val doencaMap = hashMapOf(
             "nome" to nomeDoenca,
-            "dataPrescricao" to (formattedDate ?: "Data não disponível"),
-            "prescritoPor" to prescritoPorUid
+            "dataPrescricao" to formattedDate!!,
+            "prescritoPor" to prescritoPorUid,
+            "remedioId" to doencaid,
+            "urlImagem" to (urlImagem ?: "") // Adiciona a URL da imagem ao mapa
         )
 
         // Salva os dados no Firestore na coleção "clientes" sob o array "prescrições"
@@ -204,6 +232,8 @@ class DescriçãoDoença_inicio1 : AppCompatActivity() {
             }
             .addOnFailureListener { e ->
                 Log.w("DescriçãoDoença_Inicio1", "Erro ao salvar informações da doença", e)
+                Toast.makeText(this, "Erro ao salvar informações. Tente novamente.", Toast.LENGTH_SHORT).show()
             }
     }
+
 }

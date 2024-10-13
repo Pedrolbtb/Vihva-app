@@ -14,7 +14,6 @@ import com.companyvihva.vihva.model.Tipo_Classe
 import com.google.firebase.firestore.FirebaseFirestore
 
 class Classes_Remedio : Fragment() {
-
     // Declarando variáveis
     private lateinit var firestore: FirebaseFirestore
     private lateinit var adapterRemedio: AdapterRemedio
@@ -37,27 +36,26 @@ class Classes_Remedio : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         // Inflando o layout do fragmento
         val view = inflater.inflate(R.layout.remedio2, container, false)
 
         // Inicializando o Firestore
         firestore = FirebaseFirestore.getInstance()
-        // Encontrando o RecyclerView na view inflada e configurando-o
+
+        // Configurando o RecyclerView
         val recyclerViewRemedios = view.findViewById<RecyclerView>(R.id.recyclerView_remedios)
         recyclerViewRemedios.layoutManager = LinearLayoutManager(context)
         recyclerViewRemedios.setHasFixedSize(true)
 
-        // Inicializando e configurando o Adapter
-        adapterRemedio = AdapterRemedio(requireContext(), listaRemediosFiltrados)
-        { remedio ->
+        // Inicializando o Adapter
+        adapterRemedio = AdapterRemedio(requireContext(), listaRemediosFiltrados) { remedio ->
             val intent = Intent(requireContext(), Lista_Remedios::class.java)
-            intent.putExtra("remedioId", remedio.nome) // Passe o ID ou nome do remédio como extra
+            intent.putExtra("remedioId", remedio.nome)
             startActivity(intent)
         }
         recyclerViewRemedios.adapter = adapterRemedio
 
-        // Inicializando e configurando a SearchView
+        // Configurando a SearchView
         searchView = view.findViewById(R.id.SearchRemedio)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -71,9 +69,7 @@ class Classes_Remedio : Fragment() {
                 } else {
                     val searchText = newText.lowercase()
                     listaRemediosFiltrados.addAll(
-                        listaRemedios.filter {
-                            it.nome.lowercase().contains(searchText)
-                        }
+                        listaRemedios.filter { it.nome.lowercase().contains(searchText) }
                     )
                 }
                 adapterRemedio.notifyDataSetChanged()
@@ -97,10 +93,10 @@ class Classes_Remedio : Fragment() {
                     if (document != null) {
                         // Obtendo os detalhes do remédio do documento Firestore
                         val nome = document.getString("nome")
-                        val url = document.getString("Url")
-                        val remedio = Tipo_Classe(url ?: "", nome ?: "","")
+                        val url = document.getString("Url") // Certifique-se de que este campo existe
+                        val remedio = Tipo_Classe(url ?: "", nome ?: "", "")
 
-                        // Adicionando o remédio à lista e notificando o Adapter sobre a mudança
+                        // Adicionando o remédio à lista e notificando o Adapter
                         listaRemedios.add(remedio)
                         listaRemediosFiltrados.add(remedio)
                         adapterRemedio.notifyDataSetChanged()

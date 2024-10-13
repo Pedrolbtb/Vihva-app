@@ -9,7 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.R
-import com.companyvihva.vihva.com.companyvihva.vihva.model.DescriçãoRemedio_inicio1
+import com.companyvihva.vihva.com.companyvihva.vihva.model.DescriçãoDoença_inicio1
+import com.companyvihva.vihva.model.DescriçãoRemedio_inicio1
 
 
 import com.companyvihva.vihva.model.Tipo_Remedios
