@@ -1,6 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Vihva</string>
 
+    <string name="text_teladecorrida">Vihva Watch</string>
+
     <string name="text_horas">horas</string>
 
     <string name="text_textnaotemdoenca">Você ainda não tem tratamentos cadastrados</string>

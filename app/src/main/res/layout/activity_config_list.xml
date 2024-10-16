@@ -70,6 +70,32 @@
                 app:srcCompat="@drawable/seta_direita" />
         </TableRow>
 
+        <TableRow
+            android:id="@+id/button_vihvawatch"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/container_linha">
+
+            <TextView
+
+                android:layout_width="330dp"
+                android:fontFamily="@font/peanut_butter"
+                android:layout_height="55dp"
+                android:textColor="@color/Letras"
+                android:layout_marginStart="30dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Vihva Watch"
+                android:textSize="30sp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="30dp"
+                app:srcCompat="@drawable/seta_direita" />
+        </TableRow>
+
 
         <TableRow
             android:id="@+id/button_configList_deleteconta"
@@ -118,6 +144,8 @@
                 android:layout_marginEnd="30dp"
                 app:srcCompat="@drawable/seta_direita" />
         </TableRow>
+
+
 
         <TableRow
             android:id="@+id/button_configlist_manual"

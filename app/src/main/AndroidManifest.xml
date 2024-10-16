@@ -19,7 +19,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.BODY_SENSORS"/> <!-- permissão de sensor de movimento -->
+    <uses-permission android:name="android.permission.BODY_SENSORS" />
 
     <application
         android:allowBackup="true"
@@ -32,6 +32,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vihva"
         tools:targetApi="31">
+        <activity
+            android:name=".Inicio.telaCorrida"
+            android:exported="false" />
         <activity
             android:name=".Configurações.Configuracoes_manual_usuario"
             android:exported="false" />
@@ -148,7 +151,6 @@
         <activity
             android:name=".model.DescriçãoRemedio_inicio1"
             android:exported="false" />
-
         <activity
             android:name=".model.PopupRemedio.DescriçãoDoença"
             android:exported="false"

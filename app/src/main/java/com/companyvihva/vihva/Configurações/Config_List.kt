@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.Configuracoes.ConfigNotificacoes
 import com.companyvihva.vihva.Configuracoes.Configuracoes
+import com.companyvihva.vihva.Inicio.Inicio
+import com.companyvihva.vihva.Inicio.Inicio1
+import com.companyvihva.vihva.Inicio.telaCorrida
 import com.companyvihva.vihva.R
 
 
@@ -22,9 +25,10 @@ class Config_List : AppCompatActivity() {
             startActivity(telaConfig)
         }
 
-        val btnVoltar = findViewById<ImageButton>(R.id.voltar_configlist)
-        btnVoltar.setOnClickListener {
-            onBackPressed()
+        val btnVoltar = findViewById<ImageButton>(R.id.voltar_configlist).setOnClickListener {
+            val telaInicial = Intent(this, Inicio::class.java)
+            startActivity(telaInicial)
+            finish()
         }
 
         findViewById<TableRow>(R.id.button_configList_deleteconta).setOnClickListener {
@@ -42,6 +46,12 @@ class Config_List : AppCompatActivity() {
         val btnManual = findViewById<TableRow>(R.id.button_configlist_manual).setOnClickListener {
             val telaManu = Intent(this,Configuracoes_manual_usuario::class.java)
             startActivity(telaManu)
+            finish()
+        }
+
+        val btnvihvaWatch = findViewById<TableRow>(R.id.button_vihvawatch).setOnClickListener {
+            val telaWatch = Intent(this,telaCorrida::class.java)
+            startActivity(telaWatch)
             finish()
         }
 
