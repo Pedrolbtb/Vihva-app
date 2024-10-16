@@ -163,7 +163,7 @@ class Inicio1 : Fragment(), SensorEventListener {
                 val savedMessage = preferences.getString(
                     Configuracoes.KEY_DEFAULT_MSG, "Mensagem padrão não definida"
                 )
-                val phone = preferences.getLong(Configuracoes.KEY_PHONE, 0L)
+                val phone = preferences.getString(Configuracoes.KEY_PHONE, null)
                 val smsMessage = "$savedMessage\nhttps://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}"
 
                 SmsManager.getDefault().sendTextMessage(
