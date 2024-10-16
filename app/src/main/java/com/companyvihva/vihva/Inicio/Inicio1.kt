@@ -101,8 +101,6 @@ class Inicio1 : Fragment(), SensorEventListener {
             )
             enviarSOS()
         }
-        val snapHelper = PagerSnapHelper()
-        snapHelper.attachToRecyclerView(recyclerview_doenca)
 
         val btnAddDoenca: ImageButton = view.findViewById(R.id.image_adddoenca)
         btnAddDoenca.setOnClickListener {
@@ -204,7 +202,7 @@ class Inicio1 : Fragment(), SensorEventListener {
     }
 
     private fun setupRecyclerView(view: View) {
-        recyclerViewRemedioAdicionado.layoutManager = LinearLayoutManager(requireContext())
+        recyclerViewRemedioAdicionado.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         recyclerViewRemedioAdicionado.setHasFixedSize(true)
 
         listaInicio = mutableListOf()
@@ -262,7 +260,7 @@ class Inicio1 : Fragment(), SensorEventListener {
     }
 
     private fun setupRecyclerView2(view: View) {
-        recyclerview_doenca.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        recyclerview_doenca.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         recyclerview_doenca.setHasFixedSize(true)
 
         listadoenca = mutableListOf()
