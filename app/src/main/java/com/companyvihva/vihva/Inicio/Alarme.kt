@@ -65,7 +65,8 @@ class Alarme : Fragment() {
                     val descricao = document.getString("descricao") ?: "Descrição não disponível"
                     val nomeRemedio = document.getString("remedioId") ?: "Nome do remédio não disponível"
                     val frequencia = document.getString("frequencia") ?: "Frequência não disponível"
-                    listaAlarmes.add(tipo_alarme(descricao, nomeRemedio, frequencia))
+                    val id = document.getString("id") ?: "nao ta dando"
+                    listaAlarmes.add(tipo_alarme(descricao, nomeRemedio, frequencia, id))
                 }
                 // Atualizando o adapter com a lista de alarmes
                 adapter = Adapter_alarme(listaAlarmes, requireContext())

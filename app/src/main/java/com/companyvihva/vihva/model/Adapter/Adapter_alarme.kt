@@ -23,9 +23,12 @@ class Adapter_alarme(
 
         init {
             itemView.setOnClickListener {
-                val descricao = listaAlarmes[adapterPosition].descricao
+                val alarme = listaAlarmes[adapterPosition]
+                val descricao = alarme.descricao
+                val id = alarme.id // Supondo que a ID do alarme esteja em alarme.id
                 val intent = Intent(context, Descrição_alarme::class.java).apply {
                     putExtra("ALARME_DESCRICAO", descricao)
+                    putExtra("ALARME_ID", id) // Adicionando a ID
                 }
                 context.startActivity(intent)
             }

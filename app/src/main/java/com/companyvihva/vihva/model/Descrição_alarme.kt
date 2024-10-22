@@ -50,7 +50,7 @@ class Descrição_alarme : AppCompatActivity() {
         }
 
         // Obtém o ID do lembrete, altere conforme sua lógica
-        val eventoId = intent.getStringExtra("EVENTO_ID") // Certifique-se de passar o ID correto pelo Intent
+        val eventoId = intent.getStringExtra("ALARME_ID") // Certifique-se de passar o ID correto pelo Intent
         if (eventoId != null) {
             findViewById<ImageButton>(R.id.lixeira_alarme).setOnClickListener {
                 showConfirmDeleteDialogLembrete(eventoId)
@@ -69,7 +69,7 @@ class Descrição_alarme : AppCompatActivity() {
 
         docRef.get().addOnSuccessListener { document ->
             if (document != null) {
-                val descricao = document.getString("descricao")
+                val descricao = document.getString("data")
                 descricaoTextView.text = descricao ?: "Descrição não disponível"
             } else {
                 descricaoTextView.text = "Documento não encontrado."
