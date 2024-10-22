@@ -132,11 +132,14 @@ class Inicio1 : Fragment(), SensorEventListener {
                     enviarSOS()
 
                     AlertDialog.Builder(requireContext())
-                        .setTitle("Mal súbito ou acidente detectado")
-                        .setMessage("Detectamos uma queda e o SMS do SOS foi enviado")
-                        .setPositiveButton("Ok", null)
-                        .create()
-                        .show()
+                    val inflater = LayoutInflater.from(requireContext())
+                    val builder = androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                    val popupView = inflater.inflate(R.layout.popup_esqueci_senha, null)
+
+                    builder.setView(popupView)
+
+                    val alertDialog = builder.create()
+                    alertDialog.show()
                 }
             }
         }

@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="330dp"
-    android:layout_height="500dp"
+    android:layout_height="250dp"
     android:layout_gravity="center"
-    android:background="@drawable/container_components">
+    android:background="@drawable/container_components_morte">
 
 
     <TextView
@@ -13,12 +13,12 @@
         style="@style/titulo_inicio"
         android:layout_width="230dp"
         android:layout_marginEnd="90dp"
-        android:layout_marginBottom="420dp"
         android:padding="15dp"
         android:text="@string/titulo_login"
+        android:layout_marginBottom="210dp"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,15 +26,16 @@
         android:id="@+id/btnCancelar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="260dp"
-        android:layout_marginBottom="430dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/close_button_description"
         android:padding="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginBottom="220dp"
         android:src="@drawable/buttom_exit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/titulo_login" />
 
     <TextView
@@ -43,13 +44,29 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:gravity="center"
-        android:text=""
-        android:textColor="#247894"
-        android:textSize="16sp"
+        android:text="Mal súbito ou acidente detectado"
+        android:textColor="@color/vermelho_alerta"
+        android:textSize="22sp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:gravity="center"
+        android:text="Detectamos uma queda e o SMS do SOS foi enviado"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_marginTop="130dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline9"
