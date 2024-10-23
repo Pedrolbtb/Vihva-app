@@ -25,13 +25,17 @@ class Adapter_alarme(
             itemView.setOnClickListener {
                 val alarme = listaAlarmes[adapterPosition]
                 val descricao = alarme.descricao
-                val id = alarme.id // Supondo que a ID do alarme esteja em alarme.id
+                val id = alarme.id // ID do alarme
+                val nomeRemedio = alarme.nomeRemedio // Nome do remédio
+
                 val intent = Intent(context, Descrição_alarme::class.java).apply {
                     putExtra("ALARME_DESCRICAO", descricao)
-                    putExtra("ALARME_ID", id) // Adicionando a ID
+                    putExtra("ALARME_ID", id) // Adicionando o ID
+                    putExtra("NOME_REMEDIO", nomeRemedio) // Adicionando o nome do remédio
                 }
                 context.startActivity(intent)
             }
+
         }
     }
 
@@ -51,6 +55,3 @@ class Adapter_alarme(
         return listaAlarmes.size
     }
 }
-
-
-

@@ -1,5 +1,6 @@
 package com.companyvihva.vihva.model
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
@@ -15,20 +16,35 @@ import com.google.firebase.firestore.FirebaseFirestore
 class Descrição_alarme : AppCompatActivity() {
 
     private lateinit var descricaoTextView: TextView
+    private lateinit var nomeRemedioTextView: TextView
 
     // Criação das instâncias do FirebaseAuth e FirebaseFirestore
     private val auth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
     private val firestore: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.descricao_alarme)
 
-        // Inicializa a View
+        // Inicializa as Views
         descricaoTextView = findViewById(R.id.descricao)
+        nomeRemedioTextView = findViewById(R.id.nome_remedio_view)
 
-        // Recupera o ID do alarme passado via Intent
+        // Recupera o ID do alarme e o nome do remédio passados via Intent
         val alarmeId = intent.getStringExtra("ALARME_ID")
+        val nomeRemedio = intent.getStringExtra("NOME_REMEDIO")
+        val descriçãoAlarme = intent.getStringExtra("descricao")
+
+        // Exibir o nome do remédio se foi passado corretamente
+        if (nomeRemedio != null) {
+            nomeRemedioTextView.text = nomeRemedio
+        } else {
+            nomeRemedioTextView.text = "Nome do remédio não encontrado."
+        }
+
+        // Log para verificar se o ID do alarme está sendo recuperado corretamente
+        Log.d("DescriçãoAlarme", "ID do alarme: $alarmeId")
 
         // Verifica se o ID do alarme foi passado corretamente
         if (alarmeId != null) {
@@ -50,7 +66,7 @@ class Descrição_alarme : AppCompatActivity() {
         }
 
         // Obtém o ID do lembrete, altere conforme sua lógica
-        val eventoId = intent.getStringExtra("ALARME_ID") // Certifique-se de passar o ID correto pelo Intent
+        val eventoId = intent.getStringExtra("ALARME_ID")
         if (eventoId != null) {
             findViewById<ImageButton>(R.id.lixeira_alarme).setOnClickListener {
                 showConfirmDeleteDialogLembrete(eventoId)
@@ -61,23 +77,44 @@ class Descrição_alarme : AppCompatActivity() {
     }
 
     private fun buscarAlarme(alarmeId: String) {
-        val userId = auth.currentUser?.uid ?: return
+        val userId = auth.currentUser?.uid
+
+        // Log para verificar o ID do usuário
+        Log.d("DescriçãoAlarme", "ID do usuário: $userId")
+
+        if (userId == null) {
+            Log.e("DescriçãoAlarme", "Usuário não autenticado.")
+            descricaoTextView.text = "Erro: Usuário não autenticado."
+            return
+        }
+
+        Log.d("DescriçãoAlarme", "Buscando alarme com ID: $alarmeId para usuário: $userId")
+
         val docRef = firestore.collection("clientes")
             .document(userId)
             .collection("Alarmes")
             .document(alarmeId)
 
-        docRef.get().addOnSuccessListener { document ->
-            if (document != null) {
-                val descricao = document.getString("data")
-                descricaoTextView.text = descricao ?: "Descrição não disponível"
-            } else {
-                descricaoTextView.text = "Documento não encontrado."
+        Log.d("DescriçãoAlarme", "Caminho do documento: ${docRef.path}")
+
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    // Verificar o conteúdo do documento e a presença do campo "data"
+                    val descricao = document.getString("descricao")
+                    descricaoTextView.text = descricao ?: "Descrição não disponível"
+                    Log.d("DescriçãoAlarme", "Descrição encontrada: $descricao")
+                } else {
+                    descricaoTextView.text = "Documento não encontrado."
+                    Log.w("DescriçãoAlarme", "Documento não encontrado para o ID: $alarmeId")
+                }
             }
-        }.addOnFailureListener { exception ->
-            descricaoTextView.text = "Erro ao carregar o alarme."
-        }
+            .addOnFailureListener { exception ->
+                descricaoTextView.text = "Erro ao carregar o alarme."
+                Log.e("DescriçãoAlarme", "Erro ao carregar o documento", exception)
+            }
     }
+
 
     private fun showConfirmDeleteDialog(alarmeId: String) {
         AlertDialog.Builder(this).apply {
@@ -142,7 +179,7 @@ class Descrição_alarme : AppCompatActivity() {
             }
     }
 
-    //animaçõa da tela
+    // Animação da tela
     private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()

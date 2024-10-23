@@ -51,7 +51,7 @@
         app:layout_constraintVertical_bias="0.458" />
 
     <TextView
-        android:id="@+id/nomeDoenca"
+        android:id="@+id/nome_remedio_view"
         style="@style/text_doenca_e_remedio"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
@@ -85,40 +85,6 @@
         app:layout_constraintStart_toStartOf="@id/view_descRemedio"
         app:layout_constraintTop_toTopOf="@+id/view_descRemedio"
         app:layout_constraintVertical_bias="0.723" />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="130dp"
-        android:layout_height="126dp"
-        android:layout_marginBottom="255dp"
-        android:background="@drawable/doenca_foto_widget"
-        android:elevation="2dp"
-        app:layout_constraintBottom_toBottomOf="@id/view_descRemedio"
-        app:layout_constraintEnd_toEndOf="@id/view_descRemedio"
-        app:layout_constraintStart_toStartOf="@id/view_descRemedio"
-        app:layout_constraintTop_toTopOf="@id/view_descRemedio" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="126dp"
-        android:layout_height="122dp"
-        android:layout_marginBottom="255dp"
-        app:cardCornerRadius="18dp"
-        app:layout_constraintBottom_toBottomOf="@id/view_descRemedio"
-        app:layout_constraintEnd_toEndOf="@id/view_descRemedio"
-        app:layout_constraintStart_toStartOf="@id/view_descRemedio"
-        app:layout_constraintTop_toTopOf="@id/view_descRemedio">
-
-
-        <ImageView
-            android:id="@+id/foto_Doenca"
-            android:layout_width="126dp"
-            android:layout_height="122dp"
-            android:scaleType="centerCrop"
-            />
-
-
-    </androidx.cardview.widget.CardView>
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline11"
