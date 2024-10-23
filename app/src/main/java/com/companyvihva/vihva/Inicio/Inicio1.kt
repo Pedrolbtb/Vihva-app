@@ -133,7 +133,7 @@ class Inicio1 : Fragment(), SensorEventListener {
 
                     AlertDialog.Builder(requireContext())
                     val inflater = LayoutInflater.from(requireContext())
-                    val builder = androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                    val builder = AlertDialog.Builder(requireContext(), R.style.CustomDialog)
                     val popupView = inflater.inflate(R.layout.popup_esqueci_senha, null)
 
                     builder.setView(popupView)
@@ -194,15 +194,35 @@ class Inicio1 : Fragment(), SensorEventListener {
     }
 
     private fun showConfirmDeleteDialog() {
-        AlertDialog.Builder(requireContext()).apply {
-            setTitle("Confirmação de exclusão")
-            setMessage("Tem certeza que deseja excluir todos os medicamentos? Você pode adicioná-los novamente na lista de remédios")
-            setPositiveButton("Sim") { _, _ -> deletarArrayRemedios() }
-            setNegativeButton("Não", null)
-            create()
-            show()
+        val inflater = LayoutInflater.from(requireContext())
+        val popupView = inflater.inflate(R.layout.popup_confirmar, null)
+
+        val btnCancelar = popupView.findViewById<Button>(R.id.btnRejeitar)
+        val btnAceitar = popupView.findViewById<Button>(R.id.btnAceitar)
+
+        // Criação do diálogo
+        val dialog = AlertDialog.Builder(requireContext(), R.style.CustomDialog).apply {
+            setView(popupView)
+        }.create()
+
+        // Adiciona os listeners para os botões dentro do popup
+        btnAceitar.setOnClickListener {
+            // Chama a função de deletar
+            deletarArrayRemedios()
+            // Fecha o diálogo
+            dialog.dismiss()
         }
+
+        btnCancelar.setOnClickListener {
+            // Fecha o diálogo
+            dialog.dismiss()
+        }
+
+        // Exibição do diálogo
+        dialog.show()
     }
+
+
 
     private fun setupRecyclerView(view: View) {
         recyclerViewRemedioAdicionado.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)

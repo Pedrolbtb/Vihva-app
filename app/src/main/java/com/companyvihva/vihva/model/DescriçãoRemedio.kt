@@ -69,15 +69,15 @@ class DescriçãoRemedio : AppCompatActivity() {
                 if (document != null && document.exists()) {
                     val nome = document.getString("nome")
                     val descricao = document.getString("descricao")
-                    val url = document.getString("Url")
+                    val Url = document.getString("Url") ?: ""
 
                     // Carrega a imagem usando o Picasso se a URL estiver disponível
-                    url?.let {
+                    Url.let {
                         Picasso.get().load(it).into(urlImageView)
                     }
 
                     // Cria um objeto Tipo_Classe com os dados obtidos do Firebase
-                    remedio = Tipo_Classe(url ?: "", nome ?: "", descricao ?: "")
+                    remedio = Tipo_Classe(Url, nome ?: "", descricao ?: "")
 
                     // Atualiza os TextViews com o nome e a descrição do remédio
                     nomeTextView.text = nome

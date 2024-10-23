@@ -3,16 +3,15 @@ package com.companyvihva.vihva.model
 import MedicoAdapter
 import android.os.Bundle
 import android.util.Log
-import android.widget.ArrayAdapter
+import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.fragment.app.Fragment
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.model.medico_spinner
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -105,7 +104,7 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
         docRef.get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
-                    val url = document.getString("urlImagem")
+                    val url = document.getString("Url")
                     val nome = document.getString("nome")
                     // Carrega a imagem usando Picasso se a URL estiver disponível
                     url?.let {
@@ -123,15 +122,28 @@ class DescriçãoRemedio_inicio1 : AppCompatActivity() {
             }
     }
 
-    // Método para mostrar o diálogo de confirmação de exclusão
-    private fun showConfirmDeleteDialog(remedioId: String) {
-        AlertDialog.Builder(this).apply {
-            setTitle("Confirmação de exclusão")
-            setMessage("Tem certeza que deseja excluir este remédio? Você pode adicioná-lo novamente na lista de remédios.")
-            setPositiveButton("Sim") { _, _ ->
-                deleteRemedioArray(remedioId)
-            }
-            setNegativeButton("Não", null)
+
+    private fun showConfirmDeleteDialog(id: String) {
+        val inflater = LayoutInflater.from(this)
+        val popupView = inflater.inflate(R.layout.popup_confirmar, null)
+
+        // Mude ImageButton para Button ou AppCompatButton, conforme necessário
+        val btnCancelar = popupView.findViewById<Button>(R.id.btnRejeitar)
+        val btnAceitar = popupView.findViewById<Button>(R.id.btnAceitar)
+
+        // Adiciona os listeners para os botões dentro do popup
+        btnAceitar.setOnClickListener {
+            // Chama a função de deletar e fecha o diálogo
+            remedioId?.let { it1 -> deleteRemedioArray(it1) }
+        }
+
+        btnCancelar.setOnClickListener {
+            // Aqui você pode adicionar a lógica de cancelamento se necessário
+        }
+
+        // Criação e exibição do diálogo
+        android.app.AlertDialog.Builder(this, R.style.CustomDialog).apply {
+            setView(popupView)
             create()
             show()
         }

@@ -4,6 +4,7 @@ import MedicoAdapter
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -127,16 +128,29 @@ class DescriçãoDoença_inicio1 : AppCompatActivity() {
 
 
     // Método para o Alert Dialog da doença
-    private fun showConfirmDeleteDialog(doencaId: String) {
-        AlertDialog.Builder(this).apply {
-            setTitle("Confirmação de Exclusão")
-            setMessage("Tem certeza que deseja excluir esta doença? Você pode adicioná-la novamente na lista de doenças.")
-            setPositiveButton("Sim") { _, _ -> deleteDoencaArray(doencaId) }
-            setNegativeButton("Não", null)
-            create()
-            show()
+    private fun showConfirmDeleteDialog(doencaid: String) {
+        val inflater = LayoutInflater.from(this)
+        val popupView = inflater.inflate(R.layout.popup_confirmar, null)
+
+        val btnCancelar = popupView.findViewById<Button>(R.id.btnRejeitar)
+        val btnAceitar = popupView.findViewById<Button>(R.id.btnAceitar)
+
+        val dialog = AlertDialog.Builder(this, R.style.CustomDialog).apply {
+            setView(popupView)
+        }.create()
+
+        btnAceitar.setOnClickListener {
+            deleteDoencaArray(doencaid)
+            dialog.dismiss()
         }
+
+        btnCancelar.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
+
 
     // Método para excluir a doença individualmente
     private fun deleteDoencaArray(doencaId: String) {
