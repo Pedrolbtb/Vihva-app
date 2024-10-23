@@ -1,6 +1,6 @@
 package com.companyvihva.vihva.Inicio
 
-import android.annotation.SuppressLint
+
 import android.app.AlertDialog
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -40,7 +40,6 @@ class Perfil : Fragment() {
         return inflater.inflate(R.layout.fragment_perfil, container, false)
     }
 
-    @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
@@ -89,11 +88,11 @@ class Perfil : Fragment() {
                 }
         }
 
-        val btn_editar = view.findViewById<Button>(R.id.btn_editarPerfil)
+        val btn_editar = view.findViewById<Button>(R.id.btn_editarPerfil_dois)
         btn_editar.setOnClickListener {
             Log.d("Botão", "Botão Editar clicado")
-            val intent = Intent(requireActivity(), Editar_perfil::class.java)
-            startActivity(intent)
+            val editarPerfil = Intent(requireContext(), Editar_perfil::class.java)
+            startActivity(editarPerfil)
         }
 
         val btnMedicos = view.findViewById<ImageButton>(R.id.btn_medicos)
@@ -144,7 +143,7 @@ class Perfil : Fragment() {
             }
     }
 
-    @SuppressLint("MissingInflatedId")
+
     private fun mostrarpopupcodigo(uid: String) {
         val inflater = LayoutInflater.from(requireContext())
         val builder = AlertDialog.Builder(requireContext(), R.style.CustomDialog)

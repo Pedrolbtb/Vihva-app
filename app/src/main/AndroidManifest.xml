@@ -47,18 +47,24 @@
         <activity
             android:name=".CriarPerfil.CriaPerfil3"
             android:exported="false" />
-        <activity
-            android:name=".Inicio.Editar_perfil"
+
+        <activity android:name=".Inicio.Editar_perfil"
             android:exported="false" />
+
+
+
         <activity
             android:name=".model.DescriçãoLembrete"
             android:exported="false" />
+
         <activity
             android:name=".Login.Termos_detalhes"
             android:exported="false" />
+
         <activity
             android:name=".model.Descrição_alarme"
             android:exported="false" />
+
         <activity
             android:name=".Login.Termos"
             android:exported="false" />

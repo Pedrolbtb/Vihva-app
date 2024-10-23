@@ -69,17 +69,22 @@ class Editar_perfil : AppCompatActivity() {
                         val currentGenero = document.getString("genero")
 
                         val novoNome = editNomeV2.text.toString().ifEmpty { currentNome }
-                        val novoSobrenome = editSobreNomeV2.text.toString().ifEmpty { currentSobrenome }
-                        val novaIdade = editIdadeV2.text.toString().ifEmpty { currentIdade }?.toIntOrNull()
-                        val novaAltura = editAlturaV2.text.toString().ifEmpty { currentAltura }?.toIntOrNull()
-                        val novoPeso = editPesoV2.text.toString().ifEmpty { currentPeso }?.toIntOrNull()
+                        val novoSobrenome =
+                            editSobreNomeV2.text.toString().ifEmpty { currentSobrenome }
+                        val novaIdade =
+                            editIdadeV2.text.toString().ifEmpty { currentIdade }?.toIntOrNull()
+                        val novaAltura =
+                            editAlturaV2.text.toString().ifEmpty { currentAltura }?.toIntOrNull()
+                        val novoPeso =
+                            editPesoV2.text.toString().ifEmpty { currentPeso }?.toIntOrNull()
                         val novoGenero = when (radioGroupV2.checkedRadioButtonId) {
                             R.id.radio_masc_V2 -> "Masculino"
                             R.id.radio_fem_V2 -> "Feminino"
                             R.id.radio_Semgen_V2 -> "Prefiro não dizer"
                             else -> currentGenero
                         }
-                        val novaBiografia = editbiografiaV2.text.toString().ifEmpty { currentBiografia }
+                        val novaBiografia =
+                            editbiografiaV2.text.toString().ifEmpty { currentBiografia }
 
                         // Atualizar os valores no Firebase
                         val updates = mapOf(
@@ -110,16 +115,11 @@ class Editar_perfil : AppCompatActivity() {
             finish()
         }
 
-        btnClose.setOnClickListener {
+        val btnVoltar = findViewById<ImageButton>(R.id.btnClose)
+        btnVoltar.setOnClickListener {
 
-        }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                val options = ActivityOptions.makeCustomAnimation(
-                    this, R.anim.fade_in, R.anim.fade_out
-                )
-                finishAfterTransition()
-            } else {
-            finish() // Fecha a atividade ao clicar no botão fechar
+            finish()
+
         }
     }
 

@@ -219,7 +219,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_editarPerfil"
+            android:id="@+id/btn_editarPerfil_dois"
             style="@style/Button_salvar"
             android:layout_width="155dp"
             android:layout_height="40dp"
