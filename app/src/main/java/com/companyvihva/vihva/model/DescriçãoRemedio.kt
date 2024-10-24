@@ -1,5 +1,6 @@
 package com.companyvihva.vihva.model.PopupRemedio
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -9,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.companyvihva.vihva.Inicio.Inicio
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.model.Tipo_Classe
 import com.google.firebase.auth.FirebaseAuth
@@ -107,7 +109,9 @@ class DescriçãoRemedio : AppCompatActivity() {
                     // Exibe uma mensagem de sucesso
                     Toast.makeText(this, "Remédio adicionado com sucesso", Toast.LENGTH_SHORT).show()
                     // Fecha a Activity de popup
-                    finish()
+                    val intent = Intent(this, Inicio::class.java).apply {
+                    }
+                    startActivity(intent)
                 }
                 .addOnFailureListener { e ->
                     // Trata falhas na atualização do banco de dados

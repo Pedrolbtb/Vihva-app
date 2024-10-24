@@ -51,8 +51,6 @@
         <activity android:name=".Inicio.Editar_perfil"
             android:exported="false" />
 
-
-
         <activity
             android:name=".model.DescriçãoLembrete"
             android:exported="false" />
@@ -191,7 +189,6 @@
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

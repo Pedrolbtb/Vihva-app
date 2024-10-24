@@ -12,16 +12,13 @@
     <androidx.appcompat.widget.SearchView
         android:id="@+id/SearchView"
         android:background="@drawable/background_search_remedio"
-        android:layout_width="358dp"
+        android:layout_width="330dp"
         android:layout_height="53dp"
-        android:layout_marginTop="40dp"
         app:iconifiedByDefault="false"
         app:layout_constraintBottom_toTopOf="@+id/Lista_amigos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.698"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.0"
         app:queryBackground="@android:color/transparent"
         app:queryHint="Buscar amigo" />
 

@@ -26,7 +26,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.companyvihva.vihva.Alarme.ConfigFrequencia
 import com.companyvihva.vihva.Configuracoes.Configuracoes
@@ -41,7 +40,6 @@ import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.local.Persistence
 import kotlin.math.sqrt
 
 class Inicio1 : Fragment(), SensorEventListener {
@@ -60,6 +58,7 @@ class Inicio1 : Fragment(), SensorEventListener {
     private lateinit var sensorManager: SensorManager
     private var acelerometro: Sensor? = null
     private var shakeThreshold = 50f
+    private var lastSOSTime: Long = 0 // Variável para rastrear o tempo do último SOS
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,8 +67,8 @@ class Inicio1 : Fragment(), SensorEventListener {
         val view = inflater.inflate(R.layout.fragment_inicio1, container, false)
 
         // Verifique se o usuário está autenticado
-        val User = FirebaseAuth.getInstance().currentUser
-        if (User == null) {
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user == null) {
             // Se não estiver autenticado, redirecione para a tela de login
             val intent = Intent(requireContext(), Login::class.java)
             startActivity(intent)
@@ -80,7 +79,6 @@ class Inicio1 : Fragment(), SensorEventListener {
         recyclerViewRemedioAdicionado = view.findViewById(R.id.Recyclerview_remedioAdicionado)
         recyclerview_doenca = view.findViewById(R.id.recyclerview_doenca)
         textview_naotemdoenca = view.findViewById(R.id.textview_naotemdoenca)
-
 
         db = FirebaseFirestore.getInstance()
         sensorManager = requireActivity().getSystemService(Context.SENSOR_SERVICE) as SensorManager
@@ -129,17 +127,19 @@ class Inicio1 : Fragment(), SensorEventListener {
                 val gForce = sqrt((x * x + y * y + z * z).toDouble()).toFloat()
 
                 if (gForce > shakeThreshold) {
-                    enviarSOS()
+                    val currentTime = System.currentTimeMillis()
+                    // Verifica se passaram mais de 2 segundos desde o último SOS
+                    if (currentTime - lastSOSTime > 2000) {
+                        enviarSOS()
+                        lastSOSTime = currentTime // Atualiza o tempo do último SOS
 
-                    AlertDialog.Builder(requireContext())
-                    val inflater = LayoutInflater.from(requireContext())
-                    val builder = AlertDialog.Builder(requireContext(), R.style.CustomDialog)
-                    val popupView = inflater.inflate(R.layout.popup_esqueci_senha, null)
-
-                    builder.setView(popupView)
-
-                    val alertDialog = builder.create()
-                    alertDialog.show()
+                        // Mostra o diálogo de alerta
+                        AlertDialog.Builder(requireContext()).apply {
+                            val inflater = LayoutInflater.from(requireContext())
+                            setView(inflater.inflate(R.layout.popup_esqueci_senha, null))
+                            create().show()
+                        }
+                    }
                 }
             }
         }
@@ -148,15 +148,24 @@ class Inicio1 : Fragment(), SensorEventListener {
     private fun enviarSOS() {
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
+                Manifest.permission.SEND_SMS
+            ) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(Manifest.permission.SEND_SMS) // Solicita a permissão
+            return
+        }
+
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+            ) != PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-
             return
         }
+
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             location?.let {
                 val preferences = requireContext().getSharedPreferences(
@@ -170,7 +179,7 @@ class Inicio1 : Fragment(), SensorEventListener {
                 val smsMessage = "$savedMessage\nhttps://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}"
 
                 SmsManager.getDefault().sendTextMessage(
-                    phone.toString(), null, smsMessage, null, null
+                    phone, null, smsMessage, null, null
                 )
 
                 Toast.makeText(
@@ -207,22 +216,17 @@ class Inicio1 : Fragment(), SensorEventListener {
 
         // Adiciona os listeners para os botões dentro do popup
         btnAceitar.setOnClickListener {
-            // Chama a função de deletar
             deletarArrayRemedios()
-            // Fecha o diálogo
             dialog.dismiss()
         }
 
         btnCancelar.setOnClickListener {
-            // Fecha o diálogo
             dialog.dismiss()
         }
 
         // Exibição do diálogo
         dialog.show()
     }
-
-
 
     private fun setupRecyclerView(view: View) {
         recyclerViewRemedioAdicionado.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
@@ -364,6 +368,17 @@ class Inicio1 : Fragment(), SensorEventListener {
                     arrayOf(permission),
                     1
                 )
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 1) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                enviarSOS() // Tente enviar o SMS se a permissão for concedida
+            } else {
+                Toast.makeText(requireContext(), "Permissão para enviar SMS negada", Toast.LENGTH_SHORT).show()
             }
         }
     }
