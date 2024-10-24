@@ -6,6 +6,6 @@ data class tipo_alarme(
     val descricao: String,
     val id: String,
     val tipoMed: String,
-    val lembreme: String,
+    val lembremeAtual: String,
     val data: String
 )

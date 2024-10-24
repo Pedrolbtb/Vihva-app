@@ -34,10 +34,11 @@ class Descrição_alarme : AppCompatActivity() {
         // Recupera o ID do alarme e o nome do remédio passados via Intent
         val alarmeId = intent.getStringExtra("ALARME_ID")
         val nomeRemedio = intent.getStringExtra("NOME_REMEDIO")
-        val descriçãoAlarme = intent.getStringExtra("descricao")
+        val descriçãoAlarme = intent.getStringExtra("ALARME_DESCRICAO")
         val tipoMedAlarme = intent.getStringExtra("ALARME_TIPOMED")
         val lembremeAlarme = intent.getStringExtra("ALARME_LEMBREME")
         val dataAlarme = intent.getStringExtra("ALARME_DATA")
+        val frequencia = intent.getStringExtra("ALARME_FREQUENCIA")
 
 
         // Exibir o nome do remédio se foi passado corretamente
@@ -48,7 +49,9 @@ class Descrição_alarme : AppCompatActivity() {
         }
 
         if (tipoMedAlarme != null){
-            descricaoTextView.text = "$descriçãoAlarme, $tipoMedAlarme, $lembremeAlarme, $dataAlarme"
+            descricaoTextView.text = "Observações: $frequencia, tipodo medicamento: $tipoMedAlarme," +
+                    " será lembrado de comprar mais nesta quantidade de medicamentos: $lembremeAlarme, " +
+                    "será avisado até esta data: $dataAlarme, será avisado as $descriçãoAlarme"
         } else {
             descricaoTextView.text = "nada haver"
         }
