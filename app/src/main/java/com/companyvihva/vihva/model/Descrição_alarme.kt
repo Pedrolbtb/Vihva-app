@@ -35,12 +35,22 @@ class Descrição_alarme : AppCompatActivity() {
         val alarmeId = intent.getStringExtra("ALARME_ID")
         val nomeRemedio = intent.getStringExtra("NOME_REMEDIO")
         val descriçãoAlarme = intent.getStringExtra("descricao")
+        val tipoMedAlarme = intent.getStringExtra("ALARME_TIPOMED")
+        val lembremeAlarme = intent.getStringExtra("ALARME_LEMBREME")
+        val dataAlarme = intent.getStringExtra("ALARME_DATA")
+
 
         // Exibir o nome do remédio se foi passado corretamente
         if (nomeRemedio != null) {
             nomeRemedioTextView.text = nomeRemedio
         } else {
             nomeRemedioTextView.text = "Nome do remédio não encontrado."
+        }
+
+        if (tipoMedAlarme != null){
+            descricaoTextView.text = "$descriçãoAlarme, $tipoMedAlarme, $lembremeAlarme, $dataAlarme"
+        } else {
+            descricaoTextView.text = "nada haver"
         }
 
         // Log para verificar se o ID do alarme está sendo recuperado corretamente
@@ -104,14 +114,7 @@ class Descrição_alarme : AppCompatActivity() {
                     val descricao = document.getString("descricao")
                     descricaoTextView.text = descricao ?: "Descrição não disponível"
                     Log.d("DescriçãoAlarme", "Descrição encontrada: $descricao")
-                } else {
-                    descricaoTextView.text = "Documento não encontrado."
-                    Log.w("DescriçãoAlarme", "Documento não encontrado para o ID: $alarmeId")
                 }
-            }
-            .addOnFailureListener { exception ->
-                descricaoTextView.text = "Erro ao carregar o alarme."
-                Log.e("DescriçãoAlarme", "Erro ao carregar o documento", exception)
             }
     }
 

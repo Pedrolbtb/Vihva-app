@@ -4,5 +4,8 @@ data class tipo_alarme(
     val frequencia: String,
     val nomeRemedio: String,
     val descricao: String,
-    val id: String
+    val id: String,
+    val tipoMed: String,
+    val lembreme: String,
+    val data: String
 )

@@ -26,6 +26,9 @@ class Adapter_alarme(
             itemView.setOnClickListener {
                 val alarme = listaAlarmes[adapterPosition]
                 val descricao = alarme.descricao
+                val data = alarme.data
+                val lembreme = alarme.lembreme
+                val tipomed = alarme.tipoMed
                 val id = alarme.id // ID do alarme
                 val nomeRemedio = alarme.nomeRemedio // Nome do remédio
 
@@ -35,6 +38,10 @@ class Adapter_alarme(
                     putExtra("ALARME_DESCRICAO", descricao)
                     putExtra("ALARME_ID", id) // Adicionando o ID
                     putExtra("NOME_REMEDIO", nomeRemedio) // Adicionando o nome do remédio
+                    putExtra("ALARME_DATA", data)
+                    putExtra("ALARME_LEMBREME", lembreme)
+                    putExtra("ALARME_TIPOMED", tipomed)
+
                 }
                 context.startActivity(intent)
             }
