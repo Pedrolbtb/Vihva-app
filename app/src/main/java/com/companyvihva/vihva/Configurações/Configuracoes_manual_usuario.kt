@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ScrollView
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -27,6 +28,11 @@ class Configuracoes_manual_usuario : AppCompatActivity() {
         val playButtonQuatro = findViewById<Button>(com.companyvihva.vihva.R.id.playButtonEdita)
         val videoViewCinco = findViewById<VideoView>(com.companyvihva.vihva.R.id.videoViewSOS)
         val playButtonCinco = findViewById<Button>(com.companyvihva.vihva.R.id.playButtonSOS)
+
+        val scrollView = findViewById<ScrollView>(R.id.scrollView)
+        scrollView.post {
+            scrollView.scrollTo(0, 0)
+        }
 
         // Definir os caminhos dos vídeos
         val videoPath = "android.resource://${packageName}/${com.companyvihva.vihva.R.raw.doencapreta}"

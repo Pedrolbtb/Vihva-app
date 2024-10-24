@@ -2,6 +2,7 @@ package com.companyvihva.vihva
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,8 @@ class Adapter_alarme(
                 val id = alarme.id // ID do alarme
                 val nomeRemedio = alarme.nomeRemedio // Nome do remédio
 
+                Log.d("AdapterAlarme", "ID do alarme: $id") // Log do ID
+
                 val intent = Intent(context, Descrição_alarme::class.java).apply {
                     putExtra("ALARME_DESCRICAO", descricao)
                     putExtra("ALARME_ID", id) // Adicionando o ID
@@ -35,23 +38,25 @@ class Adapter_alarme(
                 }
                 context.startActivity(intent)
             }
-
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TipoAlarmeViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_alarme, parent, false)
-        return TipoAlarmeViewHolder(view)
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TipoAlarmeViewHolder {
+            val view =
+                LayoutInflater.from(parent.context).inflate(R.layout.item_alarme, parent, false)
+            return TipoAlarmeViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: TipoAlarmeViewHolder, position: Int) {
+            val alarme = listaAlarmes[position]
+            holder.textViewHorario.text = alarme.frequencia
+            holder.textViewRemedioId.text = alarme.nomeRemedio
+
+        }
+
+        override fun getItemCount(): Int {
+            return listaAlarmes.size
+        }
     }
 
-    override fun onBindViewHolder(holder: TipoAlarmeViewHolder, position: Int) {
-        val alarme = listaAlarmes[position]
-        holder.textViewHorario.text = alarme.frequencia
-        holder.textViewRemedioId.text = alarme.nomeRemedio
-
-    }
-
-    override fun getItemCount(): Int {
-        return listaAlarmes.size
-    }
-}

@@ -52,13 +52,13 @@ class Perfil_medico : AppCompatActivity() {
         nomeTextView = findViewById(R.id.text_nome)
         descricaoTextView = findViewById(R.id.text_genero)
         urlImageView = findViewById(R.id.img_save_perfil)
-        centroMedicoView = findViewById(R.id.centro_medico)
+        centroMedicoView = findViewById(R.id.textView5)
         crmView = findViewById(R.id.crm)
         nomeCompletoView = findViewById(R.id.text_nome) // Corrigido para a TextView que exibirá o nome completo
         fotoUmImageView = findViewById(R.id.foto1)
         fotoDoisImageView = findViewById(R.id.foto2)
         fotoTresImageView = findViewById(R.id.foto3)
-        detalhesClinicaView = findViewById(R.id.detalhes_clinica)
+        detalhesClinicaView = findViewById(R.id.textView6)
         // Configura o botão de voltar
         val btnVoltar = findViewById<ImageButton>(R.id.close)
         btnVoltar.setOnClickListener {
@@ -96,7 +96,7 @@ class Perfil_medico : AppCompatActivity() {
                     val sobrenome = document.getString("sobrenome")
                     val especializacao = document.getString("especializacao")
                     val imageUrl = document.getString("imageUrl")
-                    val centroMedico = document.getString("centroMedico")
+                    val centroMedico = document.getString("localiza")
                     val crm = document.getString("crm")
                     val fotoUm = document.getString("fotoUm")
                     val fotoDois = document.getString("fotoDois")
@@ -137,9 +137,9 @@ class Perfil_medico : AppCompatActivity() {
                     val nomeCompleto = "${nome ?: ""} ${sobrenome ?: ""}".trim() // Combina nome e sobrenome
                     nomeCompletoView.text = nomeCompleto
                     descricaoTextView.text = especializacao
-                    centroMedicoView.text = centroMedico
-                    crmView.text = crm
-                    detalhesClinicaView.text = detalhesClinica
+                    centroMedicoView.text = "Centro Médico: $centroMedico"
+                    crmView.text = "CRM: $crm"
+                    detalhesClinicaView.text = "Detalhes da cliníca: $detalhesClinica"
                 } else {
                     Log.d("Perfil_medico", "Documento não encontrado")
                 }
