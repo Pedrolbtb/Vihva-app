@@ -1,8 +1,12 @@
 package com.companyvihva.vihva.Inicio.Perfil_medico
 
 import android.app.ActivityOptions
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -30,39 +34,33 @@ class Perfil_medico : AppCompatActivity() {
     private lateinit var centroMedicoView: TextView
     private lateinit var crmView: TextView
     private lateinit var nomeCompletoView: TextView
-    private lateinit var fotoUmImageView:ImageView
+    private lateinit var fotoUmImageView: ImageView
     private lateinit var fotoDoisImageView: ImageView
     private lateinit var fotoTresImageView: ImageView
     private lateinit var detalhesClinicaView: TextView
-
-    // Atualizado para a TextView que exibirá o nome completo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tela_perfil_medico)
 
-        // Inicializa o Firestore e o FirebaseAuth
         firestore = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
-        // Obtém o ID do amigo passado pelo Intent
         amigoId = intent.getStringExtra("amigoId")
 
-        // Inicializa as views
         nomeTextView = findViewById(R.id.text_nome)
         descricaoTextView = findViewById(R.id.text_genero)
         urlImageView = findViewById(R.id.img_save_perfil)
         centroMedicoView = findViewById(R.id.textView5)
         crmView = findViewById(R.id.crm)
-        nomeCompletoView = findViewById(R.id.text_nome) // Corrigido para a TextView que exibirá o nome completo
+        nomeCompletoView = findViewById(R.id.text_nome)
         fotoUmImageView = findViewById(R.id.foto1)
         fotoDoisImageView = findViewById(R.id.foto2)
         fotoTresImageView = findViewById(R.id.foto3)
         detalhesClinicaView = findViewById(R.id.textView6)
-        // Configura o botão de voltar
+
         val btnVoltar = findViewById<ImageButton>(R.id.close)
         btnVoltar.setOnClickListener {
-            // Adiciona animação ao voltar para a tela anterior
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 val options = ActivityOptions.makeCustomAnimation(
                     this, R.anim.fade_in, R.anim.fade_out
@@ -73,18 +71,12 @@ class Perfil_medico : AppCompatActivity() {
             }
         }
 
-        // Configura o botão de excluir amigo
         val btnExcluir = findViewById<AppCompatButton>(R.id.exclui_medico)
         btnExcluir.setOnClickListener {
-            amigoId?.let { id ->
-                showConfirmDeleteDialog(id)
-            }
+            amigoId?.let { id -> showConfirmDeleteDialog(id) }
         }
 
-        // Busca os dados do Firebase usando o ID do amigo
-        amigoId?.let { id ->
-            fetchDadosDoFirebase(id)
-        }
+        amigoId?.let { id -> fetchDadosDoFirebase(id) }
     }
 
     private fun fetchDadosDoFirebase(docId: String) {
@@ -103,7 +95,6 @@ class Perfil_medico : AppCompatActivity() {
                     val fotoTres = document.getString("fotoTres")
                     val detalhesClinica = document.getString("detalhesClinica")
 
-                    // Carrega a URL de imagem usando o Picasso
                     imageUrl?.let {
                         Picasso.get().load(it).into(urlImageView)
                     }
@@ -117,7 +108,6 @@ class Perfil_medico : AppCompatActivity() {
                         Picasso.get().load(it).into(fotoTresImageView)
                     }
 
-                    // Cria um objeto Tipo_Classe com os dados obtidos no Firestore
                     doenca = tipo_amigo_descrição(
                         imageUrl ?: "",
                         nome ?: "",
@@ -129,17 +119,33 @@ class Perfil_medico : AppCompatActivity() {
                         fotoUm ?: "",
                         fotoDois ?: "",
                         fotoTres ?: "",
-                        detalhesClinica ?:""
-
+                        detalhesClinica ?: ""
                     )
 
-                    // Atualiza as TextViews com os dados
-                    val nomeCompleto = "${nome ?: ""} ${sobrenome ?: ""}".trim() // Combina nome e sobrenome
+                    val nomeCompleto = "${nome ?: ""} ${sobrenome ?: ""}".trim()
                     nomeCompletoView.text = nomeCompleto
                     descricaoTextView.text = especializacao
-                    centroMedicoView.text = "Centro Médico: $centroMedico"
+
+                    // Aplicar cor somente ao texto dinâmico
+                    val centroMedicoSpannable = SpannableString("Centro Médico: $centroMedico")
+                    centroMedicoSpannable.setSpan(
+                        ForegroundColorSpan(Color.parseColor("#807e7a")),
+                        14, // Começa após "Centro Médico: "
+                        centroMedicoSpannable.length,
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    centroMedicoView.text = centroMedicoSpannable
+
                     crmView.text = "CRM: $crm"
-                    detalhesClinicaView.text = "Detalhes da cliníca: $detalhesClinica"
+
+                    val detalhesClinicaSpannable = SpannableString("Detalhes da clínica: $detalhesClinica")
+                    detalhesClinicaSpannable.setSpan(
+                        ForegroundColorSpan(Color.parseColor("#807e7a")),
+                        21, // Começa após "Detalhes da clínica: "
+                        detalhesClinicaSpannable.length,
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    detalhesClinicaView.text = detalhesClinicaSpannable
                 } else {
                     Log.d("Perfil_medico", "Documento não encontrado")
                 }
@@ -149,29 +155,24 @@ class Perfil_medico : AppCompatActivity() {
             }
     }
 
-    // Método para exibir o AlertDialog de confirmação de exclusão
     private fun showConfirmDeleteDialog(amigoId: String) {
         AlertDialog.Builder(this).apply {
             setTitle("Confirmação de Exclusão")
             setMessage("Tem certeza que deseja desfazer seu vínculo com esse profissional? Esta ação não é reversível.")
-            setPositiveButton("Sim") { _, _ ->
-                deleteMedicoArray(amigoId)
-            }
+            setPositiveButton("Sim") { _, _ -> deleteMedicoArray(amigoId) }
             setNegativeButton("Não", null)
             create()
             show()
         }
     }
 
-    // Método para excluir o médico do array do cliente no Firebase
     private fun deleteMedicoArray(amigoId: String) {
         val user = auth.currentUser
         user?.let {
             val userDocRef = firestore.collection("clientes").document(it.uid)
             userDocRef.update("medicos", FieldValue.arrayRemove(amigoId))
                 .addOnSuccessListener {
-                    Toast.makeText(this, "Profissional excluído com sucesso", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(this, "Profissional excluído com sucesso", Toast.LENGTH_SHORT).show()
                     Log.d("Perfil_medico", "Profissional excluído com sucesso")
                     onBackPressed()
                 }
