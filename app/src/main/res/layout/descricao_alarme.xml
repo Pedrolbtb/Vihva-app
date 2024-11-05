@@ -57,7 +57,7 @@
         android:layout_height="48dp"
         android:layout_marginBottom="480dp"
         android:fontFamily="@font/cloudsoft_bold_700"
-        android:textColor="@color/black"
+        android:textColor="#6b6965"
         android:textSize="30sp"
         android:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="@id/view_descRemedio"
@@ -72,19 +72,18 @@
     <TextView
         android:id="@+id/descricao"
         android:layout_width="255dp"
-        android:layout_height="225dp"
-        android:layout_marginTop="130dp"
+        android:layout_height="425dp"
+        android:layout_marginTop="50dp"
         android:elevation="2dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textColor="#6b6965"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="@id/view_descRemedio"
         app:layout_constraintEnd_toEndOf="@id/view_descRemedio"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@id/view_descRemedio"
-        app:layout_constraintTop_toTopOf="@+id/view_descRemedio"
-        app:layout_constraintVertical_bias="0.723" />
+        app:layout_constraintTop_toTopOf="@+id/view_descRemedio" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline11"

@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="60dp"
-                android:text="@string/text_criadores" />
+                android:text="Colaboradores" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="120dp"
@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Fofinha e cacheada"
+                android:text="Back-End"
                 android:textColor="@color/hint"
                 android:textSize="20sp" />
 
@@ -97,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Bravinha e fã do caique das revoada"
+                android:text="Front-End"
                 android:textColor="@color/hint"
                 android:textSize="20sp" />
 
@@ -126,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Mete Mete e fã da ritinha"
+                android:text="Back-End"
                 android:textColor="@color/hint"
                 android:textSize="20sp" />
 
@@ -154,7 +154,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Gostoso"
+                android:text="Full Stack e idealizador"
                 android:textColor="@color/hint"
                 android:textSize="20sp" />
 
@@ -183,7 +183,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Nerdola e romântico"
+                android:text="Full Stack e idealizador"
                 android:textColor="@color/hint"
                 android:textSize="20sp" />
 

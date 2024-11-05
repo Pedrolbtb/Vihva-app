@@ -136,7 +136,7 @@ class Inicio1 : Fragment(), SensorEventListener {
                         // Mostra o diálogo de alerta
                         AlertDialog.Builder(requireContext()).apply {
                             val inflater = LayoutInflater.from(requireContext())
-                            setView(inflater.inflate(R.layout.popup_esqueci_senha, null))
+                            setView(inflater.inflate(R.layout.popup_morte, null))
                             create().show()
                         }
                     }
