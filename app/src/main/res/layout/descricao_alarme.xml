@@ -57,7 +57,7 @@
         android:layout_height="48dp"
         android:layout_marginBottom="480dp"
         android:fontFamily="@font/cloudsoft_bold_700"
-        android:textColor="#6b6965"
+        android:textColor="#247894"
         android:textSize="30sp"
         android:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="@id/view_descRemedio"
@@ -66,19 +66,31 @@
         app:layout_constraintTop_toTopOf="@id/view_descRemedio" />
 
 
-    <!-- Ajuste para centralizar verticalmente -->
-
+    <TextView
+        style="@style/text_doenca_e_remedio"
+        android:layout_width="wrap_content"
+        android:text="Observações"
+        android:layout_height="48dp"
+        android:layout_marginBottom="340dp"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:textColor="#247894"
+        android:textSize="26sp"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_descRemedio"
+        app:layout_constraintEnd_toEndOf="@id/view_descRemedio"
+        app:layout_constraintStart_toStartOf="@id/view_descRemedio"
+        app:layout_constraintTop_toTopOf="@id/view_descRemedio" />
 
     <TextView
         android:id="@+id/descricao"
         android:layout_width="255dp"
-        android:layout_height="425dp"
+        android:layout_height="325dp"
         android:layout_marginTop="50dp"
         android:elevation="2dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:gravity="center"
         android:textColor="#6b6965"
-        android:textSize="17sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@id/view_descRemedio"
         app:layout_constraintEnd_toEndOf="@id/view_descRemedio"
         app:layout_constraintHorizontal_bias="0.504"

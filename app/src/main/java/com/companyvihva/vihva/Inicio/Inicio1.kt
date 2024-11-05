@@ -134,16 +134,25 @@ class Inicio1 : Fragment(), SensorEventListener {
                         lastSOSTime = currentTime // Atualiza o tempo do último SOS
 
                         // Mostra o diálogo de alerta
-                        AlertDialog.Builder(requireContext()).apply {
-                            val inflater = LayoutInflater.from(requireContext())
-                            setView(inflater.inflate(R.layout.popup_morte, null))
-                            create().show()
+                        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.popup_morte, null)
+                        val dialog = AlertDialog.Builder(requireContext()).apply {
+                            setView(dialogView)
+                        }.create()
+
+                        // Obtém o botão de "Cancelar" e define o comportamento
+                        val btnCancelar = dialogView.findViewById<Button>(R.id.btnCancelar)
+                        btnCancelar.setOnClickListener {
+                            dialog.dismiss() // Fecha o diálogo quando "Cancelar" é pressionado
                         }
+
+                        // Exibe o diálogo
+                        dialog.show()
                     }
                 }
             }
         }
     }
+
 
     private fun enviarSOS() {
         if (ActivityCompat.checkSelfPermission(

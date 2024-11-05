@@ -49,7 +49,7 @@ class Descrição_alarme : AppCompatActivity() {
         }
 
         if (tipoMedAlarme != null){
-            descricaoTextView.text = "Observações: $frequencia; tipo do medicamento: $tipoMedAlarme;" +
+            descricaoTextView.text = "$frequencia; tipo do medicamento: $tipoMedAlarme;" +
                     " será lembrado de comprar mais nesta quantidade de medicamentos: $lembremeAlarme; " +
                     "será avisado até esta data: $dataAlarme; será avisado as $descriçãoAlarme"
         } else {

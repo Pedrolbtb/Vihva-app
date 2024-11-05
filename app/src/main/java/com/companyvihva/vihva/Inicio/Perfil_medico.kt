@@ -8,6 +8,8 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.util.Log
+import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -156,14 +158,26 @@ class Perfil_medico : AppCompatActivity() {
     }
 
     private fun showConfirmDeleteDialog(amigoId: String) {
-        AlertDialog.Builder(this).apply {
-            setTitle("Confirmação de Exclusão")
-            setMessage("Tem certeza que deseja desfazer seu vínculo com esse profissional? Esta ação não é reversível.")
-            setPositiveButton("Sim") { _, _ -> deleteMedicoArray(amigoId) }
-            setNegativeButton("Não", null)
-            create()
-            show()
+        val inflater = LayoutInflater.from(this)
+        val popupView = inflater.inflate(R.layout.popup_confirmar, null)
+
+        val btnCancelar = popupView.findViewById<Button>(R.id.btnRejeitar)
+        val btnAceitar = popupView.findViewById<Button>(R.id.btnAceitar)
+
+        val dialog = AlertDialog.Builder(this, R.style.CustomDialog).apply {
+            setView(popupView)
+        }.create()
+
+        btnAceitar.setOnClickListener {
+            deleteMedicoArray(amigoId)
+            dialog.dismiss()  // Fechar o diálogo após a exclusão
         }
+
+        btnCancelar.setOnClickListener {
+            dialog.dismiss()  // Fechar o diálogo quando "Cancelar" for pressionado
+        }
+
+        dialog.show()  // Exibe o diálogo
     }
 
     private fun deleteMedicoArray(amigoId: String) {

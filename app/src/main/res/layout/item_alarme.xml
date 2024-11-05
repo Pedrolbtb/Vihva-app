@@ -10,71 +10,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_widget">
 
-    <View
-        android:id="@+id/card_fotoitem"
-        android:background="@drawable/container_foto_widget"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="27dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="81dp"
-        android:layout_height="81dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginBottom="10dp"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-        <ImageView
-            android:id="@+id/fotoitem"
-            android:layout_width="81dp"
-            android:layout_height="81dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-    </androidx.cardview.widget.CardView>
-
 
     <TextView
         android:id="@+id/horario"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginEnd="50dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:textColor="#6096a8"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="@+id/card_fotoitem"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.717" />
 
     <TextView
         android:id="@+id/nome_remedio"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/cloudsoft_bold_700"
         android:textColor="#6096a8"
+        android:layout_marginEnd="50dp"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="@+id/card_fotoitem"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.353" />
 

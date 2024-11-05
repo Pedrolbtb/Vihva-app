@@ -47,7 +47,6 @@
         android:text="Mal súbito ou acidente detectado"
         android:textColor="@color/vermelho_alerta"
         android:textSize="22sp"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

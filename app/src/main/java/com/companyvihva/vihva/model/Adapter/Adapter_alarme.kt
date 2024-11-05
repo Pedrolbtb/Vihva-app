@@ -18,7 +18,6 @@ class Adapter_alarme(
 ) : RecyclerView.Adapter<Adapter_alarme.TipoAlarmeViewHolder>() {
 
     inner class TipoAlarmeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageViewremedioId: ImageView = itemView.findViewById(R.id.fotoitem)
         val textViewHorario: TextView = itemView.findViewById(R.id.horario)
         val textViewRemedioId: TextView = itemView.findViewById(R.id.nome_remedio)
 
