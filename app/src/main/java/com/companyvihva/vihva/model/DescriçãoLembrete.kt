@@ -24,6 +24,7 @@ class DescriçãoLembrete : AppCompatActivity() {
     private lateinit var recyclerViewMedicos: RecyclerView
     private lateinit var tituloTextView: TextView
     private lateinit var descricaoTextView: TextView
+    private lateinit var mensagemTextView: TextView
 
     private val auth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
 
@@ -43,6 +44,7 @@ class DescriçãoLembrete : AppCompatActivity() {
 
         tituloTextView = findViewById(R.id.titulo)
         descricaoTextView = findViewById(R.id.descricao_lembrete)
+        mensagemTextView = findViewById(R.id.mensagem_vazia) // Novo TextView para exibir a mensagem
 
         // Botão de voltar
         findViewById<ImageButton>(R.id.btn_voltarDO).setOnClickListener {
@@ -74,33 +76,32 @@ class DescriçãoLembrete : AppCompatActivity() {
             if (document.exists()) {
                 val titulo = document.getString("titulo") ?: "Título não disponível"
                 val descricao = document.getString("descricao") ?: "Descrição não disponível"
-                val medicoUid = document.getString("medicoUid") // Supondo que seja uma string única
+                val medicoUid = document.getString("medicoUid")
 
                 tituloTextView.text = titulo
                 descricaoTextView.text = descricao
 
-                medicoUid?.let {
-                    buscarMedico(it)
+                if (medicoUid != null && medicoUid.isNotEmpty()) {
+                    buscarMedico(medicoUid)
+                } else {
+                    exibirMensagemNenhumMedico()
                 }
             } else {
                 tituloTextView.text = "Documento não encontrado."
                 descricaoTextView.text = ""
+                exibirMensagemNenhumMedico()
             }
         }.addOnFailureListener { exception ->
             tituloTextView.text = "Erro ao carregar o lembrete."
             descricaoTextView.text = ""
             Log.w("DescricaoLembrete", "Erro ao acessar o Firestore", exception)
+            exibirMensagemNenhumMedico()
         }
     }
 
     private fun buscarMedico(medicoUid: String) {
         listaMedicos.clear() // Limpa a lista antes de adicionar novos médicos
         adapterListaAmigos.notifyDataSetChanged()
-
-        if (medicoUid.isEmpty()) {
-            // Caso não haja médico para exibir
-            return
-        }
 
         db.collection("medicos").document(medicoUid).get()
             .addOnSuccessListener { document ->
@@ -110,15 +111,27 @@ class DescriçãoLembrete : AppCompatActivity() {
                     val crm = document.getString("crm") ?: "CRM não disponível"
                     val medico = Amigos(url, nome, medicoUid, crm)
                     listaMedicos.add(medico)
-                    Log.d("DescricaoLembrete", "Médico adicionado: $medico")
                     adapterListaAmigos.notifyDataSetChanged()
+                    atualizarVisibilidadeMensagem()
                 } else {
-                    Log.d("DescricaoLembrete", "Documento do médico não encontrado")
+                    exibirMensagemNenhumMedico()
                 }
             }
             .addOnFailureListener { e ->
                 Log.w("DescricaoLembrete", "Erro ao buscar médico", e)
+                exibirMensagemNenhumMedico()
             }
+    }
+
+    private fun exibirMensagemNenhumMedico() {
+        if (listaMedicos.isEmpty()) {
+            mensagemTextView.text = "Nenhum médico adicionado "
+            mensagemTextView.visibility = TextView.VISIBLE
+        }
+    }
+
+    private fun atualizarVisibilidadeMensagem() {
+        mensagemTextView.visibility = if (listaMedicos.isEmpty()) TextView.VISIBLE else TextView.GONE
     }
 
     private fun showConfirmDeleteDialog(eventoId: String) {
@@ -143,22 +156,11 @@ class DescriçãoLembrete : AppCompatActivity() {
             .addOnSuccessListener {
                 Toast.makeText(this, "Lembrete excluído com sucesso", Toast.LENGTH_SHORT).show()
                 Log.d("DescricaoLembrete", "Lembrete excluído com sucesso")
-                finish() // Fecha a atividade após a exclusão
+                finish()
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Erro ao excluir lembrete", Toast.LENGTH_SHORT).show()
                 Log.w("DescricaoLembrete", "Erro ao excluir lembrete", e)
             }
-    }
-
-    //animaçõa da tela
-    private fun replaceFragment(fragment: Fragment) {
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-
-        fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-
-        fragmentTransaction.replace(R.id.frame_layout, fragment)
-        fragmentTransaction.commit()
     }
 }

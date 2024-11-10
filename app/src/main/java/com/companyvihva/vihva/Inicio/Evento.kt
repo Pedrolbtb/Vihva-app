@@ -3,8 +3,8 @@ package com.companyvihva.vihva.Evento
 import MedicoAdapter
 import android.annotation.SuppressLint
 import android.app.ActivityOptions
-import android.app.AlarmManager
 import android.app.AlertDialog
+import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -14,13 +14,9 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.Spinner
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import com.companyvihva.vihva.NotificationReceiver
 import com.companyvihva.vihva.R
 import com.companyvihva.vihva.com.companyvihva.vihva.model.medico_spinner
@@ -45,9 +41,7 @@ class Evento : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
-        // Inicializa o Spinner
         medicoSpinner = findViewById(R.id.medicoSpinner)
-
         carregarMedicos()
 
         val dateStr = intent.getStringExtra("selectedDate")
@@ -62,9 +56,7 @@ class Evento : AppCompatActivity() {
             salvarEvento(titleEditText, descriptionEditText)
         }
 
-        // Define o comportamento do botão de voltar
         backButton.setOnClickListener {
-            Log.d("Evento", "Back button clicked")
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 val options = ActivityOptions.makeCustomAnimation(this, R.anim.fade_in, R.anim.fade_out)
                 finishAfterTransition()
@@ -82,8 +74,6 @@ class Evento : AppCompatActivity() {
                 clipboard.setPrimaryClip(clip)
                 Toast.makeText(this, "Código do usuário copiado para área de transferência", Toast.LENGTH_SHORT).show()
                 mostrarpopupcodigo(uid)
-            } ?: run {
-                Toast.makeText(this, "Usuário não autenticado", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -94,7 +84,6 @@ class Evento : AppCompatActivity() {
         val medicoNomeSelecionado = medicoSpinner.selectedItem as? medico_spinner
         val medicoUidSelecionado = medicoMap.entries.find { it.value == medicoNomeSelecionado?.nome }?.key
 
-        // Verifica se o título e a descrição não estão vazios
         if (title.isBlank() || description.isBlank()) {
             Toast.makeText(this, "Título e descrição não podem estar vazios.", Toast.LENGTH_SHORT).show()
             return
@@ -111,9 +100,6 @@ class Evento : AppCompatActivity() {
             "medicoUid" to if (medicoNomeSelecionado?.nome == "Não adicionar médico") null else medicoUidSelecionado
         )
 
-        // Adiciona log para verificar os dados que serão salvos
-        Log.d("Evento", "Dados do evento: $event")
-
         val userId = auth.currentUser?.uid ?: return
 
         db.collection("clientes")
@@ -121,8 +107,8 @@ class Evento : AppCompatActivity() {
             .collection("eventos")
             .add(event)
             .addOnSuccessListener {
-                Log.d("Evento", "Evento salvo com sucesso")
-                // Aqui você pode adicionar lógica para agendar uma notificação
+                Toast.makeText(this, "Evento salvo com sucesso", Toast.LENGTH_SHORT).show()
+                scheduleNotification(title, description, selectedDate)
                 finish()
             }
             .addOnFailureListener { e ->
@@ -136,32 +122,20 @@ class Evento : AppCompatActivity() {
         db.collection("clientes").document(userId).get()
             .addOnSuccessListener { document ->
                 val medicosArray = document.get("medicos") as? List<String>
-
-                // Adiciona a opção "Não adicionar médico" primeiro
                 listaMedicos.add(medico_spinner("Não adicionar médico", ""))
 
-                if (medicosArray != null) {
-                    medicosArray.forEach { medicoUid ->
-                        db.collection("medicos").document(medicoUid).get()
-                            .addOnSuccessListener { medicoDoc ->
-                                val nomeMedico = medicoDoc.getString("nome") ?: medicoUid
-                                val imageUrl = medicoDoc.getString("imageUrl") ?: ""
-                                val medico = medico_spinner(nomeMedico, imageUrl)
-                                listaMedicos.add(medico)
-                                medicoMap[medicoUid] = nomeMedico
-                            }
-                            .addOnFailureListener { e ->
-                                Log.e("Evento", "Erro ao buscar médico $medicoUid", e)
-                            }
-                    }
+                medicosArray?.forEach { medicoUid ->
+                    db.collection("medicos").document(medicoUid).get()
+                        .addOnSuccessListener { medicoDoc ->
+                            val nomeMedico = medicoDoc.getString("nome") ?: medicoUid
+                            val imageUrl = medicoDoc.getString("imageUrl") ?: ""
+                            val medico = medico_spinner(nomeMedico, imageUrl)
+                            listaMedicos.add(medico)
+                            medicoMap[medicoUid] = nomeMedico
+                        }
                 }
-
-                // Atualiza o adapter do Spinner após adicionar todos os médicos
                 val adapter = MedicoAdapter(this, listaMedicos)
                 medicoSpinner.adapter = adapter
-            }
-            .addOnFailureListener { e ->
-                Log.e("Evento", "Erro ao buscar médicos", e)
             }
     }
 
@@ -170,9 +144,31 @@ class Evento : AppCompatActivity() {
         return try {
             format.parse(dateStr) ?: Date()
         } catch (e: Exception) {
-            Log.e("Evento", "Error parsing date", e)
+            Log.e("Evento", "Erro ao converter data", e)
             Date()
         }
+    }
+
+    private fun scheduleNotification(title: String, description: String, date: Date) {
+        val calendar = Calendar.getInstance().apply {
+            time = date
+            set(Calendar.HOUR_OF_DAY, 9)
+        }
+
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val notificationIntent = Intent(this, NotificationReceiver::class.java).apply {
+            putExtra("title", title)
+            putExtra("description", description)
+        }
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            this,
+            0,
+            notificationIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
     }
 
     @SuppressLint("MissingInflatedId")
@@ -184,7 +180,6 @@ class Evento : AppCompatActivity() {
         val textViewCodigo = popupView.findViewById<TextView>(R.id.textView_codigo)
 
         textViewCodigo.text = uid
-
         builder.setView(popupView)
         val alertDialog = builder.create()
         alertDialog.show()
