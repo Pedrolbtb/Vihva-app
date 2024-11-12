@@ -175,33 +175,39 @@ class DescriçãoDoença_inicio1 : AppCompatActivity() {
         firestore.collection("clientes").document(userId).get()
             .addOnSuccessListener { document ->
                 val medicosArray = document.get("medicos") as? List<String>
+
+                // Adiciona a opção "Nenhum médico selecionado" primeiro
+                val medicoNenhum = medico_spinner("Nenhum médico selecionado", "", "")
+                listaMedicos.add(medicoNenhum)
+
                 medicosArray?.let { loadMedicos(it) }
             }
             .addOnFailureListener { e ->
                 Log.e("Evento", "Erro ao carregar médicos", e)
-                Toast.makeText(this, "Erro ao carregar médicos. Tente novamente.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Erro ao carregar médicos", Toast.LENGTH_SHORT).show()
             }
     }
 
     private fun loadMedicos(medicosArray: List<String>) {
-        val medicosList = mutableListOf<medico_spinner>()
         medicosArray.forEach { medicoUid ->
-            firestore.collection("medicos").document(medicoUid).get().addOnSuccessListener { medicoDoc ->
-                val nomeMedico = medicoDoc.getString("nome") ?: medicoUid
-                val imageUrl = medicoDoc.getString("imageUrl") ?: ""
-                val medico = medico_spinner(nomeMedico, imageUrl)
-                medicosList.add(medico)
-                medicoMap[medicoUid] = nomeMedico
+            firestore.collection("medicos").document(medicoUid).get()
+                .addOnSuccessListener { medicoDoc ->
+                    val nomeMedico = medicoDoc.getString("nome") ?: medicoUid
+                    val imageUrl = medicoDoc.getString("imageUrl") ?: ""
+                    val medico = medico_spinner(nomeMedico, imageUrl, medicoUid) // Passando o UID do médico
+                    listaMedicos.add(medico)
+                    medicoMap[medicoUid] = nomeMedico
 
-                // Atualiza o adapter do Spinner
-                val adapter = MedicoAdapter(this, medicosList)
-                medicoSpinner.adapter = adapter
-            }.addOnFailureListener { e ->
-                Log.w("Evento", "Erro ao buscar médico $medicoUid", e)
-                Toast.makeText(this, "Erro ao carregar médico: $medicoUid", Toast.LENGTH_SHORT).show()
-            }
+                    // Atualiza o adapter do Spinner
+                    val adapter = MedicoAdapter(this, listaMedicos)
+                    medicoSpinner.adapter = adapter
+                }
+                .addOnFailureListener { exception ->
+                    Log.d("Firestore", "Erro ao carregar médicos: ", exception)
+                }
         }
     }
+
 
     private fun salvarInformacoesDoenca() {
         val user = auth.currentUser

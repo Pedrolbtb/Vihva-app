@@ -12,20 +12,17 @@
         android:id="@+id/mensagem_vazia"
         android:layout_width="400dp"
         android:layout_height="25dp"
-        android:layout_marginBottom="170dp"
         android:elevation="2dp"
         android:fontFamily="@font/cloudsoft_bold_700"
-
         android:text="Nenhum médico adicionado "
         android:textAlignment="center"
-        android:textColor="@color/Letras"
+        android:textColor="#6b6965"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/View_DescEvento"
         app:layout_constraintEnd_toEndOf="@+id/container_descricao"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/container_descricao"
         app:layout_constraintTop_toBottomOf="@+id/container_descricao"
-        app:layout_constraintVertical_bias="1.0" />
+        />
 
     <ImageButton
         android:id="@+id/btn_voltarDO"

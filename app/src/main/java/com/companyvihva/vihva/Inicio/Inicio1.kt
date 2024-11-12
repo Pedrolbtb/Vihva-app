@@ -140,7 +140,7 @@ class Inicio1 : Fragment(), SensorEventListener {
                         }.create()
 
                         // Obtém o botão de "Cancelar" e define o comportamento
-                        val btnCancelar = dialogView.findViewById<Button>(R.id.btnCancelar)
+                        val btnCancelar = dialogView.findViewById<ImageButton>(R.id.btnCancelar)
                         btnCancelar.setOnClickListener {
                             dialog.dismiss() // Fecha o diálogo quando "Cancelar" é pressionado
                         }
@@ -215,7 +215,7 @@ class Inicio1 : Fragment(), SensorEventListener {
         val inflater = LayoutInflater.from(requireContext())
         val popupView = inflater.inflate(R.layout.popup_confirmar, null)
 
-        val btnCancelar = popupView.findViewById<Button>(R.id.btnRejeitar)
+        val btnCancelar = popupView.findViewById<ImageButton>(R.id.btnRejeitar)
         val btnAceitar = popupView.findViewById<Button>(R.id.btnAceitar)
 
         // Criação do diálogo
