@@ -38,7 +38,6 @@ class FotoBio : AppCompatActivity() {
     // Companion object para declarar uma constante para o código de solicitação de imagem
     companion object {
         const val IMAGE_REQUEST_CODE = 100
-        const val REQUEST_PERMISSION_CODE = 101 // Código de solicitação de permissão
         const val IMAGE_REQUEST_CODE_POPUP = 101
         private const val TAG = "KotlinActivity"
     }
@@ -72,7 +71,7 @@ class FotoBio : AppCompatActivity() {
 
         // Define um ouvinte de clique para a imageView
         imageView.setOnClickListener {
-            checkPermissionAndPickImage() // Chama o método para verificar permissão e selecionar uma imagem
+            pickImageGallery() // Chama o método para abrir a galeria
         }
 
         // Configura o OnClickListener para o botão retornar
@@ -103,30 +102,7 @@ class FotoBio : AppCompatActivity() {
         }
     }
 
-    // Método para verificar permissão e abrir a galeria de mídia
-    private fun checkPermissionAndPickImage() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-            == PackageManager.PERMISSION_GRANTED) {
-            pickImageGallery() // Chama o método para selecionar uma imagem da galeria
-        } else {
-            // Solicita a permissão
-            ActivityCompat.requestPermissions(this,
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                REQUEST_PERMISSION_CODE)
-        }
-    }
 
-    // Função chamada quando a permissão é concedida ou negada
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_PERMISSION_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                pickImageGallery() // Permissão concedida, abre a galeria
-            } else {
-                Toast.makeText(this, "Permissão para acessar a galeria negada.", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
     // Método para abrir a galeria de mídia e selecionar uma imagem
     private fun pickImageGallery() {
