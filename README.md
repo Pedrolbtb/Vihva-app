@@ -53,14 +53,20 @@ O **Vihva** foi criado com o objetivo de oferecer uma solução moderna e eficie
     <img src="https://github.com/user-attachments/assets/e7c3b366-d825-46f1-8755-d54eb769c4ad" alt="perfil" width="20%">
   </p>
 
-  - **Integração com smartwatch:** Funcionalidades voltadas para corrida por meio do app para smartwatchs (https://github.com/Pedrolbtb/Vihva-Watch)
+- **Integração com smartwatch:** Funcionalidades voltadas para corrida por meio do app para smartwatchs (https://github.com/Pedrolbtb/Vihva-Watch)
      <p align="center">
     <img src="https://github.com/user-attachments/assets/c9437148-21f1-4e44-8f50-189d13d6c4fb" alt="smartwatch" width="20%">
     </p>
+
+ - **Ferramentas de acessibilidade:** Funcionalidades voltadas para pessoas com deficiências auditivas e visuais por meio do Google Accessibility
+
   Muitas outras funcionalidades estão disponíveis na versão 1.0 lançada na release, teste agora!
 
 ## Contribuições
 Agradecemos imensamente o interesse em contribuir com o Vihva. Ficaremos honrados em receber suas ideias e sugestões para aprimorar ainda mais o nosso aplicativo.
+
+## Requisitos
+Requisitos: Dispositivo Android com sistema operacional versão 11.0 ou superior.
 
 ## Licença
 
@@ -122,16 +128,21 @@ Developed as the Final Year Project (TCC) by students from **ETEC João Belarmin
     <img src="https://github.com/user-attachments/assets/e7c3b366-d825-46f1-8755-d54eb769c4ad" alt="perfil" width="20%">
   </p>
 
-  - **Smartwatch Integration:** Features for running through the smartwatch app (https://github.com/Pedrolbtb/Vihva-Watch)
+- **Smartwatch Integration:** Features for running through the smartwatch app (https://github.com/Pedrolbtb/Vihva-Watch)
      <p align="center">
     <img src="https://github.com/user-attachments/assets/c9437148-21f1-4e44-8f50-189d13d6c4fb" alt="smartwatch" width="20%">
     </p>
+
+
+- **Accessibility tools:** Features aimed at people with hearing and visual disabilities through Google Accessibility.
   Many other features are available in the released version 1.0, try it now!
 
 ## Contributions
 We sincerely appreciate the interest in contributing to Vihva. We would be honored to receive your ideas and suggestions to further improve our app.
 
-## License
+## Requirements
+Android device with operating system version 11.0 or higher.
 
+## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
