@@ -7,12 +7,12 @@ Vihva é um app de saúde voltado para pacientes com doenças crônicas que nece
 
 ## Descrição
 
-Desenvolvido como Trabalho de Conclusão de Curso (TCC) pelos alunos da **ETEC João Belarmino** em 2024, o **Vihva** é o resultado de um trabalho de 9 meses durante o ano e da equipe:
+Desenvolvido como Trabalho de Conclusão de Curso (TCC) pelos alunos da **ETEC João Belarmino** em 2024, o **Vihva** é o resultado de um trabalho de 9 meses durante o ano da equipe:
 
 - **Idealizador, Desenvolvedor Full Stack e Diretor Artístico:** Pedro Henrique Lopes Batista Teixeira Bomfim  
-- **Idealizador e Desenvolvedor Full Stack:** Samuel Bueno  
-- **Desenvolvedora Front-end:** Maria Rita Leonardi  
-- **Desenvolvedores Back-end:** Nicolas Garavello e Maria Eduarda  
+- **Idealizador e Desenvolvedor Full Stack:** Samuel Bueno (@BuenoSamu) 
+- **Desenvolvedora Front-end:** Maria Rita Leonardi  (@RitinhaLeonardi)
+- **Desenvolvedores Back-end:** Nicolas Garavello (@nicolasgarv) e Maria Eduarda Shimidt (@DudaShimidt)  
 
 O **Vihva** foi criado com o objetivo de oferecer uma solução moderna e eficiente para o gerenciamento da saúde. Com uma interface intuitiva e recursos avançados, o aplicativo reúne ferramentas indispensáveis para simplificar e otimizar o cuidado com a saúde, garantindo praticidade e eficiência na rotina de seus usuários.
 
