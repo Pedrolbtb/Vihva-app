@@ -9,15 +9,15 @@ Vihva é um app de saúde voltado para pacientes com doenças crônicas que nece
 
 Desenvolvido como Trabalho de Conclusão de Curso (TCC) pelos alunos da **ETEC João Belarmino** em 2024, o **Vihva** é o resultado de um trabalho de 9 meses durante o ano da equipe:
 
-- **Idealizador, Desenvolvedor Full Stack e Diretor Artístico:** Pedro Henrique Lopes Batista Teixeira Bomfim  
-- **Idealizador e Desenvolvedor Full Stack:** Samuel Bueno (@BuenoSamu) 
-- **Desenvolvedora Front-end:** Maria Rita Leonardi  (@RitinhaLeonardi)
-- **Desenvolvedores Back-end:** Nicolas Garavello (@nicolasgarv) e Maria Eduarda Shimidt (@DudaShimidt)  
+- **Idealizador, Desenvolvedor Full Stack e Diretor Artístico:** Pedro Henrique Lopes Batista Teixeira Bomfim (<a href = "https://github.com/Pedrolbtb">@Pedrolbtb</a>)  
+- **Idealizador e Desenvolvedor Full Stack:** Samuel Bueno (<a href = "https://github.com/BuenoSamu">@BuenoSamu</a>) 
+- **Desenvolvedora Front-end:** Maria Rita Leonardi  (<a href = "https://github.com/RitinhaLeonardi">@RitinhaLeonardi</a>) 
+- **Desenvolvedores Back-end:** Nicolas Garavello (<a href = "https://github.com/nicolasgarv">@nicolasgarv</a>) e Maria Eduarda Shimidt (<a href = "https://github.com/DudaShimidt">@DudaShimidt</a>) 
 
 O **Vihva** foi criado com o objetivo de oferecer uma solução moderna e eficiente para o gerenciamento da saúde. Com uma interface intuitiva e recursos avançados, o aplicativo reúne ferramentas indispensáveis para simplificar e otimizar o cuidado com a saúde, garantindo praticidade e eficiência na rotina de seus usuários.
 
 ## Principais funcionalidades:
-- **Gerenciamento de medicamentos e enfermidades:** Registre suas condições de saúde e os medicamentos em uso diretamente no seu perfil. Adicione observações, datas de prescrição e, se o médico for usuário do Vihva Medical Center, visualize também o nome do profissional responsável pela prescrição.
+- **Gerenciamento de medicamentos e enfermidades:** Registre suas condições de saúde e os medicamentos em uso diretamente no seu perfil. Adicione observações, datas de prescrição e, se o médico for usuário do <a href = "https://github.com/BuenoSamu/Vihva_Medical_Center">Vihva Medical Center</a>, visualize também o nome do profissional responsável pela prescrição.
   <p align="center">
     <img src="https://github.com/user-attachments/assets/2ef27ac0-40b5-4f86-b9ff-62baf5a1e457" alt="inicio" width="20%">
   </p>
@@ -30,7 +30,7 @@ O **Vihva** foi criado com o objetivo de oferecer uma solução moderna e eficie
     <img src="https://github.com/user-attachments/assets/2708387b-05ce-44dc-bd88-17d265a1097e" alt="calendario" width="20%">
   </p>
 
-- **Acompanhamento com profissionais de saúde:** Conexão direta com médicos para orientações e lembretes personalizados por meio do Vihva Medical Center.
+- **Acompanhamento com profissionais de saúde:** Conexão direta com médicos para orientações e lembretes personalizados por meio do <a href = "https://github.com/BuenoSamu/Vihva_Medical_Center">Vihva Medical Center</a>.
   <p align="center">
     <img src="https://github.com/user-attachments/assets/f950f4e1-b166-4531-9727-9380b4ef453c" alt="medico" width="20%">
   </p>
@@ -53,7 +53,7 @@ O **Vihva** foi criado com o objetivo de oferecer uma solução moderna e eficie
     <img src="https://github.com/user-attachments/assets/e7c3b366-d825-46f1-8755-d54eb769c4ad" alt="perfil" width="20%">
   </p>
 
-- **Integração com smartwatch:** Funcionalidades voltadas para corrida por meio do app para smartwatchs (https://github.com/Pedrolbtb/Vihva-Watch)
+- **Integração com smartwatch:** Funcionalidades voltadas para corrida por meio do app para smartwatchs <a href ="https://github.com/Pedrolbtb/Vihva-Watch">Vihva Watch</a>
      <p align="center">
     <img src="https://github.com/user-attachments/assets/c9437148-21f1-4e44-8f50-189d13d6c4fb" alt="smartwatch" width="20%">
     </p>
@@ -84,10 +84,10 @@ Vihva is a health app designed for patients with chronic diseases who require da
 
 Developed as the Final Year Project (TCC) by students from **ETEC João Belarmino** in 2024, **Vihva** is the result of 9 months of work during the year, and the team consists of:
 
-- **Creator, Full Stack Developer, and Artistic Director:** Pedro Henrique Lopes Batista Teixeira Bomfim  
-- **Creator and Full Stack Developer:** Samuel Bueno  
-- **Front-end Developer:** Maria Rita Leonardi  
-- **Back-end Developers:** Nicolas Garavello and Maria Eduarda  
+- **Creator, Full Stack Developer, and Artistic Director:** Pedro Henrique Lopes Batista Teixeira Bomfim (<a href = "https://github.com/Pedrolbtb">@Pedrolbtb</a>)  
+- **Creator and Full Stack Developer:** Samuel Bueno (<a href = "https://github.com/BuenoSamu">@BuenoSamu</a>)  
+- **Front-end Developer:** Maria Rita Leonardi (<a href = "https://github.com/RitinhaLeonardi">@RitinhaLeonardi</a>)  
+- **Back-end Developers:** Nicolas Garavello (<a href = "https://github.com/nicolasgarv">@nicolasgarv</a>) and Maria Eduarda (<a href = "https://github.com/DudaShimidt">@DudaShimidt</a>) 
 
 **Vihva** was created with the goal of providing a modern and efficient solution for health management. With an intuitive interface and advanced features, the app brings together essential tools to simplify and optimize healthcare, ensuring practicality and efficiency in users' routines.
 
@@ -105,7 +105,7 @@ Developed as the Final Year Project (TCC) by students from **ETEC João Belarmin
     <img src="https://github.com/user-attachments/assets/2708387b-05ce-44dc-bd88-17d265a1097e" alt="calendario" width="20%">
   </p>
 
-- **Healthcare Professional Follow-up:** Direct connection with doctors for guidance and personalized reminders through the Vihva Medical Center.
+- **Healthcare Professional Follow-up:** Direct connection with doctors for guidance and personalized reminders through the <a href = "https://github.com/BuenoSamu/Vihva_Medical_Center">Vihva Medical Center</a>.
   <p align="center">
     <img src="https://github.com/user-attachments/assets/f950f4e1-b166-4531-9727-9380b4ef453c" alt="medico" width="20%">
   </p>
@@ -128,7 +128,7 @@ Developed as the Final Year Project (TCC) by students from **ETEC João Belarmin
     <img src="https://github.com/user-attachments/assets/e7c3b366-d825-46f1-8755-d54eb769c4ad" alt="perfil" width="20%">
   </p>
 
-- **Smartwatch Integration:** Features for running through the smartwatch app (https://github.com/Pedrolbtb/Vihva-Watch)
+- **Smartwatch Integration:** Features for running through the smartwatch app <a href ="https://github.com/Pedrolbtb/Vihva-Watch">Vihva Watch</a>
      <p align="center">
     <img src="https://github.com/user-attachments/assets/c9437148-21f1-4e44-8f50-189d13d6c4fb" alt="smartwatch" width="20%">
     </p>
