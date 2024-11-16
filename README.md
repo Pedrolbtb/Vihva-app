@@ -18,12 +18,12 @@ O **Vihva** foi criado com o objetivo de oferecer uma solução moderna e eficie
 
 ## Principais funcionalidades:
 - **Gerenciamento de medicamentos e enfermidades:** Registre suas condições de saúde e os medicamentos em uso diretamente no seu perfil. Adicione observações, datas de prescrição e, se o médico for usuário do <a href = "https://github.com/BuenoSamu/Vihva_Medical_Center">Vihva Medical Center</a>, visualize também o nome do profissional responsável pela prescrição.
-  <p align="center">
-    <img src="https://github.com/user-attachments/assets/2ef27ac0-40b5-4f86-b9ff-62baf5a1e457" alt="inicio" width="20%">
-  </p>
-  <p align="center">
-    <img src="https://github.com/user-attachments/assets/23408467-11ca-4f63-a001-c948a5b9af80" alt="obsremedio" width="20%">
-  </p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2ef27ac0-40b5-4f86-b9ff-62baf5a1e457" alt="inicio" width="20%">
+  &nbsp;&nbsp;&nbsp;&nbsp; <!-- Adiciona espaços entre as imagens -->
+  <img src="https://github.com/user-attachments/assets/23408467-11ca-4f63-a001-c948a5b9af80" alt="obsremedio" width="20%">
+</p>
+
 
 - **Monitoramento de consultas e datas específicas:** Agende e acompanhe suas consultas médicas e datas específicas com facilidade.
   <p align="center">
@@ -38,8 +38,7 @@ O **Vihva** foi criado com o objetivo de oferecer uma solução moderna e eficie
 - **Alarmes Personalizáveis:** Agende vários alarmes com opções avançadas de configuração para garantir que você nunca esqueça de tomar suas medicações no horário certo.
   <p align="center">
     <img src="https://github.com/user-attachments/assets/3321585d-495c-4eae-867a-dba8cf4b7673" alt="Alarme" width="20%">
-  </p>
-  <p align="center">
+   &nbsp;&nbsp;&nbsp;&nbsp; 
     <img src="https://github.com/user-attachments/assets/f1baca4a-623a-4c32-9dd6-f5048f18653f" alt="detalhes do alarme" width="20%">
   </p>
 
@@ -95,11 +94,10 @@ Developed as the Final Year Project (TCC) by students from **ETEC João Belarmin
 - **Medication and Illness Management:** Register your health conditions and medications directly in your profile. Add notes, prescription dates, and if the doctor is a Vihva Medical Center user, you can also view the name of the prescribing professional.
   <p align="center">
     <img src="https://github.com/user-attachments/assets/2ef27ac0-40b5-4f86-b9ff-62baf5a1e457" alt="inicio" width="20%">
-  </p>
-  <p align="center">
+   &nbsp;&nbsp;&nbsp;&nbsp;
     <img src="https://github.com/user-attachments/assets/23408467-11ca-4f63-a001-c948a5b9af80" alt="obsremedio" width="20%">
   </p>
-
+  
 - **Monitoring of Appointments and Specific Dates:** Schedule and track your medical appointments and specific dates with ease.
   <p align="center">
     <img src="https://github.com/user-attachments/assets/2708387b-05ce-44dc-bd88-17d265a1097e" alt="calendario" width="20%">
@@ -113,11 +111,10 @@ Developed as the Final Year Project (TCC) by students from **ETEC João Belarmin
 - **Customizable Alarms:** Schedule multiple alarms with advanced configuration options to ensure you never forget to take your medication on time.
   <p align="center">
     <img src="https://github.com/user-attachments/assets/3321585d-495c-4eae-867a-dba8cf4b7673" alt="Alarme" width="20%">
+   &nbsp;&nbsp;&nbsp;&nbsp; 
+   <img src="https://github.com/user-attachments/assets/f1baca4a-623a-4c32-9dd6-f5048f18653f" alt="detalhes do alarme" width="20%">
   </p>
-  <p align="center">
-    <img src="https://github.com/user-attachments/assets/f1baca4a-623a-4c32-9dd6-f5048f18653f" alt="detalhes do alarme" width="20%">
-  </p>
-
+  
 - **SOS Button:** In case of emergency, configure the SOS button to automatically send a message to your preferred contact number. The feature can also be activated by a fall detection sensor, ensuring quick and efficient assistance.
   <p align="center">
     <img src="https://github.com/user-attachments/assets/83e1cd32-5c81-493a-954d-d1e73d6141cd" alt="sos" width="20%">
